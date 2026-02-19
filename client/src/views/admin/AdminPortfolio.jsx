@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Trash2, Edit2, Plus, ExternalLink } from 'lucide-react';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = import.meta.env.VITE_API_URL || 'https://editor-portfolio-back.vercel.app';
 
 const AdminPortfolio = () => {
     const [items, setItems] = useState([]);

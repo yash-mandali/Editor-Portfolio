@@ -12,7 +12,7 @@ export const useVideoController = () => {
     const [items, setItems] = useState(VIDEOS);
     const [loading, setLoading] = useState(true);
 
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    const API_URL = import.meta.env.VITE_API_URL || 'https://editor-portfolio-back.vercel.app';
 
     // Fetch videos from API
     useEffect(() => {

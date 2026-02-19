@@ -12,7 +12,7 @@ export const usePortfolioController = () => {
   const [items, setItems] = useState(PORTFOLIO);
   const [loading, setLoading] = useState(true);
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  const API_URL = import.meta.env.VITE_API_URL || 'https://editor-portfolio-back.vercel.app';
 
   // Fetch portfolio from API
   useEffect(() => {
