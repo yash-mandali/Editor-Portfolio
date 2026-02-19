@@ -17,8 +17,8 @@ const CORS_ORIGIN = 'https://editor-portfolio-kappa-lyart.vercel.app';
 // Middleware
 app.use(cors({
     origin: CORS_ORIGIN,
-    credentials: true,
-    optionsSuccessStatus: 200
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json());
