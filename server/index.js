@@ -12,14 +12,14 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI;
-// const CORS_ORIGIN = 'https://editor-portfolio-back.vercel.app';
+const CORS_ORIGIN = 'https://editor-portfolio-kappa-lyart.vercel.app';
 
 // Middleware
-// app.use(cors({
-//     origin: CORS_ORIGIN,
-//     credentials: true,
-//     optionsSuccessStatus: 200
-// }));
+app.use(cors({
+    origin: CORS_ORIGIN,
+    credentials: true,
+    optionsSuccessStatus: 200
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
