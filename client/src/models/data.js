@@ -6,12 +6,12 @@
 import { Film, Youtube, Instagram, MonitorPlay, Star, Zap, Clapperboard } from 'lucide-react';
 
 export const PROFILE = {
-  name: "Alex Sterling",
+  name: "Yash Mandali",
   title: "Premium Video Editor",
   tagline: "Crafting Cinematic Stories for Visionaries",
   description: "I specialize in transforming raw footage into compelling visual narratives. With expertise in Adobe Premiere Pro, After Effects, and CapCut Pro, I deliver high-end edits for creators and brands who value quality.",
   email: "contact@alexsterling.edit",
-  whatsapp: "+919876543210",
+  whatsapp: "+919574804787",
   socials: {
     instagram: "https://instagram.com",
     youtube: "https://youtube.com",
@@ -74,47 +74,6 @@ export const PORTFOLIO = [
     description: "A mood-driven cinematic sequence showcasing urban nightlife.",
     videoUrl: "https://www.youtube.com/watch?v=zF9m02WllZc" // Standard Watch Link
   },
-  // {
-  //   id: 2,
-  //   title: "Tech Review 2025",
-  //   category: "YouTube",
-  //   image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=1000&auto=format&fit=crop",
-  //   description: "Fast-paced tech review with motion graphics and overlays.",
-  //   videoUrl: "https://www.youtube.com/embed/9bZkp7q19f0" // Embed Link
-  // },
-  // {
-  //   id: 3,
-  //   title: "Summer Fashion Reel",
-  //   category: "Reels",
-  //   image: "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?q=80&w=1000&auto=format&fit=crop",
-  //   description: "Dynamic transitions and beat-sync editing for a fashion brand.",
-  //   videoUrl: "https://www.youtube.com/embed/M7lc1UVf-VE" 
-  // },
-  // {
-  //   id: 4,
-  //   title: "Bhavna Edit",
-  //   category: "Reels",
-  //   image: "./src/assests/image.png",
-  //   description: "Bhavna masi no edit",
-  //   videoUrl: "./src/assests/bhavana uk_1.mp4" 
-  // },
-  // {
-  //   id: 5,
-  //   title: "Wedding Highlights",
-  //   category: "Wedding",
-  //   image: "https://images.unsplash.com/photo-1511285560982-1351cdeb9821?q=80&w=1000&auto=format&fit=crop",
-  //   description: "Emotional and color-graded highlights from a destination wedding.",
-  //   videoUrl: "https://www.youtube.com/embed/0pThnRneDjw" 
-  // },
-  // {
-  //   id: 6,
-  //   title: "Fitness Motivation",
-  //   category: "Reels",
-  //   image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1000&auto=format&fit=crop",
-  //   description: "High-energy gym edit with intense sound design.",
-  //   videoUrl: "https://www.youtube.com/embed/eaRQF-7hhmo" 
-  //   videoUrl: "https://drive.google.com/file/d/FILE_ID/view?usp=sharing" // Google Drive share link example (converted to preview)
-  // }
 ];
 
 export const VIDEOS = [

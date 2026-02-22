@@ -35,7 +35,7 @@ const Navbar = () => {
         <Link to="/" className="text-2xl font-bold tracking-tighter text-neutral-900 dark:text-white flex items-center gap-2">
           <motion.div initial={{ scale: 0.96, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.4 }} className="flex items-center gap-2">
             <Video className="text-amber-500" />
-            <span>STERLING<span className="text-amber-500">.</span>EDIT</span>
+            <span>CineCraft<span className="text-amber-500">.</span>EDIT</span>
           </motion.div>
         </Link>
 
@@ -110,7 +110,7 @@ const Footer = () => {
           <div className="col-span-2">
             <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4 flex items-center gap-2">
               <Video className="text-amber-500" />
-              STERLING<span className="text-amber-500">.</span>EDIT
+              CineCraft<span className="text-amber-500">.</span>EDIT
             </h3>
             <p className="text-neutral-600 dark:text-neutral-400 max-w-md mb-6">
               {PROFILE.tagline}. Delivering premium post-production services for creators and brands worldwide.

@@ -193,7 +193,7 @@ const Home = () => {
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link to="/contact" className="inline-flex items-center justify-center px-8 py-4 bg-neutral-900 dark:bg-white text-white dark:text-black font-bold rounded-full hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors shadow-xl">
-              Get a Quote
+              Get a Chance
             </Link>
           </motion.div>
         </motion.div>
