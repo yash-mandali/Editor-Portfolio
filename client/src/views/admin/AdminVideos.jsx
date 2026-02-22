@@ -149,6 +149,7 @@ const AdminVideos = () => {
                         <option value="Music & Cinematic">Music & Cinematic</option>
                         <option value="Podcast & Interviews">Podcast & Interviews</option>
                         <option value="Event Videos">Event Videos</option>
+                        <option value="Client Projects">Client Projects</option>
                         <option value="Others">Others</option>
                     </select>
                     {errors.category && <p className="text-red-500 text-xs mt-1">{errors.category}</p>}
