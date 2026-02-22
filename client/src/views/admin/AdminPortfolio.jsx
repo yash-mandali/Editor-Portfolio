@@ -55,7 +55,7 @@ const AdminPortfolio = () => {
             const payload = {
                 title: form.title,
                 category: form.category,
-                image: convertDriveImageUrl(form.image),
+                image: convertDriveVideoUrl(form.image),
                 description: form.description,
                 videoUrl: form.videoUrl,
                 published: form.published
