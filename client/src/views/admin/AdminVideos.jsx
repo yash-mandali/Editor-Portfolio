@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Trash2, Edit2, Plus, ExternalLink } from 'lucide-react';
+import { convertDriveImageUrl, convertDriveVideoUrl } from '../../utils/driveUtils';
 
 const API_URL = import.meta.env.VITE_API_URL || 'https://editor-portfolio-back.vercel.app';
 
@@ -54,7 +55,7 @@ const AdminVideos = () => {
             const payload = {
                 title: form.title,
                 category: form.category,
-                image: form.image,
+                image: convertDriveImageUrl(form.image),
                 description: form.description,
                 videoUrl: form.videoUrl,
                 published: form.published

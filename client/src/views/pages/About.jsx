@@ -1,7 +1,6 @@
 import React from 'react';
 import { TOOLS, PROFILE } from '../../models/data';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 
 const About = () => {
   const containerVariants = {
