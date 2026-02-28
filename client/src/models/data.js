@@ -11,10 +11,10 @@ export const PROFILE = {
   tagline: "Crafting Cinematic Stories for Visionaries",
   description: "I specialize in transforming raw footage into compelling visual narratives. With expertise in Adobe Premiere Pro, After Effects, and CapCut Pro, I deliver high-end edits for creators and brands who value quality.",
   email: "contact@alexsterling.edit",
-  whatsapp: "+919574804787",
+  whatsapp: "+91 9574804787",
   socials: {
-    instagram: "https://instagram.com",
-    youtube: "https://youtube.com",
+    instagram: "https://www.instagram.com/phoenixdude28?igsh=aW1xNmZmN3A5aXJz",
+    youtube: "https://youtube.com/@phoenixdude28?si=XjhU2JppxWWdTbrh",
     linkedin: "https://linkedin.com"
   }
 };
