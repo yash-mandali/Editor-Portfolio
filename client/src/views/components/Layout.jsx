@@ -115,11 +115,34 @@ const Footer = () => {
             <p className="text-neutral-600 dark:text-neutral-400 max-w-md mb-6">
               {PROFILE.tagline}. Delivering premium post-production services for creators and brands worldwide.
             </p>
-            <div className="flex gap-4">
-              <a href={PROFILE.socials.instagram} className="text-neutral-500 dark:text-neutral-400 hover:text-amber-500 transition-colors"><Instagram size={20} /></a>
-              <a href={PROFILE.socials.youtube} className="text-neutral-500 dark:text-neutral-400 hover:text-amber-500 transition-colors"><Youtube size={20} /></a>
-              <a href={PROFILE.socials.linkedin} className="text-neutral-500 dark:text-neutral-400 hover:text-amber-500 transition-colors"><Linkedin size={20} /></a>
-              <a href={`mailto:${PROFILE.email}`} className="text-neutral-500 dark:text-neutral-400 hover:text-amber-500 transition-colors"><Mail size={20} /></a>
+            <div className="flex gap-6 text-neutral-500 dark:text-neutral-400">
+              <a
+                href={PROFILE.socials.instagram}
+                className="transform transition-all duration-300 ease-out hover:text-amber-500 hover:scale-110 hover:-translate-y-1"
+              >
+                <Instagram size={22} />
+              </a>
+
+              <a
+                href={PROFILE.socials.youtube}
+                className="transform transition-all duration-300 ease-out hover:text-amber-500 hover:scale-110 hover:-translate-y-1"
+              >
+                <Youtube size={22} />
+              </a>
+
+              <a
+                href={PROFILE.socials.linkedin}
+                className="transform transition-all duration-300 ease-out hover:text-amber-500 hover:scale-110 hover:-translate-y-1"
+              >
+                <Linkedin size={22} />
+              </a>
+
+              <a
+                href={`mailto:${PROFILE.email}`}
+                className="transform transition-all duration-300 ease-out hover:text-amber-500 hover:scale-110 hover:-translate-y-1"
+              >
+                <Mail size={22} />
+              </a>
             </div>
           </div>
 
