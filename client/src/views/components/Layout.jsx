@@ -34,8 +34,19 @@ const Navbar = () => {
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md py-4 border-b border-neutral-200 dark:border-neutral-800 shadow-sm' : 'bg-transparent py-6'}`}>
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold tracking-tighter text-neutral-900 dark:text-white flex items-center gap-2">
-          <motion.div initial={{ scale: 0.96, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.4 }} className="flex items-center gap-2">
-            <img src={logo} alt="CineCraft Logo" className="h-16 w-auto brightness-0 dark:brightness-100 dark:invert" />
+          <motion.div
+            initial={{ scale: 0.96, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.4 }}
+            className="flex items-center gap-2 group cursor-pointer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <img
+              src={logo}
+              alt="CineCraft Logo"
+              className="h-16 w-auto brightness-0 dark:brightness-100 dark:invert transition-all duration-300 group-hover:brightness-100 group-hover:filter group-hover:drop-shadow-[0_0_8px_rgba(245,158,11,0.6)] group-hover:saturate-150"
+            />
           </motion.div>
         </Link>
 
@@ -109,7 +120,18 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-2">
             <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4 flex items-center gap-2">
-              <img src={logo} alt="CineCraft Logo" className="h-24 w-auto brightness-0 dark:brightness-100 dark:invert" />
+              <motion.div
+                className="group cursor-pointer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+              >
+                <img
+                  src={logo}
+                  alt="CineCraft Logo"
+                  className="h-24 w-auto brightness-0 dark:brightness-100 dark:invert transition-all duration-300 group-hover:brightness-100 group-hover:filter group-hover:drop-shadow-[0_0_12px_rgba(245,158,11,0.7)] group-hover:saturate-150"
+                />
+              </motion.div>
             </h3>
             <p className="text-neutral-600 dark:text-neutral-400 max-w-md mb-6">
               {PROFILE.tagline}. Delivering premium post-production services for creators and brands worldwide.
