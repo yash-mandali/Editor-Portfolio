@@ -35,7 +35,7 @@ const Navbar = () => {
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold tracking-tighter text-neutral-900 dark:text-white flex items-center gap-2">
           <motion.div initial={{ scale: 0.96, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.4 }} className="flex items-center gap-2">
-            <img src={logo} alt="CineCraft Logo" className="h-8 w-auto" />
+            <img src={logo} alt="CineCraft Logo" className="h-12 w-auto brightness-0 dark:brightness-100 dark:invert" />
           </motion.div>
         </Link>
 
@@ -109,7 +109,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-2">
             <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4 flex items-center gap-2">
-              <img src={logo} alt="CineCraft Logo" className="h-10 w-auto" />
+              <img src={logo} alt="CineCraft Logo" className="h-16 w-auto brightness-0 dark:brightness-100 dark:invert" />
             </h3>
             <p className="text-neutral-600 dark:text-neutral-400 max-w-md mb-6">
               {PROFILE.tagline}. Delivering premium post-production services for creators and brands worldwide.
