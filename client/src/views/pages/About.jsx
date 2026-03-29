@@ -36,7 +36,7 @@ const About = () => {
               <img
                 src={logoGif}
                 alt="Profile"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                className="w-full h-full object-cover transition-all duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </div>
