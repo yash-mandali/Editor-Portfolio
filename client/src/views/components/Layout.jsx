@@ -35,7 +35,7 @@ const Navbar = () => {
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold tracking-tighter text-neutral-900 dark:text-white flex items-center gap-2">
           <motion.div initial={{ scale: 0.96, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.4 }} className="flex items-center gap-2">
-            <img src={logo} alt="CineCraft Logo" className="h-12 w-auto brightness-0 dark:brightness-100 dark:invert" />
+            <img src={logo} alt="CineCraft Logo" className="h-15 w-auto brightness-0 dark:brightness-100 dark:invert" />
           </motion.div>
         </Link>
 
