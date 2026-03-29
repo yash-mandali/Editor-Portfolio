@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { TOOLS, PROFILE } from '../../models/data';
 import { Link } from 'react-router-dom';
-import logo from '../../assests/logo-file.png-not-transperent.png';
+import logo from '../../assests/logo-file.png';
 import About3D from '../components/About3D';
 
 const About = () => {
