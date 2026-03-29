@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Layout } from './views/components/Layout';
@@ -15,6 +16,7 @@ import AdminContacts from './views/admin/AdminContacts';
 import AdminLogin from './views/admin/AdminLogin';
 import RequireAdmin from './views/admin/RequireAdmin';
 import NotFound from './views/pages/NotFound';
+/* eslint-enable no-unused-vars */
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -35,7 +37,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/portfolio" element={<Portfolio />} />
-          {/* <Route path="/videos" element={<Videos />} /> */}
+          <Route path="/videos" element={<Videos />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<RequireAdmin><AdminLayout /></RequireAdmin>}>
