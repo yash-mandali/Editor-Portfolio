@@ -8,6 +8,7 @@ import { usePortfolioController } from '../../controllers/usePortfolioController
 import { useVideoController } from '../../controllers/useVideoController';
 import Videos from './Videos';
 import AnimatedSection from '../components/AnimatedSection';
+import Hero3D from '../components/Hero3D';
 
 const Home = () => {
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -41,6 +42,9 @@ const Home = () => {
         {/* Background Gradients - Adaptive */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neutral-200/50 via-neutral-50 to-neutral-50 dark:from-neutral-800/20 dark:via-neutral-950 dark:to-neutral-950 z-0 transition-colors duration-500" />
         <div className="absolute inset-0 bg-[url('https://plus.unsplash.com/premium_photo-1699025726754-8da11fa3fb58?q=80&w=1071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center opacity-5 dark:opacity-10 z-0 mix-blend-overlay" />
+
+        {/* 3D Animated Elements */}
+        <Hero3D />
 
         <div className="container mx-auto relative z-10 text-center max-w-4xl">
           <motion.div

@@ -2,7 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { TOOLS, PROFILE } from '../../models/data';
 import { Link } from 'react-router-dom';
-import logoGif from '../../assests/logo GIF.gif';
+import logo from '../../assests/logo-file.png-not-transperent.png';
+import About3D from '../components/About3D';
 
 const About = () => {
   const containerVariants = {
@@ -22,8 +23,9 @@ const About = () => {
   };
 
   return (
-    <div className="min-h-screen py-20 bg-neutral-50 dark:bg-neutral-950 transition-colors duration-300">
-      <div className="container mx-auto px-6">
+    <div className="min-h-screen py-20 bg-neutral-50 dark:bg-neutral-950 transition-colors duration-300 relative">
+      <About3D />
+      <div className="container mx-auto px-6 relative z-10">
         {/* Intro */}
         <div className="flex flex-col md:flex-row items-center gap-12 mb-24">
           <motion.div

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { PROFILE } from '../../models/data';
 import ThemeToggle from './ThemeToggle';
 import Loader from './Loader';
+import AnimatedBackground from './AnimatedBackground';
 import logo from '../../assests/logo-file.png';
 
 const Navbar = () => {
@@ -222,6 +223,7 @@ export const Layout = ({ children }) => {
 
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 font-sans selection:bg-amber-500/30 transition-colors duration-300">
+      <AnimatedBackground />
       <Navbar />
       {showLoader && <Loader />}
       <main className="pt-20">
