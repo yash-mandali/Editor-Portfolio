@@ -23,7 +23,7 @@ const Services = () => {
     <div className="min-h-screen py-20 bg-neutral-50 dark:bg-neutral-950 transition-colors duration-300">
       {/* Services Header */}
       <section className="container mx-auto px-6 mb-24">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -35,15 +35,15 @@ const Services = () => {
           </p>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           className="grid md:grid-cols-2 gap-8"
         >
           {SERVICES.map((service) => (
-            <motion.div 
-              key={service.id} 
+            <motion.div
+              key={service.id}
               variants={cardVariants}
               className="bg-white dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 p-8 rounded-2xl hover:border-amber-500/30 transition-all group shadow-sm hover:shadow-md"
             >
@@ -52,8 +52,7 @@ const Services = () => {
               </div>
               <h3 className="text-2xl font-bold mb-3 text-neutral-900 dark:text-white">{service.title}</h3>
               <p className="text-neutral-600 dark:text-neutral-400 mb-6 leading-relaxed">{service.description}</p>
-              <div className="flex items-center justify-between pt-6 border-t border-neutral-100 dark:border-neutral-800">
-                <span className="text-amber-600 dark:text-amber-500 font-semibold">{service.price}</span>
+              <div className="pt-6 border-t border-neutral-100 dark:border-neutral-800">
                 <Link to="/contact" className="text-sm font-bold text-neutral-900 dark:text-white hover:text-amber-600 dark:hover:text-amber-500 transition-colors">
                   Book Now &rarr;
                 </Link>

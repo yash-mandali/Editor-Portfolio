@@ -31,36 +31,31 @@ export const SERVICES = [
     id: 'short-form',
     title: "Short-Form Content",
     icon: Instagram,
-    description: "High-retention vertical videos for Instagram Reels, TikTok, and YouTube Shorts. Includes captions, transitions, and dynamic sound design.",
-    price: "From $50/video"
+    description: "High-retention vertical videos for Instagram Reels, TikTok, and YouTube Shorts. Includes captions, transitions, and dynamic sound design."
   },
   {
     id: 'long-form',
     title: "Long-Form Content",
     icon: Youtube,
-    description: "Professional YouTube and extended-form editing with storytelling, b-roll integration, pacing, and audience retention optimization.",
-    price: "From $150/video"
+    description: "Professional YouTube and extended-form editing with storytelling, b-roll integration, pacing, and audience retention optimization."
   },
   {
     id: 'promotional',
     title: "Promotional Videos",
     icon: MonitorPlay,
-    description: "Product promos, brand videos, social media ads, and app promotions designed to drive engagement and conversions.",
-    price: "From $300/project"
+    description: "Product promos, brand videos, social media ads, and app promotions designed to drive engagement and conversions."
   },
   {
     id: 'corporate-events',
     title: "Corporate & Events",
     icon: Film,
-    description: "Event highlights, corporate presentations, testimonials, and professional coverage for businesses and special occasions.",
-    price: "From $400/project"
+    description: "Event highlights, corporate presentations, testimonials, and professional coverage for businesses and special occasions."
   },
   {
     id: 'creative',
     title: "Creative & Cinematic",
     icon: Clapperboard,
-    description: "Cinematic wedding films, travel edits, music videos, and visually compelling storytelling projects.",
-    price: "From $500/project"
+    description: "Cinematic wedding films, travel edits, music videos, and visually compelling storytelling projects."
   }
 ];
 
@@ -85,28 +80,6 @@ export const VIDEOS = [
     description: "A beautifully shot cinematic introduction showcasing professional filmmaking techniques.",
     videoUrl: "https://www.youtube.com/watch?v=zF9m02WllZc"
   },
-];
-
-export const PRICING_TIERS = [
-  {
-    name: "Essential",
-    price: "$200",
-    description: "Perfect for getting started with professional quality.",
-    features: ["Up to 5 mins footage", "Basic Color Correction", "Standard Transitions", "2 Revisions", "48h Delivery"]
-  },
-  {
-    name: "Professional",
-    price: "$500",
-    description: "The standard for creators who need polish and retention.",
-    features: ["Up to 15 mins footage", "Advanced Color Grading", "Motion Graphics", "Sound Design & Mixing", "Unlimited Revisions", "Priority Support"],
-    popular: true
-  },
-  {
-    name: "Cinematic",
-    price: "Custom",
-    description: "Full-scale production editing for high-end projects.",
-    features: ["Unlimited footage", "Cinema-grade Grading", "VFX & Compositing", "Dedicated Sound Engineer", "Director Consultation", "Source File Delivery"]
-  }
 ];
 
 export const WHY_CHOOSE_ME = [

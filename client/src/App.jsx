@@ -7,7 +7,6 @@ import Services from './views/pages/Services';
 import Portfolio from './views/pages/Portfolio';
 import Videos from './views/pages/Videos';
 import Contact from './views/pages/Contact';
-import Pricing from './views/pages/Pricing';
 import AdminLayout from './views/admin/AdminLayout';
 import AdminHome from './views/admin/AdminHome';
 import AdminPortfolio from './views/admin/AdminPortfolio';
@@ -35,7 +34,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/pricing" element={<Pricing />} />
           <Route path="/portfolio" element={<Portfolio />} />
           {/* <Route path="/videos" element={<Videos />} /> */}
           <Route path="/contact" element={<Contact />} />
