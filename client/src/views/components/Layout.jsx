@@ -35,7 +35,7 @@ const Navbar = () => {
         <Link to="/" className="text-2xl font-bold tracking-tighter text-neutral-900 dark:text-white flex items-center gap-2">
           <motion.div initial={{ scale: 0.96, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.4 }} className="flex items-center gap-2">
             <Video className="text-amber-500" />
-            <span>CineCraft<span className="text-amber-500">.</span>EDIT</span>
+            <span>fatachalu<span className="text-amber-500">.</span>EDIT</span>
           </motion.div>
         </Link>
 
