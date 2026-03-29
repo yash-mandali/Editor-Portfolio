@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { TOOLS, PROFILE } from '../../models/data';
 import { Link } from 'react-router-dom';
+import logoGif from '../../assests/logo GIF.gif';
 
 const About = () => {
   const containerVariants = {
@@ -33,7 +34,7 @@ const About = () => {
           >
             <div className="relative aspect-square rounded-2xl overflow-hidden bg-neutral-200 dark:bg-neutral-800 shadow-xl">
               <img
-                src="/src/assests/logo GIF.gif"
+                src={logoGif}
                 alt="Profile"
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
               />
