@@ -33,7 +33,7 @@ const About = () => {
           >
             <div className="relative aspect-square rounded-2xl overflow-hidden bg-neutral-200 dark:bg-neutral-800 shadow-xl">
               <img
-                src="https://i.pinimg.com/1200x/59/37/bc/5937bc8aef042ee8d06422d8ab4146f4.jpg"
+                src="/src/assests/logo GIF.gif"
                 alt="Profile"
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
               />
