@@ -26,6 +26,99 @@ export const TOOLS = [
   { name: "DaVinci Resolve", level: "Intermediate" }
 ];
 
+export const EXPERIENCE = [
+  {
+    id: 1,
+    year: "2023 - Present",
+    title: "Senior Video Editor",
+    company: "Freelance & Independent Projects",
+    description: "Leading video editing projects for major brands, influencers, and production companies. Specializing in cinematic storytelling and high-conversion promotional content.",
+    achievements: [
+      "Delivered 200+ professional video projects",
+      "Achieved 300%+ engagement growth for clients",
+      "Mastered advanced color grading techniques",
+      "Collaborated with top-tier production teams"
+    ]
+  },
+  {
+    id: 2,
+    year: "2021 - 2023",
+    title: "Video Content Creator",
+    company: "Digital Media Agency",
+    description: "Created compelling video content for social media platforms, focusing on short-form content that drives audience engagement and brand awareness.",
+    achievements: [
+      "Produced 500+ viral short-form videos",
+      "Increased client follower counts by 150%",
+      "Pioneered trending editing styles",
+      "Managed end-to-end content production"
+    ]
+  },
+  {
+    id: 3,
+    year: "2019 - 2021",
+    title: "Junior Video Editor",
+    company: "Creative Production Studio",
+    description: "Started professional journey in video editing, learning industry-standard workflows and developing expertise in Adobe Creative Suite.",
+    achievements: [
+      "Completed 100+ editing projects",
+      "Learned advanced post-production techniques",
+      "Built foundation in cinematic storytelling",
+      "Earned recognition for creative editing style"
+    ]
+  }
+];
+
+export const WORKING_TOOLS = [
+  {
+    id: 1,
+    name: "Adobe Premiere Pro",
+    description: "Industry-standard video editing software for professional post-production",
+    icon: "🎬",
+    color: "from-blue-500 to-blue-700",
+    proficiency: "Expert"
+  },
+  {
+    id: 2,
+    name: "Adobe After Effects",
+    description: "Powerful motion graphics and visual effects compositing software",
+    icon: "✨",
+    color: "from-purple-500 to-purple-700",
+    proficiency: "Advanced"
+  },
+  {
+    id: 3,
+    name: "CapCut Pro",
+    description: "Professional mobile and desktop video editing with AI-powered features",
+    icon: "📱",
+    color: "from-green-500 to-green-700",
+    proficiency: "Expert"
+  },
+  {
+    id: 4,
+    name: "DaVinci Resolve",
+    description: "Professional color grading and finishing software",
+    icon: "🎨",
+    color: "from-orange-500 to-red-600",
+    proficiency: "Intermediate"
+  },
+  {
+    id: 5,
+    name: "Adobe Audition",
+    description: "Professional audio editing and sound design software",
+    icon: "🎵",
+    color: "from-indigo-500 to-purple-600",
+    proficiency: "Advanced"
+  },
+  {
+    id: 6,
+    name: "Final Cut Pro",
+    description: "Apple's professional video editing software for Mac",
+    icon: "💻",
+    color: "from-gray-600 to-gray-800",
+    proficiency: "Intermediate"
+  }
+];
+
 export const SERVICES = [
   {
     id: 'short-form',
