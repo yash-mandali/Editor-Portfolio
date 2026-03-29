@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { TOOLS, PROFILE, EXPERIENCE, WORKING_TOOLS } from '../../models/data';
 import { Link } from 'react-router-dom';
 import logo from '../../assests/logo-file.png';
+import logoGif from '../../assests/logo GIF.gif';
 import About3D from '../components/About3D';
 
 const About = () => {
@@ -159,80 +160,6 @@ const About = () => {
               </motion.div>
             ))}
           </div>
-        </motion.div>
-
-        {/* Working Tools Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-24"
-        >
-          <div className="text-center mb-16">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-bold mb-6 text-neutral-900 dark:text-white"
-            >
-              Professional Toolkit
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto"
-            >
-              Industry-leading software and tools I use to create cinematic masterpieces
-            </motion.p>
-          </div>
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {WORKING_TOOLS.map((tool, index) => (
-              <motion.div
-                key={tool.id}
-                variants={itemVariants}
-                whileHover={{ y: -10, scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-                className="group relative bg-white dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 rounded-2xl p-8 hover:border-amber-500/50 transition-all duration-300 shadow-lg hover:shadow-2xl overflow-hidden"
-              >
-                {/* Background gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${tool.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
-
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-6">
-                    <div className={`w-16 h-16 bg-gradient-to-br ${tool.color} rounded-2xl flex items-center justify-center text-3xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      {tool.icon}
-                    </div>
-                    <div className="text-right">
-                      <span className={`inline-block px-3 py-1 bg-gradient-to-r ${tool.color} text-white text-xs font-bold rounded-full`}>
-                        {tool.proficiency}
-                      </span>
-                    </div>
-                  </div>
-
-                  <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-3 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
-                    {tool.name}
-                  </h3>
-
-                  <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
-                    {tool.description}
-                  </p>
-
-                  {/* Animated border */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
         </motion.div>
 
         {/* Working Tools */}
