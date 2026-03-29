@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { PROFILE } from '../../models/data';
 import ThemeToggle from './ThemeToggle';
 import Loader from './Loader';
-import logo from '../../assests/logo-file.png-not-transperent.png';
+import logo from '../../assests/logo-file.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
