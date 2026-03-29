@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Video, Instagram, Youtube, Linkedin, Mail } from 'lucide-react';
+import { Menu, X, Instagram, Youtube, Linkedin, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PROFILE } from '../../models/data';
 import ThemeToggle from './ThemeToggle';
 import Loader from './Loader';
+import logo from '../../assests/logo-file.png-not-transperent.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,8 +35,7 @@ const Navbar = () => {
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold tracking-tighter text-neutral-900 dark:text-white flex items-center gap-2">
           <motion.div initial={{ scale: 0.96, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.4 }} className="flex items-center gap-2">
-            <Video className="text-amber-500" />
-            <span>CineCraft<span className="text-amber-500">.</span>EDIT</span>
+            <img src={logo} alt="CineCraft Logo" className="h-8 w-auto" />
           </motion.div>
         </Link>
 
@@ -109,8 +109,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-2">
             <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4 flex items-center gap-2">
-              <Video className="text-amber-500" />
-              CineCraft<span className="text-amber-500">.</span>EDIT
+              <img src={logo} alt="CineCraft Logo" className="h-10 w-auto" />
             </h3>
             <p className="text-neutral-600 dark:text-neutral-400 max-w-md mb-6">
               {PROFILE.tagline}. Delivering premium post-production services for creators and brands worldwide.
