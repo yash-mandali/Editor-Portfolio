@@ -228,7 +228,7 @@ const Home = () => {
         </div>
 
         {/* Animated scroll indicator */}
-        <motion.div
+        {/* <motion.div
           className="absolute bottom-12 left-1/2 transform -translate-x-1/2"
           animate={{ y: [0, 15, 0] }}
           transition={{ duration: 2.5, repeat: Infinity }}
@@ -244,7 +244,7 @@ const Home = () => {
               </svg>
             </motion.div>
           </div>
-        </motion.div>
+        </motion.div> */}
       </motion.section>
 
       {/* Why Choose Me - Premium Glass Design */}
