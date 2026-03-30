@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { PROFILE } from '../../models/data';
 import { Link } from 'react-router-dom';
 import logo from '../../assests/logo-file.png';
-import logoGif from '../../assests/logo Gif.gif'
+import logoGif from '../../assests/logo GIF.gif';
 
 const About = () => {
   const containerVariants = {
