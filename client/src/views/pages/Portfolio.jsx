@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Play } from 'lucide-react';
 import { usePortfolioController } from '../../controllers/usePortfolioController';
 import VideoModal from '../components/VideoModal';
-import Portfolio3D from '../components/Portfolio3D';
 
 const Portfolio = () => {
   const { activeCategory, setActiveCategory, categories, filteredItems, loading } = usePortfolioController();
@@ -19,7 +18,6 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen py-20 bg-neutral-50 dark:bg-neutral-950 transition-colors duration-300 relative">
-      <Portfolio3D />
       <VideoModal
         isOpen={!!selectedVideo}
         onClose={() => setSelectedVideo(null)}

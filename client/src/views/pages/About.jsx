@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { PROFILE } from '../../models/data';
 import { Link } from 'react-router-dom';
 import logo from '../../assests/logo-file.png';
-import logoGif from '../../assests/logo GIF.gif';
 
 const About = () => {
   const containerVariants = {
@@ -35,7 +34,7 @@ const About = () => {
           >
             <div className="relative aspect-square rounded-2xl overflow-hidden bg-neutral-200 dark:bg-neutral-800 shadow-xl">
               <img
-                src={logoGif}
+                src={logo}
                 alt="Profile"
                 className="w-full h-full object-cover transition-all duration-500"
               />
