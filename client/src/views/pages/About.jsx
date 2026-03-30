@@ -73,268 +73,237 @@ const About = () => {
           </motion.div>
         </div>
 
-        {/* Experience Section */}
+        {/* Stats Section - Ultra Professional */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
-          className="mb-32"
+          className="mb-32 py-20"
         >
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">Experience</h2>
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              origin="left"
-              className="h-1 w-20 bg-gradient-to-r from-amber-500 to-amber-600 mt-4"
-            />
-          </motion.div>
-
-          <div className="space-y-8">
-            {/* Experience Item 1 */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1, duration: 0.6 }}
-              className="group relative pl-8 border-l-2 border-neutral-300 dark:border-neutral-700 hover:border-amber-500 transition-colors"
-            >
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { number: "5+", label: "Years Experience", desc: "Crafting premium content" },
+              { number: "100+", label: "Projects Delivered", desc: "100% Client Satisfaction" },
+              { number: "80+", label: "Happy Clients", desc: "Industry Leaders Trust Me" }
+            ].map((stat, i) => (
               <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                transition={{ delay: 0.3, type: "spring" }}
-                className="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-amber-500 border-4 border-neutral-50 dark:border-neutral-950"
-              />
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-3">
-                <h3 className="text-2xl font-bold text-neutral-900 dark:text-white">5+ Years of Professional Editing</h3>
-                <span className="inline-block w-fit px-4 py-2 bg-amber-500/10 border border-amber-500/30 rounded-full text-amber-600 dark:text-amber-500 text-sm font-semibold">2019 - Present</span>
-              </div>
-              <p className="text-neutral-600 dark:text-neutral-400 text-lg leading-relaxed">
-                Crafting premium video content for global clients. Specializing in storytelling through motion, color, and sound design.
-              </p>
-            </motion.div>
-
-            {/* Experience Item 2 */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="group relative pl-8 border-l-2 border-neutral-300 dark:border-neutral-700 hover:border-amber-500 transition-colors"
-            >
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                transition={{ delay: 0.4, type: "spring" }}
-                className="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-amber-500 border-4 border-neutral-50 dark:border-neutral-950"
-              />
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-3">
-                <h3 className="text-2xl font-bold text-neutral-900 dark:text-white">100+ Projects Delivered</h3>
-                <span className="inline-block w-fit px-4 py-2 bg-amber-500/10 border border-amber-500/30 rounded-full text-amber-600 dark:text-amber-500 text-sm font-semibold">Verified Track Record</span>
-              </div>
-              <p className="text-neutral-600 dark:text-neutral-400 text-lg leading-relaxed">
-                From Instagram reels to cinematic documentaries. Every project polished, every deadline met, every client satisfied.
-              </p>
-            </motion.div>
-
-            {/* Experience Item 3 */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="group relative pl-8 border-l-2 border-neutral-300 dark:border-neutral-700 hover:border-amber-500 transition-colors"
-            >
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                transition={{ delay: 0.5, type: "spring" }}
-                className="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-amber-500 border-4 border-neutral-50 dark:border-neutral-950"
-              />
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-3">
-                <h3 className="text-2xl font-bold text-neutral-900 dark:text-white">80+ Happy Clients</h3>
-                <span className="inline-block w-fit px-4 py-2 bg-amber-500/10 border border-amber-500/30 rounded-full text-amber-600 dark:text-amber-500 text-sm font-semibold">5-Star Rating</span>
-              </div>
-              <p className="text-neutral-600 dark:text-neutral-400 text-lg leading-relaxed">
-                Building lasting relationships through exceptional work. Clients return because results speak louder than promises.
-              </p>
-            </motion.div>
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1, duration: 0.6 }}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="relative group"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/20 via-amber-500/0 to-transparent rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
+                <div className="relative p-8 rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-800 dark:from-neutral-800 dark:to-neutral-900 border border-amber-500/30 hover:border-amber-500/60 transition-all">
+                  <motion.div 
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ delay: i * 0.15 + 0.2, type: "spring" }}
+                    className="text-5xl md:text-6xl font-black text-amber-500 mb-4"
+                  >
+                    {stat.number}
+                  </motion.div>
+                  <h3 className="text-xl font-bold text-white mb-2">{stat.label}</h3>
+                  <p className="text-amber-500/70">{stat.desc}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
 
-        {/* Tools & Software Section */}
+        {/* Professional Tools - Ultra Visual */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          variants={containerVariants}
-          className="mb-24"
+          className="mb-32"
         >
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
+            transition={{ duration: 0.8 }}
+            className="text-center mb-20"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">Professional Arsenal</h2>
             <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
+              initial={{ width: 0 }}
+              whileInView={{ width: "100%" }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              origin="left"
-              className="h-1 w-20 bg-gradient-to-r from-amber-500 to-amber-600 mt-4"
+              className="h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent mb-8"
             />
-            <p className="text-neutral-600 dark:text-neutral-400 mt-4 text-lg">Industry-leading tools for industry-leading results</p>
+            <h2 className="text-5xl md:text-6xl font-black text-neutral-900 dark:text-white mb-4">
+              My Professional <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">Arsenal</span>
+            </h2>
+            <p className="text-neutral-600 dark:text-neutral-400 text-xl max-w-2xl mx-auto">Industry-leading tools wielded by a master craftsman to transform your vision into reality</p>
           </motion.div>
 
-          <div className="space-y-6">
+          {/* Main Tools Grid */}
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
             {/* After Effects */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
-              className="group relative pl-8 border-l-2 border-neutral-300 dark:border-neutral-700 hover:border-blue-500 transition-all overflow-hidden"
+              whileHover={{ y: -15, scale: 1.05 }}
+              className="group relative"
             >
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                transition={{ delay: 0.3, type: "spring" }}
-                className="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-blue-600 border-4 border-neutral-50 dark:border-neutral-950 flex items-center justify-center text-white font-bold text-xs"
-              >
-                Ae
-              </motion.div>
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-2">
-                <h3 className="text-2xl font-bold text-neutral-900 dark:text-white">Adobe After Effects</h3>
-                <span className="inline-block w-fit px-4 py-2 bg-blue-500/10 border border-blue-500/30 rounded-full text-blue-600 dark:text-blue-400 text-sm font-semibold">Expert Level</span>
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/30 to-purple-600/10 rounded-3xl blur-2xl group-hover:blur-3xl transition-all"></div>
+              <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 border border-blue-500/30 group-hover:border-blue-500/60 transition-all p-8">
+                <motion.div
+                  initial={{ rotate: -20, scale: 0 }}
+                  whileInView={{ rotate: 0, scale: 1 }}
+                  transition={{ delay: 0.3, type: "spring" }}
+                  className="mb-6 h-24 flex items-center justify-center"
+                >
+                  <div className="text-7xl font-black text-blue-500" style={{ textShadow: '0 0 30px rgba(59, 130, 246, 0.5)' }}>Ae</div>
+                </motion.div>
+                <h3 className="text-2xl font-bold text-white mb-3">After Effects</h3>
+                <p className="text-neutral-300 mb-6 leading-relaxed">Master of motion graphics, visual effects, and cinematic animations that bring stories to life.</p>
+                <div className="space-y-2">
+                  {["Motion Graphics", "VFX Compositing", "Color Grading"].map((skill, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.4 + i * 0.1 }}
+                      className="flex items-center gap-2 text-blue-300"
+                    >
+                      <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                      {skill}
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-              <p className="text-neutral-600 dark:text-neutral-400 mb-3 text-lg">Motion Graphics • Visual Effects • Animations • Color Grading</p>
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
-                origin="left"
-                className="h-0.5 w-full bg-gradient-to-r from-blue-500/50 to-transparent"
-              />
             </motion.div>
 
             {/* Premiere Pro */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="group relative pl-8 border-l-2 border-neutral-300 dark:border-neutral-700 hover:border-purple-500 transition-all overflow-hidden"
+              whileHover={{ y: -15, scale: 1.05 }}
+              className="group relative"
             >
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                transition={{ delay: 0.4, type: "spring" }}
-                className="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-purple-600 border-4 border-neutral-50 dark:border-neutral-950 flex items-center justify-center text-white font-bold text-xs"
-              >
-                Pr
-              </motion.div>
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-2">
-                <h3 className="text-2xl font-bold text-neutral-900 dark:text-white">Adobe Premiere Pro</h3>
-                <span className="inline-block w-fit px-4 py-2 bg-purple-500/10 border border-purple-500/30 rounded-full text-purple-600 dark:text-purple-400 text-sm font-semibold">Expert Level</span>
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-600/30 to-pink-600/10 rounded-3xl blur-2xl group-hover:blur-3xl transition-all"></div>
+              <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 border border-purple-500/30 group-hover:border-purple-500/60 transition-all p-8">
+                <motion.div
+                  initial={{ rotate: -20, scale: 0 }}
+                  whileInView={{ rotate: 0, scale: 1 }}
+                  transition={{ delay: 0.4, type: "spring" }}
+                  className="mb-6 h-24 flex items-center justify-center"
+                >
+                  <div className="text-7xl font-black text-purple-500" style={{ textShadow: '0 0 30px rgba(168, 85, 247, 0.5)' }}>Pr</div>
+                </motion.div>
+                <h3 className="text-2xl font-bold text-white mb-3">Premiere Pro</h3>
+                <p className="text-neutral-300 mb-6 leading-relaxed">Professional editing powerhouse for every format, from shorts to full-length cinematic productions.</p>
+                <div className="space-y-2">
+                  {["Professional Editing", "Multi-Format Support", "Sound Design"].map((skill, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.5 + i * 0.1 }}
+                      className="flex items-center gap-2 text-purple-300"
+                    >
+                      <span className="w-2 h-2 rounded-full bg-purple-500"></span>
+                      {skill}
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-              <p className="text-neutral-600 dark:text-neutral-400 mb-3 text-lg">Professional Editing • Multi-Format • Sound Design • Workflow</p>
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                transition={{ delay: 0.6, duration: 0.6 }}
-                origin="left"
-                className="h-0.5 w-full bg-gradient-to-r from-purple-500/50 to-transparent"
-              />
             </motion.div>
 
             {/* CapCut */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="group relative pl-8 border-l-2 border-neutral-300 dark:border-neutral-700 hover:border-gray-500 transition-all overflow-hidden"
+              whileHover={{ y: -15, scale: 1.05 }}
+              className="group relative"
             >
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                transition={{ delay: 0.5, type: "spring" }}
-                className="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-gray-800 border-4 border-neutral-50 dark:border-neutral-950 flex items-center justify-center text-white text-lg"
-              >
-                ✂️
-              </motion.div>
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-2">
-                <h3 className="text-2xl font-bold text-neutral-900 dark:text-white">CapCut</h3>
-                <span className="inline-block w-fit px-4 py-2 bg-gray-500/10 border border-gray-500/30 rounded-full text-gray-600 dark:text-gray-400 text-sm font-semibold">Expert Level</span>
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-600/30 to-orange-600/10 rounded-3xl blur-2xl group-hover:blur-3xl transition-all"></div>
+              <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 border border-amber-500/30 group-hover:border-amber-500/60 transition-all p-8">
+                <motion.div
+                  initial={{ rotate: -20, scale: 0 }}
+                  whileInView={{ rotate: 0, scale: 1 }}
+                  transition={{ delay: 0.5, type: "spring" }}
+                  className="mb-6 h-24 flex items-center justify-center"
+                >
+                  <div className="text-6xl" style={{ textShadow: '0 0 30px rgba(245, 158, 11, 0.5)' }}>✂️</div>
+                </motion.div>
+                <h3 className="text-2xl font-bold text-white mb-3">CapCut</h3>
+                <p className="text-neutral-300 mb-6 leading-relaxed">Lightning-fast social media editing that captures trends, goes viral, and converts viewers to clients.</p>
+                <div className="space-y-2">
+                  {["Rapid Turnaround", "Social Optimization", "Trending Effects"].map((skill, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.6 + i * 0.1 }}
+                      className="flex items-center gap-2 text-amber-300"
+                    >
+                      <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+                      {skill}
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-              <p className="text-neutral-600 dark:text-neutral-400 mb-3 text-lg">Fast Turnaround • Social Media • Mobile Optimization • Trends</p>
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                transition={{ delay: 0.7, duration: 0.6 }}
-                origin="left"
-                className="h-0.5 w-full bg-gradient-to-r from-gray-500/50 to-transparent"
-              />
-            </motion.div>
-
-            {/* Additional Skills */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="mt-12 pt-8 border-t-2 border-neutral-300 dark:border-neutral-700"
-            >
-              <motion.h3
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="text-xl font-bold text-neutral-900 dark:text-white mb-6"
-              >
-                Also Proficient In
-              </motion.h3>
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                variants={containerVariants}
-                className="grid md:grid-cols-2 gap-4"
-              >
-                <motion.div
-                  variants={itemVariants}
-                  className="flex items-center gap-3 p-4 rounded-lg bg-neutral-100/50 dark:bg-neutral-900/30 hover:bg-neutral-100 dark:hover:bg-neutral-900/50 transition-colors"
-                >
-                  <span className="text-amber-500 text-2xl">▸</span>
-                  <span className="font-semibold text-neutral-900 dark:text-white">DaVinci Resolve</span>
-                  <span className="text-neutral-500 ml-auto text-sm">Color Grading</span>
-                </motion.div>
-                <motion.div
-                  variants={itemVariants}
-                  className="flex items-center gap-3 p-4 rounded-lg bg-neutral-100/50 dark:bg-neutral-900/30 hover:bg-neutral-100 dark:hover:bg-neutral-900/50 transition-colors"
-                >
-                  <span className="text-amber-500 text-2xl">▸</span>
-                  <span className="font-semibold text-neutral-900 dark:text-white">Adobe Audition</span>
-                  <span className="text-neutral-500 ml-auto text-sm">Audio Editing</span>
-                </motion.div>
-                <motion.div
-                  variants={itemVariants}
-                  className="flex items-center gap-3 p-4 rounded-lg bg-neutral-100/50 dark:bg-neutral-900/30 hover:bg-neutral-100 dark:hover:bg-neutral-900/50 transition-colors"
-                >
-                  <span className="text-amber-500 text-2xl">▸</span>
-                  <span className="font-semibold text-neutral-900 dark:text-white">Photoshop</span>
-                  <span className="text-neutral-500 ml-auto text-sm">Thumbnail Design</span>
-                </motion.div>
-                <motion.div
-                  variants={itemVariants}
-                  className="flex items-center gap-3 p-4 rounded-lg bg-neutral-100/50 dark:bg-neutral-900/30 hover:bg-neutral-100 dark:hover:bg-neutral-900/50 transition-colors"
-                >
-                  <span className="text-amber-500 text-2xl">▸</span>
-                  <span className="font-semibold text-neutral-900 dark:text-white">Figma</span>
-                  <span className="text-neutral-500 ml-auto text-sm">Collaboration</span>
-                </motion.div>
-              </motion.div>
             </motion.div>
           </div>
+
+          {/* Additional Professional Tools */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="mt-16 p-12 rounded-3xl bg-gradient-to-r from-neutral-900/50 via-amber-500/10 to-neutral-900/50 border border-amber-500/20 backdrop-blur-sm"
+          >
+            <h3 className="text-2xl font-bold text-white mb-8">Also Master</h3>
+            <div className="grid md:grid-cols-4 gap-6">
+              {[
+                { tool: "DaVinci Resolve", specialty: "Color Grading", icon: "🎨" },
+                { tool: "Adobe Audition", specialty: "Audio Design", icon: "🎧" },
+                { tool: "Photoshop", specialty: "Thumbnails", icon: "🖼️" },
+                { tool: "Figma", specialty: "Collaboration", icon: "✨" }
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.5 + i * 0.1 }}
+                  whileHover={{ scale: 1.08 }}
+                  className="p-6 rounded-2xl bg-neutral-800/50 border border-neutral-700/50 hover:border-amber-500/50 transition-all text-center group cursor-pointer"
+                >
+                  <div className="text-4xl mb-3 group-hover:scale-110 transition-transform">{item.icon}</div>
+                  <h4 className="font-bold text-white mb-1">{item.tool}</h4>
+                  <p className="text-amber-500/70 text-sm">{item.specialty}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Call To Action */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          className="text-center py-20"
+        >
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: "100%" }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent mb-12"
+          />
+          <h2 className="text-4xl md:text-5xl font-black text-neutral-900 dark:text-white mb-6">Ready to Elevate Your Content?</h2>
+          <p className="text-neutral-600 dark:text-neutral-400 text-xl mb-8 max-w-2xl mx-auto">Let's transform your footage into a masterpiece that captivates, engages, and converts.</p>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link to="/contact" className="inline-block px-10 py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-bold rounded-full text-lg shadow-lg shadow-amber-500/30 transition-all">
+              Start Your Project Now
+            </Link>
+          </motion.div>
         </motion.div>
 
 
