@@ -119,7 +119,7 @@ const Home = () => {
                   visible: { opacity: 1, y: 0 }
                 }}
                 transition={{ delay: 0.3, duration: 0.8, type: "spring" }}
-                className="text-5xl md:text-8xl font-black tracking-tighter text-white leading-tight"
+                className="text-3xl md:text-5xl font-black tracking-tighter text-white leading-tight"
               >
                 Create
                 <br />
@@ -143,7 +143,7 @@ const Home = () => {
                 visible: { opacity: 1, y: 0 }
               }}
               transition={{ delay: 0.5 }}
-              className="text-xl md:text-2xl bg-gradient-to-r from-neutral-300 via-neutral-200 to-neutral-300 bg-clip-text text-transparent mb-14 max-w-3xl mx-auto leading-relaxed font-light"
+              className="text-base md:text-lg bg-gradient-to-r from-neutral-300 via-neutral-200 to-neutral-300 bg-clip-text text-transparent mb-14 max-w-3xl mx-auto leading-relaxed font-light"
             >
               Transform raw footage into visually stunning content that captivates millions and drives engagement.
             </motion.p>
@@ -292,7 +292,7 @@ const Home = () => {
               </span>
             </motion.div>
             <motion.h2
-              className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight"
+              className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight"
               variants={{
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0 }
@@ -302,7 +302,7 @@ const Home = () => {
               Expertise That <motion.span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-orange-500" animate={{ backgroundPosition: ["0% center", "100% center", "0% center"] }} transition={{ duration: 6, repeat: Infinity }} style={{ backgroundSize: "200% 200%" }}>Transforms</motion.span>
             </motion.h2>
             <motion.p
-              className="text-xl text-neutral-300 max-w-2xl mx-auto"
+              className="text-base text-neutral-300 max-w-2xl mx-auto"
               variants={{
                 hidden: { opacity: 0 },
                 visible: { opacity: 1 }
@@ -391,12 +391,12 @@ const Home = () => {
                 </span>
               </motion.div>
               <motion.h2
-                className="text-5xl md:text-6xl font-black text-white mb-3"
+                className="text-3xl md:text-4xl font-black text-white mb-3"
               >
                 Latest Projects
               </motion.h2>
               <motion.p
-                className="text-neutral-400 text-lg"
+                className="text-neutral-400 text-sm"
               >
                 Showcasing exceptional creative work
               </motion.p>
@@ -467,7 +467,7 @@ const Home = () => {
             transition={{ duration: 0.9, type: "spring" }}
           >
             <motion.h2
-              className="text-6xl md:text-8xl font-black text-white mb-8 leading-tight"
+              className="text-4xl md:text-6xl font-black text-white mb-8 leading-tight"
             >
               Ready to <br />
               <motion.span
@@ -481,7 +481,7 @@ const Home = () => {
             </motion.h2>
 
             <motion.p
-              className="text-xl md:text-2xl text-neutral-300 mb-14 max-w-3xl mx-auto leading-relaxed font-light"
+              className="text-sm md:text-base text-neutral-300 mb-14 max-w-3xl mx-auto leading-relaxed font-light"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
@@ -498,7 +498,7 @@ const Home = () => {
               className="group relative inline-block"
             >
               <div className="absolute -inset-2 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse" />
-              <Link to="/contact" className="relative inline-flex items-center gap-4 px-14 py-6 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-black font-black rounded-full text-xl shadow-2xl transition-all">
+              <Link to="/contact" className="relative inline-flex items-center gap-4 px-12 py-4 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-black font-black rounded-full text-lg shadow-2xl transition-all">
                 Let's Get Started
                 <motion.span animate={{ x: [0, 8, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
                   <ArrowRight size={24} />
