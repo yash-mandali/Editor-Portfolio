@@ -61,7 +61,7 @@ const Home = () => {
         >
           <defs>
             <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(251,191,36,0.5)" strokeWidth="0.5"/>
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(251,191,36,0.5)" strokeWidth="0.5" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#grid)" />
@@ -170,7 +170,7 @@ const Home = () => {
                   </motion.div>
                 </Link>
               </motion.div>
-              
+
               <motion.div
                 whileHover={{ scale: 1.08, y: -8 }}
                 whileTap={{ scale: 0.95 }}
@@ -209,7 +209,7 @@ const Home = () => {
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-amber-500/0 to-amber-500/5 group-hover:from-amber-500/10 group-hover:to-amber-500/5 rounded-2xl transition-all" />
                   <div className="relative z-10">
-                    <motion.div 
+                    <motion.div
                       className="text-4xl mb-2"
                       animate={{ scale: [1, 1.2, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
