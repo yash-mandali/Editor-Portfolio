@@ -122,12 +122,12 @@ const Home = () => {
             {/* Main Headline with char animation */}
             <div className="mb-8 overflow-hidden">
               <motion.h1
-                className="text-6xl md:text-8xl font-black tracking-tight text-neutral-900 dark:text-white leading-tight"
+                className="text-4xl md:text-7xl font-black tracking-tight text-neutral-900 dark:text-white leading-tight"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
               >
-                Transforming <br />
+                Crafting <br />
                 <motion.span
                   className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 dark:from-amber-400 dark:via-amber-500 dark:to-amber-600"
                   animate={{
@@ -136,7 +136,7 @@ const Home = () => {
                   transition={{ duration: 4, repeat: Infinity }}
                   style={{ backgroundSize: "200% 200%" }}
                 >
-                  Footage Into Masterpieces
+                  Cinematic Excellence
                 </motion.span>
               </motion.h1>
             </div>
@@ -146,9 +146,9 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="text-xl md:text-2xl text-neutral-600 dark:text-neutral-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+              className="text-lg md:text-xl text-neutral-600 dark:text-neutral-300 mb-12 max-w-2xl mx-auto leading-relaxed"
             >
-              Premium video editing that transforms raw footage into engaging, professional content that captivates audiences and drives results.
+              Elevate your content with professional editing that captivates, engages, and converts viewers into loyal fans.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -222,7 +222,7 @@ const Home = () => {
 
       {/* Why Choose Me - Enhanced */}
       <motion.section
-        className="py-32 bg-white dark:bg-neutral-950 transition-colors duration-300 relative overflow-hidden"
+        className="py-24 bg-white dark:bg-neutral-950 transition-colors duration-300 relative overflow-hidden"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
@@ -243,25 +243,25 @@ const Home = () => {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="text-amber-600 dark:text-amber-500 text-sm font-bold uppercase tracking-widest mb-4"
+              className="text-amber-600 dark:text-amber-500 text-xs font-bold uppercase tracking-widest mb-3"
             >
-              Why Creators Choose Me
+              Why Choose Me
             </motion.p>
             <motion.h2
-              className="text-5xl md:text-6xl font-black text-neutral-900 dark:text-white mb-6"
+              className="text-3xl md:text-5xl font-black text-neutral-900 dark:text-white mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             >
-              More Than Just <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-amber-700">Editing</span>
+              Expertise That <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-amber-700">Delivers Results</span>
             </motion.h2>
             <motion.p
-              className="text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto"
+              className="text-base text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              I deliver engagement, retention, and quality that transforms your content into viewer magnets.
+              Engagement, retention, and professional quality that makes your content stand out.
             </motion.p>
           </motion.div>
 
@@ -316,30 +316,30 @@ const Home = () => {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: 0.1 }}
-                className="text-amber-600 dark:text-amber-500 text-sm font-bold uppercase tracking-widest mb-4"
+                className="text-amber-600 dark:text-amber-500 text-xs font-bold uppercase tracking-widest mb-3"
               >
-                Featured Work
+                Featured Projects
               </motion.p>
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-5xl md:text-6xl font-black text-neutral-900 dark:text-white mb-2"
+                className="text-3xl md:text-5xl font-black text-neutral-900 dark:text-white mb-2"
               >
-                Recent Projects
+                Latest Work
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className="text-neutral-600 dark:text-neutral-400 text-lg"
+                className="text-neutral-600 dark:text-neutral-400 text-base"
               >
-                A glimpse into my best recent work
+                Showcasing my best recent projects
               </motion.p>
             </div>
-            <Link to="/portfolio" className="hidden lg:flex items-center gap-3 text-amber-600 dark:text-amber-500 font-bold hover:text-amber-700 dark:hover:text-amber-400 transition-colors text-lg group">
-              View All Portfolio
-              <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
+            <Link to="/portfolio" className="hidden lg:flex items-center gap-2 text-amber-600 dark:text-amber-500 font-bold hover:text-amber-700 dark:hover:text-amber-400 transition-colors group">
+              View All
+              <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
             </Link>
           </motion.div>
 
@@ -363,7 +363,7 @@ const Home = () => {
 
       {/* CTA Section - Enhanced */}
       <motion.section
-        className="py-40 relative overflow-hidden bg-gradient-to-br from-neutral-900 to-neutral-800 dark:from-neutral-900 dark:to-black"
+        className="py-32 relative overflow-hidden bg-gradient-to-br from-neutral-900 to-neutral-800 dark:from-neutral-900 dark:to-black"
       >
         {/* Animated background */}
         <motion.div
@@ -403,12 +403,12 @@ const Home = () => {
             transition={{ duration: 0.8 }}
           >
             <motion.h2
-              className="text-5xl md:text-7xl font-black mb-8 text-white leading-tight"
+              className="text-4xl md:text-6xl font-black mb-6 text-white leading-tight"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
             >
-              Ready to Elevate <br className="hidden md:block" />
+              Ready to Create <br className="hidden md:block" />
               <motion.span
                 className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500"
                 animate={{
@@ -417,17 +417,17 @@ const Home = () => {
                 transition={{ duration: 4, repeat: Infinity }}
                 style={{ backgroundSize: "200% 200%" }}
               >
-                Your Content?
+                Something Amazing?
               </motion.span>
             </motion.h2>
 
             <motion.p
-              className="text-xl md:text-2xl text-neutral-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+              className="text-base md:text-lg text-neutral-300 mb-10 max-w-2xl mx-auto leading-relaxed"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              Join hundreds of creators and brands who've transformed their content with professional editing that drives real results.
+              Join creators and brands transforming their content. Let's bring your vision to life with professional editing that drives real impact.
             </motion.p>
 
             <motion.div
@@ -437,10 +437,10 @@ const Home = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Link to="/contact" className="inline-flex items-center gap-3 px-12 py-5 bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-black font-bold rounded-full text-xl shadow-2xl shadow-amber-500/40 transition-all group">
-                Let's Create Something Incredible
+              <Link to="/contact" className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-black font-bold rounded-full text-lg shadow-2xl shadow-amber-500/40 transition-all group">
+                Get Started Now
                 <motion.span animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
-                  <ArrowRight size={24} />
+                  <ArrowRight size={20} />
                 </motion.span>
               </Link>
             </motion.div>
