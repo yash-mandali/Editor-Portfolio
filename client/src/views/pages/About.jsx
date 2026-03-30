@@ -97,7 +97,7 @@ const About = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-amber-500/20 via-amber-500/0 to-transparent rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
                 <div className="relative p-8 rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-800 dark:from-neutral-800 dark:to-neutral-900 border border-amber-500/30 hover:border-amber-500/60 transition-all">
-                  <motion.div 
+                  <motion.div
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     transition={{ delay: i * 0.15 + 0.2, type: "spring" }}
