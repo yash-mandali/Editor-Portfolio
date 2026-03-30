@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Play, Zap, Award, Users } from 'lucide-react';
+import { ArrowRight, Play, Zap, Award, Users, Sparkles } from 'lucide-react';
 import { PROFILE, WHY_CHOOSE_ME } from '../../models/data';
 import VideoModal from '../components/VideoModal';
 import { usePortfolioController } from '../../controllers/usePortfolioController';
@@ -11,335 +11,401 @@ import AnimatedSection from '../components/AnimatedSection';
 
 const Home = () => {
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { filteredItems } = useVideoController()
 
-  // Text reveal animation
-  const textRevealVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.05,
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    })
-  };
-
-  // Container for staggered animations
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
-  };
-
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden bg-neutral-950">
       <VideoModal
         isOpen={!!selectedVideo}
         onClose={() => setSelectedVideo(null)}
         videoUrl={selectedVideo}
       />
 
-      {/* Hero Section - Ultra Animated */}
+      {/* Hero Section - Ultra Premium */}
       <motion.section
-        className="relative min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden bg-gradient-to-b from-neutral-50 via-neutral-50 to-white dark:from-neutral-950 dark:via-neutral-950 dark:to-neutral-900"
+        className="relative min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        {/* Animated background elements */}
+        {/* Gradient background with multiple layers */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-neutral-950 via-amber-950/20 to-neutral-950" />
+          <motion.div
+            className="absolute inset-0"
+            animate={{
+              background: [
+                'radial-gradient(800px at 20% 50%, rgba(251, 191, 36, 0.15) 0%, transparent 50%)',
+                'radial-gradient(800px at 80% 80%, rgba(251, 191, 36, 0.1) 0%, transparent 50%)',
+                'radial-gradient(800px at 20% 50%, rgba(251, 191, 36, 0.15) 0%, transparent 50%)'
+              ]
+            }}
+            transition={{ duration: 8, repeat: Infinity }}
+          />
+        </div>
+
+        {/* Animated grid background */}
+        <motion.svg
+          className="absolute inset-0 w-full h-full opacity-5"
+          animate={{ opacity: [0.05, 0.1, 0.05] }}
+          transition={{ duration: 4, repeat: Infinity }}
+        >
+          <defs>
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(251,191,36,0.5)" strokeWidth="0.5"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+        </motion.svg>
+
+        {/* Floating animated orbs */}
         <motion.div
-          className="absolute top-20 left-10 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl"
-          animate={{
-            y: [0, 40, 0],
-            x: [0, 20, 0]
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 left-1/4 w-80 h-80 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full blur-3xl opacity-20"
+          animate={{ y: [0, 50, 0], x: [-20, 20, -20], scale: [1, 1.1, 1] }}
+          transition={{ duration: 10, repeat: Infinity }}
         />
         <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl"
-          animate={{
-            y: [0, -40, 0],
-            x: [0, -20, 0]
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-amber-600 to-amber-500 rounded-full blur-3xl opacity-15"
+          animate={{ y: [0, -50, 0], x: [20, -20, 20], scale: [1, 0.9, 1] }}
+          transition={{ duration: 12, repeat: Infinity, delay: 1 }}
         />
 
         <div className="container mx-auto relative z-10 text-center max-w-5xl">
           <motion.div
             initial="hidden"
             animate="visible"
-            variants={containerVariants}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+              }
+            }}
           >
-            {/* Badge */}
+            {/* Badge with glow */}
             <motion.div
-              variants={itemVariants}
-              className="flex justify-center mb-8"
+              variants={{
+                hidden: { opacity: 0, scale: 0.8, y: 20 },
+                visible: { opacity: 1, scale: 1, y: 0 }
+              }}
+              className="flex justify-center mb-10"
             >
-              <motion.span
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.3, type: "spring" }}
-                className="inline-flex items-center gap-2 py-2 px-4 rounded-full bg-gradient-to-r from-amber-500/20 to-amber-500/10 border border-amber-500/30 backdrop-blur-sm"
+              <motion.div
+                className="relative inline-flex"
+                whileHover={{ scale: 1.05 }}
               >
-                <Zap size={16} className="text-amber-600 dark:text-amber-500" />
-                <span className="text-amber-700 dark:text-amber-400 text-sm font-bold tracking-wide">PREMIUM VIDEO EDITING</span>
-              </motion.span>
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full blur-xl opacity-0 group-hover:opacity-75 transition-opacity" />
+                <span className="relative inline-flex items-center gap-2 py-3 px-6 rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/50 backdrop-blur-xl hover:border-amber-400 transition-all">
+                  <Sparkles size={16} className="text-amber-400 animate-pulse" />
+                  <span className="text-amber-400 text-xs font-bold tracking-wider">PROFESSIONAL VIDEO EDITING</span>
+                </span>
+              </motion.div>
             </motion.div>
 
-            {/* Main Headline with char animation */}
+            {/* Main Headline */}
             <div className="mb-8 overflow-hidden">
               <motion.h1
-                className="text-4xl md:text-7xl font-black tracking-tight text-neutral-900 dark:text-white leading-tight"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+                variants={{
+                  hidden: { opacity: 0, y: 100 },
+                  visible: { opacity: 1, y: 0 }
+                }}
+                transition={{ delay: 0.3, duration: 0.8, type: "spring" }}
+                className="text-5xl md:text-8xl font-black tracking-tighter text-white leading-tight"
               >
-                Crafting <br />
+                Create
+                <br />
                 <motion.span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 dark:from-amber-400 dark:via-amber-500 dark:to-amber-600"
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-orange-500 inline-block"
                   animate={{
                     backgroundPosition: ["0% center", "100% center", "0% center"]
                   }}
-                  transition={{ duration: 4, repeat: Infinity }}
+                  transition={{ duration: 6, repeat: Infinity }}
                   style={{ backgroundSize: "200% 200%" }}
                 >
-                  Cinematic Excellence
+                  Cinematic Magic
                 </motion.span>
               </motion.h1>
             </div>
 
-            {/* Description */}
+            {/* Description with better styling */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="text-lg md:text-xl text-neutral-600 dark:text-neutral-300 mb-12 max-w-2xl mx-auto leading-relaxed"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+              transition={{ delay: 0.5 }}
+              className="text-xl md:text-2xl bg-gradient-to-r from-neutral-300 via-neutral-200 to-neutral-300 bg-clip-text text-transparent mb-14 max-w-3xl mx-auto leading-relaxed font-light"
             >
-              Elevate your content with professional editing that captivates, engages, and converts viewers into loyal fans.
+              Transform raw footage into visually stunning content that captivates millions and drives engagement.
             </motion.p>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons - Premium Style */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 }
+              }}
+              transition={{ delay: 0.7 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-20"
             >
               <motion.div
-                whileHover={{ scale: 1.05, y: -5 }}
+                whileHover={{ scale: 1.08, y: -8 }}
                 whileTap={{ scale: 0.95 }}
+                className="group relative"
               >
-                <Link to="/contact" className="px-10 py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-bold rounded-full transition-all flex items-center justify-center gap-3 shadow-xl shadow-amber-500/30 group text-lg">
-                  Start Your Project
-                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                <div className="absolute -inset-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full blur-lg opacity-75 group-hover:opacity-100 transition-opacity duration-300" />
+                <Link to="/contact" className="relative px-12 py-5 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-black font-black rounded-full transition-all flex items-center justify-center gap-3 shadow-2xl text-lg">
+                  Start Creating
+                  <motion.div animate={{ x: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
+                    <ArrowRight size={22} />
+                  </motion.div>
                 </Link>
               </motion.div>
+              
               <motion.div
-                whileHover={{ scale: 1.05, y: -5 }}
+                whileHover={{ scale: 1.08, y: -8 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Link to="/portfolio" className="px-10 py-4 bg-white dark:bg-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-800 border-2 border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white font-bold rounded-full transition-all flex items-center justify-center gap-3 text-lg group">
-                  <Play size={20} className="fill-current" />
+                <Link to="/portfolio" className="px-12 py-5 bg-white/10 hover:bg-white/20 border-2 border-white/30 hover:border-white/50 text-white font-bold rounded-full transition-all flex items-center justify-center gap-3 text-lg backdrop-blur-xl group">
+                  <Play size={22} className="fill-current" />
                   View Portfolio
                 </Link>
               </motion.div>
             </motion.div>
 
-            {/* Stats */}
+            {/* Stats with glass effect */}
             <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={staggerContainer}
-              className="grid grid-cols-3 gap-8 pt-12 border-t border-neutral-200 dark:border-neutral-800"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.2, delayChildren: 1 }
+                }
+              }}
+              className="grid grid-cols-3 gap-6 pt-16 border-t border-white/10"
             >
               {[
-                { value: "5+", label: "Years Experience" },
-                { value: "100+", label: "Projects Delivered" },
-                { value: "80+", label: "Happy Clients" }
+                { value: "5+", label: "Years", icon: "🎬" },
+                { value: "100+", label: "Projects", icon: "⭐" },
+                { value: "80+", label: "Clients", icon: "🚀" }
               ].map((stat, i) => (
                 <motion.div
                   key={i}
-                  variants={itemVariants}
-                  className="text-center"
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0 }
+                  }}
+                  className="group relative p-6 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 hover:border-white/40 backdrop-blur-xl transition-all hover:bg-gradient-to-br hover:from-white/20 hover:to-white/10"
+                  whileHover={{ y: -5 }}
                 >
-                  <motion.div className="text-4xl md:text-5xl font-black text-amber-600 dark:text-amber-500 mb-2">
-                    {stat.value}
-                  </motion.div>
-                  <p className="text-neutral-600 dark:text-neutral-400 font-medium">{stat.label}</p>
+                  <div className="absolute inset-0 bg-gradient-to-br from-amber-500/0 to-amber-500/5 group-hover:from-amber-500/10 group-hover:to-amber-500/5 rounded-2xl transition-all" />
+                  <div className="relative z-10">
+                    <motion.div 
+                      className="text-4xl mb-2"
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      {stat.icon}
+                    </motion.div>
+                    <div className="text-4xl md:text-5xl font-black bg-gradient-to-r from-amber-300 to-orange-400 bg-clip-text text-transparent mb-1">
+                      {stat.value}
+                    </div>
+                    <p className="text-neutral-400 font-medium">{stat.label}</p>
+                  </div>
                 </motion.div>
               ))}
             </motion.div>
           </motion.div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Animated scroll indicator */}
         <motion.div
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute bottom-12 left-1/2 transform -translate-x-1/2"
+          animate={{ y: [0, 15, 0] }}
+          transition={{ duration: 2.5, repeat: Infinity }}
         >
-          <div className="flex flex-col items-center gap-2 text-neutral-500 dark:text-neutral-400">
-            <span className="text-xs font-semibold uppercase">Scroll to explore</span>
-            <svg className="w-5 h-5" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
+          <div className="flex flex-col items-center gap-4 text-amber-400/80">
+            <span className="text-xs font-bold uppercase tracking-widest">Scroll to explore</span>
+            <motion.div
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            >
+              <svg className="w-6 h-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+              </svg>
+            </motion.div>
           </div>
         </motion.div>
       </motion.section>
 
-      {/* Why Choose Me - Enhanced */}
+      {/* Why Choose Me - Premium Glass Design */}
       <motion.section
-        className="py-24 bg-white dark:bg-neutral-950 transition-colors duration-300 relative overflow-hidden"
+        className="py-28 bg-gradient-to-b from-neutral-950 to-neutral-900 relative overflow-hidden"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        variants={containerVariants}
+        variants={{
+          hidden: { opacity: 0 },
+          visible: { opacity: 1 }
+        }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-500/5 to-transparent pointer-events-none" />
+        {/* Animated gradient background */}
+        <div className="absolute inset-0">
+          <motion.div
+            className="absolute inset-0 opacity-30"
+            animate={{
+              background: [
+                'radial-gradient(1200px at 0% 0%, rgba(251, 191, 36, 0.1) 0%, transparent 50%)',
+                'radial-gradient(1200px at 100% 100%, rgba(251, 191, 36, 0.15) 0%, transparent 50%)',
+                'radial-gradient(1200px at 0% 0%, rgba(251, 191, 36, 0.1) 0%, transparent 50%)'
+              ]
+            }}
+            transition={{ duration: 10, repeat: Infinity }}
+          />
+        </div>
 
         <div className="container mx-auto px-6 relative z-10">
           {/* Section Header */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
+            variants={{
+              hidden: { opacity: 0, y: 50 },
+              visible: { opacity: 1, y: 0 }
+            }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-20"
+            className="text-center mb-24"
           >
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-amber-600 dark:text-amber-500 text-xs font-bold uppercase tracking-widest mb-3"
-            >
-              Why Choose Me
-            </motion.p>
+            <motion.div className="inline-block mb-6">
+              <span className="px-5 py-2 rounded-full bg-amber-500/20 border border-amber-500/50 text-amber-400 text-xs font-bold uppercase tracking-wider backdrop-blur-xl">
+                Why Work With Me
+              </span>
+            </motion.div>
             <motion.h2
-              className="text-3xl md:text-5xl font-black text-neutral-900 dark:text-white mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
+              className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+              transition={{ delay: 0.2 }}
             >
-              Expertise That <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-amber-700">Delivers Results</span>
+              Expertise That <motion.span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-orange-500" animate={{ backgroundPosition: ["0% center", "100% center", "0% center"] }} transition={{ duration: 6, repeat: Infinity }} style={{ backgroundSize: "200% 200%" }}>Transforms</motion.span>
             </motion.h2>
             <motion.p
-              className="text-base text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              className="text-xl text-neutral-300 max-w-2xl mx-auto"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: { opacity: 1 }
+              }}
               transition={{ delay: 0.4 }}
             >
-              Engagement, retention, and professional quality that makes your content stand out.
+              Professional quality, innovative effects, and creative storytelling combined.
             </motion.p>
           </motion.div>
 
-          {/* Features Grid */}
+          {/* Features Grid with glass morphism */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            variants={containerVariants}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.15 }
+              }
+            }}
             className="grid md:grid-cols-3 gap-8"
           >
             {WHY_CHOOSE_ME.map((item, index) => (
               <motion.div
                 key={index}
-                variants={itemVariants}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="group relative p-10 rounded-2xl bg-gradient-to-br from-neutral-50 to-neutral-100/50 dark:from-neutral-900/50 dark:to-neutral-900/20 border border-neutral-200/50 dark:border-neutral-800/50 hover:border-amber-500/50 transition-all overflow-hidden"
+                variants={{
+                  hidden: { opacity: 0, y: 40 },
+                  visible: { opacity: 1, y: 0 }
+                }}
+                whileHover={{ y: -12, scale: 1.02 }}
+                className="group relative p-8 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 hover:border-amber-500/50 backdrop-blur-2xl transition-all overflow-hidden"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/0 to-amber-500/5 group-hover:from-amber-500/10 group-hover:to-amber-500/5 transition-all" />
-
+                {/* Glow effect on hover */}
                 <motion.div
-                  whileHover={{ rotate: 360, scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
-                  className="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-600/10 flex items-center justify-center text-amber-600 dark:text-amber-500 mb-6 relative z-10"
+                  className="absolute inset-0 bg-gradient-to-br from-amber-500/0 to-orange-500/0 group-hover:from-amber-500/20 group-hover:to-orange-500/10 rounded-2xl transition-all"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                />
+
+                {/* Icon with animation */}
+                <motion.div
+                  className="w-16 h-16 rounded-xl bg-gradient-to-br from-amber-500/30 to-orange-500/20 flex items-center justify-center text-amber-300 mb-6 relative z-10 border border-amber-500/50"
+                  whileHover={{ rotate: 360, scale: 1.15 }}
+                  transition={{ duration: 0.6, type: "spring" }}
                 >
-                  <item.icon size={28} />
+                  <item.icon size={32} />
                 </motion.div>
 
-                <h3 className="text-2xl font-bold mb-4 text-neutral-900 dark:text-white relative z-10">{item.title}</h3>
-                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed relative z-10">{item.description}</p>
+                <h3 className="text-2xl font-bold text-white mb-4 relative z-10">{item.title}</h3>
+                <p className="text-neutral-300 leading-relaxed relative z-10">{item.description}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </motion.section>
 
-      {/* Featured Work - Enhanced */}
+      {/* Featured Work Section */}
       <motion.section
-        className="py-32 bg-gradient-to-b from-neutral-100/50 to-neutral-50 dark:from-neutral-900/50 dark:to-neutral-950 border-y border-neutral-200 dark:border-neutral-900 transition-colors duration-300 relative overflow-hidden"
+        className="py-28 bg-gradient-to-b from-neutral-900 via-neutral-950 to-neutral-950 relative overflow-hidden"
       >
-        <div className="container mx-auto px-6">
+        <div className="absolute inset-0">
+          <motion.div
+            animate={{
+              opacity: [0.05, 0.1, 0.05]
+            }}
+            transition={{ duration: 8, repeat: Infinity }}
+            className="absolute inset-0 bg-[radial-gradient(800px_at_50%_50%,rgba(251,191,36,0.1),transparent)]"
+          />
+        </div>
+
+        <div className="container mx-auto px-6 relative z-10">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="flex justify-between items-end mb-16"
+            className="flex justify-between items-end mb-20"
           >
             <div>
-              <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.1 }}
-                className="text-amber-600 dark:text-amber-500 text-xs font-bold uppercase tracking-widest mb-3"
-              >
-                Featured Projects
-              </motion.p>
+              <motion.div className="inline-block mb-5">
+                <span className="px-5 py-2 rounded-full bg-amber-500/20 border border-amber-500/50 text-amber-400 text-xs font-bold uppercase tracking-wider backdrop-blur-xl">
+                  Featured Work
+                </span>
+              </motion.div>
               <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="text-3xl md:text-5xl font-black text-neutral-900 dark:text-white mb-2"
+                className="text-5xl md:text-6xl font-black text-white mb-3"
               >
-                Latest Work
+                Latest Projects
               </motion.h2>
               <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="text-neutral-600 dark:text-neutral-400 text-base"
+                className="text-neutral-400 text-lg"
               >
-                Showcasing my best recent projects
+                Showcasing exceptional creative work
               </motion.p>
             </div>
-            <Link to="/portfolio" className="hidden lg:flex items-center gap-2 text-amber-600 dark:text-amber-500 font-bold hover:text-amber-700 dark:hover:text-amber-400 transition-colors group">
+            <Link to="/portfolio" className="hidden lg:flex items-center gap-3 text-amber-400 font-bold hover:text-amber-300 transition-colors group text-lg">
               View All
-              <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+              <motion.div animate={{ x: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
+                <ArrowRight size={20} />
+              </motion.div>
             </Link>
           </motion.div>
 
@@ -353,7 +419,7 @@ const Home = () => {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            <Link to="/portfolio" className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-500 font-bold hover:text-amber-700 dark:hover:text-amber-400 transition-colors text-lg group">
+            <Link to="/portfolio" className="inline-flex items-center gap-2 text-amber-400 font-bold hover:text-amber-300 transition-colors text-lg group">
               View All Portfolio
               <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
             </Link>
@@ -361,86 +427,81 @@ const Home = () => {
         </div>
       </motion.section>
 
-      {/* CTA Section - Enhanced */}
+      {/* CTA Section - Ultra Premium */}
       <motion.section
-        className="py-32 relative overflow-hidden bg-gradient-to-br from-neutral-900 to-neutral-800 dark:from-neutral-900 dark:to-black"
+        className="py-36 relative overflow-hidden"
       >
-        {/* Animated background */}
-        <motion.div
-          className="absolute inset-0 opacity-20"
-          animate={{
-            backgroundPosition: ["0% 0%", "100% 100%"]
-          }}
-          transition={{ duration: 10, repeat: Infinity }}
-          style={{
-            backgroundImage: "url('data:image/svg+xml,%3Csvg width=%2260%27 height=%2760%27 viewBox=%270 0 60 60%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cg fill=%27none%27 fill-rule=%27evenodd%27%3E%3Cg fill=%27%23fbbf24%27 fill-opacity=%270.05%27%3E%3Cpath d=%27M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%27/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"
-          }}
-        />
+        {/* Animated gradient layers */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-neutral-900 via-black to-neutral-950" />
+          <motion.div
+            className="absolute inset-0"
+            animate={{
+              background: [
+                'radial-gradient(1500px at 20% 50%, rgba(251, 191, 36, 0.2) 0%, transparent 50%)',
+                'radial-gradient(1500px at 80% 50%, rgba(251, 191, 36, 0.15) 0%, transparent 50%)',
+                'radial-gradient(1500px at 20% 50%, rgba(251, 191, 36, 0.2) 0%, transparent 50%)'
+              ]
+            }}
+            transition={{ duration: 10, repeat: Infinity }}
+          />
+        </div>
 
-        {/* Animated gradient orbs */}
+        {/* Floating animated elements */}
         <motion.div
-          className="absolute top-1/2 left-1/4 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl"
-          animate={{
-            y: [0, 50, 0],
-            x: [0, 30, 0]
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
+          className="absolute top-1/3 left-1/3 w-96 h-96 bg-gradient-to-r from-amber-500/30 to-orange-500/20 rounded-full blur-3xl"
+          animate={{ y: [0, 60, 0], x: [-30, 30, -30] }}
+          transition={{ duration: 12, repeat: Infinity }}
         />
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl"
-          animate={{
-            y: [0, -50, 0],
-            x: [0, -30, 0]
-          }}
-          transition={{ duration: 10, repeat: Infinity, delay: 1 }}
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-amber-600/25 to-orange-500/15 rounded-full blur-3xl"
+          animate={{ y: [0, -60, 0], x: [30, -30, 30] }}
+          transition={{ duration: 14, repeat: Infinity, delay: 1 }}
         />
 
         <div className="container mx-auto px-6 relative z-10 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            initial={{ opacity: 0, y: 60, scale: 0.85 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.9, type: "spring" }}
           >
             <motion.h2
-              className="text-4xl md:text-6xl font-black mb-6 text-white leading-tight"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
+              className="text-6xl md:text-8xl font-black text-white mb-8 leading-tight"
             >
-              Ready to Create <br className="hidden md:block" />
+              Ready to <br />
               <motion.span
-                className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500"
-                animate={{
-                  backgroundPosition: ["0% center", "100% center", "0% center"]
-                }}
-                transition={{ duration: 4, repeat: Infinity }}
+                className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-orange-400 to-amber-400"
+                animate={{ backgroundPosition: ["0% center", "100% center", "0% center"] }}
+                transition={{ duration: 6, repeat: Infinity }}
                 style={{ backgroundSize: "200% 200%" }}
               >
-                Something Amazing?
+                Elevate Your Content?
               </motion.span>
             </motion.h2>
 
             <motion.p
-              className="text-base md:text-lg text-neutral-300 mb-10 max-w-2xl mx-auto leading-relaxed"
+              className="text-xl md:text-2xl text-neutral-300 mb-14 max-w-3xl mx-auto leading-relaxed font-light"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
+              transition={{ delay: 0.2 }}
             >
-              Join creators and brands transforming their content. Let's bring your vision to life with professional editing that drives real impact.
+              Transform your vision into reality. Let's create content that resonates, engages, and converts.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4 }}
-              whileHover={{ scale: 1.05 }}
+              transition={{ delay: 0.4, type: "spring" }}
+              whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.95 }}
+              className="group relative inline-block"
             >
-              <Link to="/contact" className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-black font-bold rounded-full text-lg shadow-2xl shadow-amber-500/40 transition-all group">
-                Get Started Now
-                <motion.span animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
-                  <ArrowRight size={20} />
+              <div className="absolute -inset-2 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse" />
+              <Link to="/contact" className="relative inline-flex items-center gap-4 px-14 py-6 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-black font-black rounded-full text-xl shadow-2xl transition-all">
+                Let's Get Started
+                <motion.span animate={{ x: [0, 8, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
+                  <ArrowRight size={24} />
                 </motion.span>
               </Link>
             </motion.div>
