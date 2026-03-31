@@ -34,17 +34,11 @@ const Services = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-24"
+          className="text-center max-w-3xl mx-auto mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-full mb-6">
-            <Sparkles size={12} className="text-amber-500" />
-            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-500">Solutions.Architect</span>
-          </div>
-          <h1 className="text-5xl md:text-7xl font-black mb-8 text-neutral-950 dark:text-white tracking-tighter leading-none transition-colors">
-            EXPERTISE & <br /> <span className="text-neutral-900/10 dark:text-white/20 transition-colors">SERVICES</span>
-          </h1>
-          <p className="text-neutral-500 dark:text-neutral-400 text-lg font-light transition-colors">
-            Specialized editing services tailored to your platform and audience. Orchestrating high-impact visual narratives.
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-neutral-900 dark:text-white">Expertise & Services</h1>
+          <p className="text-neutral-600 dark:text-neutral-400 text-lg">
+            Specialized editing services tailored to your platform and audience.
           </p>
         </motion.div>
 
@@ -58,8 +52,7 @@ const Services = () => {
             <motion.div
               key={service.id}
               variants={cardVariants}
-              whileHover={{ y: -10 }}
-              className="bg-white dark:bg-neutral-900/50 backdrop-blur-xl border border-black/5 dark:border-neutral-800 p-10 rounded-none hover:border-amber-500/30 transition-all group shadow-sm hover:shadow-2xl relative overflow-hidden"
+              className="bg-white dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 p-8 rounded-2xl hover:border-amber-500/30 transition-all group shadow-sm hover:shadow-md"
             >
               <div className="absolute top-0 right-0 p-6 opacity-[0.03] group-hover:opacity-10 transition-opacity">
                 <service.icon size={120} />

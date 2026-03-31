@@ -45,7 +45,7 @@ const Videos = () => {
                             />
                             
                             {/* Cinematic Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-neutral-950 via-transparent to-transparent opacity-40 dark:opacity-90 group-hover:opacity-20 dark:group-hover:opacity-60 transition-opacity duration-700" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-90 group-hover:opacity-60 transition-opacity duration-700" />
                             
                             {/* Dashboard Corner Elements */}
                             <div className="absolute top-4 right-4 text-[8px] font-black tracking-[0.2em] text-neutral-400 dark:text-white/20 group-hover:text-amber-500 transition-colors uppercase">
@@ -64,9 +64,9 @@ const Videos = () => {
                                     {item.title}
                                 </h3>
                                 
-                                <div className="flex items-center gap-4 text-neutral-500 dark:text-white/50 text-[8px] font-black uppercase tracking-[0.4em] transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                                <div className="flex items-center gap-4 text-white/50 text-[8px] font-black uppercase tracking-[0.4em] transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                                     <Play size={10} fill="currentColor" />
-                                    <span className="text-neutral-950 dark:text-white transition-colors">Initiate Playback</span>
+                                    <span>Initiate Playback</span>
                                 </div>
                             </div>
 

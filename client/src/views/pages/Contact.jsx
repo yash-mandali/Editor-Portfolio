@@ -28,8 +28,8 @@ const Contact = () => {
               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-500">Secure_Channel</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-black mb-10 text-neutral-950 dark:text-white tracking-tighter leading-none transition-colors">
-              READY TO <br /> <span className="text-neutral-900/10 dark:text-white/20 transition-colors">ASSEMBLE?</span>
+            <h1 className="text-5xl md:text-7xl font-black mb-10 text-white tracking-tighter leading-none">
+              READY TO <br /> <span className="text-white/20">ASSEMBLE?</span>
             </h1>
             
             <p className="text-neutral-500 dark:text-neutral-400 text-xl font-light leading-relaxed mb-20 max-w-lg transition-colors">
@@ -142,12 +142,12 @@ const Contact = () => {
                           onChange={handleChange}
                           className="w-full bg-transparent border-b border-black/10 dark:border-white/10 py-4 text-neutral-950 dark:text-white text-lg font-light focus:outline-none focus:border-amber-500 transition-all appearance-none cursor-pointer"
                         >
-                          <option value="" className="bg-white dark:bg-neutral-950 border-none text-neutral-900 dark:text-white">Select Type</option>
-                          <option value="reels" className="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white">Premium Reels</option>
-                          <option value="youtube" className="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white">Cinematic YouTube</option>
-                          <option value="wedding" className="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white">Masterful Wedding</option>
-                          <option value="commercial" className="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white">Commercial/Brand</option>
-                          <option value="other" className="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white">Custom Sequence</option>
+                          <option value="" className="bg-neutral-900 border-none">Select Type</option>
+                          <option value="reels" className="bg-neutral-900">Premium Reels</option>
+                          <option value="youtube" className="bg-neutral-900">Cinematic YouTube</option>
+                          <option value="wedding" className="bg-neutral-900">Masterful Wedding</option>
+                          <option value="commercial" className="bg-neutral-900">Commercial/Brand</option>
+                          <option value="other" className="bg-neutral-900">Custom Sequence</option>
                         </select>
                       </div>
                       <div className="space-y-4">
@@ -158,11 +158,11 @@ const Contact = () => {
                           onChange={handleChange}
                           className="w-full bg-transparent border-b border-black/10 dark:border-white/10 py-4 text-neutral-950 dark:text-white text-lg font-light focus:outline-none focus:border-amber-500 transition-all appearance-none cursor-pointer"
                         >
-                          <option value="" className="bg-white dark:bg-neutral-950 border-none text-neutral-900 dark:text-white">Select Budget</option>
-                          <option value="50-200" className="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white">$50 - $200</option>
-                          <option value="200-500" className="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white">$200 - $500</option>
-                          <option value="500-1000" className="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white">$500 - $1000</option>
-                          <option value="1000+" className="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white">$1000+</option>
+                          <option value="" className="bg-neutral-900">Select Budget</option>
+                          <option value="50-200" className="bg-neutral-900">$50 - $200</option>
+                          <option value="200-500" className="bg-neutral-900">$200 - $500</option>
+                          <option value="500-1000" className="bg-neutral-900">$500 - $1000</option>
+                          <option value="1000+" className="bg-neutral-900">$1000+</option>
                         </select>
                       </div>
                     </div>

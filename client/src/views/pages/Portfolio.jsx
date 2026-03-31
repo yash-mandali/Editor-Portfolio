@@ -45,7 +45,7 @@ const Portfolio = () => {
             transition={{ delay: 0.1 }}
             className="text-5xl md:text-7xl font-black mb-8 text-neutral-950 dark:text-white tracking-tighter transition-colors"
           >
-            SELECTED <span className="text-neutral-900/10 dark:text-white/30 transition-colors">WORKS</span>
+            SELECTED <span className="text-white/30">WORKS</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0 }}
@@ -100,7 +100,7 @@ const Portfolio = () => {
                 />
 
                 {/* Cinematic Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-neutral-950 via-transparent to-transparent opacity-40 dark:opacity-80 group-hover:opacity-20 transition-opacity duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-700" />
 
                 {/* Content */}
                 <div className="absolute inset-0 p-8 flex flex-col justify-end">
