@@ -278,6 +278,7 @@ const About = () => {
               Open Connection
             </Link>
           </motion.div>
+        </section>
       </div>
     </div>
   );
