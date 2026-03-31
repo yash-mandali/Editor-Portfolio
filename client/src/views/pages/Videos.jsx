@@ -35,20 +35,20 @@ const Videos = () => {
                             exit={{ opacity: 0, scale: 0.95 }}
                             transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
                             onClick={() => setSelectedVideo(item)}
-                            className="group relative aspect-video cursor-pointer overflow-hidden bg-neutral-900 border border-white/5 hover:border-amber-500/50 transition-all duration-700 shadow-2xl"
+                            className="group relative aspect-video cursor-pointer overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 hover:border-amber-500/50 transition-all duration-700 shadow-2xl"
                         >
                             <img
                                 loading="lazy"
                                 src={item.image}
                                 alt={item.title}
-                                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-40 group-hover:opacity-90"
+                                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-90 dark:opacity-40 dark:group-hover:opacity-90 transition-opacity"
                             />
                             
                             {/* Cinematic Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-90 group-hover:opacity-60 transition-opacity duration-700" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-neutral-950 via-transparent to-transparent opacity-60 dark:opacity-90 group-hover:opacity-40 dark:group-hover:opacity-60 transition-opacity duration-700" />
                             
                             {/* Dashboard Corner Elements */}
-                            <div className="absolute top-4 right-4 text-[8px] font-black tracking-[0.2em] text-white/20 group-hover:text-amber-500 transition-colors uppercase">
+                            <div className="absolute top-4 right-4 text-[8px] font-black tracking-[0.2em] text-neutral-400 dark:text-white/20 group-hover:text-amber-500 transition-colors uppercase">
                                 REF-{(index + 1).toString().padStart(3, '0')}
                             </div>
 
@@ -60,18 +60,18 @@ const Videos = () => {
                                         {item.category}
                                     </motion.span>
                                 </div>
-                                <h3 className="text-2xl font-black text-white mb-4 tracking-tighter leading-none group-hover:translate-x-2 transition-transform duration-500 uppercase">
+                                <h3 className="text-2xl font-black text-neutral-950 dark:text-white mb-4 tracking-tighter leading-none group-hover:translate-x-2 transition-all duration-500 uppercase">
                                     {item.title}
                                 </h3>
                                 
-                                <div className="flex items-center gap-4 text-white/50 text-[8px] font-black uppercase tracking-[0.4em] transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                                <div className="flex items-center gap-4 text-neutral-400 dark:text-white/50 text-[8px] font-black uppercase tracking-[0.4em] transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                                     <Play size={10} fill="currentColor" />
-                                    <span>Initiate Playback</span>
+                                    <span className="text-neutral-900 dark:text-white transition-colors">Initiate Playback</span>
                                 </div>
                             </div>
 
                             {/* Stylistic Viewfinder Lines */}
-                            <div className="absolute inset-4 border border-white/0 group-hover:border-white/5 transition-colors pointer-events-none" />
+                            <div className="absolute inset-4 border border-black/5 dark:border-white/5 group-hover:border-amber-500/20 transition-colors pointer-events-none" />
                         </motion.div>
                     ))}
                 </AnimatePresence>
