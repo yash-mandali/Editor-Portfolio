@@ -17,24 +17,27 @@ const About = () => {
 
       <div className="container mx-auto px-6 relative z-10 py-48">
         {/* Intro - Cinematic Split Layout */}
-        <div className="flex flex-col lg:flex-row items-center gap-20 mb-40">
+        <div className="flex flex-col lg:flex-row items-center gap-16 mb-40">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.92 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full lg:w-1/2 relative group"
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full lg:w-5/12 relative group flex-shrink-0"
           >
-            <div className="absolute -inset-4 border border-black/5 dark:border-amber-500/20 group-hover:border-amber-500/40 transition-colors" />
-            <div className="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-amber-500" />
-            <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-amber-500" />
+            {/* Corner accents */}
+            <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-amber-500 z-10" />
+            <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-amber-500 z-10" />
+            <div className="absolute -inset-3 border border-black/5 dark:border-amber-500/15 group-hover:border-amber-500/30 transition-colors" />
 
-            <div className="relative aspect-[4/5] overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 transition-colors">
+            {/* Image container — square, reduced size */}
+            <div className="relative w-full max-w-[340px] mx-auto aspect-square overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5">
               <img
                 src={logoGif}
                 alt="Profile"
-                className="w-full h-full object-cover opacity-80 dark:opacity-60 group-hover:opacity-100 dark:group-hover:opacity-90 transition-all duration-1000 group-hover:scale-105"
+                className="w-full h-full object-contain object-center transition-all duration-700 group-hover:scale-105"
+                style={{ imageRendering: 'auto' }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-neutral-950 via-transparent to-transparent transition-colors" />
+              <div className="absolute inset-0 bg-gradient-to-t from-white/30 dark:from-neutral-950/40 via-transparent to-transparent pointer-events-none" />
             </div>
           </motion.div>
 
