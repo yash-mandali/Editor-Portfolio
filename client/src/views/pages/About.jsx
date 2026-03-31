@@ -96,17 +96,17 @@ const About = () => {
                 className="relative group"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-amber-500/20 via-amber-500/0 to-transparent rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
-                <div className="relative p-8 rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-800 dark:from-neutral-800 dark:to-neutral-900 border border-amber-500/30 hover:border-amber-500/60 transition-all">
+                <div className="relative p-8 rounded-2xl glass-card border-amber-500/30 hover:border-amber-500/60 transition-all duration-500">
                   <motion.div
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     transition={{ delay: i * 0.15 + 0.2, type: "spring" }}
-                    className="text-5xl md:text-6xl font-black text-amber-500 mb-4"
+                    className="text-5xl md:text-6xl font-black text-amber-500 mb-4 drop-shadow-[0_0_15px_rgba(245,158,11,0.4)]"
                   >
                     {stat.number}
                   </motion.div>
-                  <h3 className="text-xl font-bold text-white mb-2">{stat.label}</h3>
-                  <p className="text-amber-500/70">{stat.desc}</p>
+                  <h3 className="text-xl font-bold text-white mb-2 tracking-tighter uppercase">{stat.label}</h3>
+                  <p className="text-neutral-400 text-sm font-medium">{stat.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -223,17 +223,17 @@ const About = () => {
               className="group relative"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-amber-600/30 to-orange-600/10 rounded-3xl blur-2xl group-hover:blur-3xl transition-all"></div>
-              <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 border border-amber-500/30 group-hover:border-amber-500/60 transition-all p-8">
+              <div className="relative rounded-3xl overflow-hidden glass-card border-amber-500/30 group-hover:border-amber-500/60 transition-all p-8">
                 <motion.div
                   initial={{ rotate: -20, scale: 0 }}
                   whileInView={{ rotate: 0, scale: 1 }}
                   transition={{ delay: 0.5, type: "spring" }}
                   className="mb-6 h-24 flex items-center justify-center"
                 >
-                  <div className="text-6xl" style={{ textShadow: '0 0 30px rgba(245, 158, 11, 0.5)' }}>✂️</div>
+                  <div className="text-6xl filter drop-shadow-[0_0_20px_rgba(245,158,11,0.5)]" style={{ textShadow: '0 0 30px rgba(245, 158, 11, 0.5)' }}>✂️</div>
                 </motion.div>
-                <h3 className="text-2xl font-bold text-white mb-3">CapCut</h3>
-                <p className="text-neutral-300 mb-6 leading-relaxed">Lightning-fast social media editing that captures trends, goes viral, and converts viewers to clients.</p>
+                <h3 className="text-2xl font-black text-white mb-3 tracking-tighter uppercase">CapCut</h3>
+                <p className="text-neutral-400 mb-6 leading-relaxed font-medium">Lightning-fast social media editing that captures trends, goes viral, and converts viewers to clients.</p>
                 <div className="space-y-2">
                   {["Rapid Turnaround", "Social Optimization", "Trending Effects"].map((skill, i) => (
                     <motion.div
@@ -241,9 +241,9 @@ const About = () => {
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.6 + i * 0.1 }}
-                      className="flex items-center gap-2 text-amber-300"
+                      className="flex items-center gap-2 text-amber-300 font-bold text-xs uppercase tracking-widest"
                     >
-                      <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-[0_0_5px_rgba(245,158,11,1)]"></span>
                       {skill}
                     </motion.div>
                   ))}

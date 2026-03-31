@@ -6,6 +6,7 @@ import { PROFILE } from '../../models/data';
 import ThemeToggle from './ThemeToggle';
 import Loader from './Loader';
 import logo from '../../assests/logo-file.png';
+import CustomCursor from './CustomCursor';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -221,10 +222,16 @@ export const Layout = ({ children }) => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 font-sans selection:bg-amber-500/30 transition-colors duration-300">
+    <div className="relative min-h-screen bg-neutral-950 text-neutral-100 font-sans selection:bg-amber-500/30 transition-colors duration-300 overflow-x-hidden">
+      {/* Film Grain Overlay */}
+      <div className="film-grain" />
+      
+      {/* Custom Cursor */}
+      <CustomCursor />
+
       <Navbar />
       {showLoader && <Loader />}
-      <main className="pt-20">
+      <main className="relative z-10 transition-all duration-700">
         {children}
       </main>
       <Footer />

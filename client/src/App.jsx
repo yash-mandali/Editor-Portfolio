@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import { Layout } from './views/components/Layout';
 import Loader from './views/components/Loader';
+import PageTransition from './views/components/PageTransition';
 
 // Lazy load all page components for better code splitting
 const Home = React.lazy(() => import('./views/pages/Home'));
@@ -30,31 +32,43 @@ const ScrollToTop = () => {
   return null;
 };
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+  
   return (
-    <Router>
+    <>
       <ScrollToTop />
       <Layout>
         <Suspense fallback={<Loader />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/videos" element={<Videos />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/admin/login" element={<AdminLogin />} />
-            <Route path="/admin" element={<RequireAdmin><AdminLayout /></RequireAdmin>}>
-              <Route index element={<AdminHome />} />
-              <Route path="portfolio" element={<AdminPortfolio />} />
-              <Route path="videos" element={<AdminVideos />} />
-              <Route path="contacts" element={<AdminContacts />} />
-            </Route>
-            {/* Catch-all route for 404 Not Found */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AnimatePresence mode="wait">
+            <Routes location={location} key={location.pathname}>
+              <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+              <Route path="/about" element={<PageTransition><About /></PageTransition>} />
+              <Route path="/services" element={<PageTransition><Services /></PageTransition>} />
+              <Route path="/portfolio" element={<PageTransition><Portfolio /></PageTransition>} />
+              <Route path="/videos" element={<PageTransition><Videos /></PageTransition>} />
+              <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+              <Route path="/admin/login" element={<PageTransition><AdminLogin /></PageTransition>} />
+              <Route path="/admin" element={<RequireAdmin><AdminLayout /></RequireAdmin>}>
+                <Route index element={<AdminHome />} />
+                <Route path="portfolio" element={<AdminPortfolio />} />
+                <Route path="videos" element={<AdminVideos />} />
+                <Route path="contacts" element={<AdminContacts />} />
+              </Route>
+              {/* Catch-all route for 404 Not Found */}
+              <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+            </Routes>
+          </AnimatePresence>
         </Suspense>
       </Layout>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }

@@ -115,24 +115,52 @@ const Home = () => {
             <div className="mb-8 overflow-hidden">
               <motion.h1
                 variants={{
-                  hidden: { opacity: 0, y: 100 },
-                  visible: { opacity: 1, y: 0 }
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.1 }
+                  }
                 }}
-                transition={{ delay: 0.3, duration: 0.8, type: "spring" }}
-                className="text-3xl md:text-5xl font-black tracking-tighter text-white leading-tight"
+                className="text-4xl md:text-7xl font-black tracking-tighter text-white leading-[0.9]"
               >
-                Create
-                <br />
-                <motion.span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-orange-500 inline-block"
-                  animate={{
-                    backgroundPosition: ["0% center", "100% center", "0% center"]
-                  }}
-                  transition={{ duration: 6, repeat: Infinity }}
-                  style={{ backgroundSize: "200% 200%" }}
-                >
-                  Cinematic Magic
-                </motion.span>
+                {/* Splitting text for character reveal */}
+                <span className="block overflow-hidden">
+                  {"CREATE".split("").map((char, i) => (
+                    <motion.span
+                      key={i}
+                      variants={{
+                        hidden: { y: "100%" },
+                        visible: { y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+                      }}
+                      className="inline-block"
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </span>
+                <span className="block overflow-hidden mt-2">
+                  <motion.span
+                    className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-orange-500 inline-block"
+                    animate={{
+                      backgroundPosition: ["0% center", "100% center", "0% center"]
+                    }}
+                    transition={{ duration: 6, repeat: Infinity }}
+                    style={{ backgroundSize: "200% 200%" }}
+                  >
+                    {"CINEMATIC MAGIC".split("").map((char, i) => (
+                      <motion.span
+                        key={i}
+                        variants={{
+                          hidden: { y: "100%" },
+                          visible: { y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.5 + (i * 0.05) } }
+                        }}
+                        className="inline-block"
+                      >
+                        {char === " " ? "\u00A0" : char}
+                      </motion.span>
+                    ))}
+                  </motion.span>
+                </span>
               </motion.h1>
             </div>
 
@@ -191,7 +219,7 @@ const Home = () => {
                   transition: { staggerChildren: 0.2, delayChildren: 1 }
                 }
               }}
-              className="grid grid-cols-3 gap-6 pt-16 border-t border-white/10"
+              className="grid grid-cols-3 gap-6 pt-16 border-t border-white/5"
             >
               {[
                 { value: "5+", label: "Years", icon: "🎬" },
@@ -201,25 +229,25 @@ const Home = () => {
                 <motion.div
                   key={i}
                   variants={{
-                    hidden: { opacity: 0, y: 20 },
-                    visible: { opacity: 1, y: 0 }
+                    hidden: { opacity: 0, scale: 0.9, y: 20 },
+                    visible: { opacity: 1, scale: 1, y: 0 }
                   }}
-                  className="group relative p-6 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 hover:border-white/40 backdrop-blur-xl transition-all hover:bg-gradient-to-br hover:from-white/20 hover:to-white/10"
-                  whileHover={{ y: -5 }}
+                  className="group relative p-6 rounded-2xl glass-card overflow-hidden"
+                  whileHover={{ y: -10, rotate: i % 2 === 0 ? 1 : -1 }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-amber-500/0 to-amber-500/5 group-hover:from-amber-500/10 group-hover:to-amber-500/5 rounded-2xl transition-all" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-amber-500/0 to-amber-500/10 group-hover:from-amber-500/20 group-hover:to-amber-500/5 rounded-2xl transition-all duration-500" />
                   <div className="relative z-10">
                     <motion.div 
-                      className="text-4xl mb-2"
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
+                      className="text-4xl mb-2 filter drop-shadow-[0_0_10px_rgba(251,191,36,0.5)]"
+                      animate={{ scale: [1, 1.1, 1] }}
+                      transition={{ duration: 3, repeat: Infinity }}
                     >
                       {stat.icon}
                     </motion.div>
-                    <div className="text-4xl md:text-5xl font-black bg-gradient-to-r from-amber-300 to-orange-400 bg-clip-text text-transparent mb-1">
+                    <div className="text-3xl md:text-5xl font-black bg-gradient-to-r from-amber-300 to-orange-400 bg-clip-text text-transparent mb-1">
                       {stat.value}
                     </div>
-                    <p className="text-neutral-400 font-medium">{stat.label}</p>
+                    <p className="text-neutral-400 font-bold tracking-widest text-[10px] uppercase">{stat.label}</p>
                   </div>
                 </motion.div>
               ))}

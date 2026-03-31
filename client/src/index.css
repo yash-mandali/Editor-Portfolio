@@ -4,23 +4,65 @@
 
 @layer base {
   body {
-    @apply bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 transition-colors duration-300;
+    @apply bg-neutral-950 text-neutral-100 transition-colors duration-300 font-sans selection:bg-amber-500/30;
+    cursor: none; /* Hide default cursor for custom cursor */
   }
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Cinematic Style */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-neutral-100 dark:bg-neutral-950;
+  @apply bg-neutral-950;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-neutral-400 dark:bg-neutral-800 rounded-full;
+  @apply bg-neutral-800 rounded-full hover:bg-amber-500 transition-colors;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-amber-500;
+/* Film Grain Texture Effect */
+.film-grain {
+  position: fixed;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png"); /* Alternative grain texture */
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 9999;
+  animation: grain 8s steps(10) infinite;
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+/* Cinematic Typography Utilities */
+.text-reveal {
+  @apply overflow-hidden block;
+}
+
+.char-split {
+  @apply inline-block;
+}
+
+/* Glassmorphism Presets */
+.glass-card {
+  @apply bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-500;
+}
+
+.glass-navbar {
+  @apply bg-neutral-950/70 backdrop-blur-lg border-b border-white/5;
 }
