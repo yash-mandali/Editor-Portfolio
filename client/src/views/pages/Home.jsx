@@ -37,7 +37,7 @@ const Counter = ({ target, suffix = '' }) => {
 };
 
 /* ─── Style card ─── */
-const ACCENTS = ['#00d4ff', '#a78bfa', '#34d399', '#f472b6', '#fbbf24', '#60a5fa'];
+const ACCENTS = ['#00d4ff', '#a78bfa', '#34d399', '#f472b6', '#60a5fa', '#3b82f6'];
 const StyleCard = ({ icon: Icon, title, desc, accentColor, index }) => (
   <motion.div
     initial={{ opacity: 0, y: 50 }}
@@ -292,7 +292,7 @@ const Home = () => {
                 </motion.div>
                 <h3 className="text-xl font-black text-white mb-3 tracking-tight">{item.title}</h3>
                 <div className="w-7 h-[2px] bg-[#00d4ff] mb-5 group-hover:w-full transition-all duration-500" />
-                <p className="text-neutral-500 dark:text-[#6b6b80] leading-relaxed text-sm">{item.description}</p>
+                <p className="text-[#6b6b80] leading-relaxed text-sm">{item.description}</p>
               </motion.div>
             ))}
           </div>

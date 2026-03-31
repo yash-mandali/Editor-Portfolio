@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 
 /* accent per service index */
-const ACCENTS = ['#00d4ff', '#a78bfa', '#34d399', '#f472b6', '#fbbf24'];
+const ACCENTS = ['#00d4ff', '#a78bfa', '#34d399', '#f472b6', '#60a5fa'];
 
 const ServiceRow = ({ service, index, accent }) => {
   const [hovered, setHovered] = useState(false);
@@ -87,7 +87,7 @@ const ServiceRow = ({ service, index, accent }) => {
                 animate={{ opacity: 1, height: 'auto', marginTop: 6 }}
                 exit={{ opacity: 0, height: 0, marginTop: 0 }}
                 transition={{ duration: 0.3 }}
-                className="text-sm text-neutral-500 dark:text-[#6b6b80] leading-relaxed max-w-xl overflow-hidden"
+                className="text-sm text-[#6b6b80] leading-relaxed max-w-xl overflow-hidden"
               >
                 {service.description}
               </motion.p>

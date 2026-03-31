@@ -96,7 +96,7 @@ const Portfolio = () => {
                   loading="lazy"
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-90 dark:opacity-40 dark:group-hover:opacity-80 transition-opacity"
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-90 transition-opacity"
                 />
 
                 {/* Cinematic Overlay */}

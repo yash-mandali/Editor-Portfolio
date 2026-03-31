@@ -115,7 +115,7 @@ const Footer = () => {
   return (
     <footer className="bg-neutral-950 border-t border-white/5 pt-32 pb-16 relative overflow-hidden transition-colors duration-500">
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-amber-500/10 dark:bg-amber-500/5 blur-[120px] rounded-full transition-colors" />
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-cyan-500/5 blur-[120px] rounded-full transition-colors" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -163,7 +163,7 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-900 dark:text-white mb-8 transition-colors">Socials</h4>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-white mb-8 transition-colors">Socials</h4>
               <ul className="space-y-4">
                 {['Instagram', 'YouTube', 'LinkedIn', 'Vimeo'].map((item) => (
                   <li key={item}>
@@ -175,7 +175,7 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-900 dark:text-white mb-8 transition-colors">Direct</h4>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-white mb-8 transition-colors">Direct</h4>
               <a href={`mailto:${PROFILE.email}`} className="text-neutral-500 text-sm hover:text-cyan-400 transition-colors break-all">
                 {PROFILE.email}
               </a>
