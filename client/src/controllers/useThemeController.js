@@ -6,17 +6,7 @@ import { useState, useEffect } from 'react';
 
 export const useThemeController = () => {
   // Initialize state based on localStorage or system preference
-  const [theme, setTheme] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) {
-        return savedTheme;
-      }
-      // Default to dark for this premium portfolio
-      return 'dark'; 
-    }
-    return 'dark';
-  });
+  const [theme] = useState('dark');
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -32,7 +22,8 @@ export const useThemeController = () => {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    // Theme is locked to dark
+    console.log('Theme is locked to dark for professional cinematic experience.');
   };
 
   return { theme, toggleTheme };

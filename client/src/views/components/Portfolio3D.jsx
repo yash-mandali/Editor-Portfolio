@@ -48,28 +48,28 @@ function FloatingSpheres() {
         <group ref={groupRef}>
             <Sphere args={[0.15, 32, 32]} position={[1, 1, -4]}>
                 <meshStandardMaterial
-                    color="#f59e0b"
+                    color="#00d4ff"
                     transparent
                     opacity={0.4}
-                    emissive="#f59e0b"
+                    emissive="#00d4ff"
                     emissiveIntensity={0.2}
                 />
             </Sphere>
             <Sphere args={[0.1, 32, 32]} position={[-1.5, -0.5, -3]}>
                 <meshStandardMaterial
-                    color="#fbbf24"
+                    color="#00d4ff"
                     transparent
                     opacity={0.5}
-                    emissive="#fbbf24"
+                    emissive="#00d4ff"
                     emissiveIntensity={0.15}
                 />
             </Sphere>
             <Sphere args={[0.12, 32, 32]} position={[0, -1.2, -5]}>
                 <meshStandardMaterial
-                    color="#f59e0b"
+                    color="#00d4ff"
                     transparent
                     opacity={0.3}
-                    emissive="#f59e0b"
+                    emissive="#00d4ff"
                     emissiveIntensity={0.25}
                 />
             </Sphere>
@@ -91,10 +91,10 @@ function MouseFollower() {
     return (
         <Sphere ref={meshRef} args={[0.05, 16, 16]}>
             <meshStandardMaterial
-                color="#f59e0b"
+                color="#00d4ff"
                 transparent
                 opacity={0.8}
-                emissive="#f59e0b"
+                emissive="#00d4ff"
                 emissiveIntensity={0.5}
             />
         </Sphere>
@@ -112,9 +112,9 @@ function Portfolio3D() {
                 <pointLight position={[5, 5, 5]} intensity={0.8} />
                 <directionalLight position={[-5, -5, -5]} intensity={0.3} />
 
-                <InteractiveBox position={[-2, 1, -3]} color="#f59e0b" />
-                <InteractiveBox position={[2, -1, -4]} color="#fbbf24" />
-                <InteractiveBox position={[0, 0.5, -2]} color="#f59e0b" />
+                <InteractiveBox position={[-2, 1, -3]} color="#00d4ff" />
+                <InteractiveBox position={[2, -1, -4]} color="#00d4ff" />
+                <InteractiveBox position={[0, 0.5, -2]} color="#00d4ff" />
 
                 <FloatingSpheres />
                 <MouseFollower />

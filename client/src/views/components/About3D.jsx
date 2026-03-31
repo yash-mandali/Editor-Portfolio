@@ -18,7 +18,7 @@ function OrbitingRings() {
         <group position={[3, 0, -8]}>
             <Ring ref={ring1Ref} args={[1, 1.1, 64]}>
                 <meshStandardMaterial
-                    color="#f59e0b"
+                    color="#00d4ff"
                     transparent
                     opacity={0.1}
                     side={THREE.DoubleSide}
@@ -26,7 +26,7 @@ function OrbitingRings() {
             </Ring>
             <Ring ref={ring2Ref} args={[1.5, 1.6, 64]}>
                 <meshStandardMaterial
-                    color="#f59e0b"
+                    color="#00d4ff"
                     transparent
                     opacity={0.08}
                     side={THREE.DoubleSide}
@@ -34,7 +34,7 @@ function OrbitingRings() {
             </Ring>
             <Ring ref={ring3Ref} args={[2, 2.1, 64]}>
                 <meshStandardMaterial
-                    color="#f59e0b"
+                    color="#00d4ff"
                     transparent
                     opacity={0.05}
                     side={THREE.DoubleSide}
@@ -72,7 +72,7 @@ function FloatingParticles() {
                 />
             </bufferGeometry>
             <pointsMaterial
-                color="#f59e0b"
+                color="#00d4ff"
                 size={0.02}
                 transparent
                 opacity={0.6}
@@ -93,10 +93,10 @@ function PulsingSphere() {
     return (
         <Sphere ref={meshRef} args={[0.2, 32, 32]} position={[-3, -1, -6]}>
             <meshStandardMaterial
-                color="#f59e0b"
+                color="#00d4ff"
                 transparent
                 opacity={0.4}
-                emissive="#f59e0b"
+                emissive="#00d4ff"
                 emissiveIntensity={0.2}
             />
         </Sphere>

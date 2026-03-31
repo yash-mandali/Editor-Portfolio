@@ -18,7 +18,7 @@ const ServiceRow = ({ service, index, accent }) => {
       transition={{ delay: index * 0.1, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="group relative border-b border-black/[0.07] dark:border-white/[0.06] last:border-b-0"
+      className="group relative border-b border-white/[0.06] last:border-b-0"
     >
       {/* Hover background fill */}
       <motion.div
@@ -42,7 +42,7 @@ const ServiceRow = ({ service, index, accent }) => {
         {/* Index number */}
         <div
           className="text-5xl md:text-7xl font-black tabular-nums leading-none select-none flex-shrink-0 transition-colors duration-300 w-16 md:w-24 text-right"
-          style={{ color: hovered ? accent : 'transparent', WebkitTextStroke: `1px ${hovered ? accent : 'rgba(0,0,0,0.12)'}` }}
+          style={{ color: hovered ? accent : 'transparent', WebkitTextStroke: `1px ${hovered ? accent : 'rgba(255,255,255,0.12)'}` }}
         >
           {String(index + 1).padStart(2, '0')}
         </div>
@@ -61,14 +61,14 @@ const ServiceRow = ({ service, index, accent }) => {
           transition={{ duration: 0.25 }}
           className="w-12 h-12 md:w-14 md:h-14 flex-shrink-0 flex items-center justify-center border transition-all duration-300"
           style={{
-            borderColor: hovered ? accent + '60' : 'rgba(0,0,0,0.08)',
+            borderColor: hovered ? accent + '60' : 'rgba(255,255,255,0.08)',
             background: hovered ? accent + '12' : 'transparent',
           }}
         >
           <service.icon
             size={22}
             style={{ color: hovered ? accent : undefined }}
-            className="text-neutral-500 dark:text-neutral-400 transition-colors duration-300"
+            className="text-neutral-400 transition-colors duration-300"
           />
         </motion.div>
 
@@ -78,7 +78,7 @@ const ServiceRow = ({ service, index, accent }) => {
             className="text-xl md:text-2xl font-black uppercase tracking-tight mb-1 transition-colors duration-300"
             style={{ color: hovered ? accent : undefined }}
           >
-            <span className={hovered ? '' : 'text-neutral-900 dark:text-white'}>{service.title}</span>
+            <span className={hovered ? '' : 'text-white'}>{service.title}</span>
           </h3>
           <AnimatePresence>
             {hovered && (
@@ -116,7 +116,7 @@ const ServiceRow = ({ service, index, accent }) => {
 
 const Services = () => {
   return (
-    <div className="min-h-screen bg-[#f8f7f4] dark:bg-[#0a0a0f] transition-colors duration-500 relative overflow-hidden">
+    <div className="min-h-screen bg-[#0a0a0f] transition-colors duration-500 relative overflow-hidden">
 
       {/* Ambient glows */}
       <div className="absolute inset-0 pointer-events-none">
@@ -142,17 +142,17 @@ const Services = () => {
               initial={{ opacity: 0, y: 36 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-5xl md:text-7xl font-black text-neutral-900 dark:text-white tracking-tighter leading-none"
+              className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none"
             >
               EXPERTISE &<br />
-              <span className="text-neutral-400 dark:text-[#2e2e42]">SERVICES</span>
+              <span className="text-[#2e2e42]">SERVICES</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.25 }}
-              className="text-neutral-500 dark:text-[#6b6b80] text-base font-light leading-relaxed max-w-sm"
+              className="text-[#6b6b80] text-base font-light leading-relaxed max-w-sm"
             >
               Specialized editing services tailored to your platform, audience, and creative vision.
             </motion.p>
@@ -168,7 +168,7 @@ const Services = () => {
         </div>
 
         {/* ── SERVICE ROWS ── */}
-        <div className="border-t border-black/[0.07] dark:border-white/[0.06]">
+        <div className="border-t border-white/[0.06]">
           {SERVICES.map((service, i) => (
             <ServiceRow
               key={service.id}

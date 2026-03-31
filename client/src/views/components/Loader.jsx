@@ -31,7 +31,7 @@ const Loader = () => {
             {/* Corner accents */}
             {[['top-8 left-8', 'border-t border-l'], ['top-8 right-8', 'border-t border-r'], ['bottom-8 left-8', 'border-b border-l'], ['bottom-8 right-8', 'border-b border-r']].map(([pos, border], i) => (
                 <motion.div key={i} initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: i * 0.05 }}
-                    className={`absolute ${pos} w-8 h-8 ${border} border-amber-500/40`} />
+                    className={`absolute ${pos} w-8 h-8 ${border} border-cyan-400/40`} />
             ))}
 
             {/* Center content */}
@@ -41,22 +41,22 @@ const Loader = () => {
                     <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-                        className="absolute inset-0 rounded-full border-2 border-transparent border-t-amber-500"
+                        className="absolute inset-0 rounded-full border-2 border-transparent border-t-cyan-400"
                     />
                     <motion.div
                         animate={{ rotate: -360 }}
                         transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-                        className="absolute inset-2 rounded-full border border-transparent border-t-amber-500/40"
+                        className="absolute inset-2 rounded-full border border-transparent border-t-cyan-400/40"
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-amber-500 font-black text-xs">{capped}%</span>
+                        <span className="text-cyan-400 font-black text-xs">{capped}%</span>
                     </div>
                 </div>
 
                 {/* Brand */}
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-center">
                     <div className="text-white font-black text-2xl tracking-[0.3em] uppercase mb-1">
-                        {'{'}EDIT<span className="text-amber-500">.</span>{'}'}
+                        {'{'}EDIT<span className="text-cyan-400">.</span>{'}'}
                     </div>
                     <div className="text-neutral-600 text-[10px] font-black tracking-[0.4em] uppercase">Loading Experience</div>
                 </motion.div>
@@ -64,7 +64,7 @@ const Loader = () => {
                 {/* Progress bar */}
                 <div className="w-48 h-[2px] bg-white/5 relative overflow-hidden">
                     <motion.div
-                        className="absolute left-0 top-0 h-full bg-amber-500"
+                        className="absolute left-0 top-0 h-full bg-cyan-400"
                         initial={{ width: '0%' }}
                         animate={{ width: `${capped}%` }}
                         transition={{ ease: 'easeOut' }}

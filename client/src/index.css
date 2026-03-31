@@ -11,8 +11,6 @@
   --violet-dim: rgba(124, 58, 237, 0.15);
   --bg-dark: #0a0a0f;
   --bg-card-dark: #111118;
-  --bg-light: #f8f7f4;
-  --bg-card-light: #ffffff;
   --text-dark: #e8e8f0;
   --text-muted-dark: #6b6b80;
   --text-dark-mode-sub: #9090a8;
@@ -20,13 +18,8 @@
 
 @layer base {
   body {
-    @apply transition-colors duration-500 font-sans overflow-x-hidden;
+    @apply transition-colors duration-500 font-sans overflow-x-hidden antialiased;
     cursor: none;
-    background-color: var(--bg-light);
-    color: #1a1a2e;
-  }
-
-  .dark body {
     background-color: var(--bg-dark);
     color: var(--text-dark);
   }
@@ -60,14 +53,10 @@
   width: 300%;
   height: 300%;
   background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
-  opacity: 0.015;
+  opacity: 0.06;
   pointer-events: none;
   z-index: 1000;
   animation: grain 8s steps(10) infinite;
-}
-
-.dark .film-grain {
-  opacity: 0.06;
 }
 
 /* ── SCANLINES ── */
@@ -84,10 +73,6 @@
       rgba(0, 0, 0, 0.015) 4px);
   z-index: 999;
   pointer-events: none;
-  opacity: 0;
-}
-
-.dark .scanlines {
   opacity: 1;
 }
 
@@ -300,13 +285,8 @@
 
 /* ── CARD GLASS ── */
 .card-glass {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.dark .card-glass {
   background: rgba(17, 17, 24, 0.8);
+  backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 

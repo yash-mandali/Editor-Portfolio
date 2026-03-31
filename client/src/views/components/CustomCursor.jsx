@@ -51,14 +51,14 @@ const CustomCursor = () => {
         <div className="fixed inset-0 pointer-events-none z-[10000] hidden lg:block overflow-hidden">
             {/* Main Cinematic Ring */}
             <motion.div
-                className="fixed top-0 left-0 w-8 h-8 border border-amber-500 rounded-full flex items-center justify-center text-[10px] font-black tracking-tighter text-amber-500"
+                className="fixed top-0 left-0 w-8 h-8 border border-cyan-400 rounded-full flex items-center justify-center text-[10px] font-black tracking-tighter text-cyan-400"
                 style={{
                     x: cursorX,
                     y: cursorY,
                     translateX: '-50%',
                     translateY: '-50%',
                     scale: isHovering ? 2.5 : 1,
-                    backgroundColor: isHovering ? 'rgba(245, 158, 11, 0.1)' : 'transparent',
+                    backgroundColor: isHovering ? 'rgba(0, 212, 255, 0.1)' : 'transparent',
                 }}
             >
                 {cursorText}
@@ -66,7 +66,7 @@ const CustomCursor = () => {
             
             {/* Inner Precision Dot */}
             <motion.div
-                className="fixed top-0 left-0 w-1.5 h-1.5 bg-amber-500 rounded-full"
+                className="fixed top-0 left-0 w-1.5 h-1.5 bg-cyan-400 rounded-full"
                 style={{
                     x: mouseX,
                     y: mouseY,
@@ -78,7 +78,7 @@ const CustomCursor = () => {
 
             {/* Trailing Atmospheric Glow */}
             <motion.div
-                className="fixed top-0 left-0 w-64 h-64 bg-amber-500/5 blur-[120px] rounded-full"
+                className="fixed top-0 left-0 w-64 h-64 bg-cyan-500/10 blur-[120px] rounded-full"
                 style={{
                     x: mouseX,
                     y: mouseY,

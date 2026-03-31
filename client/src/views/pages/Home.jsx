@@ -45,7 +45,7 @@ const StyleCard = ({ icon: Icon, title, desc, accentColor, index }) => (
     transition={{ delay: index * 0.09, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
     viewport={{ once: true }}
     whileHover={{ y: -8, transition: { duration: 0.22 } }}
-    className="group relative p-7 bg-white dark:bg-[#111118] border border-black/[0.07] dark:border-white/[0.05] overflow-hidden neon-border-cyan"
+    className="group relative p-7 bg-[#111118] border border-white/[0.05] overflow-hidden neon-border-cyan"
   >
     <div className="absolute top-0 left-0 w-0 h-[2px] group-hover:w-full transition-all duration-500" style={{ background: accentColor }} />
     <div className="absolute bottom-0 right-0 w-0 h-[2px] group-hover:w-full transition-all duration-500 delay-100" style={{ background: accentColor }} />
@@ -53,9 +53,9 @@ const StyleCard = ({ icon: Icon, title, desc, accentColor, index }) => (
       <div className="w-12 h-12 mb-5 flex items-center justify-center" style={{ background: accentColor + '15', border: `1px solid ${accentColor}28` }}>
         <Icon size={20} style={{ color: accentColor }} />
       </div>
-      <h3 className="text-sm font-black text-neutral-900 dark:text-white mb-2 tracking-widest uppercase">{title}</h3>
+      <h3 className="text-sm font-black text-white mb-2 tracking-widest uppercase">{title}</h3>
       <div className="w-5 h-[1.5px] mb-3 group-hover:w-full transition-all duration-500" style={{ background: accentColor }} />
-      <p className="text-neutral-500 dark:text-[#6b6b80] text-sm leading-relaxed">{desc}</p>
+      <p className="text-[#6b6b80] text-sm leading-relaxed">{desc}</p>
     </div>
   </motion.div>
 );
@@ -93,7 +93,7 @@ const Home = () => {
   const marqueeItems = ['Cinematic', 'Dynamic', 'Impactful', 'Professional', 'Creative', 'Immersive', 'Storytelling', 'Premium'];
 
   return (
-    <div ref={containerRef} className="bg-[#f8f7f4] dark:bg-[#0a0a0f] overflow-x-hidden transition-colors duration-500">
+    <div ref={containerRef} className="bg-[#0a0a0f] overflow-x-hidden transition-colors duration-500">
       <VideoModal isOpen={!!selectedVideo} onClose={() => setSelectedVideo(null)} videoUrl={selectedVideo} />
 
       {/* ══════════════════════════════════════════
@@ -217,9 +217,9 @@ const Home = () => {
       {/* ══════════════════════════════════════════
           STATS — animated counters
       ══════════════════════════════════════════ */}
-      <section className="py-20 bg-[#f8f7f4] dark:bg-[#0a0a0f] transition-colors duration-500">
+      <section className="py-20 bg-[#0a0a0f] transition-colors duration-500">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y divide-black/5 dark:divide-white/[0.05] border border-black/5 dark:border-white/[0.05]">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y divide-white/[0.05] border border-white/[0.05]">
             {stats.map((s, i) => (
               <motion.div
                 key={i}
@@ -231,10 +231,10 @@ const Home = () => {
                 className="p-10 text-center group cursor-default transition-colors relative overflow-hidden"
               >
                 <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#00d4ff] group-hover:w-full transition-all duration-500" />
-                <div className="text-5xl md:text-6xl font-black text-neutral-900 dark:text-white mb-2 tracking-tighter group-hover:text-[#00d4ff] transition-colors duration-300">
+                <div className="text-5xl md:text-6xl font-black text-white mb-2 tracking-tighter group-hover:text-[#00d4ff] transition-colors duration-300">
                   <Counter target={s.value} suffix={s.suffix} />
                 </div>
-                <div className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-500 dark:text-[#6b6b80]">{s.label}</div>
+                <div className="text-[10px] font-black uppercase tracking-[0.3em] text-[#6b6b80]">{s.label}</div>
               </motion.div>
             ))}
           </div>
@@ -244,7 +244,7 @@ const Home = () => {
       {/* ══════════════════════════════════════════
           WHY CHOOSE ME — parallax cards
       ══════════════════════════════════════════ */}
-      <section className="py-32 relative bg-[#f8f7f4] dark:bg-[#0a0a0f] transition-colors duration-500 overflow-hidden">
+      <section className="py-32 relative bg-[#0a0a0f] transition-colors duration-500 overflow-hidden">
         {/* Ghost watermark */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
           <motion.span
@@ -252,7 +252,7 @@ const Home = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2 }}
-            className="text-[16vw] font-black text-black/[0.022] dark:text-white/[0.022] uppercase tracking-tighter whitespace-nowrap"
+            className="text-[16vw] font-black text-white/[0.022] uppercase tracking-tighter whitespace-nowrap"
           >
             EXPERTISE
           </motion.span>
@@ -265,9 +265,9 @@ const Home = () => {
               Why Choose Me
             </motion.p>
             <motion.h2 initial={{ opacity: 0, y: 36 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-4xl md:text-6xl font-black text-neutral-900 dark:text-white leading-none tracking-tighter">
+              className="text-4xl md:text-6xl font-black text-white leading-none tracking-tighter">
               THE ART OF <br />
-              <span className="text-neutral-400 dark:text-[#2e2e42]">VISUAL STORYTELLING</span>
+              <span className="text-[#2e2e42]">VISUAL STORYTELLING</span>
             </motion.h2>
           </div>
 
@@ -280,17 +280,17 @@ const Home = () => {
                 transition={{ delay: index * 0.14, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10, transition: { duration: 0.22 } }}
-                className="group relative p-8 bg-white dark:bg-[#111118] border border-black/[0.06] dark:border-white/[0.05] overflow-hidden neon-border-cyan"
+                className="group relative p-8 bg-[#111118] border border-white/[0.05] overflow-hidden neon-border-cyan"
               >
                 <div className="absolute top-0 left-0 w-0 h-[2px] bg-[#00d4ff] group-hover:w-full transition-all duration-500" />
                 <motion.div
                   whileHover={{ rotate: 7, scale: 1.12 }}
                   transition={{ duration: 0.22 }}
-                  className="w-14 h-14 mb-7 border border-black/[0.07] dark:border-white/[0.07] flex items-center justify-center group-hover:border-[#00d4ff]/50 group-hover:bg-[#00d4ff]/8 transition-all"
+                  className="w-14 h-14 mb-7 border border-white/[0.07] flex items-center justify-center group-hover:border-[#00d4ff]/50 group-hover:bg-[#00d4ff]/8 transition-all"
                 >
-                  <item.icon size={22} className="text-neutral-600 dark:text-white/55 group-hover:text-[#00d4ff] transition-colors" />
+                  <item.icon size={22} className="text-white/55 group-hover:text-[#00d4ff] transition-colors" />
                 </motion.div>
-                <h3 className="text-xl font-black text-neutral-900 dark:text-white mb-3 tracking-tight">{item.title}</h3>
+                <h3 className="text-xl font-black text-white mb-3 tracking-tight">{item.title}</h3>
                 <div className="w-7 h-[2px] bg-[#00d4ff] mb-5 group-hover:w-full transition-all duration-500" />
                 <p className="text-neutral-500 dark:text-[#6b6b80] leading-relaxed text-sm">{item.description}</p>
               </motion.div>
@@ -302,7 +302,7 @@ const Home = () => {
       {/* ══════════════════════════════════════════
           EDITING STYLES — staggered grid
       ══════════════════════════════════════════ */}
-      <section ref={showreelRef} className="py-32 bg-[#f0ede8] dark:bg-[#0d0d14] relative overflow-hidden transition-colors duration-500">
+      <section ref={showreelRef} className="py-32 bg-[#0d0d14] relative overflow-hidden transition-colors duration-500">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#00d4ff]/4 rounded-full blur-[160px] pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#a78bfa]/4 rounded-full blur-[130px] pointer-events-none" />
 
@@ -313,8 +313,8 @@ const Home = () => {
               Specialisations
             </motion.p>
             <motion.h2 initial={{ opacity: 0, y: 36 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1, duration: 0.7 }}
-              className="text-4xl md:text-6xl font-black text-neutral-900 dark:text-white tracking-tighter">
-              EDITING <span className="text-neutral-400 dark:text-[#2e2e42]">STYLES</span>
+              className="text-4xl md:text-6xl font-black text-white tracking-tighter">
+              EDITING <span className="text-[#2e2e42]">STYLES</span>
             </motion.h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -326,7 +326,7 @@ const Home = () => {
       {/* ══════════════════════════════════════════
           FEATURED PROJECTS
       ══════════════════════════════════════════ */}
-      <section className="py-32 bg-[#f8f7f4] dark:bg-[#0a0a0f] relative overflow-hidden transition-colors duration-500">
+      <section className="py-32 bg-[#0a0a0f] relative overflow-hidden transition-colors duration-500">
         <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-[#00d4ff]/3 rounded-full blur-[130px] pointer-events-none" />
 
         <div className="container mx-auto px-6 relative z-10">
@@ -337,12 +337,12 @@ const Home = () => {
                 Portfolio
               </motion.p>
               <motion.h2 initial={{ opacity: 0, y: 36 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1, duration: 0.7 }}
-                className="text-4xl md:text-6xl font-black text-neutral-900 dark:text-white tracking-tighter">
+                className="text-4xl md:text-6xl font-black text-white tracking-tighter">
                 FEATURED <br /><span className="text-[#00d4ff]">PROJECTS</span>
               </motion.h2>
             </div>
             <motion.div initial={{ opacity: 0, x: 22 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-              <Link to="/portfolio" className="group flex items-center gap-2 text-neutral-500 dark:text-[#6b6b80] hover:text-[#00d4ff] transition-colors uppercase tracking-[0.3em] text-xs font-black">
+              <Link to="/portfolio" className="group flex items-center gap-2 text-[#6b6b80] hover:text-[#00d4ff] transition-colors uppercase tracking-[0.3em] text-xs font-black">
                 View All <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>

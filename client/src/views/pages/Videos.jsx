@@ -11,7 +11,7 @@ const Videos = () => {
     if (loading) {
         return (
             <div className="w-full flex items-center justify-center py-20">
-                <div className="w-12 h-12 border-2 border-amber-500/20 border-t-amber-500 rounded-full animate-spin" />
+                <div className="w-12 h-12 border-2 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin" />
             </div>
         );
     }
@@ -35,27 +35,27 @@ const Videos = () => {
                             exit={{ opacity: 0, scale: 0.95 }}
                             transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
                             onClick={() => setSelectedVideo(item)}
-                            className="group relative aspect-video cursor-pointer overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 hover:border-amber-500/50 transition-all duration-700 shadow-2xl"
+                            className="group relative aspect-video cursor-pointer overflow-hidden bg-neutral-900 border border-white/5 hover:border-cyan-400/40 transition-all duration-700 shadow-2xl"
                         >
                             <img
                                 loading="lazy"
                                 src={item.image}
                                 alt={item.title}
-                                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-90 dark:opacity-40 dark:group-hover:opacity-90 transition-opacity"
+                                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-50 group-hover:opacity-90 transition-opacity"
                             />
 
                             {/* Cinematic Overlay */}
                             <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-90 group-hover:opacity-60 transition-opacity duration-700" />
 
                             {/* Dashboard Corner Elements */}
-                            <div className="absolute top-4 right-4 text-[8px] font-black tracking-[0.2em] text-neutral-400 dark:text-white/20 group-hover:text-amber-500 transition-colors uppercase">
+                            <div className="absolute top-4 right-4 text-[8px] font-black tracking-[0.2em] text-white/20 group-hover:text-cyan-400 transition-colors uppercase">
                                 REF-{(index + 1).toString().padStart(3, '0')}
                             </div>
 
                             <div className="absolute inset-0 p-8 flex flex-col justify-end">
                                 <div className="overflow-hidden mb-1">
                                     <motion.span
-                                        className="inline-block text-amber-500 text-[8px] font-black uppercase tracking-[0.4em] mb-2"
+                                        className="inline-block text-cyan-400 text-[8px] font-black uppercase tracking-[0.4em] mb-2"
                                     >
                                         {item.category}
                                     </motion.span>
@@ -71,7 +71,7 @@ const Videos = () => {
                             </div>
 
                             {/* Stylistic Viewfinder Lines */}
-                            <div className="absolute inset-4 border border-black/5 dark:border-white/5 group-hover:border-amber-500/20 transition-colors pointer-events-none" />
+                            <div className="absolute inset-4 border border-white/5 group-hover:border-cyan-400/20 transition-colors pointer-events-none" />
                         </motion.div>
                     ))}
                 </AnimatePresence>

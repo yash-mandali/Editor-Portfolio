@@ -138,7 +138,7 @@ const VideoModal = ({ isOpen, onClose, video }) => {
           >
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-20 p-2 bg-black/50 hover:bg-amber-500 text-white hover:text-black rounded-full transition-all duration-300 backdrop-blur-sm"
+              className="absolute top-4 right-4 z-20 p-2 bg-black/50 hover:bg-cyan-400 text-white hover:text-black rounded-full transition-all duration-300 backdrop-blur-sm"
               aria-label="Close Video"
             >
               <X size={24} />
@@ -177,7 +177,7 @@ const VideoModal = ({ isOpen, onClose, video }) => {
                   </p>
                   <p className="text-xs text-neutral-400">Please check the video URL and try again</p>
                 </div>
-                <button onClick={onClose} className="px-4 py-2 bg-amber-500 text-black hover:bg-amber-600 rounded font-medium transition">Close</button>
+                <button onClick={onClose} className="px-4 py-2 bg-cyan-400 text-black hover:bg-cyan-500 rounded font-medium transition">Close</button>
               </div>
             )}
           </motion.div>
