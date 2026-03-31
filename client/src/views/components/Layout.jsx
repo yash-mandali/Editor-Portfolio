@@ -95,7 +95,7 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className="text-3xl font-black uppercase tracking-[0.2em] text-neutral-400 dark:text-white/40 hover:text-amber-500 transition-colors"
+                className="text-3xl font-black uppercase tracking-[0.2em] text-neutral-500 dark:text-white/60 hover:text-amber-500 transition-colors"
               >
                 {link.name}
               </Link>
@@ -185,7 +185,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-16 border-t border-black/5 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-600 transition-colors">
+        <div className="pt-16 border-t border-black/5 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400 transition-colors">
           <p>&copy; {new Date().getFullYear()} {PROFILE.name}. SYSTEM_ALL_RIGHTS_RESERVED.</p>
           <div className="flex items-center gap-2">
             <Disc size={12} className="animate-spin-slow text-amber-500" />

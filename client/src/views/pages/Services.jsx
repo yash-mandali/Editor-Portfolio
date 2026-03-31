@@ -37,7 +37,7 @@ const Services = () => {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-neutral-900 dark:text-white">Expertise & Services</h1>
-          <p className="text-neutral-600 dark:text-neutral-400 text-lg">
+          <p className="text-neutral-600 dark:text-neutral-300 text-lg">
             Specialized editing services tailored to your platform and audience.
           </p>
         </motion.div>
@@ -63,7 +63,7 @@ const Services = () => {
               </div>
 
               <h3 className="text-3xl font-black mb-4 text-neutral-950 dark:text-white tracking-tighter transition-colors uppercase">{service.title}</h3>
-              <p className="text-neutral-500 dark:text-neutral-400 mb-10 leading-relaxed font-light transition-colors">{service.description}</p>
+              <p className="text-neutral-600 dark:text-neutral-300 mb-10 leading-relaxed font-light transition-colors">{service.description}</p>
 
               <div className="pt-8 border-t border-black/5 dark:border-neutral-800">
                 <Link to="/contact" className="inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.3em] text-neutral-950 dark:text-white hover:text-amber-500 dark:hover:text-amber-500 transition-all">

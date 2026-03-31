@@ -45,7 +45,7 @@ const Portfolio = () => {
             transition={{ delay: 0.1 }}
             className="text-5xl md:text-7xl font-black mb-8 text-neutral-950 dark:text-white tracking-tighter transition-colors"
           >
-            SELECTED <span className="text-neutral-900/10 dark:text-white/30">WORKS</span>
+            SELECTED <span className="text-neutral-400 dark:text-neutral-500">WORKS</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
@@ -70,7 +70,7 @@ const Portfolio = () => {
               onClick={() => setActiveCategory(category)}
               className={`px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500 border ${activeCategory === category
                 ? 'bg-amber-500 text-black border-amber-500 shadow-[0_0_30px_rgba(251,191,36,0.3)]'
-                : 'bg-neutral-50 dark:bg-white/5 text-neutral-400 dark:text-neutral-500 border-black/5 dark:border-white/5 hover:border-amber-500/50 hover:text-neutral-950 dark:hover:text-white'
+                : 'bg-neutral-50 dark:bg-white/5 text-neutral-500 dark:text-neutral-300 border-black/5 dark:border-white/5 hover:border-amber-500/50 hover:text-neutral-950 dark:hover:text-white'
                 }`}
             >
               {category}

@@ -101,10 +101,10 @@ const Home = () => {
               whileHover={{ scale: 1.05, borderColor: 'rgba(251,191,36,0.5)' }}
             >
               <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
-              <span className="text-[10px] font-black tracking-[0.3em] uppercase text-neutral-500 dark:text-white/70">Premiere Video Editor</span>
+              <span className="text-[10px] font-black tracking-[0.3em] uppercase text-neutral-600 dark:text-white/80">Premiere Video Editor</span>
             </motion.div>
 
-            <h1 className="text-5xl md:text-8xl font-black text-neutral-950 dark:text-white tracking-tighter leading-[0.85] mb-8">
+            <h1 className="text-5xl md:text-8xl font-black text-neutral-950 dark:text-white tracking-tighter leading-[0.85] mb-8 drop-shadow-[0_2px_20px_rgba(0,0,0,0.3)] dark:drop-shadow-none">
               {['CRAFTING', 'CINEMATIC', 'STORIES'].map((word, i) => (
                 <span key={word} className="block overflow-hidden pb-1">
                   <motion.span
@@ -120,7 +120,7 @@ const Home = () => {
             </h1>
 
             <motion.p
-              className="text-neutral-500 dark:text-neutral-400 max-w-xl mx-auto mb-12 text-lg font-light leading-relaxed tracking-wide"
+              className="text-neutral-600 dark:text-neutral-300 max-w-xl mx-auto mb-12 text-lg font-light leading-relaxed tracking-wide drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)] dark:drop-shadow-none"
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 1.5 }}
             >
               Turning raw footage into visual masterpieces. High-impact edits for visionary creators and global brands.
@@ -139,9 +139,9 @@ const Home = () => {
 
               <button
                 onClick={() => setSelectedVideo('https://www.youtube.com/watch?v=zF9m02WllZc')}
-                className="group flex items-center gap-4 text-neutral-950 dark:text-white font-bold tracking-widest uppercase text-sm hover:text-amber-500 transition-colors"
+                className="group flex items-center gap-4 text-neutral-900 dark:text-white font-bold tracking-widest uppercase text-sm hover:text-amber-500 transition-colors drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)] dark:drop-shadow-none"
               >
-                <div className="w-12 h-12 rounded-full border border-black/10 dark:border-white/20 flex items-center justify-center group-hover:border-amber-500/50 group-hover:bg-amber-500/10 transition-all">
+                <div className="w-12 h-12 rounded-full border border-neutral-900/30 dark:border-white/20 flex items-center justify-center group-hover:border-amber-500/50 group-hover:bg-amber-500/10 transition-all">
                   <Play size={16} fill="currentColor" />
                 </div>
                 Watch Showreel
@@ -151,13 +151,13 @@ const Home = () => {
         </motion.div>
 
         {/* Corner HUD accents */}
-        <div className="absolute top-24 left-8 text-[9px] font-black tracking-[0.3em] text-amber-500/40 uppercase hidden lg:block">
+        <div className="absolute top-24 left-8 text-[9px] font-black tracking-[0.3em] text-amber-500/60 uppercase hidden lg:block">
           <div>REC ●</div>
-          <div className="mt-1 text-neutral-400/30">00:00:00:00</div>
+          <div className="mt-1 text-white/30 dark:text-neutral-400/30">00:00:00:00</div>
         </div>
-        <div className="absolute top-24 right-8 text-[9px] font-black tracking-[0.3em] text-amber-500/40 uppercase hidden lg:block text-right">
+        <div className="absolute top-24 right-8 text-[9px] font-black tracking-[0.3em] text-amber-500/60 uppercase hidden lg:block text-right">
           <div>4K / 60FPS</div>
-          <div className="mt-1 text-neutral-400/30">TIMELINE_01</div>
+          <div className="mt-1 text-white/30 dark:text-neutral-400/30">TIMELINE_01</div>
         </div>
 
         {/* Scroll indicator */}
@@ -175,7 +175,7 @@ const Home = () => {
         <div className="ticker-wrap">
           <div className="ticker-content animate-marquee">
             {[...marqueeItems, ...marqueeItems].map((item, i) => (
-              <span key={i} className="inline-flex items-center gap-6 px-8 text-[11px] font-black tracking-[0.4em] uppercase text-white/30">
+              <span key={i} className="inline-flex items-center gap-6 px-8 text-[11px] font-black tracking-[0.4em] uppercase text-white/50">
                 {item}
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-500 inline-block" />
               </span>
@@ -216,7 +216,7 @@ const Home = () => {
                 Expertise
               </motion.div>
               <motion.h2 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-4xl md:text-6xl font-black text-neutral-950 dark:text-white leading-none tracking-tighter transition-colors">
-                THE ART OF <br /><span className="text-neutral-400/40 dark:text-white/40 transition-colors">VISUAL STORYTELLING</span>
+                THE ART OF <br /><span className="text-neutral-400 dark:text-white/40 transition-colors">VISUAL STORYTELLING</span>
               </motion.h2>
             </div>
           </div>
@@ -260,7 +260,7 @@ const Home = () => {
               Specialisations
             </motion.div>
             <motion.h2 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-4xl md:text-6xl font-black text-neutral-950 dark:text-white tracking-tighter transition-colors">
-              EDITING <span className="text-neutral-400/40 dark:text-white/30">STYLES</span>
+              EDITING <span className="text-neutral-400 dark:text-white/30">STYLES</span>
             </motion.h2>
           </div>
 

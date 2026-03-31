@@ -29,7 +29,7 @@ const Contact = () => {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black mb-10 text-neutral-950 dark:text-white tracking-tighter leading-none">
-              READY TO <br /> <span className="text-neutral-900/10 dark:text-white/20">ASSEMBLE?</span>
+              READY TO <br /> <span className="text-neutral-400 dark:text-neutral-500">ASSEMBLE?</span>
             </h1>
 
             <p className="text-neutral-500 dark:text-neutral-400 text-xl font-light leading-relaxed mb-20 max-w-lg transition-colors">
@@ -53,7 +53,7 @@ const Contact = () => {
                     <item.icon size={20} />
                   </div>
                   <div>
-                    <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-400 dark:text-neutral-600 mb-2 group-hover:text-amber-500 transition-colors uppercase">{item.label}</h3>
+                    <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-500 dark:text-neutral-400 mb-2 group-hover:text-amber-500 transition-colors uppercase">{item.label}</h3>
                     {item.link ? (
                       <a href={item.link} className="text-xl font-bold text-neutral-950 dark:text-white hover:text-amber-500 transition-colors tracking-tight">{item.value}</a>
                     ) : (
@@ -108,26 +108,26 @@ const Contact = () => {
 
                     <div className="grid md:grid-cols-2 gap-10">
                       <div className="space-y-4">
-                        <label className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-400 dark:text-neutral-600 block transition-colors">Identitiy</label>
+                        <label className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-500 dark:text-neutral-400 block transition-colors">Identitiy</label>
                         <input
                           type="text"
                           name="name"
                           required
                           value={formData.name}
                           onChange={handleChange}
-                          className="w-full bg-transparent border-b border-black/10 dark:border-white/10 py-4 text-neutral-950 dark:text-white text-lg font-light focus:outline-none focus:border-amber-500 transition-all placeholder:text-neutral-500 dark:placeholder:text-white/5"
+                          className="w-full bg-transparent border-b border-black/10 dark:border-white/10 py-4 text-neutral-950 dark:text-white text-lg font-light focus:outline-none focus:border-amber-500 transition-all placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
                           placeholder="Your Name"
                         />
                       </div>
                       <div className="space-y-4">
-                        <label className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-400 dark:text-neutral-600 block transition-colors">Frequency</label>
+                        <label className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-500 dark:text-neutral-400 block transition-colors">Frequency</label>
                         <input
                           type="email"
                           name="email"
                           required
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full bg-transparent border-b border-black/10 dark:border-white/10 py-4 text-neutral-950 dark:text-white text-lg font-light focus:outline-none focus:border-amber-500 transition-all placeholder:text-neutral-500 dark:placeholder:text-white/5"
+                          className="w-full bg-transparent border-b border-black/10 dark:border-white/10 py-4 text-neutral-950 dark:text-white text-lg font-light focus:outline-none focus:border-amber-500 transition-all placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
                           placeholder="Your Email"
                         />
                       </div>
@@ -135,7 +135,7 @@ const Contact = () => {
 
                     <div className="grid md:grid-cols-2 gap-10">
                       <div className="space-y-4">
-                        <label className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-400 dark:text-neutral-600 block transition-colors">Format</label>
+                        <label className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-500 dark:text-neutral-400 block transition-colors">Format</label>
                         <select
                           name="projectType"
                           value={formData.projectType}
@@ -151,7 +151,7 @@ const Contact = () => {
                         </select>
                       </div>
                       <div className="space-y-4">
-                        <label className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-400 dark:text-neutral-600 block transition-colors">Investment Range</label>
+                        <label className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-500 dark:text-neutral-400 block transition-colors">Investment Range</label>
                         <select
                           name="budget"
                           value={formData.budget}
@@ -168,14 +168,14 @@ const Contact = () => {
                     </div>
 
                     <div className="space-y-4">
-                      <label className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-400 dark:text-neutral-600 block transition-colors">Briefing</label>
+                      <label className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-500 dark:text-neutral-400 block transition-colors">Briefing</label>
                       <textarea
                         name="message"
                         required
                         value={formData.message}
                         onChange={handleChange}
                         rows="4"
-                        className="w-full bg-transparent border-b border-black/10 dark:border-white/10 py-4 text-neutral-950 dark:text-white text-lg font-light focus:outline-none focus:border-amber-500 transition-all resize-none placeholder:text-neutral-500 dark:placeholder:text-white/5"
+                        className="w-full bg-transparent border-b border-black/10 dark:border-white/10 py-4 text-neutral-950 dark:text-white text-lg font-light focus:outline-none focus:border-amber-500 transition-all resize-none placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
                         placeholder="Tell me about your vision, deadline, and soul of the project..."
                       ></textarea>
                     </div>

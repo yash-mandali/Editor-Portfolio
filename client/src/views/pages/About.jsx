@@ -50,7 +50,7 @@ const About = () => {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black mb-8 text-neutral-950 dark:text-white tracking-tighter leading-none transition-colors">
-              THE MAN <br /> <span className="text-neutral-400/40 dark:text-white/20 transition-colors">BEHIND THE EDIT</span>
+              THE MAN <br /> <span className="text-neutral-400 dark:text-neutral-500 transition-colors">BEHIND THE EDIT</span>
             </h1>
 
             <div className="space-y-6 text-neutral-500 dark:text-neutral-400 text-lg font-light leading-relaxed mb-12 max-w-xl transition-colors">
@@ -91,7 +91,7 @@ const About = () => {
               <div className="text-6xl font-black text-neutral-950 dark:text-white mb-2 tracking-tighter group-hover:text-amber-500 transition-colors">
                 {stat.value}
               </div>
-              <div className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-400 dark:text-neutral-500 transition-colors">
+              <div className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-500 dark:text-neutral-400 transition-colors">
                 {stat.label}
               </div>
             </motion.div>
@@ -102,7 +102,7 @@ const About = () => {
         <section className="mb-40">
           <div className="text-center mb-24">
             <h2 className="text-4xl md:text-6xl font-black text-neutral-950 dark:text-white tracking-tighter mb-4 transition-colors">
-              TECH <span className="text-neutral-400/40 dark:text-white/20 transition-colors">STACK</span>
+              TECH <span className="text-neutral-400 dark:text-neutral-500 transition-colors">STACK</span>
             </h2>
             <div className="w-12 h-[2px] bg-amber-500 mx-auto" />
           </div>
@@ -119,7 +119,7 @@ const About = () => {
                 <div className="text-neutral-950 dark:text-white font-black uppercase tracking-[0.2em] text-xs mb-2 group-hover:text-amber-500 transition-colors">
                   {tool.name}
                 </div>
-                <div className="text-[8px] font-black uppercase tracking-[0.3em] text-neutral-400 dark:text-neutral-600 transition-colors">
+                <div className="text-[8px] font-black uppercase tracking-[0.3em] text-neutral-500 dark:text-neutral-400 transition-colors">
                   {tool.level}
                 </div>
               </motion.div>
