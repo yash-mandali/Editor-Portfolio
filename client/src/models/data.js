@@ -89,7 +89,7 @@ export const WORKING_TOOLS = [
     id: 3,
     name: "CapCut Pro",
     description: "Professional mobile and desktop video editing with AI-powered features",
-    icon: "https://upload.wikimedia.org/wikipedia/commons/0/0e/CapCut_logo.svg",
+    icon: "https://commons.wikimedia.org/wiki/File:Capcut-icon.svg",
     color: "from-green-500 to-green-700",
     proficiency: "Expert"
   },
