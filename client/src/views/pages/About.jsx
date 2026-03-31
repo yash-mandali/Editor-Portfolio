@@ -236,8 +236,12 @@ const About = () => {
                   <div className="p-6">
                     {/* Icon + name row */}
                     <div className="flex items-center gap-3 mb-3">
-                      <div className={`w-11 h-11 rounded-sm flex items-center justify-center text-2xl bg-gradient-to-br ${tool.color} shadow-md`}>
-                        {tool.icon}
+                      <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-[#1a1a25] border border-white/5 p-2.5 shadow-xl group-hover:border-[#00d4ff]/30 transition-all duration-500">
+                        <img 
+                          src={tool.icon} 
+                          alt={tool.name} 
+                          className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110" 
+                        />
                       </div>
                       <div>
                         <h3 className="text-sm font-black text-white leading-tight tracking-tight">{tool.name}</h3>

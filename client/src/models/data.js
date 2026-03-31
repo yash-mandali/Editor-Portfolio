@@ -73,7 +73,7 @@ export const WORKING_TOOLS = [
     id: 1,
     name: "Adobe Premiere Pro",
     description: "Industry-standard video editing software for professional post-production",
-    icon: "🎬",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg",
     color: "from-blue-500 to-blue-700",
     proficiency: "Expert"
   },
@@ -81,7 +81,7 @@ export const WORKING_TOOLS = [
     id: 2,
     name: "Adobe After Effects",
     description: "Powerful motion graphics and visual effects compositing software",
-    icon: "✨",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg",
     color: "from-purple-500 to-purple-700",
     proficiency: "Advanced"
   },
@@ -89,7 +89,7 @@ export const WORKING_TOOLS = [
     id: 3,
     name: "CapCut Pro",
     description: "Professional mobile and desktop video editing with AI-powered features",
-    icon: "📱",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/0/0e/CapCut_logo.svg",
     color: "from-green-500 to-green-700",
     proficiency: "Expert"
   },
@@ -97,7 +97,7 @@ export const WORKING_TOOLS = [
     id: 4,
     name: "DaVinci Resolve",
     description: "Professional color grading and finishing software",
-    icon: "🎨",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/4/4d/DaVinci_Resolve_Studio.png",
     color: "from-orange-500 to-red-600",
     proficiency: "Intermediate"
   },
@@ -105,7 +105,7 @@ export const WORKING_TOOLS = [
     id: 5,
     name: "Adobe Audition",
     description: "Professional audio editing and sound design software",
-    icon: "🎵",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/d/da/Adobe_Audition_CC_icon.svg",
     color: "from-indigo-500 to-purple-600",
     proficiency: "Advanced"
   },
@@ -113,7 +113,7 @@ export const WORKING_TOOLS = [
     id: 6,
     name: "Final Cut Pro",
     description: "Apple's professional video editing software for Mac",
-    icon: "💻",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/b/ba/Final_Cut_Pro_Icon.svg",
     color: "from-gray-600 to-gray-800",
     proficiency: "Intermediate"
   }

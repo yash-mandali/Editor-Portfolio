@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Trash2, Edit2, Plus, ExternalLink } from 'lucide-react';
-
+import { Trash2, Edit2, Plus, ExternalLink, Video, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 
 const API_URL = import.meta.env.VITE_API_URL || 'https://editor-portfolio-back.vercel.app';
 
@@ -109,52 +108,48 @@ const AdminPortfolio = () => {
         }
     };
 
-
-
     return (
-        <div className="space-y-6">
+        <div className="space-y-10 animate-in fade-in duration-700">
             {/* Form Section */}
-            <div className="bg-white dark:bg-neutral-900 p-6 rounded-lg border border-neutral-200 dark:border-neutral-800 shadow-md">
-                <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">
-                        {editing ? 'Edit Portfolio Item' : 'Add Portfolio Item'}
-                    </h2>
+            <div className="bg-[#0d0d14] p-10 rounded-lg border border-white/5 relative overflow-hidden">
+                <div className="flex items-center justify-between mb-10 pb-6 border-b border-white/5">
+                    <div className="flex items-center gap-3">
+                        <Video size={20} className="text-cyan-400" />
+                        <h2 className="text-2xl font-black text-white uppercase tracking-tighter">
+                            {editing ? 'Edit Project' : 'New Project'}
+                        </h2>
+                    </div>
                     {editing && (
                         <button
                             onClick={resetForm}
-                            className="px-3 py-2 bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-300 dark:hover:bg-neutral-700 transition"
+                            className="px-4 py-2 bg-white/5 text-neutral-400 text-[10px] font-black uppercase tracking-[0.2em] rounded border border-white/5 hover:text-white hover:border-white/20 transition-all"
                         >
-                            New Item
+                            Cancel Edit
                         </button>
                     )}
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid sm:grid-cols-2 gap-4">
-                        <div>
-                            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                                Title *
-                            </label>
+                <form onSubmit={handleSubmit} className="space-y-8">
+                    <div className="grid md:grid-cols-2 gap-8">
+                        <div className="space-y-2">
+                            <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-neutral-500">Project Title *</label>
                             <input
                                 type="text"
                                 name="title"
                                 value={form.title}
                                 onChange={handleChange}
-                                placeholder="e.g., Neon City Nightlife"
-                                className={`w-full px-4 py-2 rounded-lg border ${errors.title
-                                    ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
-                                    : 'border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-950'
-                                    } text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500`}
+                                placeholder="CLIENT_PROJECT_NAME"
+                                className={`w-full px-4 py-4 rounded bg-white/5 border ${errors.title ? 'border-red-500' : 'border-white/10'} text-white placeholder:text-neutral-700 focus:outline-none focus:border-cyan-400/50 transition-all`}
                             />
-                            {errors.title && <p className="text-xs text-red-500 mt-1">{errors.title}</p>}
+                            {errors.title && <p className="text-[10px] text-red-500 font-bold uppercase tracking-widest">{errors.title}</p>}
                         </div>
 
-                        <div>
-                            <label className="block text-sm font-medium mb-1">Category *</label>
+                        <div className="space-y-2">
+                            <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-neutral-500">Asset Category *</label>
                             <select
                                 value={form.category}
                                 onChange={(e) => setForm({ ...form, category: e.target.value })}
-                                className={`w-full px-3 py-2 rounded-lg border ${errors.category ? 'border-red-500' : 'border-neutral-300 dark:border-neutral-600'} dark:bg-neutral-950 dark:text-white`}
+                                className="w-full px-4 py-4 rounded bg-[#0a0a0f] border border-white/10 text-white focus:outline-none focus:border-cyan-400/50 transition-all appearance-none"
                             >
                                 <option value="">Select a category</option>
                                 <option value="Reels / Shorts">Reels / Shorts</option>
@@ -167,172 +162,145 @@ const AdminPortfolio = () => {
                                 <option value="Client Projects">Client Projects</option>
                                 <option value="Others">Others</option>
                             </select>
-                            {errors.category && <p className="text-red-500 text-xs mt-1">{errors.category}</p>}
+                            {errors.category && <p className="text-[10px] text-red-500 font-bold uppercase tracking-widest">{errors.category}</p>}
                         </div>
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                            Description
-                        </label>
+                    <div className="space-y-2">
+                        <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-neutral-500">Logline / Description</label>
                         <textarea
                             name="description"
                             value={form.description}
                             onChange={handleChange}
-                            placeholder="Describe your portfolio item..."
-                            rows="3"
-                            className="w-full px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                            placeholder="Brief project overview..."
+                            rows="4"
+                            className="w-full px-4 py-4 rounded bg-white/5 border border-white/10 text-white placeholder:text-neutral-700 focus:outline-none focus:border-cyan-400/50 transition-all resize-none"
                         />
                     </div>
 
-                    <div className="grid sm:grid-cols-2 gap-4">
-                        <div>
-                            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                                Image URL
-                            </label>
+                    <div className="grid md:grid-cols-2 gap-8">
+                        <div className="space-y-2">
+                            <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-neutral-500">Poster Frame URL</label>
                             <input
                                 type="url"
                                 name="image"
                                 value={form.image}
                                 onChange={handleChange}
-                                placeholder="https://..."
-                                className="w-full px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                                placeholder="https://source.unsplash.com/..."
+                                className="w-full px-4 py-4 rounded bg-white/5 border border-white/10 text-white placeholder:text-neutral-700 focus:outline-none focus:border-cyan-400/50 transition-all"
                             />
                         </div>
 
-                        {/* Video URL input only */}
-                        <div className="col-span-full">
-                            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                                Video URL * (YouTube or direct)
-                            </label>
+                        <div className="space-y-2">
+                            <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-neutral-500">Master Video URL *</label>
                             <input
                                 type="url"
                                 name="videoUrl"
                                 value={form.videoUrl}
                                 onChange={handleChange}
-                                placeholder="https://youtube.com/watch?v=... or Google Drive link"
-                                className={`w-full px-4 py-2 rounded-lg border ${errors.videoUrl
-                                    ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
-                                    : 'border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-950'
-                                    } text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500`}
+                                placeholder="https://vimeo.com/..."
+                                className={`w-full px-4 py-4 rounded bg-white/5 border ${errors.videoUrl ? 'border-red-500' : 'border-white/10'} text-white placeholder:text-neutral-700 focus:outline-none focus:border-cyan-400/50 transition-all`}
                             />
-                            {errors.videoUrl && <p className="text-xs text-red-500 mt-1">{errors.videoUrl}</p>}
+                            {errors.videoUrl && <p className="text-[10px] text-red-500 font-bold uppercase tracking-widest">{errors.videoUrl}</p>}
                         </div>
+                    </div>
 
-                        <div className="flex items-center gap-3 pt-2">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-6">
+                        <div className="flex items-center gap-3">
                             <input
                                 type="checkbox"
                                 name="published"
                                 id="published"
                                 checked={form.published}
                                 onChange={handleChange}
-                                className="w-4 h-4 rounded cursor-pointer"
+                                className="w-5 h-5 rounded bg-white/5 border-white/10 text-cyan-400 focus:ring-cyan-500/20"
                             />
-                            <label htmlFor="published" className="text-sm font-medium text-neutral-700 dark:text-neutral-300 cursor-pointer">
-                                Published (visible to users)
+                            <label htmlFor="published" className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400 cursor-pointer select-none">
+                                Deploy to Public Gallery
                             </label>
                         </div>
 
-                        <div className="flex gap-3 pt-4">
-                            <button
-                                type="submit"
-                                disabled={uploading}
-                                className={`flex-1 px-4 py-2 ${uploading ? 'bg-gray-400 cursor-not-allowed' : 'bg-amber-500 hover:bg-amber-600'} text-black font-semibold rounded-lg transition flex items-center justify-center gap-2`}
-                            >
-                                <Plus size={18} />
-                                {uploading ? 'Uploading...' : (editing ? 'Update Item' : 'Add Item')}
-                            </button>
-                            {editing && (
-                                <button
-                                    type="button"
-                                    onClick={resetForm}
-                                    disabled={uploading}
-                                    className="px-4 py-2 bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-300 dark:hover:bg-neutral-700 transition disabled:opacity-50"
-                                >
-                                    Cancel
-                                </button>
-                            )}
-                        </div>
+                        <button
+                            type="submit"
+                            disabled={uploading}
+                            className={`w-full md:w-auto min-w-[200px] flex items-center justify-center gap-3 px-10 py-5 bg-cyan-400 hover:bg-white text-black font-black uppercase tracking-[0.3em] text-xs transition-all shadow-[0_0_30px_rgba(0,212,255,0.2)] disabled:opacity-50`}
+                        >
+                            {uploading ? <Loader2 className="animate-spin" size={18} /> : (editing ? <CheckCircle2 size={18} /> : <Plus size={18} />)}
+                            {uploading ? 'Processing...' : (editing ? 'Apply Changes' : 'Initialize Project')}
+                        </button>
                     </div>
                 </form>
             </div>
 
             {/* Items List Section */}
-            <div className="bg-white dark:bg-neutral-900 p-6 rounded-lg border border-neutral-200 dark:border-neutral-800 shadow-md">
-                <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-6">
-                    Portfolio Items ({items.length})
-                </h3>
+            <div className="bg-[#0d0d14] p-10 rounded-lg border border-white/5 shadow-2xl">
+                <div className="flex items-center justify-between mb-10">
+                    <h3 className="text-xl font-black text-white uppercase tracking-tighter">
+                        Asset Archive <span className="text-[#2e2e42]">({items.length})</span>
+                    </h3>
+                </div>
 
                 {loading ? (
-                    <div className="text-center py-12">
-                        <p className="text-neutral-600 dark:text-neutral-400">Loading...</p>
+                    <div className="flex flex-col items-center justify-center py-32 bg-white/5 rounded border border-white/10 border-dashed">
+                        <Loader2 className="w-10 h-10 text-cyan-400 animate-spin mb-4" />
+                        <p className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-600">Syncing Archive...</p>
                     </div>
                 ) : items.length === 0 ? (
-                    <div className="text-center py-12">
-                        <p className="text-neutral-600 dark:text-neutral-400">No portfolio items yet. Create one above!</p>
+                    <div className="flex flex-col items-center justify-center py-32 bg-white/5 rounded border border-white/10 border-dashed">
+                        <AlertCircle className="w-10 h-10 text-neutral-700 mb-4" />
+                        <p className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-600">No Assets Decoded</p>
                     </div>
                 ) : (
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
                         {items.map(item => (
                             <div
                                 key={item._id}
-                                className="border border-neutral-200 dark:border-neutral-800 rounded-lg overflow-hidden hover:shadow-lg dark:hover:shadow-lg/20 transition group"
+                                className="bg-[#0a0a0f] border border-white/5 rounded-lg overflow-hidden group hover:border-cyan-400/30 transition-all duration-500"
                             >
                                 {/* Image/Video Preview */}
-                                <div className="relative aspect-video bg-neutral-900 flex items-center justify-center overflow-hidden">
+                                <div className="relative aspect-video bg-neutral-900 overflow-hidden">
                                     {item.image ? (
-                                        <img loading="lazy" decoding="async" src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition" />
+                                        <img loading="lazy" src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition duration-1000 opacity-60 group-hover:opacity-80" />
                                     ) : (
-                                        <div className="text-neutral-500 text-center">
-                                            <p className="text-sm">No image</p>
+                                        <div className="flex items-center justify-center w-full h-full text-neutral-700">
+                                            <Video size={40} />
                                         </div>
                                     )}
                                     {!item.published && (
-                                        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-                                            <span className="px-3 py-1 bg-yellow-500 text-black text-xs font-semibold rounded">Unpublished</span>
+                                        <div className="absolute inset-x-0 bottom-0 py-2 bg-red-500/80 text-white text-[8px] font-black uppercase tracking-[0.4em] text-center backdrop-blur-sm">
+                                            Offline
                                         </div>
                                     )}
+                                    <div className="absolute top-4 left-4 flex gap-2">
+                                        <span className="px-2 py-1 bg-black/60 backdrop-blur-md text-cyan-400 text-[8px] font-black uppercase tracking-[0.2em] rounded border border-cyan-400/30">
+                                            {item.category}
+                                        </span>
+                                    </div>
                                 </div>
 
                                 {/* Content */}
-                                <div className="p-4">
-                                    <div className="mb-3">
-                                        <h4 className="font-bold text-neutral-900 dark:text-white text-sm truncate">{item.title}</h4>
-                                        <p className="text-xs text-amber-600 dark:text-amber-500 font-medium">{item.category}</p>
-                                    </div>
-
-                                    <p className="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 mb-3">
-                                        {item.description || 'No description'}
+                                <div className="p-6">
+                                    <h4 className="text-lg font-black text-white uppercase tracking-tight truncate mb-2">{item.title}</h4>
+                                    <p className="text-xs text-neutral-500 line-clamp-2 mb-6 font-medium leading-relaxed">
+                                        {item.description || 'No descriptive metadata available for this asset.'}
                                     </p>
 
-                                    <div className="text-xs text-neutral-500 mb-3 flex items-start gap-1">
-                                        <ExternalLink size={12} className="mt-0.5 flex-shrink-0" />
-                                        <span className="break-all truncate">
-                                            {item.videoUrl?.substring(0, 40)}...
-                                        </span>
-                                    </div>
-
                                     {/* Actions */}
-                                    <div className="flex gap-2">
+                                    <div className="flex gap-4">
                                         <button
                                             onClick={() => handleEdit(item)}
-                                            className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded text-xs font-medium transition"
+                                            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-white/5 hover:bg-cyan-400 hover:text-black text-white rounded text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 border border-white/10 hover:border-cyan-400"
                                         >
-                                            <Edit2 size={14} />
+                                            <Edit2 size={12} />
                                             Edit
                                         </button>
                                         <button
                                             onClick={() => handleDelete(item._id)}
-                                            className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded text-xs font-medium transition"
+                                            className="flex items-center justify-center w-12 px-2 py-3 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded transition-all duration-300 border border-red-500/20"
                                         >
                                             <Trash2 size={14} />
-                                            Delete
                                         </button>
                                     </div>
-
-                                    <p className="text-xs text-neutral-500 mt-3 text-center">
-                                        {new Date(item.createdAt).toLocaleDateString()}
-                                    </p>
                                 </div>
                             </div>
                         ))}
