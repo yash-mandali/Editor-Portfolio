@@ -1,193 +1,202 @@
 import React from 'react';
-import { Mail, MessageCircle, MapPin, Send, Loader2 } from 'lucide-react';
+import { Mail, MessageCircle, MapPin, Send, Loader2, Sparkles, Terminal } from 'lucide-react';
 import { useContactController } from '../../controllers/useContactController';
 import { PROFILE } from '../../models/data';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Contact = () => {
   const { formData, handleChange, handleSubmit, isSubmitting, submitted, error } = useContactController();
 
   return (
-    <div className="min-h-screen py-20 bg-neutral-50 dark:bg-neutral-950 transition-colors duration-300">
-      <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16">
+    <div className="min-h-screen bg-neutral-950 transition-colors duration-300 relative overflow-hidden flex flex-col justify-center py-40">
+      {/* Background Cinematic Elements */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[20%] right-[-10%] w-[50%] h-[50%] bg-amber-500/5 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[10%] left-[-5%] w-[40%] h-[40%] bg-orange-600/5 blur-[100px] rounded-full" />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-32 items-start">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-neutral-900 dark:text-white">Let's Create Something Amazing</h1>
-            <p className="text-neutral-600 dark:text-neutral-400 text-lg mb-12">
-              Ready to take your content to the next level? Fill out the form or reach out directly.
-              Please note: I only accept paid projects to ensure the highest quality of service.
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-full mb-8">
+              <Terminal size={12} className="text-amber-500" />
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-500">Secure_Channel</span>
+            </div>
+            
+            <h1 className="text-5xl md:text-7xl font-black mb-10 text-white tracking-tighter leading-none">
+              READY TO <br /> <span className="text-white/20">ASSEMBLE?</span>
+            </h1>
+            
+            <p className="text-neutral-500 text-xl font-light leading-relaxed mb-20 max-w-lg">
+              Every masterpiece begins with a conversation. Let's discuss your project's architecture and emotional rhythm.
             </p>
 
-            <div className="space-y-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="flex items-start gap-4"
-              >
-                <div className="w-12 h-12 rounded-lg bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center text-amber-600 dark:text-amber-500 shrink-0">
-                  <Mail size={24} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-neutral-900 dark:text-white mb-1">Email Me</h3>
-                  <a href={`mailto:${PROFILE.email}`} className="text-neutral-600 dark:text-neutral-400 hover:text-amber-600 dark:hover:text-amber-500 transition-colors">{PROFILE.email}</a>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="flex items-start gap-4"
-              >
-                <div className="w-12 h-12 rounded-lg bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center text-amber-600 dark:text-amber-500 shrink-0">
-                  <MessageCircle size={24} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-neutral-900 dark:text-white mb-1">WhatsApp</h3>
-                  <a href={`https://wa.me/${PROFILE.whatsapp}`} className="text-neutral-600 dark:text-neutral-400 hover:text-amber-600 dark:hover:text-amber-500 transition-colors">Chat on WhatsApp</a>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="flex items-start gap-4"
-              >
-                <div className="w-12 h-12 rounded-lg bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center text-amber-600 dark:text-amber-500 shrink-0">
-                  <MapPin size={24} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-neutral-900 dark:text-white mb-1">Location</h3>
-                  <p className="text-neutral-600 dark:text-neutral-400">Remote Worldwide / Based in India</p>
-                </div>
-              </motion.div>
+            <div className="space-y-12">
+              {[
+                { icon: Mail, label: 'Transmission', value: PROFILE.email, link: `mailto:${PROFILE.email}` },
+                { icon: MessageCircle, label: 'Instant Connect', value: 'WhatsApp Direct', link: `https://wa.me/${PROFILE.whatsapp}` },
+                { icon: MapPin, label: 'Current Base', value: 'Remote Worldwide / India', link: null }
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 + i * 0.1 }}
+                  className="flex items-start gap-6 group"
+                >
+                  <div className="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-amber-500 group-hover:bg-amber-500 group-hover:text-black transition-all duration-500 shrink-0">
+                    <item.icon size={20} />
+                  </div>
+                  <div>
+                    <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-600 mb-2 group-hover:text-amber-500 transition-colors uppercase">{item.label}</h3>
+                    {item.link ? (
+                      <a href={item.link} className="text-xl font-bold text-white hover:text-amber-400 transition-colors tracking-tight">{item.value}</a>
+                    ) : (
+                      <p className="text-xl font-bold text-white tracking-tight">{item.value}</p>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Contact Form - High End Dark Mode */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="bg-white dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 p-8 rounded-2xl shadow-lg dark:shadow-none"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="relative p-1 rounded-2xl bg-gradient-to-br from-white/10 via-transparent to-transparent"
           >
-            {submitted ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="h-full flex flex-col items-center justify-center text-center py-12"
-              >
-                <div className="w-16 h-16 bg-green-500/10 text-green-500 rounded-full flex items-center justify-center mb-6">
-                  <Send size={32} />
-                </div>
-                <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-2">Message Sent!</h3>
-                <p className="text-neutral-600 dark:text-neutral-400">Thanks for reaching out. I'll get back to you within 24 hours.</p>
-                <button
-                  onClick={() => window.location.reload()}
-                  className="mt-8 text-amber-600 dark:text-amber-500 font-medium hover:underline"
-                >
-                  Send another message
-                </button>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {error && (
-                  <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-400">
-                    {error}
-                  </div>
+            <div className="bg-neutral-900/80 backdrop-blur-3xl p-10 md:p-16 rounded-2xl border border-white/5 shadow-2xl">
+              <AnimatePresence mode="wait">
+                {submitted ? (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    className="h-full flex flex-col items-center justify-center text-center py-20"
+                  >
+                    <div className="w-24 h-24 bg-amber-500/10 text-amber-500 rounded-full flex items-center justify-center mb-10">
+                      <Sparkles size={40} />
+                    </div>
+                    <h3 className="text-3xl font-black text-white mb-4 tracking-tighter uppercase">Inquiry Received</h3>
+                    <p className="text-neutral-500 font-light mb-12 max-w-sm mx-auto">Your signal has been captured. Our team will initiate contact within 24 standard hours.</p>
+                    <button
+                      onClick={() => window.location.reload()}
+                      className="px-10 py-4 border border-white/10 text-[10px] font-black uppercase tracking-[0.3em] text-white hover:bg-white hover:text-black transition-all"
+                    >
+                      New Transmission
+                    </button>
+                  </motion.div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-10" key="form">
+                    {error && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="p-4 bg-red-500/10 border border-red-500/20 text-red-500 text-xs font-bold uppercase tracking-widest text-center"
+                      >
+                        {error}
+                      </motion.div>
+                    )}
+                    
+                    <div className="grid md:grid-cols-2 gap-10">
+                      <div className="space-y-4">
+                        <label className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-600 block">Identitiy</label>
+                        <input
+                          type="text"
+                          name="name"
+                          required
+                          value={formData.name}
+                          onChange={handleChange}
+                          className="w-full bg-transparent border-b border-white/10 py-4 text-white text-lg font-light focus:outline-none focus:border-amber-500 transition-all placeholder:text-white/5"
+                          placeholder="Your Name"
+                        />
+                      </div>
+                      <div className="space-y-4">
+                        <label className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-600 block">Frequency</label>
+                        <input
+                          type="email"
+                          name="email"
+                          required
+                          value={formData.email}
+                          onChange={handleChange}
+                          className="w-full bg-transparent border-b border-white/10 py-4 text-white text-lg font-light focus:outline-none focus:border-amber-500 transition-all placeholder:text-white/5"
+                          placeholder="Your Email"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-10">
+                      <div className="space-y-4">
+                        <label className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-600 block">Format</label>
+                        <select
+                          name="projectType"
+                          value={formData.projectType}
+                          onChange={handleChange}
+                          className="w-full bg-transparent border-b border-white/10 py-4 text-white text-lg font-light focus:outline-none focus:border-amber-500 transition-all appearance-none cursor-pointer"
+                        >
+                          <option value="" className="bg-neutral-900 border-none">Select Type</option>
+                          <option value="reels" className="bg-neutral-900">Premium Reels</option>
+                          <option value="youtube" className="bg-neutral-900">Cinematic YouTube</option>
+                          <option value="wedding" className="bg-neutral-900">Masterful Wedding</option>
+                          <option value="commercial" className="bg-neutral-900">Commercial/Brand</option>
+                          <option value="other" className="bg-neutral-900">Custom Sequence</option>
+                        </select>
+                      </div>
+                      <div className="space-y-4">
+                        <label className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-600 block">Investment Range</label>
+                        <select
+                          name="budget"
+                          value={formData.budget}
+                          onChange={handleChange}
+                          className="w-full bg-transparent border-b border-white/10 py-4 text-white text-lg font-light focus:outline-none focus:border-amber-500 transition-all appearance-none cursor-pointer"
+                        >
+                          <option value="" className="bg-neutral-900">Select Budget</option>
+                          <option value="50-200" className="bg-neutral-900">$50 - $200</option>
+                          <option value="200-500" className="bg-neutral-900">$200 - $500</option>
+                          <option value="500-1000" className="bg-neutral-900">$500 - $1000</option>
+                          <option value="1000+" className="bg-neutral-900">$1000+</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <label className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-600 block">Briefing</label>
+                      <textarea
+                        name="message"
+                        required
+                        value={formData.message}
+                        onChange={handleChange}
+                        rows="4"
+                        className="w-full bg-transparent border-b border-white/10 py-4 text-white text-lg font-light focus:outline-none focus:border-amber-500 transition-all resize-none placeholder:text-white/5"
+                        placeholder="Tell me about your vision, deadline, and soul of the project..."
+                      ></textarea>
+                    </div>
+
+                    <div className="pt-6">
+                      <motion.button
+                        type="submit"
+                        disabled={isSubmitting}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="w-full bg-white text-black font-black uppercase tracking-[0.4em] py-6 hover:bg-amber-500 transition-all flex items-center justify-center gap-4 disabled:opacity-50 text-xs"
+                      >
+                        {isSubmitting ? <Loader2 className="animate-spin" /> : (
+                          <><span>Initiate Transmission</span> <Send size={14} /></>
+                        )}
+                      </motion.button>
+                    </div>
+                  </form>
                 )}
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Name</label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="w-full bg-neutral-50 dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-800 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-amber-500 transition-colors"
-                      placeholder="Enter name"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Email</label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full bg-neutral-50 dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-800 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-amber-500 transition-colors"
-                      placeholder="Enter email"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Project Type</label>
-                    <select
-                      name="projectType"
-                      value={formData.projectType}
-                      onChange={handleChange}
-                      className="w-full bg-neutral-50 dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-800 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-amber-500 transition-colors"
-                    >
-                      <option value="">Select a service</option>
-                      <option value="reels">Instagram Reels</option>
-                      <option value="youtube">YouTube Video</option>
-                      <option value="wedding">Wedding Film</option>
-                      <option value="commercial">Commercial/Brand</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Budget Range (USD)</label>
-                    <select
-                      name="budget"
-                      value={formData.budget}
-                      onChange={handleChange}
-                      className="w-full bg-neutral-50 dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-800 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-amber-500 transition-colors"
-                    >
-                      <option value="">Select budget</option>
-                      <option value="50-200">$50 - $200</option>
-                      <option value="200-500">$200 - $500</option>
-                      <option value="500-1000">$500 - $1000</option>
-                      <option value="1000+">$1000+</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Project Details</label>
-                  <textarea
-                    name="message"
-                    required
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows="4"
-                    className="w-full bg-neutral-50 dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-800 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-amber-500 transition-colors resize-none"
-                    placeholder="Tell me about your vision, deadline, and raw footage..."
-                  ></textarea>
-                </div>
-
-                <motion.button
-                  type="submit"
-                  disabled={isSubmitting}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold py-4 rounded-lg transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-md"
-                >
-                  {isSubmitting ? <Loader2 className="animate-spin" /> : 'Send Inquiry'}
-                </motion.button>
-              </form>
-            )}
+              </AnimatePresence>
+            </div>
           </motion.div>
         </div>
       </div>

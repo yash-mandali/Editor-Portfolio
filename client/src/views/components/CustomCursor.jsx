@@ -48,21 +48,25 @@ const CustomCursor = () => {
     }, [mouseX, mouseY]);
 
     return (
-        <>
+        <div className="fixed inset-0 pointer-events-none z-[10000] hidden lg:block overflow-hidden">
+            {/* Main Cinematic Ring */}
             <motion.div
-                className="fixed top-0 left-0 w-8 h-8 bg-amber-500 rounded-full pointer-events-none z-[10000] mix-blend-difference flex items-center justify-center text-[8px] font-black tracking-tighter text-black"
+                className="fixed top-0 left-0 w-8 h-8 border border-amber-500 rounded-full flex items-center justify-center text-[10px] font-black tracking-tighter text-amber-500"
                 style={{
                     x: cursorX,
                     y: cursorY,
                     translateX: '-50%',
                     translateY: '-50%',
                     scale: isHovering ? 2.5 : 1,
+                    backgroundColor: isHovering ? 'rgba(245, 158, 11, 0.1)' : 'transparent',
                 }}
             >
                 {cursorText}
             </motion.div>
+            
+            {/* Inner Precision Dot */}
             <motion.div
-                className="fixed top-0 left-0 w-2 h-2 bg-white rounded-full pointer-events-none z-[10001]"
+                className="fixed top-0 left-0 w-1.5 h-1.5 bg-amber-500 rounded-full"
                 style={{
                     x: mouseX,
                     y: mouseY,
@@ -71,7 +75,18 @@ const CustomCursor = () => {
                     opacity: isHovering ? 0 : 1
                 }}
             />
-        </>
+
+            {/* Trailing Atmospheric Glow */}
+            <motion.div
+                className="fixed top-0 left-0 w-64 h-64 bg-amber-500/5 blur-[120px] rounded-full"
+                style={{
+                    x: mouseX,
+                    y: mouseY,
+                    translateX: '-50%',
+                    translateY: '-50%',
+                }}
+            />
+        </div>
     );
 };
 

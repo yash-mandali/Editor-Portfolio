@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Instagram, Youtube, Linkedin, Mail } from 'lucide-react';
+import { Menu, X, Instagram, Youtube, Linkedin, Mail, Disc } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PROFILE } from '../../models/data';
 import ThemeToggle from './ThemeToggle';
@@ -31,51 +31,49 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md py-4 border-b border-neutral-200 dark:border-neutral-800 shadow-sm' : 'bg-transparent py-6'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-700 ${scrolled ? 'bg-neutral-950/80 backdrop-blur-xl py-4 border-b border-white/5' : 'bg-transparent py-8'}`}>
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold tracking-tighter text-neutral-900 dark:text-white flex items-center gap-2">
+        <Link to="/" className="relative group">
           <motion.div
-            initial={{ scale: 0.96, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.4 }}
-            className="flex items-center gap-2 group cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex items-center gap-3"
           >
-            <img
-              src={logo}
-              alt="CineCraft Logo"
-              className="h-16 w-auto brightness-0 dark:brightness-100 dark:invert transition-all duration-300 group-hover:brightness-100 group-hover:filter group-hover:drop-shadow-[0_0_8px_rgba(245,158,11,0.6)] group-hover:saturate-150"
-            />
+            <div className="relative">
+                <img
+                  src={logo}
+                  alt="Logo"
+                  className="h-12 w-auto brightness-0 invert transition-all duration-500 group-hover:drop-shadow-[0_0_10px_rgba(245,158,11,0.8)]"
+                />
+            </div>
           </motion.div>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               to={link.path}
-              className={`text-sm font-medium transition-colors hover:text-amber-500 ${location.pathname === link.path ? 'text-amber-500' : 'text-neutral-600 dark:text-neutral-300'}`}
+              className={`text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-300 hover:text-amber-500 ${location.pathname === link.path ? 'text-amber-500' : 'text-white/60'}`}
             >
               {link.name}
             </Link>
           ))}
 
-          <div className="h-6 w-px bg-neutral-300 dark:bg-neutral-700 mx-2"></div>
-
-          <ThemeToggle />
-
-          <Link to="/contact" className="bg-amber-500 hover:bg-amber-600 text-black px-5 py-2 rounded-full font-semibold text-sm transition-all shadow-lg shadow-amber-500/20">
-            Hire Me
-          </Link>
+          <div className="flex items-center gap-6 ml-4">
+             <ThemeToggle />
+             <Link to="/contact" className="relative px-8 py-3 bg-white text-black text-[10px] font-black uppercase tracking-[0.3em] hover:bg-amber-500 transition-colors overflow-hidden group">
+                <span className="relative z-10">Get In Touch</span>
+             </Link>
+          </div>
         </div>
 
         {/* Mobile Toggle */}
-        <div className="md:hidden flex items-center gap-4">
+        <div className="md:hidden flex items-center gap-6">
           <ThemeToggle />
-          <button className="text-neutral-900 dark:text-white" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X /> : <Menu />}
+          <button className="text-white p-2" onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
@@ -84,28 +82,30 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800 overflow-hidden"
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-40 bg-neutral-950 flex flex-col items-center justify-center gap-8"
           >
-            <div className="flex flex-col p-6 gap-4">
+             <button className="absolute top-8 right-8 text-white p-2" onClick={() => setIsOpen(false)}>
+                <X size={32} />
+             </button>
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.path}
-                  className="text-neutral-600 dark:text-neutral-300 hover:text-amber-500 font-medium text-lg"
+                  className="text-3xl font-black uppercase tracking-[0.2em] text-white/40 hover:text-amber-500 transition-colors"
                 >
                   {link.name}
                 </Link>
               ))}
               <Link
                 to="/contact"
-                className="text-amber-500 font-medium text-lg"
+                className="text-3xl font-black uppercase tracking-[0.2em] text-amber-500"
               >
                 Hire Me
               </Link>
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -115,82 +115,82 @@ const Navbar = () => {
 
 const Footer = () => {
   return (
-    <footer className="bg-white dark:bg-neutral-950 border-t border-neutral-200 dark:border-neutral-900 pt-20 pb-10 transition-colors duration-300">
-      <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-12 mb-16">
-          <div className="col-span-2">
-            <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4 flex items-center gap-2">
-              <motion.div
-                className="group cursor-pointer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.3 }}
-              >
+    <footer className="bg-neutral-950 border-t border-white/5 pt-32 pb-16 relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
+         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-amber-500/10 blur-[120px] rounded-full" />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-20 mb-32">
+          <div className="lg:col-span-5">
+            <Link to="/" className="inline-block mb-10 group">
                 <img
                   src={logo}
-                  alt="CineCraft Logo"
-                  className="h-24 w-auto brightness-0 dark:brightness-100 dark:invert transition-all duration-300 group-hover:brightness-100 group-hover:filter group-hover:drop-shadow-[0_0_12px_rgba(245,158,11,0.7)] group-hover:saturate-150"
+                  alt="Logo"
+                  className="h-16 w-auto brightness-0 invert opacity-80 group-hover:opacity-100 transition-all duration-500"
                 />
-              </motion.div>
-            </h3>
-            <p className="text-neutral-600 dark:text-neutral-400 max-w-md mb-6">
-              {PROFILE.tagline}. Delivering premium post-production services for creators and brands worldwide.
+            </Link>
+            <p className="text-neutral-500 text-lg font-light leading-relaxed mb-10 max-w-sm">
+              {PROFILE.tagline}. Orchestrating high-impact visual narratives for the modern digital landscape.
             </p>
-            <div className="flex gap-6 text-neutral-500 dark:text-neutral-400">
-              <a
-                href={PROFILE.socials.instagram}
-                className="transform transition-all duration-300 ease-out hover:text-amber-500 hover:scale-110 hover:-translate-y-1"
-              >
-                <Instagram size={22} />
-              </a>
-
-              <a
-                href={PROFILE.socials.youtube}
-                className="transform transition-all duration-300 ease-out hover:text-amber-500 hover:scale-110 hover:-translate-y-1"
-              >
-                <Youtube size={22} />
-              </a>
-
-              <a
-                href={PROFILE.socials.linkedin}
-                className="transform transition-all duration-300 ease-out hover:text-amber-500 hover:scale-110 hover:-translate-y-1"
-              >
-                <Linkedin size={22} />
-              </a>
-
-              <a
-                href={`mailto:${PROFILE.email}`}
-                className="transform transition-all duration-300 ease-out hover:text-amber-500 hover:scale-110 hover:-translate-y-1"
-              >
-                <Mail size={22} />
-              </a>
+            <div className="flex gap-8">
+              {[
+                { icon: Instagram, url: PROFILE.socials.instagram },
+                { icon: Youtube, url: PROFILE.socials.youtube },
+                { icon: Linkedin, url: PROFILE.socials.linkedin },
+                { icon: Mail, url: `mailto:${PROFILE.email}` }
+              ].map((social, i) => (
+                <a
+                  key={i}
+                  href={social.url}
+                  className="text-neutral-600 hover:text-amber-500 transition-all duration-300 transform hover:-translate-y-1"
+                >
+                  <social.icon size={20} />
+                </a>
+              ))}
             </div>
           </div>
 
-          <div>
-            <h4 className="text-neutral-900 dark:text-white font-semibold mb-6">Services</h4>
-            <ul className="space-y-3 text-neutral-600 dark:text-neutral-400">
-              <li><Link to="/services" className="hover:text-amber-500 transition-colors">Instagram Reels</Link></li>
-              <li><Link to="/services" className="hover:text-amber-500 transition-colors">YouTube Editing</Link></li>
-              <li><Link to="/services" className="hover:text-amber-500 transition-colors">Wedding Films</Link></li>
-              <li><Link to="/services" className="hover:text-amber-500 transition-colors">Commercials</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-neutral-900 dark:text-white font-semibold mb-6">Company</h4>
-            <ul className="space-y-3 text-neutral-600 dark:text-neutral-400">
-              <li><Link to="/about" className="hover:text-amber-500 transition-colors">About Me</Link></li>
-              <li><Link to="/portfolio" className="hover:text-amber-500 transition-colors">Portfolio</Link></li>
-              <li><Link to="/pricing" className="hover:text-amber-500 transition-colors">Pricing</Link></li>
-              <li><Link to="/contact" className="hover:text-amber-500 transition-colors">Contact</Link></li>
-            </ul>
+          <div className="lg:col-span-7 grid md:grid-cols-3 gap-12">
+            <div>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-white mb-8">Navigation</h4>
+              <ul className="space-y-4">
+                {['Home', 'About', 'Portfolio', 'Services'].map((item) => (
+                  <li key={item}>
+                    <Link to={`/${item.toLowerCase() === 'home' ? '' : item.toLowerCase()}`} className="text-neutral-500 text-sm hover:text-amber-500 transition-colors">
+                      {item}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-white mb-8">Socials</h4>
+              <ul className="space-y-4">
+                {['Instagram', 'YouTube', 'LinkedIn', 'Vimeo'].map((item) => (
+                  <li key={item}>
+                    <a href="#" className="text-neutral-500 text-sm hover:text-amber-500 transition-colors">
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+                <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-white mb-8">Direct</h4>
+                <a href={`mailto:${PROFILE.email}`} className="text-neutral-500 text-sm hover:text-amber-500 transition-colors break-all">
+                    {PROFILE.email}
+                </a>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-neutral-200 dark:border-neutral-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-neutral-500">
-          <p>&copy; {new Date().getFullYear()} {PROFILE.name}. All rights reserved.</p>
-          <p>Designed for Excellence.</p>
+        <div className="pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-neutral-600">
+          <p>&copy; {new Date().getFullYear()} {PROFILE.name}. SYSTEM_ALL_RIGHTS_RESERVED.</p>
+          <div className="flex items-center gap-2">
+            <Disc size={12} className="animate-spin-slow text-amber-500" />
+            <span>Premium Post-Production</span>
+          </div>
         </div>
       </div>
     </footer>
@@ -204,36 +204,40 @@ export const Layout = ({ children }) => {
   const timerRef = useRef(null);
 
   useEffect(() => {
-    // Initial load: show loader briefly
     timerRef.current = setTimeout(() => {
       setShowLoader(false);
       initial.current = false;
-    }, 700);
+    }, 1000);
     return () => clearTimeout(timerRef.current);
   }, []);
 
   useEffect(() => {
-    // On route change (except the very first render), show loader briefly
     if (initial.current) return;
     setShowLoader(true);
     clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => setShowLoader(false), 400);
+    timerRef.current = setTimeout(() => setShowLoader(false), 600);
     return () => clearTimeout(timerRef.current);
   }, [location.pathname]);
 
   return (
     <div className="relative min-h-screen bg-neutral-950 text-neutral-100 font-sans selection:bg-amber-500/30 transition-colors duration-300 overflow-x-hidden">
-      {/* Film Grain Overlay */}
+      {/* Cinematic Overlays */}
       <div className="film-grain" />
+      <div className="scanlines" />
       
       {/* Custom Cursor */}
       <CustomCursor />
 
       <Navbar />
-      {showLoader && <Loader />}
-      <main className="relative z-10 transition-all duration-700">
+      
+      <AnimatePresence mode="wait">
+        {showLoader && <Loader />}
+      </AnimatePresence>
+
+      <main className="relative z-10">
         {children}
       </main>
+
       <Footer />
     </div>
   );
