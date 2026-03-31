@@ -31,7 +31,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-700 ${scrolled ? 'bg-white/80 dark:bg-neutral-950/80 backdrop-blur-xl py-4 border-b border-black/5 dark:border-white/5 shadow-sm' : 'bg-transparent py-8'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-700 ${scrolled ? 'bg-white/90 dark:bg-neutral-950/90 backdrop-blur-xl py-4 border-b border-black/5 dark:border-white/5 shadow-sm' : 'bg-transparent py-8'}`}>
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link to="/" className="relative group">
           <motion.div
@@ -55,7 +55,7 @@ const Navbar = () => {
             <Link
               key={link.name}
               to={link.path}
-              className={`text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-300 hover:text-amber-500 ${location.pathname === link.path ? 'text-amber-500' : 'text-neutral-600 dark:text-white/60'}`}
+              className={`text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-300 hover:text-amber-500 ${location.pathname === link.path ? 'text-amber-500' : 'text-neutral-500 dark:text-white/60'}`}
             >
               {link.name}
             </Link>
@@ -117,7 +117,7 @@ const Footer = () => {
   return (
     <footer className="bg-neutral-50 dark:bg-neutral-950 border-t border-black/5 dark:border-white/5 pt-32 pb-16 relative overflow-hidden transition-colors duration-500">
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
-         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-amber-500/10 blur-[120px] rounded-full" />
+         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-amber-500/10 dark:bg-amber-500/5 blur-[120px] rounded-full transition-colors" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -143,7 +143,7 @@ const Footer = () => {
                 <a
                   key={i}
                   href={social.url}
-                  className="text-neutral-400 dark:text-neutral-600 hover:text-amber-500 transition-all duration-300 transform hover:-translate-y-1"
+                  className="text-neutral-400 dark:text-neutral-700 hover:text-amber-500 transition-all duration-300 transform hover:-translate-y-1"
                 >
                   <social.icon size={20} />
                 </a>

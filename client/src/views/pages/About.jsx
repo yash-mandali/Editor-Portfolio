@@ -50,7 +50,7 @@ const About = () => {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-black mb-8 text-neutral-950 dark:text-white tracking-tighter leading-none transition-colors">
-              THE MAN <br /> <span className="text-neutral-300 dark:text-white/20 transition-colors">BEHIND THE EDIT</span>
+              THE MAN <br /> <span className="text-neutral-900/10 dark:text-white/20 transition-colors">BEHIND THE EDIT</span>
             </h1>
             
             <div className="space-y-6 text-neutral-500 dark:text-neutral-400 text-lg font-light leading-relaxed mb-12 max-w-xl transition-colors">
@@ -102,7 +102,7 @@ const About = () => {
         <section className="mb-40">
           <div className="text-center mb-24">
             <h2 className="text-4xl md:text-6xl font-black text-neutral-950 dark:text-white tracking-tighter mb-4 transition-colors">
-              TECH <span className="text-neutral-300 dark:text-white/20 transition-colors">STACK</span>
+              TECH <span className="text-neutral-900/10 dark:text-white/20 transition-colors">STACK</span>
             </h2>
             <div className="w-12 h-[2px] bg-amber-500 mx-auto" />
           </div>
@@ -131,7 +131,7 @@ const About = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-center bg-neutral-900 dark:bg-white/5 p-20 border border-white/5 relative overflow-hidden"
+          className="text-center bg-neutral-900 dark:bg-white/5 p-20 border border-black/5 dark:border-white/5 relative overflow-hidden transition-colors"
         >
           <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity">
             <Disc className="w-full h-full scale-150 animate-spin-slow text-white dark:text-current" />

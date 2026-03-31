@@ -34,7 +34,7 @@ const Home = () => {
 
       {/* Cinematic Hero Section - Remains Dark for Impact */}
       <motion.section
-        className="relative h-screen flex items-center justify-center overflow-hidden bg-neutral-950"
+        className="relative h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-neutral-950 transition-colors duration-700"
         style={{ scale: heroScale }}
       >
         <HeroVideo className="z-0" />
@@ -49,15 +49,15 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <motion.div 
-               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8"
-               whileHover={{ scale: 1.05, borderColor: "rgba(251, 191, 36, 0.5)" }}
-            >
-              <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
-              <span className="text-[10px] font-black tracking-[0.3em] uppercase text-white/70">Premiere Video Editor</span>
-            </motion.div>
+             <motion.div 
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 backdrop-blur-md mb-8 transition-colors"
+                whileHover={{ scale: 1.05, borderColor: "rgba(251, 191, 36, 0.5)" }}
+             >
+               <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
+               <span className="text-[10px] font-black tracking-[0.3em] uppercase text-neutral-500 dark:text-white/70 transition-colors">Premiere Video Editor</span>
+             </motion.div>
 
-            <h1 className="text-5xl md:text-8xl font-black text-white tracking-tighter leading-[0.85] mb-8">
+            <h1 className="text-5xl md:text-8xl font-black text-neutral-950 dark:text-white tracking-tighter leading-[0.85] mb-8 transition-colors">
               <span className="block overflow-hidden pb-2">
                 <motion.span
                   initial={{ y: "100%" }}
@@ -91,7 +91,7 @@ const Home = () => {
             </h1>
 
             <motion.p 
-              className="text-neutral-400 max-w-xl mx-auto mb-12 text-lg font-light leading-relaxed tracking-wide"
+              className="text-neutral-500 dark:text-neutral-400 max-w-xl mx-auto mb-12 text-lg font-light leading-relaxed tracking-wide transition-colors"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 1.5 }}
@@ -114,9 +114,9 @@ const Home = () => {
               
               <button 
                 onClick={() => setSelectedVideo("https://www.youtube.com/watch?v=zF9m02WllZc")}
-                className="group flex items-center gap-4 text-white font-bold tracking-widest uppercase text-sm hover:text-amber-500 transition-colors"
+                className="group flex items-center gap-4 text-neutral-950 dark:text-white font-bold tracking-widest uppercase text-sm hover:text-amber-500 transition-colors"
               >
-                <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-amber-500/50 group-hover:bg-amber-500/10 transition-all">
+                <div className="w-12 h-12 rounded-full border border-black/10 dark:border-white/20 flex items-center justify-center group-hover:border-amber-500/50 group-hover:bg-amber-500/10 transition-all">
                   <Play size={16} fill="currentColor" />
                 </div>
                 Watch Showreel
@@ -144,7 +144,7 @@ const Home = () => {
             style={{ x: useTransform(springScrollY, [0, 1], [0, -1000]) }}
           >
             {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="text-7xl md:text-9xl font-black text-neutral-100 dark:text-white/5 tracking-tighter uppercase transition-colors">
+              <div key={i} className="text-7xl md:text-9xl font-black text-neutral-950/[0.03] dark:text-white/5 tracking-tighter uppercase transition-colors">
                 Cinematic • Dynamic • Impactful • Professional • Creative •
               </div>
             ))}
@@ -171,7 +171,7 @@ const Home = () => {
                 viewport={{ once: true }}
                 className="text-4xl md:text-6xl font-black text-neutral-950 dark:text-white leading-none tracking-tighter transition-colors"
               >
-                THE ART OF <br /> <span className="text-neutral-300 dark:text-white/40 transition-colors">VISUAL STORYTELLING</span>
+                THE ART OF <br /> <span className="text-neutral-900/10 dark:text-white/40 transition-colors">VISUAL STORYTELLING</span>
               </motion.h2>
             </div>
           </div>
