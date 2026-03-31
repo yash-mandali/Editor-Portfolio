@@ -3,56 +3,54 @@ import { motion } from 'framer-motion';
 const HeroVideo = ({ videoUrl = "https://www.pexels.com/download/video/36355454/", className = "" }) => {
   return (
     <div className={`absolute inset-0 w-full h-full overflow-hidden ${className}`}>
-      {/* Fallback Background / Loading State */}
-      <div className="absolute inset-0 bg-white dark:bg-neutral-950 transition-colors duration-700" />
+      {/* Dark fallback */}
+      <div className="absolute inset-0 bg-[#0a0a0f]" />
 
-      {/* Video Element */}
+      {/* Video */}
       <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover scale-105 transition-all duration-700"
-        style={{ filter: 'brightness(var(--hero-brightness, 0.7)) saturate(0.8) contrast(1.1)' }}
+        autoPlay loop muted playsInline
+        className="absolute inset-0 w-full h-full object-cover scale-[1.04]"
+        style={{ filter: 'brightness(0.28) saturate(0.7) contrast(1.15)' }}
       >
         <source src={videoUrl} type="video/mp4" />
       </video>
 
-      {/* CSS Variables for Hero - defined here for simplicity or could be in index.css */}
-      <style dangerouslySetInnerHTML={{ __html: `
-        :root { --hero-brightness: 0.8; }
-        .dark { --hero-brightness: 0.3; }
-      `}} />
+      {/* Noise overlay */}
+      <div className="noise-overlay" />
 
-      {/* Animated Overlays */}
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-b from-white/40 dark:from-neutral-950/40 via-transparent to-white dark:to-neutral-950 transition-colors duration-700"
+      {/* Bottom gradient — fades into page bg */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f]/30 via-transparent to-[#0a0a0f]" />
+
+      {/* Side vignettes */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f]/60 via-transparent to-[#0a0a0f]/60" />
+
+      {/* Cyan tint layer — subtle brand colour wash */}
+      <motion.div
+        className="absolute inset-0"
+        style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,212,255,0.06) 0%, transparent 70%)' }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 2 }}
-      />
-      
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-r from-white dark:from-neutral-950 via-transparent to-white dark:to-neutral-950 opacity-40 dark:opacity-60 transition-colors duration-700"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2, delay: 0.5 }}
+        transition={{ duration: 3 }}
       />
 
-      {/* Cinematic Vignette */}
-      <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(255,255,255,0.4)] dark:shadow-[inset_0_0_150px_rgba(0,0,0,0.8)] pointer-events-none transition-all duration-700" />
-
-      {/* Animated Grid Lines - Subtler */}
-      <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.03] pointer-events-none transition-opacity duration-700">
-        <div className="absolute top-0 left-1/4 w-[1px] h-full bg-neutral-900 dark:bg-white" />
-        <div className="absolute top-0 left-1/2 w-[1px] h-full bg-neutral-900 dark:bg-white" />
-        <div className="absolute top-0 left-3/4 w-[1px] h-full bg-neutral-900 dark:bg-white" />
-        <div className="absolute top-1/4 left-0 w-full h-[1px] bg-neutral-900 dark:bg-white" />
-        <div className="absolute top-1/2 left-0 w-full h-[1px] bg-neutral-900 dark:bg-white" />
-        <div className="absolute top-3/4 left-0 w-full h-[1px] bg-neutral-900 dark:bg-white" />
+      {/* Animated grid lines */}
+      <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.04 }}>
+        {[25, 50, 75].map(p => (
+          <div key={p} className="absolute top-0 h-full w-[1px] bg-[#00d4ff]" style={{ left: `${p}%` }} />
+        ))}
+        {[25, 50, 75].map(p => (
+          <div key={p} className="absolute left-0 w-full h-[1px] bg-[#00d4ff]" style={{ top: `${p}%` }} />
+        ))}
       </div>
-    </div>
 
+      {/* Animated horizontal scan line */}
+      <motion.div
+        className="absolute left-0 w-full h-[1px] pointer-events-none"
+        style={{ background: 'linear-gradient(90deg, transparent, rgba(0,212,255,0.4), transparent)' }}
+        animate={{ top: ['0%', '100%'] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+      />
+    </div>
   );
 };
 

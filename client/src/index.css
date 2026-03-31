@@ -315,6 +315,144 @@
   text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
 }
 
+/* ── FLOAT ── */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ── FLICKER ── */
+@keyframes flicker {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  92% {
+    opacity: 1;
+  }
+
+  93% {
+    opacity: 0.4;
+  }
+
+  94% {
+    opacity: 1;
+  }
+
+  96% {
+    opacity: 0.6;
+  }
+
+  97% {
+    opacity: 1;
+  }
+}
+
+.animate-flicker {
+  animation: flicker 6s infinite;
+}
+
+/* ── DRAW LINE ── */
+@keyframes draw-line {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+.animate-draw {
+  animation: draw-line 1.2s ease-out forwards;
+}
+
+/* ── REVEAL CLIP ── */
+@keyframes reveal-clip {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    clip-path: inset(0 0% 0 0);
+  }
+}
+
+.animate-reveal {
+  animation: reveal-clip 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── NOISE OVERLAY ── */
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+}
+
+/* ── HORIZONTAL SCROLL STRIP ── */
+.scroll-strip {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+}
+
+/* ── VIDEO CARD HOVER ── */
+.video-card-hover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.video-card-hover:hover::after {
+  opacity: 1;
+}
+
+/* ── NEON BORDER GLOW ── */
+.neon-border-cyan {
+  box-shadow: 0 0 0 1px rgba(0, 212, 255, 0.3), 0 0 20px rgba(0, 212, 255, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.neon-border-cyan:hover {
+  box-shadow: 0 0 0 1px rgba(0, 212, 255, 0.7), 0 0 40px rgba(0, 212, 255, 0.25), 0 0 80px rgba(0, 212, 255, 0.1);
+}
+
+/* ── TIMELINE DOT PULSE ── */
+@keyframes dot-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.6);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(0, 212, 255, 0);
+  }
+}
+
+.dot-pulse {
+  animation: dot-pulse 2s ease-in-out infinite;
+}
+
 /* ── PROGRESS BAR ── */
 @keyframes progress-fill {
   from {
