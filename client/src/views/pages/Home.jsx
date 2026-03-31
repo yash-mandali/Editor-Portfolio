@@ -1,10 +1,9 @@
 import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
-import { ArrowRight, Play, Zap, Award, Users, Sparkles, Film, Clock, Star } from 'lucide-react';
-import { PROFILE, WHY_CHOOSE_ME, SERVICES } from '../../models/data';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { ArrowRight, Play, Zap, Award, Users, Sparkles, Film, Star } from 'lucide-react';
+import { WHY_CHOOSE_ME, SERVICES } from '../../models/data';
 import VideoModal from '../components/VideoModal';
-import { useVideoController } from '../../controllers/useVideoController';
 import Videos from './Videos';
 import HeroVideo from '../components/HeroVideo';
 
@@ -12,19 +11,6 @@ import HeroVideo from '../components/HeroVideo';
 const Counter = ({ target, suffix = '' }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  const [count, setCount] = useState(0);
-
-  useState(() => {
-    if (!isInView) return;
-    let start = 0;
-    const step = Math.ceil(target / 60);
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= target) { setCount(target); clearInterval(timer); }
-      else setCount(start);
-    }, 24);
-    return () => clearInterval(timer);
-  }, [isInView, target]);
 
   return <span ref={ref}>{isInView ? target : 0}{suffix}</span>;
 };
@@ -60,7 +46,6 @@ const Home = () => {
   const heroScale = useTransform(scrollYProgress, [0, 0.2], [1, 1.08]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.18], [1, 0]);
   const heroTextY = useTransform(scrollYProgress, [0, 0.18], [0, -80]);
-  const springY = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   const editingStyles = [
     { icon: Film, title: 'Cinematic', desc: 'Slow burns, colour grades, and atmospheric tension that feel like a feature film.', color: 'from-amber-400/20 to-orange-600/10' },
@@ -171,51 +156,96 @@ const Home = () => {
       </motion.section>
 
       {/* ── MARQUEE TICKER ── */}
-      <div className="relative py-6 bg-neutral-950 dark:bg-neutral-950 border-y border-amber-500/20 overflow-hidden">
+      <div className="relative py-5 bg-neutral-950 border-y-2 border-amber-500/40 overflow-hidden group/marquee">
+        {/* Fade edges */}
+        <div className="absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-neutral-950 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-neutral-950 to-transparent z-10 pointer-events-none" />
+
         <div className="ticker-wrap">
-          <div className="ticker-content animate-marquee">
-            {[...marqueeItems, ...marqueeItems].map((item, i) => (
-              <span key={i} className="inline-flex items-center gap-6 px-8 text-[11px] font-black tracking-[0.4em] uppercase text-white/50">
+          <div className="ticker-content animate-marquee group-hover/marquee:[animation-play-state:paused]">
+            {[...marqueeItems, ...marqueeItems, ...marqueeItems].map((item, i) => (
+              <motion.span
+                key={i}
+                whileHover={{ scale: 1.15, color: '#f59e0b' }}
+                className="inline-flex items-center gap-5 px-6 text-[12px] font-black tracking-[0.35em] uppercase text-white/70 cursor-default transition-colors duration-200 hover:text-amber-400"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500/60 inline-block flex-shrink-0" />
                 {item}
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 inline-block" />
-              </span>
+              </motion.span>
             ))}
           </div>
         </div>
       </div>
 
       {/* ── STATS ── */}
-      <section className="py-24 bg-white dark:bg-neutral-950 transition-colors duration-500">
+      <section className="py-24 bg-white dark:bg-neutral-950 transition-colors duration-500 overflow-hidden">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border border-black/5 dark:border-white/5">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-0 border border-black/5 dark:border-white/5"
+          >
             {stats.map((s, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
+                initial={{ opacity: 0, scale: 0.85 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="p-10 text-center border-r border-b border-black/5 dark:border-white/5 last:border-r-0 group hover:bg-amber-500/5 transition-colors"
+                transition={{ delay: i * 0.12, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ backgroundColor: 'rgba(245,158,11,0.06)' }}
+                className="p-10 text-center border-r border-b border-black/5 dark:border-white/5 last:border-r-0 group cursor-default"
               >
-                <div className="text-5xl md:text-6xl font-black text-neutral-950 dark:text-white mb-2 tracking-tighter group-hover:text-amber-500 transition-colors">
+                <motion.div
+                  className="text-5xl md:text-6xl font-black text-neutral-950 dark:text-white mb-2 tracking-tighter group-hover:text-amber-500 transition-colors duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.12 + 0.2, duration: 0.6 }}
+                >
                   <Counter target={s.value} suffix={s.suffix} />
-                </div>
-                <div className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400">{s.label}</div>
+                </motion.div>
+                <div className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-500 dark:text-neutral-400">{s.label}</div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ── WHY CHOOSE ME ── */}
-      <section className="py-32 relative bg-white dark:bg-neutral-950 transition-colors duration-500">
-        <div className="container mx-auto px-6">
+      <section className="py-32 relative bg-white dark:bg-neutral-950 transition-colors duration-500 overflow-hidden">
+        {/* Parallax background text */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
+        >
+          <span className="text-[12vw] font-black text-neutral-950/[0.02] dark:text-white/[0.02] uppercase tracking-tighter whitespace-nowrap">
+            EXPERTISE
+          </span>
+        </motion.div>
+
+        <div className="container mx-auto px-6 relative z-10">
           <div className="flex flex-col md:flex-row items-end justify-between mb-24 gap-8">
             <div className="max-w-2xl">
-              <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="text-amber-500 font-black tracking-[0.4em] uppercase text-xs mb-4">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-amber-500 font-black tracking-[0.4em] uppercase text-xs mb-4"
+              >
                 Expertise
               </motion.div>
-              <motion.h2 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-4xl md:text-6xl font-black text-neutral-950 dark:text-white leading-none tracking-tighter transition-colors">
+              <motion.h2
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.1 }}
+                className="text-4xl md:text-6xl font-black text-neutral-950 dark:text-white leading-none tracking-tighter transition-colors"
+              >
                 THE ART OF <br /><span className="text-neutral-400 dark:text-white/40 transition-colors">VISUAL STORYTELLING</span>
               </motion.h2>
             </div>
@@ -225,18 +255,22 @@ const Home = () => {
             {WHY_CHOOSE_ME.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -15 }}
+                initial={{ opacity: 0, y: 50, rotateX: 8 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                transition={{ delay: index * 0.18, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                viewport={{ once: true, margin: '-40px' }}
+                whileHover={{ y: -12, transition: { duration: 0.3 } }}
                 className="group relative"
               >
                 <div className="absolute -inset-4 bg-amber-500/0 group-hover:bg-amber-500/5 rounded-3xl transition-all duration-500" />
                 <div className="relative z-10">
-                  <div className="w-16 h-16 mb-8 border border-black/5 dark:border-white/10 flex items-center justify-center group-hover:border-amber-500 group-hover:bg-amber-500/10 transition-all">
+                  <motion.div
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-16 h-16 mb-8 border border-black/5 dark:border-white/10 flex items-center justify-center group-hover:border-amber-500 group-hover:bg-amber-500/10 transition-all"
+                  >
                     <item.icon size={24} className="text-neutral-900 dark:text-white group-hover:text-amber-500 transition-colors" />
-                  </div>
+                  </motion.div>
                   <h3 className="text-2xl font-bold text-neutral-950 dark:text-white mb-4 tracking-tight transition-colors">{item.title}</h3>
                   <div className="w-8 h-[2px] bg-amber-500 mb-6 group-hover:w-full transition-all duration-500" />
                   <p className="text-neutral-500 dark:text-neutral-400 leading-relaxed font-light transition-colors">{item.description}</p>
@@ -256,10 +290,22 @@ const Home = () => {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-24">
-            <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-amber-500 font-black tracking-[0.4em] uppercase text-xs mb-4">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-amber-500 font-black tracking-[0.4em] uppercase text-xs mb-4"
+            >
               Specialisations
             </motion.div>
-            <motion.h2 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-4xl md:text-6xl font-black text-neutral-950 dark:text-white tracking-tighter transition-colors">
+            <motion.h2
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="text-4xl md:text-6xl font-black text-neutral-950 dark:text-white tracking-tighter transition-colors"
+            >
               EDITING <span className="text-neutral-400 dark:text-white/30">STYLES</span>
             </motion.h2>
           </div>
@@ -277,16 +323,35 @@ const Home = () => {
         <div className="container mx-auto px-6 relative z-10">
           <div className="flex justify-between items-end mb-24">
             <div>
-              <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="text-amber-500 font-black tracking-[0.4em] uppercase text-xs mb-4">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-amber-500 font-black tracking-[0.4em] uppercase text-xs mb-4"
+              >
                 Portfolio
               </motion.div>
-              <motion.h2 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-4xl md:text-6xl font-black text-neutral-950 dark:text-white tracking-tighter transition-colors">
+              <motion.h2
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.1 }}
+                className="text-4xl md:text-6xl font-black text-neutral-950 dark:text-white tracking-tighter transition-colors"
+              >
                 FEATURED <br /><span className="text-amber-500">PROJECTS</span>
               </motion.h2>
             </div>
-            <Link to="/portfolio" className="group flex items-center gap-3 text-neutral-400 dark:text-white/50 hover:text-neutral-900 dark:hover:text-white transition-colors uppercase tracking-[0.3em] text-xs font-bold">
-              View All <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
-            </Link>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <Link to="/portfolio" className="group flex items-center gap-3 text-neutral-400 dark:text-white/50 hover:text-neutral-900 dark:hover:text-white transition-colors uppercase tracking-[0.3em] text-xs font-bold">
+                View All <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
+              </Link>
+            </motion.div>
           </div>
 
           <Videos />
@@ -311,16 +376,20 @@ const Home = () => {
             {SERVICES.map((svc, i) => (
               <motion.div
                 key={svc.id}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: i * 0.08 }}
-                viewport={{ once: true }}
-                whileHover={{ backgroundColor: 'rgba(245,158,11,0.05)' }}
-                className="p-10 bg-neutral-950 group transition-colors"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-30px' }}
+                transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ backgroundColor: 'rgba(245,158,11,0.07)', y: -4 }}
+                className="p-10 bg-neutral-950 group transition-all duration-300"
               >
-                <div className="w-12 h-12 mb-6 border border-white/10 flex items-center justify-center group-hover:border-amber-500 group-hover:bg-amber-500/10 transition-all">
+                <motion.div
+                  whileHover={{ rotate: 8, scale: 1.15 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-12 h-12 mb-6 border border-white/10 flex items-center justify-center group-hover:border-amber-500 group-hover:bg-amber-500/10 transition-all"
+                >
                   <svc.icon size={20} className="text-white/50 group-hover:text-amber-500 transition-colors" />
-                </div>
+                </motion.div>
                 <h3 className="text-lg font-black text-white mb-3 uppercase tracking-tight group-hover:text-amber-500 transition-colors">{svc.title}</h3>
                 <p className="text-neutral-500 text-sm leading-relaxed font-light">{svc.description}</p>
               </motion.div>
