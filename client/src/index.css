@@ -5,7 +5,8 @@
 @layer base {
   body {
     @apply bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 transition-colors duration-500 font-sans selection:bg-amber-500/30 overflow-x-hidden;
-    cursor: none; /* Hide default cursor for custom cursor */
+    cursor: none;
+    /* Hide default cursor for custom cursor */
   }
 }
 
@@ -35,14 +36,16 @@
   width: 300%;
   height: 300%;
   background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
-  opacity: 0.03; /* Slightly more subtle in light mode */
+  opacity: 0.03;
+  /* Slightly more subtle in light mode */
   pointer-events: none;
   z-index: 1000;
   animation: grain 8s steps(10) infinite;
 }
 
 .dark .film-grain {
-  opacity: 0.12; /* More pronounced in dark mode to hide digital flatness */
+  opacity: 0.12;
+  /* More pronounced in dark mode to hide digital flatness */
 }
 
 /* Film Scanlines Effect - Adaptive Opacity */
@@ -52,37 +55,65 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 50%,
-    rgba(0, 0, 0, 0.02) 50%
-  );
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0.02) 50%);
   background-size: 100% 4px;
   z-index: 999;
   pointer-events: none;
-  opacity: 0.05; /* Barely visible in light mode */
+  opacity: 0.05;
+  /* Barely visible in light mode */
 }
 
 .dark .scanlines {
-  background: linear-gradient(
-    to bottom,
-    rgba(18, 16, 16, 0) 50%,
-    rgba(0, 0, 0, 0.1) 50%
-  );
+  background: linear-gradient(to bottom,
+      rgba(18, 16, 16, 0) 50%,
+      rgba(0, 0, 0, 0.1) 50%);
   opacity: 0.2;
 }
 
 @keyframes grain {
-  0%, 100% { transform: translate(0, 0); }
-  10% { transform: translate(-5%, -10%); }
-  20% { transform: translate(-15%, 5%); }
-  30% { transform: translate(7%, -25%); }
-  40% { transform: translate(-5%, 25%); }
-  50% { transform: translate(-15%, 10%); }
-  60% { transform: translate(15%, 0%); }
-  70% { transform: translate(0%, 15%); }
-  80% { transform: translate(3%, 35%); }
-  90% { transform: translate(-10%, 10%); }
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  10% {
+    transform: translate(-5%, -10%);
+  }
+
+  20% {
+    transform: translate(-15%, 5%);
+  }
+
+  30% {
+    transform: translate(7%, -25%);
+  }
+
+  40% {
+    transform: translate(-5%, 25%);
+  }
+
+  50% {
+    transform: translate(-15%, 10%);
+  }
+
+  60% {
+    transform: translate(15%, 0%);
+  }
+
+  70% {
+    transform: translate(0%, 15%);
+  }
+
+  80% {
+    transform: translate(3%, 35%);
+  }
+
+  90% {
+    transform: translate(-10%, 10%);
+  }
 }
 
 /* Cinematic Typography & Glow Utilities */
@@ -95,7 +126,7 @@
 }
 
 .neon-border {
-  @apply border border-amber-500/50 shadow-[0_0_15px_rgba(251,191,36,0.2)];
+  @apply border border-amber-500/50 shadow-[0_0_15px_rgba(251, 191, 36, 0.2)];
 }
 
 /* Better theme-aware decorative text */
@@ -124,3 +155,187 @@
   @apply translate-y-0 opacity-100;
 }
 
+/* Shimmer animation for gradient text */
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 3s linear infinite;
+}
+
+/* Slow spin for decorative elements */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* Marquee scroll */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+
+/* Neon pulse glow */
+@keyframes neon-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.3), 0 0 30px rgba(251, 191, 36, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.6), 0 0 60px rgba(251, 191, 36, 0.2);
+  }
+}
+
+.neon-pulse {
+  animation: neon-pulse 2s ease-in-out infinite;
+}
+
+/* Glitch effect */
+@keyframes glitch-1 {
+
+  0%,
+  100% {
+    clip-path: inset(0 0 95% 0);
+    transform: translate(-2px, 0);
+  }
+
+  20% {
+    clip-path: inset(30% 0 50% 0);
+    transform: translate(2px, 0);
+  }
+
+  40% {
+    clip-path: inset(60% 0 20% 0);
+    transform: translate(-1px, 0);
+  }
+
+  60% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translate(1px, 0);
+  }
+
+  80% {
+    clip-path: inset(10% 0 80% 0);
+    transform: translate(-2px, 0);
+  }
+}
+
+@keyframes glitch-2 {
+
+  0%,
+  100% {
+    clip-path: inset(50% 0 30% 0);
+    transform: translate(2px, 0);
+  }
+
+  25% {
+    clip-path: inset(10% 0 70% 0);
+    transform: translate(-2px, 0);
+  }
+
+  50% {
+    clip-path: inset(70% 0 10% 0);
+    transform: translate(1px, 0);
+  }
+
+  75% {
+    clip-path: inset(20% 0 60% 0);
+    transform: translate(-1px, 0);
+  }
+}
+
+.glitch-text {
+  position: relative;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  color: rgba(251, 191, 36, 0.8);
+  animation: glitch-1 4s infinite;
+}
+
+.glitch-text::after {
+  color: rgba(234, 88, 12, 0.6);
+  animation: glitch-2 4s infinite;
+}
+
+/* Horizontal scroll ticker */
+.ticker-wrap {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-content {
+  display: inline-flex;
+  gap: 0;
+}
+
+/* Video card hover overlay */
+.video-card-overlay {
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      transparent 100%);
+}
+
+/* Cinematic line accent */
+.line-accent::before {
+  content: '';
+  display: inline-block;
+  width: 40px;
+  height: 2px;
+  background: #f59e0b;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+/* Progress bar animation */
+@keyframes progress-fill {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: var(--progress-width);
+  }
+}
+
+.progress-bar {
+  animation: progress-fill 1.5s ease-out forwards;
+}
