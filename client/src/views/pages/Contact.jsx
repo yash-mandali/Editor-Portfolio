@@ -27,11 +27,11 @@ const Contact = () => {
               <Terminal size={12} className="text-amber-500" />
               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-500">Secure_Channel</span>
             </div>
-            
-            <h1 className="text-5xl md:text-7xl font-black mb-10 text-white tracking-tighter leading-none">
-              READY TO <br /> <span className="text-white/20">ASSEMBLE?</span>
+
+            <h1 className="text-5xl md:text-7xl font-black mb-10 text-neutral-950 dark:text-white tracking-tighter leading-none">
+              READY TO <br /> <span className="text-neutral-900/10 dark:text-white/20">ASSEMBLE?</span>
             </h1>
-            
+
             <p className="text-neutral-500 dark:text-neutral-400 text-xl font-light leading-relaxed mb-20 max-w-lg transition-colors">
               Every masterpiece begins with a conversation. Let's discuss your project's architecture and emotional rhythm.
             </p>
@@ -97,7 +97,7 @@ const Contact = () => {
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-10" key="form">
                     {error && (
-                      <motion.div 
+                      <motion.div
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         className="p-4 bg-red-500/10 border border-red-500/20 text-red-500 text-xs font-bold uppercase tracking-widest text-center"
@@ -105,7 +105,7 @@ const Contact = () => {
                         {error}
                       </motion.div>
                     )}
-                    
+
                     <div className="grid md:grid-cols-2 gap-10">
                       <div className="space-y-4">
                         <label className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-400 dark:text-neutral-600 block transition-colors">Identitiy</label>
@@ -140,14 +140,14 @@ const Contact = () => {
                           name="projectType"
                           value={formData.projectType}
                           onChange={handleChange}
-                          className="w-full bg-transparent border-b border-black/10 dark:border-white/10 py-4 text-neutral-950 dark:text-white text-lg font-light focus:outline-none focus:border-amber-500 transition-all appearance-none cursor-pointer"
+                          className="w-full bg-white dark:bg-neutral-900 border-b border-black/10 dark:border-white/10 py-4 text-neutral-950 dark:text-white text-lg font-light focus:outline-none focus:border-amber-500 transition-all appearance-none cursor-pointer"
                         >
-                          <option value="" className="bg-neutral-900 border-none">Select Type</option>
-                          <option value="reels" className="bg-neutral-900">Premium Reels</option>
-                          <option value="youtube" className="bg-neutral-900">Cinematic YouTube</option>
-                          <option value="wedding" className="bg-neutral-900">Masterful Wedding</option>
-                          <option value="commercial" className="bg-neutral-900">Commercial/Brand</option>
-                          <option value="other" className="bg-neutral-900">Custom Sequence</option>
+                          <option value="" className="bg-white dark:bg-neutral-900">Select Type</option>
+                          <option value="reels" className="bg-white dark:bg-neutral-900">Premium Reels</option>
+                          <option value="youtube" className="bg-white dark:bg-neutral-900">Cinematic YouTube</option>
+                          <option value="wedding" className="bg-white dark:bg-neutral-900">Masterful Wedding</option>
+                          <option value="commercial" className="bg-white dark:bg-neutral-900">Commercial/Brand</option>
+                          <option value="other" className="bg-white dark:bg-neutral-900">Custom Sequence</option>
                         </select>
                       </div>
                       <div className="space-y-4">
@@ -156,13 +156,13 @@ const Contact = () => {
                           name="budget"
                           value={formData.budget}
                           onChange={handleChange}
-                          className="w-full bg-transparent border-b border-black/10 dark:border-white/10 py-4 text-neutral-950 dark:text-white text-lg font-light focus:outline-none focus:border-amber-500 transition-all appearance-none cursor-pointer"
+                          className="w-full bg-white dark:bg-neutral-900 border-b border-black/10 dark:border-white/10 py-4 text-neutral-950 dark:text-white text-lg font-light focus:outline-none focus:border-amber-500 transition-all appearance-none cursor-pointer"
                         >
-                          <option value="" className="bg-neutral-900">Select Budget</option>
-                          <option value="50-200" className="bg-neutral-900">$50 - $200</option>
-                          <option value="200-500" className="bg-neutral-900">$200 - $500</option>
-                          <option value="500-1000" className="bg-neutral-900">$500 - $1000</option>
-                          <option value="1000+" className="bg-neutral-900">$1000+</option>
+                          <option value="" className="bg-white dark:bg-neutral-900">Select Budget</option>
+                          <option value="50-200" className="bg-white dark:bg-neutral-900">$50 - $200</option>
+                          <option value="200-500" className="bg-white dark:bg-neutral-900">$200 - $500</option>
+                          <option value="500-1000" className="bg-white dark:bg-neutral-900">$500 - $1000</option>
+                          <option value="1000+" className="bg-white dark:bg-neutral-900">$1000+</option>
                         </select>
                       </div>
                     </div>

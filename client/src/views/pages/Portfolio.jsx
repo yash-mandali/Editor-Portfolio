@@ -39,15 +39,15 @@ const Portfolio = () => {
           >
             Archive
           </motion.div>
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             className="text-5xl md:text-7xl font-black mb-8 text-neutral-950 dark:text-white tracking-tighter transition-colors"
           >
-            SELECTED <span className="text-white/30">WORKS</span>
+            SELECTED <span className="text-neutral-900/10 dark:text-white/30">WORKS</span>
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -58,7 +58,7 @@ const Portfolio = () => {
         </div>
 
         {/* Filter Controls - Dashboard Style */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
@@ -105,7 +105,7 @@ const Portfolio = () => {
                 {/* Content */}
                 <div className="absolute inset-0 p-8 flex flex-col justify-end">
                   <div className="overflow-hidden mb-2">
-                    <motion.span 
+                    <motion.span
                       initial={{ y: "100%" }}
                       whileInView={{ y: 0 }}
                       className="inline-block text-amber-500 text-[10px] font-black uppercase tracking-[0.2em]"
@@ -113,15 +113,15 @@ const Portfolio = () => {
                       {item.category}
                     </motion.span>
                   </div>
-                  <h3 className="text-3xl font-black text-neutral-950 dark:text-white mb-6 tracking-tighter leading-none group-hover:translate-x-2 transition-all duration-500">
+                  <h3 className="text-3xl font-black text-white mb-6 tracking-tighter leading-none group-hover:translate-x-2 transition-all duration-500">
                     {item.title}
                   </h3>
-                  
+
                   <div className="flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                    <div className="w-10 h-10 rounded-full border border-black/20 dark:border-white/20 flex items-center justify-center text-neutral-950 dark:text-white group-hover:bg-amber-500 group-hover:text-black group-hover:border-amber-500 transition-all">
+                    <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white group-hover:bg-amber-500 group-hover:text-black group-hover:border-amber-500 transition-all">
                       <Play size={14} fill="currentColor" />
                     </div>
-                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-900 dark:text-white transition-colors">Project View</span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white transition-colors">Project View</span>
                   </div>
                 </div>
 
@@ -134,7 +134,7 @@ const Portfolio = () => {
         </motion.div>
 
         {filteredItems.length === 0 && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="text-center py-40 border border-dashed border-black/10 dark:border-white/10"

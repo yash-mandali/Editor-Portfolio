@@ -40,11 +40,11 @@ const Navbar = () => {
             className="flex items-center gap-3"
           >
             <div className="relative">
-                <img
-                  src={logo}
-                  alt="Logo"
-                  className="h-12 w-auto brightness-0 dark:invert transition-all duration-500 group-hover:drop-shadow-[0_0_10px_rgba(245,158,11,0.8)]"
-                />
+              <img
+                src={logo}
+                alt="Logo"
+                className="h-12 w-auto brightness-0 dark:invert transition-all duration-500 group-hover:drop-shadow-[0_0_10px_rgba(245,158,11,0.8)]"
+              />
             </div>
           </motion.div>
         </Link>
@@ -62,10 +62,10 @@ const Navbar = () => {
           ))}
 
           <div className="flex items-center gap-6 ml-4">
-             <ThemeToggle />
-             <Link to="/contact" className="relative px-8 py-3 bg-neutral-900 dark:bg-white text-white dark:text-black text-[10px] font-black uppercase tracking-[0.3em] hover:bg-amber-500 dark:hover:bg-amber-500 transition-colors overflow-hidden group">
-                <span className="relative z-10">Get In Touch</span>
-             </Link>
+            <ThemeToggle />
+            <Link to="/contact" className="relative px-8 py-3 bg-neutral-900 dark:bg-white text-white dark:text-black text-[10px] font-black uppercase tracking-[0.3em] hover:bg-amber-500 dark:hover:bg-amber-500 transition-colors overflow-hidden group">
+              <span className="relative z-10">Get In Touch</span>
+            </Link>
           </div>
         </div>
 
@@ -88,24 +88,24 @@ const Navbar = () => {
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             className="fixed inset-0 z-40 bg-white dark:bg-neutral-950 flex flex-col items-center justify-center gap-8"
           >
-             <button className="absolute top-8 right-8 text-neutral-900 dark:text-white p-2" onClick={() => setIsOpen(false)}>
-                <X size={32} />
-             </button>
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  className="text-3xl font-black uppercase tracking-[0.2em] text-neutral-400 dark:text-white/40 hover:text-amber-500 transition-colors"
-                >
-                  {link.name}
-                </Link>
-              ))}
+            <button className="absolute top-8 right-8 text-neutral-900 dark:text-white p-2" onClick={() => setIsOpen(false)}>
+              <X size={32} />
+            </button>
+            {navLinks.map((link) => (
               <Link
-                to="/contact"
-                className="text-3xl font-black uppercase tracking-[0.2em] text-amber-500"
+                key={link.name}
+                to={link.path}
+                className="text-3xl font-black uppercase tracking-[0.2em] text-neutral-400 dark:text-white/40 hover:text-amber-500 transition-colors"
               >
-                Hire Me
+                {link.name}
               </Link>
+            ))}
+            <Link
+              to="/contact"
+              className="text-3xl font-black uppercase tracking-[0.2em] text-amber-500"
+            >
+              Hire Me
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>
@@ -117,18 +117,18 @@ const Footer = () => {
   return (
     <footer className="bg-neutral-50 dark:bg-neutral-950 border-t border-black/5 dark:border-white/5 pt-32 pb-16 relative overflow-hidden transition-colors duration-500">
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
-         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-amber-500/10 dark:bg-amber-500/5 blur-[120px] rounded-full transition-colors" />
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-amber-500/10 dark:bg-amber-500/5 blur-[120px] rounded-full transition-colors" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-12 gap-20 mb-32">
           <div className="lg:col-span-5">
             <Link to="/" className="inline-block mb-10 group">
-                <img
-                  src={logo}
-                  alt="Logo"
-                  className="h-16 w-auto brightness-0 dark:invert opacity-80 group-hover:opacity-100 transition-all duration-500"
-                />
+              <img
+                src={logo}
+                alt="Logo"
+                className="h-16 w-auto brightness-0 dark:invert opacity-80 group-hover:opacity-100 transition-all duration-500"
+              />
             </Link>
             <p className="text-neutral-500 text-lg font-light leading-relaxed mb-10 max-w-sm">
               {PROFILE.tagline}. Orchestrating high-impact visual narratives for the modern digital landscape.
@@ -143,7 +143,7 @@ const Footer = () => {
                 <a
                   key={i}
                   href={social.url}
-                  className="text-neutral-400 dark:text-neutral-700 hover:text-amber-500 transition-all duration-300 transform hover:-translate-y-1"
+                  className="text-neutral-400 dark:text-neutral-400 hover:text-amber-500 transition-all duration-300 transform hover:-translate-y-1"
                 >
                   <social.icon size={20} />
                 </a>
@@ -177,10 +177,10 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-                <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-900 dark:text-white mb-8 transition-colors">Direct</h4>
-                <a href={`mailto:${PROFILE.email}`} className="text-neutral-500 text-sm hover:text-amber-500 transition-colors break-all">
-                    {PROFILE.email}
-                </a>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-900 dark:text-white mb-8 transition-colors">Direct</h4>
+              <a href={`mailto:${PROFILE.email}`} className="text-neutral-500 text-sm hover:text-amber-500 transition-colors break-all">
+                {PROFILE.email}
+              </a>
             </div>
           </div>
         </div>
@@ -224,12 +224,12 @@ export const Layout = ({ children }) => {
       {/* Cinematic Overlays */}
       <div className="film-grain" />
       <div className="scanlines" />
-      
+
       {/* Custom Cursor */}
       <CustomCursor />
 
       <Navbar />
-      
+
       <AnimatePresence mode="wait">
         {showLoader && <Loader />}
       </AnimatePresence>

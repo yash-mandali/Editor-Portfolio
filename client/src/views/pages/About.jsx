@@ -27,7 +27,7 @@ const About = () => {
             <div className="absolute -inset-4 border border-black/5 dark:border-amber-500/20 group-hover:border-amber-500/40 transition-colors" />
             <div className="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-amber-500" />
             <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-amber-500" />
-            
+
             <div className="relative aspect-[4/5] overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 transition-colors">
               <img
                 src={logoGif}
@@ -48,11 +48,11 @@ const About = () => {
               <Terminal size={12} className="text-amber-500" />
               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-500">System.Identity</span>
             </div>
-            
+
             <h1 className="text-5xl md:text-7xl font-black mb-8 text-neutral-950 dark:text-white tracking-tighter leading-none transition-colors">
-              THE MAN <br /> <span className="text-neutral-900/10 dark:text-white/20 transition-colors">BEHIND THE EDIT</span>
+              THE MAN <br /> <span className="text-neutral-400/40 dark:text-white/20 transition-colors">BEHIND THE EDIT</span>
             </h1>
-            
+
             <div className="space-y-6 text-neutral-500 dark:text-neutral-400 text-lg font-light leading-relaxed mb-12 max-w-xl transition-colors">
               <p>
                 I am <span className="text-neutral-950 dark:text-white font-bold transition-colors">{PROFILE.name}</span>, a post-production specialist dedicated to the art of cinematic storytelling. I don't just assemble clips; I architect emotional journeys.
@@ -102,7 +102,7 @@ const About = () => {
         <section className="mb-40">
           <div className="text-center mb-24">
             <h2 className="text-4xl md:text-6xl font-black text-neutral-950 dark:text-white tracking-tighter mb-4 transition-colors">
-              TECH <span className="text-neutral-900/10 dark:text-white/20 transition-colors">STACK</span>
+              TECH <span className="text-neutral-400/40 dark:text-white/20 transition-colors">STACK</span>
             </h2>
             <div className="w-12 h-[2px] bg-amber-500 mx-auto" />
           </div>
@@ -131,10 +131,10 @@ const About = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-center bg-neutral-900 dark:bg-white/5 p-20 border border-black/5 dark:border-white/5 relative overflow-hidden transition-colors"
+          className="text-center bg-neutral-900 dark:bg-neutral-900 p-20 border border-neutral-800 relative overflow-hidden transition-colors"
         >
-          <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity">
-            <Disc className="w-full h-full scale-150 animate-spin-slow text-white dark:text-current" />
+          <div className="absolute inset-0 opacity-5 transition-opacity">
+            <Disc className="w-full h-full scale-150 animate-spin-slow text-white" />
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-white mb-8 tracking-tighter uppercase relative z-10">
             Let's create something <br /> <span className="text-amber-500">unforgettable.</span>

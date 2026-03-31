@@ -52,19 +52,19 @@ const Services = () => {
             <motion.div
               key={service.id}
               variants={cardVariants}
-              className="bg-white dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 p-8 rounded-2xl hover:border-amber-500/30 transition-all group shadow-sm hover:shadow-md"
+              className="relative bg-white dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 p-8 rounded-2xl hover:border-amber-500/30 transition-all group shadow-sm hover:shadow-md overflow-hidden"
             >
               <div className="absolute top-0 right-0 p-6 opacity-[0.03] group-hover:opacity-10 transition-opacity">
                 <service.icon size={120} />
               </div>
-              
+
               <div className="w-14 h-14 rounded-none bg-neutral-900 dark:bg-white flex items-center justify-center text-white dark:text-black mb-10 group-hover:bg-amber-500 group-hover:text-black transition-all duration-500">
                 <service.icon size={24} />
               </div>
-              
+
               <h3 className="text-3xl font-black mb-4 text-neutral-950 dark:text-white tracking-tighter transition-colors uppercase">{service.title}</h3>
               <p className="text-neutral-500 dark:text-neutral-400 mb-10 leading-relaxed font-light transition-colors">{service.description}</p>
-              
+
               <div className="pt-8 border-t border-black/5 dark:border-neutral-800">
                 <Link to="/contact" className="inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.3em] text-neutral-950 dark:text-white hover:text-amber-500 dark:hover:text-amber-500 transition-all">
                   Initiate Booking <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
