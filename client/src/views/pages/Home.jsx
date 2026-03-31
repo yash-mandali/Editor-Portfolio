@@ -25,16 +25,16 @@ const Home = () => {
   const springScrollY = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   return (
-    <div ref={containerRef} className="bg-neutral-950 selection:bg-amber-500/30 overflow-x-hidden">
+    <div ref={containerRef} className="bg-white dark:bg-neutral-950 selection:bg-amber-500/30 overflow-x-hidden transition-colors duration-500">
       <VideoModal
         isOpen={!!selectedVideo}
         onClose={() => setSelectedVideo(null)}
         videoUrl={selectedVideo}
       />
 
-      {/* Cinematic Hero Section */}
+      {/* Cinematic Hero Section - Remains Dark for Impact */}
       <motion.section
-        className="relative h-screen flex items-center justify-center overflow-hidden"
+        className="relative h-screen flex items-center justify-center overflow-hidden bg-neutral-950"
         style={{ scale: heroScale }}
       >
         <HeroVideo className="z-0" />
@@ -137,14 +137,14 @@ const Home = () => {
       </motion.section>
 
       {/* Showreel Transition Section */}
-      <section className="relative py-24 bg-neutral-950 border-y border-white/5">
+      <section className="relative py-24 bg-white dark:bg-neutral-950 border-y border-black/5 dark:border-white/5 transition-colors duration-500">
         <div className="container mx-auto px-6 overflow-hidden">
           <motion.div 
             className="flex gap-12 whitespace-nowrap"
             style={{ x: useTransform(springScrollY, [0, 1], [0, -1000]) }}
           >
             {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="text-7xl md:text-9xl font-black text-white/5 tracking-tighter uppercase">
+              <div key={i} className="text-7xl md:text-9xl font-black text-neutral-100 dark:text-white/5 tracking-tighter uppercase transition-colors">
                 Cinematic • Dynamic • Impactful • Professional • Creative •
               </div>
             ))}
@@ -169,9 +169,9 @@ const Home = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-4xl md:text-6xl font-black text-white leading-none tracking-tighter"
+                className="text-4xl md:text-6xl font-black text-neutral-950 dark:text-white leading-none tracking-tighter transition-colors"
               >
-                THE ART OF <br /> <span className="text-white/40">VISUAL STORYTELLING</span>
+                THE ART OF <br /> <span className="text-neutral-300 dark:text-white/40 transition-colors">VISUAL STORYTELLING</span>
               </motion.h2>
             </div>
           </div>
@@ -189,12 +189,12 @@ const Home = () => {
               >
                 <div className="absolute -inset-4 bg-amber-500/0 group-hover:bg-amber-500/5 rounded-3xl transition-all duration-500" />
                 <div className="relative z-10">
-                  <div className="w-16 h-16 mb-8 border border-white/10 flex items-center justify-center group-hover:border-amber-500 transition-colors">
-                    <item.icon size={24} className="text-white group-hover:text-amber-500 transition-colors" />
+                  <div className="w-16 h-16 mb-8 border border-black/5 dark:border-white/10 flex items-center justify-center group-hover:border-amber-500 transition-colors">
+                    <item.icon size={24} className="text-neutral-900 dark:text-white group-hover:text-amber-500 transition-colors" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">{item.title}</h3>
+                  <h3 className="text-2xl font-bold text-neutral-950 dark:text-white mb-4 tracking-tight transition-colors">{item.title}</h3>
                   <div className="w-8 h-[2px] bg-amber-500 mb-6 group-hover:w-full transition-all duration-500" />
-                  <p className="text-neutral-400 leading-relaxed font-light">{item.description}</p>
+                  <p className="text-neutral-500 dark:text-neutral-400 leading-relaxed font-light transition-colors">{item.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -203,17 +203,17 @@ const Home = () => {
       </section>
 
       {/* Latest Projects Section */}
-      <section className="py-32 bg-neutral-900/50 relative overflow-hidden">
+      <section className="py-32 bg-neutral-50 dark:bg-neutral-900/50 relative overflow-hidden transition-colors duration-500">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-500/20 rounded-full blur-[120px]" />
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="flex justify-between items-end mb-24">
-            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter">
+            <h2 className="text-4xl md:text-6xl font-black text-neutral-950 dark:text-white tracking-tighter transition-colors">
               FEATURED <br /> <span className="text-amber-500">PROJECTS</span>
             </h2>
-            <Link to="/portfolio" className="group flex items-center gap-3 text-white/50 hover:text-white transition-colors uppercase tracking-[0.3em] text-xs font-bold">
+            <Link to="/portfolio" className="group flex items-center gap-3 text-neutral-400 dark:text-white/50 hover:text-neutral-900 dark:hover:text-white transition-colors uppercase tracking-[0.3em] text-xs font-bold">
               View All <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
             </Link>
           </div>
@@ -249,7 +249,7 @@ const Home = () => {
                whileTap={{ scale: 0.95 }}
                className="inline-block"
             >
-              <Link to="/contact" className="relative px-16 py-6 bg-white text-black font-black uppercase tracking-[0.4em] text-sm hover:bg-amber-500 transition-colors shadow-2xl">
+              <Link to="/contact" className="relative px-16 py-6 bg-white dark:bg-neutral-900 text-neutral-950 dark:text-white font-black uppercase tracking-[0.4em] text-sm hover:bg-amber-500 dark:hover:bg-amber-500 transition-all shadow-2xl">
                 Start Your Project
               </Link>
             </motion.div>
