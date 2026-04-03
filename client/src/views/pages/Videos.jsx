@@ -34,44 +34,52 @@ const Videos = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.95 }}
                             transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                            onClick={() => setSelectedVideo(item)}
-                            className="group relative aspect-video cursor-pointer overflow-hidden bg-neutral-900 border border-white/5 hover:border-cyan-400/40 transition-all duration-700 shadow-2xl"
+                            className="group flex flex-col"
                         >
-                            <img
-                                loading="lazy"
-                                src={item.image}
-                                alt={item.title}
-                                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-50 group-hover:opacity-90 transition-opacity"
-                            />
+                            <div
+                                onClick={() => setSelectedVideo(item)}
+                                className="relative aspect-video cursor-pointer overflow-hidden bg-neutral-900 border border-white/5 hover:border-cyan-400/40 transition-all duration-700 shadow-2xl mb-6"
+                            >
+                                <img
+                                    loading="lazy"
+                                    src={item.image}
+                                    alt={item.title}
+                                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-50 group-hover:opacity-90 transition-opacity"
+                                />
 
-                            {/* Cinematic Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-90 group-hover:opacity-60 transition-opacity duration-700" />
+                                {/* Cinematic Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/60 to-transparent opacity-90 group-hover:opacity-60 transition-opacity duration-700" />
 
-                            {/* Dashboard Corner Elements */}
-                            <div className="absolute top-4 right-4 text-[8px] font-black tracking-[0.2em] text-white/20 group-hover:text-cyan-400 transition-colors uppercase">
-                                REF-{(index + 1).toString().padStart(3, '0')}
+                                {/* Play Icon Center */}
+                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-90 group-hover:scale-100">
+                                    <div className="w-14 h-14 rounded-full border border-cyan-400/30 bg-cyan-400/10 flex items-center justify-center text-cyan-400 backdrop-blur-sm">
+                                        <Play size={20} fill="currentColor" />
+                                    </div>
+                                </div>
+
+                                {/* Stylistic Viewfinder Lines */}
+                                <div className="absolute inset-4 border border-white/5 group-hover:border-cyan-400/20 transition-colors pointer-events-none" />
                             </div>
 
-                            <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                                <div className="overflow-hidden mb-1">
-                                    <motion.span
-                                        className="inline-block text-cyan-400 text-[8px] font-black uppercase tracking-[0.4em] mb-2"
-                                    >
+                            {/* Content Below */}
+                            <div className="px-2">
+                                <div className="flex justify-between items-center mb-2">
+                                    <span className="text-cyan-400 text-[8px] font-black uppercase tracking-[0.4em]">
                                         {item.category}
-                                    </motion.span>
+                                    </span>
+                                    <span className="text-[8px] font-black tracking-[0.2em] text-white/20 uppercase">
+                                        REF-{(index + 1).toString().padStart(3, '0')}
+                                    </span>
                                 </div>
-                                <h3 className="text-2xl font-black text-white mb-4 tracking-tighter leading-none group-hover:translate-x-2 transition-all duration-500 uppercase">
+                                <h3 className="text-xl font-black text-white mb-4 tracking-tighter leading-none group-hover:text-cyan-400 transition-all duration-500 uppercase">
                                     {item.title}
                                 </h3>
 
-                                <div className="flex items-center gap-4 text-white/50 text-[8px] font-black uppercase tracking-[0.4em] transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                                <div className="flex items-center gap-4 text-white/50 text-[8px] font-black uppercase tracking-[0.4em] opacity-40 group-hover:opacity-100 transition-all duration-500">
                                     <Play size={10} fill="currentColor" />
                                     <span>Initiate Playback</span>
                                 </div>
                             </div>
-
-                            {/* Stylistic Viewfinder Lines */}
-                            <div className="absolute inset-4 border border-white/5 group-hover:border-cyan-400/20 transition-colors pointer-events-none" />
                         </motion.div>
                     ))}
                 </AnimatePresence>

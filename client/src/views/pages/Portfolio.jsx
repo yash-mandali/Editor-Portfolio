@@ -89,21 +89,36 @@ const Portfolio = () => {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.6, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
                 key={item._id || item.id}
-                onClick={() => setSelectedVideo(item)}
-                className="group relative aspect-video cursor-pointer overflow-hidden bg-neutral-900 border border-white/5 hover:border-cyan-400/40 transition-all duration-700"
+                className="group flex flex-col"
               >
-                <img
-                  loading="lazy"
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-90 transition-opacity"
-                />
+                <div
+                  onClick={() => setSelectedVideo(item)}
+                  className="relative aspect-video cursor-pointer overflow-hidden bg-neutral-900 border border-white/5 hover:border-cyan-400/40 transition-all duration-700 mb-6"
+                >
+                  <img
+                    loading="lazy"
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-90 transition-opacity"
+                  />
 
-                {/* Cinematic Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-700" />
+                  {/* Cinematic Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/40 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-700" />
 
-                {/* Content */}
-                <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                  {/* Play Icon Center */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-90 group-hover:scale-100">
+                    <div className="w-14 h-14 rounded-full border border-cyan-400/30 bg-cyan-400/10 flex items-center justify-center text-cyan-400 backdrop-blur-sm">
+                      <Play size={20} fill="currentColor" />
+                    </div>
+                  </div>
+
+                  {/* Aesthetic Accents */}
+                  <div className="absolute top-4 left-4 w-6 h-[1px] bg-white/20 group-hover:bg-cyan-400/50 transition-colors" />
+                  <div className="absolute top-4 left-4 w-[1px] h-6 bg-white/20 group-hover:bg-cyan-400/50 transition-colors" />
+                </div>
+
+                {/* Content Below */}
+                <div className="px-2">
                   <div className="overflow-hidden mb-2">
                     <motion.span
                       initial={{ y: "100%" }}
@@ -113,21 +128,14 @@ const Portfolio = () => {
                       {item.category}
                     </motion.span>
                   </div>
-                  <h3 className="text-3xl font-black text-white mb-6 tracking-tighter leading-none group-hover:translate-x-2 transition-all duration-500">
+                  <h3 className="text-2xl font-black text-white mb-2 tracking-tighter leading-none group-hover:text-cyan-400 transition-colors duration-500 uppercase">
                     {item.title}
                   </h3>
-
-                  <div className="flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                    <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white group-hover:bg-cyan-400 group-hover:text-black group-hover:border-cyan-400 transition-all">
-                      <Play size={14} fill="currentColor" />
-                    </div>
-                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white transition-colors">Project View</span>
+                  <div className="flex items-center gap-2 opacity-40 group-hover:opacity-100 transition-all duration-500">
+                    <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white">View Project</span>
+                    <div className="w-4 h-[1px] bg-white/30 group-hover:bg-cyan-400 transition-colors" />
                   </div>
                 </div>
-
-                {/* Aesthetic Accents */}
-                <div className="absolute top-6 left-6 w-8 h-[1px] bg-white/20 group-hover:bg-cyan-400/50 transition-colors" />
-                <div className="absolute top-6 left-6 w-[1px] h-8 bg-white/20 group-hover:bg-cyan-400/50 transition-colors" />
               </motion.div>
             ))}
           </AnimatePresence>
