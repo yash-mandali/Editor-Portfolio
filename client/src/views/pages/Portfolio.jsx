@@ -91,7 +91,18 @@ const Portfolio = () => {
                 key={item._id || item.id}
                 className="group flex flex-col"
               >
-                <div
+                <motion.div
+                  whileHover={{ 
+                    rotateX: -10, 
+                    rotateY: 10, 
+                    z: 50,
+                  }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 300, 
+                    damping: 20 
+                  }}
+                  style={{ transformStyle: "preserve-3d" }}
                   onClick={() => setSelectedVideo(item)}
                   className="relative aspect-video cursor-pointer overflow-hidden bg-neutral-900 border border-white/5 hover:border-cyan-400/40 transition-all duration-700 mb-6"
                 >
@@ -107,7 +118,10 @@ const Portfolio = () => {
 
                   {/* Play Icon Center */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-90 group-hover:scale-100">
-                    <div className="w-14 h-14 rounded-full border border-cyan-400/30 bg-cyan-400/10 flex items-center justify-center text-cyan-400 backdrop-blur-sm">
+                    <div 
+                        style={{ transform: "translateZ(80px)" }}
+                        className="w-14 h-14 rounded-full border border-cyan-400/30 bg-cyan-400/10 flex items-center justify-center text-cyan-400 backdrop-blur-sm"
+                    >
                       <Play size={20} fill="currentColor" />
                     </div>
                   </div>
@@ -115,7 +129,7 @@ const Portfolio = () => {
                   {/* Aesthetic Accents */}
                   <div className="absolute top-4 left-4 w-6 h-[1px] bg-white/20 group-hover:bg-cyan-400/50 transition-colors" />
                   <div className="absolute top-4 left-4 w-[1px] h-6 bg-white/20 group-hover:bg-cyan-400/50 transition-colors" />
-                </div>
+                </motion.div>
 
                 {/* Content Below */}
                 <div className="px-2">

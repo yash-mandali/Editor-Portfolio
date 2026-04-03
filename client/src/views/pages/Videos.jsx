@@ -36,7 +36,18 @@ const Videos = () => {
                             transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
                             className="group flex flex-col"
                         >
-                            <div
+                            <motion.div
+                                whileHover={{ 
+                                    rotateX: -10, 
+                                    rotateY: 10, 
+                                    z: 50,
+                                }}
+                                transition={{ 
+                                    type: "spring", 
+                                    stiffness: 300, 
+                                    damping: 20 
+                                }}
+                                style={{ transformStyle: "preserve-3d" }}
                                 onClick={() => setSelectedVideo(item)}
                                 className="relative aspect-video cursor-pointer overflow-hidden bg-neutral-900 border border-white/5 hover:border-cyan-400/40 transition-all duration-700 shadow-2xl mb-6"
                             >
@@ -52,14 +63,17 @@ const Videos = () => {
 
                                 {/* Play Icon Center */}
                                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-90 group-hover:scale-100">
-                                    <div className="w-14 h-14 rounded-full border border-cyan-400/30 bg-cyan-400/10 flex items-center justify-center text-cyan-400 backdrop-blur-sm">
+                                    <div 
+                                        style={{ transform: "translateZ(80px)" }}
+                                        className="w-14 h-14 rounded-full border border-cyan-400/30 bg-cyan-400/10 flex items-center justify-center text-cyan-400 backdrop-blur-sm"
+                                    >
                                         <Play size={20} fill="currentColor" />
                                     </div>
                                 </div>
 
                                 {/* Stylistic Viewfinder Lines */}
                                 <div className="absolute inset-4 border border-white/5 group-hover:border-cyan-400/20 transition-colors pointer-events-none" />
-                            </div>
+                            </motion.div>
 
                             {/* Content Below */}
                             <div className="px-2">
