@@ -398,8 +398,17 @@ const Home = () => {
       ══════════════════════════════════════════ */}
       <section className="relative py-48 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-[#0a0a0f]/88 z-10" />
-          <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=2070&auto=format&fit=crop" alt="VFX" className="w-full h-full object-cover" />
+          {/* Image — slightly desaturated so it doesn't compete */}
+          <img
+            src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=2070&auto=format&fit=crop"
+            alt="VFX"
+            className="w-full h-full object-cover"
+            style={{ filter: 'saturate(0.6) brightness(0.55)' }}
+          />
+          {/* Multi-layer overlay: dark base + bottom fade so text sits cleanly */}
+          <div className="absolute inset-0 bg-[#0a0a0f]/55" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/80 via-transparent to-[#0a0a0f]/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f]/30 via-transparent to-[#0a0a0f]/60" />
         </div>
 
         {/* Animated scan line */}
@@ -422,7 +431,7 @@ const Home = () => {
             transition={{ duration: 1 }}
           >
             <motion.p
-              className="text-[10px] font-black tracking-[0.55em] uppercase text-[#00d4ff]/55 mb-6"
+              className="text-[10px] font-black tracking-[0.55em] uppercase text-[#00d4ff]/80 mb-6"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -431,9 +440,16 @@ const Home = () => {
               Ready to collaborate?
             </motion.p>
 
-            <h2 className="text-6xl md:text-9xl font-black text-white tracking-tighter mb-14 leading-none">
+            <h2 className="text-6xl md:text-9xl font-black text-white tracking-tighter mb-14 leading-none"
+              style={{ textShadow: '0 2px 40px rgba(0,0,0,0.8)' }}>
               READY TO <br />
-              <span className="text-transparent" style={{ WebkitTextStroke: '1px rgba(0,212,255,0.45)' }}>GO VIRAL?</span>
+              <span
+                className="text-transparent"
+                style={{
+                  WebkitTextStroke: '2px rgba(0,212,255,0.85)',
+                  textShadow: '0 0 60px rgba(0,212,255,0.35)',
+                }}
+              >GO VIRAL?</span>
             </h2>
 
             <MagneticBtn
