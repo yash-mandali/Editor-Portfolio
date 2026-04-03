@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Instagram, Youtube, Linkedin, Mail, Disc } from 'lucide-react';
+import { Menu, Instagram, Youtube, Linkedin, Mail, Disc } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PROFILE } from '../../models/data';
 // ThemeToggle removed for cinematic dark-only experience
@@ -19,9 +19,14 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close on route change
+  useEffect(() => { setIsOpen(false); }, [location]);
+
+  // Lock body scroll when menu open
   useEffect(() => {
-    setIsOpen(false);
-  }, [location]);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -31,83 +36,164 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-700 ${scrolled ? 'bg-neutral-950/90 backdrop-blur-xl py-4 border-b border-white/5 shadow-sm' : 'bg-transparent py-8'}`}>
-      <div className="container mx-auto px-6 flex justify-between items-center">
-        <Link to="/" className="relative group">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="flex items-center gap-3"
-          >
-            <div className="relative">
+    <>
+      <nav className={`fixed w-full z-50 transition-all duration-700 ${scrolled ? 'bg-[#0a0a0f]/95 backdrop-blur-xl py-4 border-b border-white/5 shadow-sm' : 'bg-transparent py-8'}`}>
+        <div className="container mx-auto px-6 flex justify-between items-center">
+          {/* Logo */}
+          <Link to="/" className="relative group z-50">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-3">
               <img
                 src={logo}
                 alt="Logo"
-                className="h-12 w-auto invert drop-shadow-[0_0_10px_rgba(0,212,255,0.4)] transition-all duration-500 group-hover:drop-shadow-[0_0_15px_rgba(0,212,255,0.7)]"
+                className="h-10 w-auto invert drop-shadow-[0_0_10px_rgba(0,212,255,0.4)] transition-all duration-500 group-hover:drop-shadow-[0_0_15px_rgba(0,212,255,0.7)]"
               />
-            </div>
-          </motion.div>
-        </Link>
+            </motion.div>
+          </Link>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-10">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              className={`text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-300 hover:text-cyan-400 ${location.pathname === link.path ? 'text-cyan-400' : 'text-neutral-500'}`}
-            >
-              {link.name}
-            </Link>
-          ))}
-
-          <div className="flex items-center gap-6 ml-4">
-            <Link to="/contact" className="relative px-8 py-3 bg-white text-black text-[10px] font-black uppercase tracking-[0.3em] hover:bg-cyan-500 transition-colors overflow-hidden group">
-              <span className="relative z-10">Get In Touch</span>
-            </Link>
-          </div>
-        </div>
-
-        {/* Mobile Toggle */}
-        <div className="md:hidden flex items-center gap-6">
-          <button className="text-white p-2" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-40 bg-neutral-950 flex flex-col items-center justify-center gap-8"
-          >
-            <button className="absolute top-8 right-8 text-white p-2" onClick={() => setIsOpen(false)}>
-              <X size={32} />
-            </button>
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
-                className="text-3xl font-black uppercase tracking-[0.2em] text-white/60 hover:text-cyan-400 transition-colors"
+                className={`text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-300 hover:text-[#00d4ff] ${location.pathname === link.path ? 'text-[#00d4ff]' : 'text-neutral-400'}`}
               >
                 {link.name}
               </Link>
             ))}
             <Link
               to="/contact"
-              className="text-3xl font-black uppercase tracking-[0.2em] text-cyan-400"
+              className="px-8 py-3 text-black text-[10px] font-black uppercase tracking-[0.3em] transition-colors overflow-hidden"
+              style={{ background: '#00d4ff' }}
+              onMouseEnter={e => e.currentTarget.style.background = '#a78bfa'}
+              onMouseLeave={e => e.currentTarget.style.background = '#00d4ff'}
             >
-              Hire Me
+              Get In Touch
             </Link>
+          </div>
+
+          {/* Mobile hamburger — always on top */}
+          <button
+            className="md:hidden relative z-[60] flex flex-col justify-center items-center w-10 h-10 gap-[5px]"
+            onClick={() => setIsOpen(prev => !prev)}
+            aria-label="Toggle menu"
+          >
+            <motion.span
+              animate={isOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+              transition={{ duration: 0.25 }}
+              className="block w-6 h-[2px] bg-white origin-center"
+            />
+            <motion.span
+              animate={isOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+              transition={{ duration: 0.2 }}
+              className="block w-6 h-[2px] bg-white origin-center"
+            />
+            <motion.span
+              animate={isOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+              transition={{ duration: 0.25 }}
+              className="block w-6 h-[2px] bg-white origin-center"
+            />
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Menu — full-screen overlay, z-[55] so it's above content but below hamburger */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+            animate={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
+            exit={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-[55] flex flex-col"
+            style={{ background: '#0a0a0f' }}
+          >
+            {/* Ambient glow */}
+            <div className="absolute inset-0 pointer-events-none"
+              style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 30%, rgba(0,212,255,0.07) 0%, transparent 70%)' }} />
+
+            {/* Scan line */}
+            <motion.div
+              className="absolute left-0 w-full h-[1px] pointer-events-none"
+              style={{ background: 'linear-gradient(90deg, transparent, rgba(0,212,255,0.4), transparent)' }}
+              animate={{ top: ['0%', '100%'] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+            />
+
+            {/* Nav links — centered */}
+            <div className="flex-1 flex flex-col items-center justify-center gap-2 px-8 relative z-10">
+              {/* Index numbers + links */}
+              {navLinks.map((link, i) => (
+                <motion.div
+                  key={link.name}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 + i * 0.07, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  className="w-full max-w-xs"
+                >
+                  <Link
+                    to={link.path}
+                    onClick={() => setIsOpen(false)}
+                    className="group flex items-center gap-4 py-4 border-b border-white/[0.06] w-full"
+                  >
+                    <span className="text-[11px] font-black text-[#00d4ff]/40 tabular-nums w-6">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span
+                      className={`text-2xl font-black uppercase tracking-[0.15em] transition-colors duration-200 ${location.pathname === link.path
+                        ? 'text-[#00d4ff]'
+                        : 'text-white group-hover:text-[#00d4ff]'
+                        }`}
+                    >
+                      {link.name}
+                    </span>
+                    {location.pathname === link.path && (
+                      <span className="ml-auto w-1.5 h-1.5 rounded-full bg-[#00d4ff]" />
+                    )}
+                  </Link>
+                </motion.div>
+              ))}
+
+              {/* CTA */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.42, duration: 0.45 }}
+                className="w-full max-w-xs mt-6"
+              >
+                <Link
+                  to="/contact"
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center justify-center w-full py-4 text-black font-black uppercase tracking-[0.3em] text-sm"
+                  style={{ background: '#00d4ff', boxShadow: '0 0 30px rgba(0,212,255,0.3)' }}
+                >
+                  Hire Me
+                </Link>
+              </motion.div>
+            </div>
+
+            {/* Bottom socials strip */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="relative z-10 flex items-center justify-center gap-8 pb-10 pt-4 border-t border-white/[0.06]"
+            >
+              {[
+                { icon: Instagram, url: PROFILE.socials.instagram },
+                { icon: Youtube, url: PROFILE.socials.youtube },
+                { icon: Linkedin, url: PROFILE.socials.linkedin },
+                { icon: Mail, url: `mailto:${PROFILE.email}` },
+              ].map((s, i) => (
+                <a key={i} href={s.url} className="text-neutral-500 hover:text-[#00d4ff] transition-colors">
+                  <s.icon size={18} />
+                </a>
+              ))}
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 };
 
