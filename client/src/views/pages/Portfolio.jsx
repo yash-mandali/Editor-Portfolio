@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Filter } from 'lucide-react';
+import { Play } from 'lucide-react';
 import { usePortfolioController } from '../../controllers/usePortfolioController';
 import VideoModal from '../components/VideoModal';
 
@@ -92,15 +92,15 @@ const Portfolio = () => {
                 className="group flex flex-col"
               >
                 <motion.div
-                  whileHover={{ 
-                    rotateX: -10, 
-                    rotateY: 10, 
+                  whileHover={{
+                    rotateX: -10,
+                    rotateY: 10,
                     z: 50,
                   }}
-                  transition={{ 
-                    type: "spring", 
-                    stiffness: 300, 
-                    damping: 20 
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 20
                   }}
                   style={{ transformStyle: "preserve-3d" }}
                   onClick={() => setSelectedVideo(item)}
@@ -118,9 +118,9 @@ const Portfolio = () => {
 
                   {/* Play Icon Center */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-90 group-hover:scale-100">
-                    <div 
-                        style={{ transform: "translateZ(80px)" }}
-                        className="w-14 h-14 rounded-full border border-cyan-400/30 bg-cyan-400/10 flex items-center justify-center text-cyan-400 backdrop-blur-sm"
+                    <div
+                      style={{ transform: "translateZ(80px)" }}
+                      className="w-14 h-14 rounded-full border border-cyan-400/30 bg-cyan-400/10 flex items-center justify-center text-cyan-400 backdrop-blur-sm"
                     >
                       <Play size={20} fill="currentColor" />
                     </div>

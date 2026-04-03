@@ -19,12 +19,6 @@ export const PROFILE = {
   }
 };
 
-export const TOOLS = [
-  { name: "Adobe Premiere Pro", level: "Expert" },
-  { name: "Adobe After Effects", level: "Advanced" },
-  { name: "CapCut Pro", level: "Expert" },
-  { name: "DaVinci Resolve", level: "Intermediate" }
-];
 
 export const EXPERIENCE = [
   {

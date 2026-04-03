@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
 
 const CustomCursor = () => {
     const [isHovering, setIsHovering] = useState(false);
     const [cursorText, setCursorText] = useState('');
-    const [isPointer, setIsPointer] = useState(false);
 
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
@@ -23,8 +22,6 @@ const CustomCursor = () => {
             const target = e.target;
             const isClickable = target.closest('a, button, [role="button"], .cursor-pointer');
             const isVideo = target.closest('.group.relative.aspect-video, .video-hover');
-            
-            setIsPointer(!!isClickable);
 
             if (isVideo) {
                 setIsHovering(true);
@@ -63,7 +60,7 @@ const CustomCursor = () => {
             >
                 {cursorText}
             </motion.div>
-            
+
             {/* Inner Precision Dot */}
             <motion.div
                 className="fixed top-0 left-0 w-1.5 h-1.5 bg-cyan-400 rounded-full"

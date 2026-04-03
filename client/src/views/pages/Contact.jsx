@@ -1,4 +1,3 @@
-import React from 'react';
 import { Mail, MessageCircle, MapPin, Send, Loader2, Sparkles, Terminal } from 'lucide-react';
 import { useContactController } from '../../controllers/useContactController';
 import { PROFILE } from '../../models/data';

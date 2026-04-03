@@ -4,21 +4,17 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
 
-  optimizeDeps: {
-    exclude: ['lucide-react'],
-  },
-
   build: {
-    // Enable code splitting for better caching
     rollupOptions: {
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'animation': ['framer-motion'],
+          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
         },
       },
     },
-    // Use default minification
     minify: 'esbuild',
+    chunkSizeWarningLimit: 600,
   },
 });
