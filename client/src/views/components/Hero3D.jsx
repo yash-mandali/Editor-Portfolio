@@ -1,88 +1,83 @@
-import React, { useRef } from 'react';
+import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Sphere, Box, Torus } from '@react-three/drei';
 import * as THREE from 'three';
 
-function FloatingSphere() {
-    const meshRef = useRef();
+/* ── Floating particle field — GPU-friendly points geometry ── */
+function ParticleField() {
+    const ref = useRef();
+    const count = 120;
 
-    useFrame((state) => {
-        meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime) * 0.5;
-        meshRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.7) * 0.3;
-        meshRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.8) * 0.2;
+    const positions = useMemo(() => {
+        const arr = new Float32Array(count * 3);
+        for (let i = 0; i < count; i++) {
+            arr[i * 3] = (Math.random() - 0.5) * 14;
+            arr[i * 3 + 1] = (Math.random() - 0.5) * 10;
+            arr[i * 3 + 2] = (Math.random() - 0.5) * 6 - 2;
+        }
+        return arr;
+    }, []);
+
+    useFrame(({ clock }) => {
+        ref.current.rotation.y = clock.elapsedTime * 0.04;
+        ref.current.rotation.x = Math.sin(clock.elapsedTime * 0.03) * 0.08;
     });
 
     return (
-        <Sphere ref={meshRef} args={[0.3, 32, 32]} position={[-2, 0, -3]}>
-            <meshStandardMaterial
-                color="#f59e0b"
-                transparent
-                opacity={0.3}
-                roughness={0.1}
-                metalness={0.8}
-            />
-        </Sphere>
+        <points ref={ref}>
+            <bufferGeometry>
+                <bufferAttribute attach="attributes-position" count={count} array={positions} itemSize={3} />
+            </bufferGeometry>
+            <pointsMaterial color="#00d4ff" size={0.025} transparent opacity={0.55} sizeAttenuation />
+        </points>
     );
 }
 
-function FloatingBox() {
-    const meshRef = useRef();
-
-    useFrame((state) => {
-        meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 1.2) * 0.4;
-        meshRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 0.9) * 0.6;
-        meshRef.current.position.x = Math.sin(state.clock.elapsedTime * 0.6) * 0.3;
+/* ── Slow-spinning torus ring ── */
+function Ring() {
+    const ref = useRef();
+    useFrame(({ clock }) => {
+        ref.current.rotation.x = clock.elapsedTime * 0.18;
+        ref.current.rotation.z = clock.elapsedTime * 0.12;
     });
-
     return (
-        <Box ref={meshRef} args={[0.4, 0.4, 0.4]} position={[2, -1, -4]}>
-            <meshStandardMaterial
-                color="#f59e0b"
-                transparent
-                opacity={0.2}
-                wireframe
-            />
-        </Box>
+        <mesh ref={ref} position={[2.2, 0.4, -3]}>
+            <torusGeometry args={[0.7, 0.04, 12, 60]} />
+            <meshBasicMaterial color="#00d4ff" transparent opacity={0.22} />
+        </mesh>
     );
 }
 
-function FloatingTorus() {
-    const meshRef = useRef();
-
-    useFrame((state) => {
-        meshRef.current.rotation.y = state.clock.elapsedTime * 0.5;
-        meshRef.current.position.y = Math.sin(state.clock.elapsedTime * 1.1) * 0.15;
+/* ── Floating wireframe icosahedron ── */
+function IcoWire() {
+    const ref = useRef();
+    useFrame(({ clock }) => {
+        ref.current.rotation.y = clock.elapsedTime * 0.22;
+        ref.current.rotation.x = clock.elapsedTime * 0.14;
+        ref.current.position.y = Math.sin(clock.elapsedTime * 0.6) * 0.18;
     });
-
     return (
-        <Torus ref={meshRef} args={[0.5, 0.1, 16, 100]} position={[0, 1, -5]}>
-            <meshStandardMaterial
-                color="#f59e0b"
-                transparent
-                opacity={0.25}
-                emissive="#f59e0b"
-                emissiveIntensity={0.1}
-            />
-        </Torus>
+        <mesh ref={ref} position={[-2.4, -0.3, -4]}>
+            <icosahedronGeometry args={[0.45, 0]} />
+            <meshBasicMaterial color="#a78bfa" wireframe transparent opacity={0.3} />
+        </mesh>
     );
 }
 
-function Hero3D() {
+export default function Hero3D() {
     return (
-        <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
             <Canvas
-                camera={{ position: [0, 0, 5], fov: 50 }}
+                camera={{ position: [0, 0, 5], fov: 55 }}
+                dpr={[1, 1.5]}
+                frameloop="always"
+                gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
                 style={{ background: 'transparent' }}
             >
-                <ambientLight intensity={0.4} />
-                <pointLight position={[10, 10, 10]} intensity={0.8} />
-                <directionalLight position={[-10, -10, -5]} intensity={0.3} />
-                <FloatingSphere />
-                <FloatingBox />
-                <FloatingTorus />
+                <ambientLight intensity={0.6} />
+                <ParticleField />
+                <Ring />
+                <IcoWire />
             </Canvas>
         </div>
     );
 }
-
-export default Hero3D;

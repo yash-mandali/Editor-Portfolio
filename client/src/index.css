@@ -447,3 +447,77 @@
 .progress-bar {
   animation: progress-fill 1.5s ease-out forwards;
 }
+
+/* ── 3D PERSPECTIVE ── */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* ── PAGE TRANSITION ── */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+    filter: blur(3px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.page-enter {
+  animation: page-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── 3D CARD TILT (CSS only, no JS needed) ── */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  will-change: transform;
+}
+
+.card-3d:hover {
+  transform: perspective(800px) rotateX(-4deg) rotateY(4deg) translateY(-6px);
+  box-shadow: 8px 16px 40px rgba(0, 212, 255, 0.12);
+}
+
+/* ── STAGGER CHILDREN ── */
+.stagger-children>* {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: stagger-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.stagger-children>*:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.stagger-children>*:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.stagger-children>*:nth-child(3) {
+  animation-delay: 0.19s;
+}
+
+.stagger-children>*:nth-child(4) {
+  animation-delay: 0.26s;
+}
+
+.stagger-children>*:nth-child(5) {
+  animation-delay: 0.33s;
+}
+
+.stagger-children>*:nth-child(6) {
+  animation-delay: 0.40s;
+}
+
+@keyframes stagger-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

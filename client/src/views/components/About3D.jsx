@@ -1,123 +1,64 @@
-import React, { useRef, useMemo } from 'react';
+import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Sphere, Ring } from '@react-three/drei';
-import * as THREE from 'three';
 
-function OrbitingRings() {
-    const ring1Ref = useRef();
-    const ring2Ref = useRef();
-    const ring3Ref = useRef();
+/* ── Sparse particle cloud ── */
+function Particles() {
+    const ref = useRef();
+    const count = 80;
 
-    useFrame((state) => {
-        ring1Ref.current.rotation.z = state.clock.elapsedTime * 0.3;
-        ring2Ref.current.rotation.z = -state.clock.elapsedTime * 0.4;
-        ring3Ref.current.rotation.z = state.clock.elapsedTime * 0.2;
-    });
-
-    return (
-        <group position={[3, 0, -8]}>
-            <Ring ref={ring1Ref} args={[1, 1.1, 64]}>
-                <meshStandardMaterial
-                    color="#00d4ff"
-                    transparent
-                    opacity={0.1}
-                    side={THREE.DoubleSide}
-                />
-            </Ring>
-            <Ring ref={ring2Ref} args={[1.5, 1.6, 64]}>
-                <meshStandardMaterial
-                    color="#00d4ff"
-                    transparent
-                    opacity={0.08}
-                    side={THREE.DoubleSide}
-                />
-            </Ring>
-            <Ring ref={ring3Ref} args={[2, 2.1, 64]}>
-                <meshStandardMaterial
-                    color="#00d4ff"
-                    transparent
-                    opacity={0.05}
-                    side={THREE.DoubleSide}
-                />
-            </Ring>
-        </group>
-    );
-}
-
-function FloatingParticles() {
-    const pointsRef = useRef();
-
-    const [positions] = useMemo(() => {
-        const positions = new Float32Array(200 * 3);
-        for (let i = 0; i < 200; i++) {
-            positions[i * 3] = (Math.random() - 0.5) * 10;
-            positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
-            positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
+    const positions = useMemo(() => {
+        const arr = new Float32Array(count * 3);
+        for (let i = 0; i < count; i++) {
+            arr[i * 3] = (Math.random() - 0.5) * 12;
+            arr[i * 3 + 1] = (Math.random() - 0.5) * 8;
+            arr[i * 3 + 2] = (Math.random() - 0.5) * 4 - 3;
         }
-        return [positions];
+        return arr;
     }, []);
 
-    useFrame((state) => {
-        pointsRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.1) * 0.1;
+    useFrame(({ clock }) => {
+        ref.current.rotation.y = clock.elapsedTime * 0.05;
     });
 
     return (
-        <points ref={pointsRef}>
+        <points ref={ref}>
             <bufferGeometry>
-                <bufferAttribute
-                    attach="attributes-position"
-                    count={200}
-                    array={positions}
-                    itemSize={3}
-                />
+                <bufferAttribute attach="attributes-position" count={count} array={positions} itemSize={3} />
             </bufferGeometry>
-            <pointsMaterial
-                color="#00d4ff"
-                size={0.02}
-                transparent
-                opacity={0.6}
-                sizeAttenuation
-            />
+            <pointsMaterial color="#00d4ff" size={0.022} transparent opacity={0.45} sizeAttenuation />
         </points>
     );
 }
 
-function PulsingSphere() {
-    const meshRef = useRef();
-
-    useFrame((state) => {
-        meshRef.current.scale.setScalar(1 + Math.sin(state.clock.elapsedTime * 2) * 0.1);
-        meshRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.2;
+/* ── Orbiting ring ── */
+function OrbitRing() {
+    const ref = useRef();
+    useFrame(({ clock }) => {
+        ref.current.rotation.z = clock.elapsedTime * 0.2;
+        ref.current.rotation.x = 0.9;
     });
-
     return (
-        <Sphere ref={meshRef} args={[0.2, 32, 32]} position={[-3, -1, -6]}>
-            <meshStandardMaterial
-                color="#00d4ff"
-                transparent
-                opacity={0.4}
-                emissive="#00d4ff"
-                emissiveIntensity={0.2}
-            />
-        </Sphere>
+        <mesh ref={ref} position={[3.5, 0, -6]}>
+            <torusGeometry args={[1.2, 0.03, 10, 60]} />
+            <meshBasicMaterial color="#00d4ff" transparent opacity={0.15} />
+        </mesh>
     );
 }
 
-function About3D() {
+export default function About3D() {
     return (
-        <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }}>
             <Canvas
                 camera={{ position: [0, 0, 5], fov: 60 }}
+                dpr={[1, 1.5]}
+                frameloop="always"
+                gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
                 style={{ background: 'transparent' }}
             >
-                <ambientLight intensity={0.3} />
-                <pointLight position={[5, 5, 5]} intensity={0.6} />
-                <OrbitingRings />
-                <FloatingParticles />
-                <PulsingSphere />
+                <ambientLight intensity={0.5} />
+                <Particles />
+                <OrbitRing />
             </Canvas>
         </div>
     );
 }
-
-export default About3D;

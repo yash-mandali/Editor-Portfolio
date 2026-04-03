@@ -1,13 +1,20 @@
-import React from 'react';
+import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
-import { PROFILE, TOOLS, EXPERIENCE, WORKING_TOOLS } from '../../models/data';
+import { PROFILE, EXPERIENCE, WORKING_TOOLS } from '../../models/data';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Disc, Terminal, Zap, Shield, Sparkles, Briefcase, CheckCircle2 } from 'lucide-react';
 import logoGif from '../../assests/logo GIF.gif';
 
+const About3D = lazy(() => import('../components/About3D'));
+
 const About = () => {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] transition-colors duration-500 relative overflow-hidden">
+    <div className="min-h-screen bg-[#0a0a0f] transition-colors duration-500 relative overflow-hidden page-enter">
+      {/* 3D background — lazy loaded */}
+      <Suspense fallback={null}>
+        <About3D />
+      </Suspense>
+
       {/* Background Cinematic Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-cyan-500/5 blur-[120px] rounded-full" />
@@ -237,10 +244,10 @@ const About = () => {
                     {/* Icon + name row */}
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-[#1a1a25] border border-white/5 p-2.5 shadow-xl group-hover:border-[#00d4ff]/30 transition-all duration-500">
-                        <img 
-                          src={tool.icon} 
-                          alt={tool.name} 
-                          className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110" 
+                        <img
+                          src={tool.icon}
+                          alt={tool.name}
+                          className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
                         />
                       </div>
                       <div>

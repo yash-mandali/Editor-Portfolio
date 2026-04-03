@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring } from 'framer-motion';
 import { ArrowRight, Play, Zap, Award, Users, Sparkles, Film, Star, ChevronRight } from 'lucide-react';
@@ -6,6 +6,9 @@ import { WHY_CHOOSE_ME, SERVICES } from '../../models/data';
 import VideoModal from '../components/VideoModal';
 import Videos from './Videos';
 import HeroVideo from '../components/HeroVideo';
+
+/* Lazy-load Three.js — only downloads when component mounts */
+const Hero3D = lazy(() => import('../components/Hero3D'));
 
 /* ─── Magnetic button ─── */
 const MagneticBtn = ({ children, className, style, onClick, to }) => {
@@ -45,7 +48,7 @@ const StyleCard = ({ icon: Icon, title, desc, accentColor, index }) => (
     transition={{ delay: index * 0.09, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
     viewport={{ once: true }}
     whileHover={{ y: -8, transition: { duration: 0.22 } }}
-    className="group relative p-7 bg-[#111118] border border-white/[0.05] overflow-hidden neon-border-cyan"
+    className="group relative p-7 bg-[#111118] border border-white/[0.05] overflow-hidden neon-border-cyan card-3d"
   >
     <div className="absolute top-0 left-0 w-0 h-[2px] group-hover:w-full transition-all duration-500" style={{ background: accentColor }} />
     <div className="absolute bottom-0 right-0 w-0 h-[2px] group-hover:w-full transition-all duration-500 delay-100" style={{ background: accentColor }} />
@@ -93,7 +96,7 @@ const Home = () => {
   const marqueeItems = ['Cinematic', 'Dynamic', 'Impactful', 'Professional', 'Creative', 'Immersive', 'Storytelling', 'Premium'];
 
   return (
-    <div ref={containerRef} className="bg-[#0a0a0f] overflow-x-hidden transition-colors duration-500">
+    <div ref={containerRef} className="bg-[#0a0a0f] overflow-x-hidden transition-colors duration-500 page-enter">
       <VideoModal isOpen={!!selectedVideo} onClose={() => setSelectedVideo(null)} videoUrl={selectedVideo} />
 
       {/* ══════════════════════════════════════════
@@ -101,6 +104,11 @@ const Home = () => {
       ══════════════════════════════════════════ */}
       <motion.section className="relative h-screen flex items-center justify-center overflow-hidden" style={{ scale: heroScale }}>
         <HeroVideo className="z-0" />
+
+        {/* 3D floating elements — lazy loaded, no blocking */}
+        <Suspense fallback={null}>
+          <Hero3D />
+        </Suspense>
 
         <motion.div className="container mx-auto px-6 relative z-10 text-center" style={{ opacity: heroOpacity, y: heroTextY }}>
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1] }}>
@@ -280,7 +288,7 @@ const Home = () => {
                 transition={{ delay: index * 0.14, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10, transition: { duration: 0.22 } }}
-                className="group relative p-8 bg-[#111118] border border-white/[0.05] overflow-hidden neon-border-cyan"
+                className="group relative p-8 bg-[#111118] border border-white/[0.05] overflow-hidden neon-border-cyan card-3d"
               >
                 <div className="absolute top-0 left-0 w-0 h-[2px] bg-[#00d4ff] group-hover:w-full transition-all duration-500" />
                 <motion.div
