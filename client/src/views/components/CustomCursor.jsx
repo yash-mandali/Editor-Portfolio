@@ -2,87 +2,91 @@ import { useEffect, useState } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
 
 const CustomCursor = () => {
-    const [isHovering, setIsHovering] = useState(false);
-    const [cursorText, setCursorText] = useState('');
-
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
+    const cursorX = useMotionValue(-100);
+    const cursorY = useMotionValue(-100);
+    
     const springConfig = { damping: 25, stiffness: 250 };
-    const cursorX = useSpring(mouseX, springConfig);
-    const cursorY = useSpring(mouseY, springConfig);
+    const springX = useSpring(cursorX, springConfig);
+    const springY = useSpring(cursorY, springConfig);
+
+    const [isHovering, setIsHovering] = useState(false);
+    const [isPointer, setIsPointer] = useState(false);
 
     useEffect(() => {
         const moveCursor = (e) => {
-            mouseX.set(e.clientX);
-            mouseY.set(e.clientY);
+            cursorX.set(e.clientX);
+            cursorY.set(e.clientY);
         };
 
-        const handleHover = (e) => {
+        const handleMouseOver = (e) => {
             const target = e.target;
-            const isClickable = target.closest('a, button, [role="button"], .cursor-pointer');
-            const isVideo = target.closest('.group.relative.aspect-video, .video-hover');
-
-            if (isVideo) {
-                setIsHovering(true);
-                setCursorText('VIEW');
-            } else if (isClickable) {
-                setIsHovering(true);
-                setCursorText('');
-            } else {
-                setIsHovering(false);
-                setCursorText('');
-            }
+            const isClickable = target.closest('button, a, .cursor-pointer');
+            setIsPointer(!!isClickable);
+            setIsHovering(!!isClickable);
         };
 
         window.addEventListener('mousemove', moveCursor);
-        window.addEventListener('mouseover', handleHover);
+        window.addEventListener('mouseover', handleMouseOver);
 
         return () => {
             window.removeEventListener('mousemove', moveCursor);
-            window.removeEventListener('mouseover', handleHover);
+            window.removeEventListener('mouseover', handleMouseOver);
         };
-    }, [mouseX, mouseY]);
+    }, [cursorX, cursorY]);
 
     return (
-        <div className="fixed inset-0 pointer-events-none z-[10000] hidden lg:block overflow-hidden">
-            {/* Main Cinematic Ring */}
+        <div className="fixed inset-0 pointer-events-none z-[9999] hidden md:block">
+            {/* Main Outer Ring */}
             <motion.div
-                className="fixed top-0 left-0 w-8 h-8 border border-cyan-400 rounded-full flex items-center justify-center text-[10px] font-black tracking-tighter text-cyan-400"
                 style={{
-                    x: cursorX,
-                    y: cursorY,
+                    left: springX,
+                    top: springY,
                     translateX: '-50%',
                     translateY: '-50%',
-                    scale: isHovering ? 2.5 : 1,
-                    backgroundColor: isHovering ? 'rgba(0, 212, 255, 0.1)' : 'transparent',
                 }}
-            >
-                {cursorText}
-            </motion.div>
-
-            {/* Inner Precision Dot */}
+                animate={{
+                    width: isHovering ? 64 : 32,
+                    height: isHovering ? 64 : 32,
+                    borderColor: isHovering ? 'rgba(0, 212, 255, 0.8)' : 'rgba(255, 255, 255, 0.2)',
+                }}
+                className="absolute border border-white/20 rounded-full transition-colors duration-300 pointer-events-none mix-blend-difference"
+            />
+            
+            {/* Inner Dot */}
             <motion.div
-                className="fixed top-0 left-0 w-1.5 h-1.5 bg-cyan-400 rounded-full"
                 style={{
-                    x: mouseX,
-                    y: mouseY,
+                    left: cursorX,
+                    top: cursorY,
                     translateX: '-50%',
                     translateY: '-50%',
-                    opacity: isHovering ? 0 : 1
                 }}
+                animate={{
+                    scale: isHovering ? 0 : 1,
+                    backgroundColor: '#00d4ff',
+                    boxShadow: '0 0 10px rgba(0, 212, 255, 0.8)',
+                }}
+                className="absolute w-1 h-1 rounded-full pointer-events-none"
             />
 
-            {/* Trailing Atmospheric Glow */}
-            <motion.div
-                className="fixed top-0 left-0 w-64 h-64 bg-cyan-500/10 blur-[120px] rounded-full"
-                style={{
-                    x: mouseX,
-                    y: mouseY,
-                    translateX: '-50%',
-                    translateY: '-50%',
-                }}
-            />
+            {/* Cinematic Corner Accents (only on hover) */}
+            {isHovering && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    style={{
+                        left: springX,
+                        top: springY,
+                        translateX: '-50%',
+                        translateY: '-50%',
+                    }}
+                    className="absolute w-16 h-16 pointer-events-none"
+                >
+                   <div className="absolute top-0 left-0 w-2 h-[1px] bg-cyan-400" />
+                   <div className="absolute top-0 left-0 w-[1px] h-2 bg-cyan-400" />
+                   <div className="absolute bottom-0 right-0 w-2 h-[1px] bg-cyan-400" />
+                   <div className="absolute bottom-0 right-0 w-[1px] h-2 bg-cyan-400" />
+                </motion.div>
+            )}
         </div>
     );
 };

@@ -7,6 +7,8 @@ import { PROFILE } from '../../models/data';
 import Loader from './Loader';
 import logo from '../../assests/logo-file.png';
 import CustomCursor from './CustomCursor';
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -303,11 +305,38 @@ export const Layout = ({ children }) => {
     return () => clearTimeout(timerRef.current);
   }, [location.pathname]);
 
+  // Smooth scroll initialization
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
   return (
     <div className="relative min-h-screen bg-neutral-950 text-neutral-100 font-sans selection:bg-cyan-500/30 transition-colors duration-500 overflow-x-hidden">
       {/* Cinematic Overlays */}
       <div className="film-grain" />
       <div className="scanlines" />
+      <div className="cinematic-vignette" />
 
       {/* Custom Cursor */}
       <CustomCursor />

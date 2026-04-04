@@ -1,6 +1,6 @@
-import { useState, useRef, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring } from 'framer-motion';
+import React, { useState, useRef, lazy, Suspense, memo } from 'react';
 import { ArrowRight, Play, Zap, Award, Users, Sparkles, Film, Star, ChevronRight } from 'lucide-react';
 import { WHY_CHOOSE_ME, SERVICES } from '../../models/data';
 import VideoModal from '../components/VideoModal';
@@ -41,14 +41,14 @@ const Counter = ({ target, suffix = '' }) => {
 
 /* ─── Style card ─── */
 const ACCENTS = ['#00d4ff', '#a78bfa', '#34d399', '#f472b6', '#60a5fa', '#3b82f6'];
-const StyleCard = ({ icon: Icon, title, desc, accentColor, index }) => (
+const StyleCard = memo(({ icon: Icon, title, desc, accentColor, index }) => (
   <motion.div
     initial={{ opacity: 0, y: 50 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ delay: index * 0.09, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
     viewport={{ once: true }}
     whileHover={{ y: -8, transition: { duration: 0.22 } }}
-    className="group relative p-7 bg-[#111118] border border-white/[0.05] overflow-hidden neon-border-cyan card-3d"
+    className="group relative p-7 bg-[#111118] border border-white/[0.05] overflow-hidden neon-border-cyan card-3d will-change-transform"
   >
     <div className="absolute top-0 left-0 w-0 h-[2px] group-hover:w-full transition-all duration-500" style={{ background: accentColor }} />
     <div className="absolute bottom-0 right-0 w-0 h-[2px] group-hover:w-full transition-all duration-500 delay-100" style={{ background: accentColor }} />
@@ -61,7 +61,8 @@ const StyleCard = ({ icon: Icon, title, desc, accentColor, index }) => (
       <p className="text-[#6b6b80] text-sm leading-relaxed">{desc}</p>
     </div>
   </motion.div>
-);
+));
+StyleCard.displayName = 'StyleCard';
 
 const Home = () => {
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -69,13 +70,16 @@ const Home = () => {
   const showreelRef = useRef(null);
 
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end end'] });
-  const heroScale = useTransform(scrollYProgress, [0, 0.18], [1, 1.07]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.16], [1, 0]);
-  const heroTextY = useTransform(scrollYProgress, [0, 0.16], [0, -80]);
+  const smoothY = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+  
+  const heroScale = useTransform(smoothY, [0, 0.18], [1, 1.07]);
+  const heroOpacity = useTransform(smoothY, [0, 0.16], [1, 0]);
+  const heroTextY = useTransform(smoothY, [0, 0.16], [0, -80]);
 
   /* Parallax layers */
   const { scrollYProgress: showreelScroll } = useScroll({ target: showreelRef, offset: ['start end', 'end start'] });
-  const showreelY = useTransform(showreelScroll, [0, 1], [60, -60]);
+  const smoothShowreelY = useSpring(showreelScroll, { stiffness: 100, damping: 30, restDelta: 0.001 });
+  const showreelY = useTransform(smoothShowreelY, [0, 1], [60, -60]);
 
   const editingStyles = [
     { icon: Film, title: 'Cinematic', desc: 'Slow burns, colour grades, and atmospheric tension that feel like a feature film.', accentColor: ACCENTS[0] },
@@ -103,7 +107,12 @@ const Home = () => {
           HERO — full-screen cinematic opener
       ══════════════════════════════════════════ */}
       <motion.section className="relative h-screen flex items-center justify-center overflow-hidden" style={{ scale: heroScale }}>
-        <HeroVideo className="z-0" />
+        <HeroVideo 
+          className="z-0" 
+          style={{ 
+            filter: useTransform(smoothY, [0, 0.15], ['blur(0px) brightness(1)', 'blur(10px) brightness(0.6)']) 
+          }} 
+        />
 
         {/* 3D floating elements — lazy loaded, no blocking */}
         <Suspense fallback={null}>
@@ -181,12 +190,17 @@ const Home = () => {
         <div className="absolute top-24 left-8 text-[9px] font-black tracking-[0.3em] text-[#00d4ff]/50 uppercase hidden lg:block animate-flicker">
           <div>REC ●</div>
           <div className="mt-1 text-white/18">00:00:00:00</div>
+          <div className="mt-4 text-white/10">ISO 800</div>
+          <div className="mt-1 text-white/10">WB 5600K</div>
         </div>
         <div className="absolute top-24 right-8 text-[9px] font-black tracking-[0.3em] text-[#00d4ff]/50 uppercase hidden lg:block text-right">
           <div>4K / 60FPS</div>
           <div className="mt-1 text-white/18">TIMELINE_01</div>
+          <div className="mt-4 text-white/10">SHUTTER 1/120</div>
+          <div className="mt-1 text-white/10">F 2.8</div>
         </div>
         <div className="absolute bottom-8 right-8 text-[8px] font-black tracking-[0.25em] text-white/15 uppercase hidden lg:block">
+          <div className="mb-1">LEN_24-70MM</div>
           <div>FRAME 001 / 999</div>
         </div>
 
