@@ -15,8 +15,8 @@ const AdminContacts = () => {
             setLoading(true);
             const res = await axios.get(`${API_URL}/api/contacts`);
             setContacts(res.data.data || []);
-        } catch (err) { 
-            console.error(err); 
+        } catch (err) {
+            console.error(err);
         } finally {
             setLoading(false);
         }
@@ -81,8 +81,8 @@ const AdminContacts = () => {
                                         <p className="text-[10px] text-neutral-600 font-black uppercase tracking-widest flex items-center gap-2">
                                             <Clock size={12} /> {new Date(c.createdAt).toLocaleString()}
                                         </p>
-                                        <button 
-                                            onClick={() => deleteContact(c._id)} 
+                                        <button
+                                            onClick={() => deleteContact(c._id)}
                                             className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-red-500/60 hover:text-red-500 transition-colors"
                                         >
                                             <Trash2 size={12} /> Erase Signal
@@ -97,13 +97,33 @@ const AdminContacts = () => {
                                             "{c.message}"
                                         </p>
                                     </div>
-                                    
+
+                                    {/* Project details */}
+                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                        {c.projectType && (
+                                            <div className="bg-white/[0.03] border border-white/5 rounded p-3">
+                                                <p className="text-[9px] font-black uppercase tracking-[0.3em] text-neutral-600 mb-1">Project Type</p>
+                                                <p className="text-xs font-black text-amber-400 uppercase tracking-wide">{c.projectType}</p>
+                                            </div>
+                                        )}
+                                        {c.budget && (
+                                            <div className="bg-white/[0.03] border border-white/5 rounded p-3">
+                                                <p className="text-[9px] font-black uppercase tracking-[0.3em] text-neutral-600 mb-1">Budget</p>
+                                                <p className="text-xs font-black text-green-400 uppercase tracking-wide">${c.budget}</p>
+                                            </div>
+                                        )}
+                                        <div className="bg-white/[0.03] border border-white/5 rounded p-3">
+                                            <p className="text-[9px] font-black uppercase tracking-[0.3em] text-neutral-600 mb-1">Received</p>
+                                            <p className="text-xs font-black text-neutral-400">{new Date(c.createdAt).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}</p>
+                                        </div>
+                                    </div>
+
                                     <div className="flex flex-wrap items-center gap-4 pt-4">
                                         <span className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-500">Current Protocol:</span>
                                         <div className="relative">
-                                            <select 
-                                                value={c.status} 
-                                                onChange={(e) => updateStatus(c._id, e.target.value)} 
+                                            <select
+                                                value={c.status}
+                                                onChange={(e) => updateStatus(c._id, e.target.value)}
                                                 className={`pl-4 pr-10 py-2 text-[10px] font-black uppercase tracking-[0.2em] rounded border appearance-none transition-all cursor-pointer focus:outline-none ${statusColors[c.status] || statusColors.new}`}
                                             >
                                                 <option value="new">PROTOCOL: NEW_S</option>

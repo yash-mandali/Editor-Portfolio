@@ -44,7 +44,7 @@ const Navbar = () => {
               <img
                 src={logo}
                 alt="Logo"
-                className="h-10 w-auto invert drop-shadow-[0_0_10px_rgba(0,212,255,0.4)] transition-all duration-500 group-hover:drop-shadow-[0_0_15px_rgba(0,212,255,0.7)]"
+                className="h-16 w-auto invert drop-shadow-[0_0_10px_rgba(0,212,255,0.4)] transition-all duration-500 group-hover:drop-shadow-[0_0_15px_rgba(0,212,255,0.7)]"
               />
             </motion.div>
           </Link>
@@ -159,12 +159,12 @@ const Navbar = () => {
                 transition={{ delay: 0.42, duration: 0.45 }}
                 className="w-full max-w-xs mt-6"
               >
-                  <Link
-                    to="/contact"
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center justify-center w-full py-4 text-black font-black uppercase tracking-[0.3em] text-sm"
-                    style={{ background: '#e2b02e', boxShadow: '0 0 30px rgba(226,176,46,0.2)' }}
-                  >
+                <Link
+                  to="/contact"
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center justify-center w-full py-4 text-black font-black uppercase tracking-[0.3em] text-sm"
+                  style={{ background: '#e2b02e', boxShadow: '0 0 30px rgba(226,176,46,0.2)' }}
+                >
                   Hire Me
                 </Link>
               </motion.div>
