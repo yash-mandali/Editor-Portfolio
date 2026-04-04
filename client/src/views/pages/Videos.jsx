@@ -85,7 +85,7 @@ const Videos = () => {
                                         REF-{(index + 1).toString().padStart(3, '0')}
                                     </span>
                                 </div>
-                                <h3 className="text-xl font-black text-white mb-4 tracking-tighter leading-none group-hover:text-cyan-400 transition-all duration-500 uppercase">
+                                <h3 className="text-base font-black text-white mb-4 tracking-tighter leading-none group-hover:text-cyan-400 transition-all duration-500 uppercase">
                                     {item.title}
                                 </h3>
 

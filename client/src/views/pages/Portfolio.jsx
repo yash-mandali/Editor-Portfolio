@@ -143,7 +143,7 @@ const Portfolio = () => {
                       {item.category}
                     </motion.span>
                   </div>
-                  <h3 className="text-2xl font-black text-white mb-2 tracking-tighter leading-none group-hover:text-cyan-400 transition-colors duration-500 uppercase">
+                  <h3 className="text-lg font-black text-white mb-2 tracking-tighter leading-none group-hover:text-cyan-400 transition-colors duration-500 uppercase">
                     {item.title}
                   </h3>
                   <div className="flex items-center gap-2 opacity-40 group-hover:opacity-100 transition-all duration-500">
