@@ -14,7 +14,7 @@
   --text-dark: #f8f8fc;
   --text-muted-dark: #808095;
   --text-dark-mode-sub: #a0a0b8;
-  
+
   --font-bebas: 'Bebas Neue', sans-serif;
   --font-cinzel: 'Cinzel', serif;
   --font-instrument: 'Instrument Sans', sans-serif;
@@ -54,7 +54,8 @@
 /* ── FILM GRAIN — Enhanced organic grain + dust ── */
 .film-grain {
   position: fixed;
-  inset: -100px; /* Oversized for animation */
+  inset: -100px;
+  /* Oversized for animation */
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   opacity: 0.05;
   pointer-events: none;
@@ -64,10 +65,23 @@
 }
 
 @keyframes grain-dance {
-  0%, 100% { transform: translate(0, 0); }
-  25% { transform: translate(-20px, -20px); }
-  50% { transform: translate(-40px, -10px); }
-  75% { transform: translate(-10px, -30px); }
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(-20px, -20px);
+  }
+
+  50% {
+    transform: translate(-40px, -10px);
+  }
+
+  75% {
+    transform: translate(-10px, -30px);
+  }
 }
 
 .dust-scratches {
@@ -208,7 +222,8 @@
   inset: 0;
   background: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.6) 100%);
   pointer-events: none;
-  z-index: 1002; /* Above bars, giving "looking through" feel */
+  z-index: 1002;
+  /* Above bars, giving "looking through" feel */
 }
 
 /* ── CINEMATIC LETTERBOXING ── */
@@ -218,44 +233,35 @@
   width: 100%;
   height: 6vh;
   background: #000;
-  z-index: 2000; /* Topmost level */
+  z-index: 2000;
+  /* Topmost level */
   display: flex;
   align-items: center;
   padding: 0 40px;
   pointer-events: none;
 }
 
-.letterbox-top { top: 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-.letterbox-bottom { bottom: 0; border-top: 1px solid rgba(255,255,255,0.05); }
+.letterbox-top {
+  top: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.letterbox-bottom {
+  bottom: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
 
 .hud-text {
   font-family: var(--font-bebas);
   font-size: 11px;
   letter-spacing: 0.25em;
-  color: rgba(255,255,255,0.25);
+  color: rgba(255, 255, 255, 0.25);
   text-transform: uppercase;
 }
 
 /* ── CINEMATIC COLOR GRADE (LUT) ── */
 .color-graded {
   filter: contrast(1.08) saturate(1.05) brightness(1) sepia(0.04);
-}
-
-/* ── ACCENT GLOW PULSE ── */
-@keyframes accent-pulse {
-
-  0%,
-  100% {
-    box-shadow: 0 0 12px var(--accent-glow), 0 0 40px rgba(0, 212, 255, 0.1);
-  }
-
-  50% {
-    box-shadow: 0 0 24px var(--accent-glow), 0 0 80px rgba(0, 212, 255, 0.2);
-  }
-}
-
-.accent-pulse {
-  animation: accent-pulse 2.5s ease-in-out infinite;
 }
 
 /* ── GLITCH ── */
@@ -345,28 +351,6 @@
 .ticker-content {
   display: inline-flex;
   gap: 0;
-}
-
-/* ── ACCENT LINE ── */
-.accent-line {
-  display: inline-block;
-  width: 32px;
-  height: 2px;
-  background: var(--accent);
-  vertical-align: middle;
-  margin-right: 10px;
-}
-
-/* ── CARD GLASS ── */
-.card-glass {
-  background: rgba(17, 17, 24, 0.8);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-/* ── CYAN GLOW TEXT ── */
-.text-cyan-glow {
-  text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
 }
 
 /* ── FLOAT ── */
@@ -558,40 +542,24 @@
   box-shadow: 8px 16px 40px rgba(0, 212, 255, 0.12);
 }
 
-/* ── STAGGER CHILDREN ── */
-.stagger-children>* {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: stagger-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.stagger-children>*:nth-child(1) {
-  animation-delay: 0.05s;
-}
-
-.stagger-children>*:nth-child(2) {
-  animation-delay: 0.12s;
-}
-
-.stagger-children>*:nth-child(3) {
-  animation-delay: 0.19s;
-}
-
-.stagger-children>*:nth-child(4) {
-  animation-delay: 0.26s;
-}
-
-.stagger-children>*:nth-child(5) {
-  animation-delay: 0.33s;
-}
-
-.stagger-children>*:nth-child(6) {
-  animation-delay: 0.40s;
-}
-
-@keyframes stagger-in {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+/* ── HERO SCAN LINE (CSS-only, replaces framer-motion version) ── */
+@keyframes scan-line {
+  from {
+    top: 0%;
   }
+
+  to {
+    top: 100%;
+  }
+}
+
+.hero-scan-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.4), transparent);
+  pointer-events: none;
+  animation: scan-line 8s linear infinite;
+  will-change: top;
 }

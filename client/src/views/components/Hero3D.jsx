@@ -1,10 +1,9 @@
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 
-/* ── Floating particle field — GPU-friendly points geometry ── */
 function ParticleField() {
     const ref = useRef();
-    const count = 120;
+    const count = 80; // reduced from 120
 
     const positions = useMemo(() => {
         const arr = new Float32Array(count * 3);
@@ -18,7 +17,6 @@ function ParticleField() {
 
     useFrame(({ clock }) => {
         ref.current.rotation.y = clock.elapsedTime * 0.04;
-        ref.current.rotation.x = Math.sin(clock.elapsedTime * 0.03) * 0.08;
     });
 
     return (
@@ -26,12 +24,11 @@ function ParticleField() {
             <bufferGeometry>
                 <bufferAttribute attach="attributes-position" count={count} array={positions} itemSize={3} />
             </bufferGeometry>
-            <pointsMaterial color="#00d4ff" size={0.025} transparent opacity={0.55} sizeAttenuation />
+            <pointsMaterial color="#00d4ff" size={0.025} transparent opacity={0.5} sizeAttenuation />
         </points>
     );
 }
 
-/* ── Slow-spinning torus ring ── */
 function Ring() {
     const ref = useRef();
     useFrame(({ clock }) => {
@@ -40,13 +37,12 @@ function Ring() {
     });
     return (
         <mesh ref={ref} position={[2.2, 0.4, -3]}>
-            <torusGeometry args={[0.7, 0.04, 12, 60]} />
-            <meshBasicMaterial color="#00d4ff" transparent opacity={0.22} />
+            <torusGeometry args={[0.7, 0.04, 8, 48]} />
+            <meshBasicMaterial color="#00d4ff" transparent opacity={0.2} />
         </mesh>
     );
 }
 
-/* ── Floating wireframe icosahedron ── */
 function IcoWire() {
     const ref = useRef();
     useFrame(({ clock }) => {
@@ -57,26 +53,39 @@ function IcoWire() {
     return (
         <mesh ref={ref} position={[-2.4, -0.3, -4]}>
             <icosahedronGeometry args={[0.45, 0]} />
-            <meshBasicMaterial color="#a78bfa" wireframe transparent opacity={0.3} />
+            <meshBasicMaterial color="#a78bfa" wireframe transparent opacity={0.28} />
         </mesh>
     );
 }
 
 export default function Hero3D() {
+    const wrapperRef = useRef(null);
+    const [visible, setVisible] = useState(false);
+
+    useEffect(() => {
+        const el = wrapperRef.current;
+        if (!el) return;
+        const obs = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), { threshold: 0.1 });
+        obs.observe(el);
+        return () => obs.disconnect();
+    }, []);
+
     return (
-        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
-            <Canvas
-                camera={{ position: [0, 0, 5], fov: 55 }}
-                dpr={[1, 1.5]}
-                frameloop="always"
-                gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
-                style={{ background: 'transparent' }}
-            >
-                <ambientLight intensity={0.6} />
-                <ParticleField />
-                <Ring />
-                <IcoWire />
-            </Canvas>
+        <div ref={wrapperRef} className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
+            {visible && (
+                <Canvas
+                    camera={{ position: [0, 0, 5], fov: 55 }}
+                    dpr={[1, 1.5]}
+                    frameloop="always"
+                    gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
+                    style={{ background: 'transparent' }}
+                >
+                    <ambientLight intensity={0.6} />
+                    <ParticleField />
+                    <Ring />
+                    <IcoWire />
+                </Canvas>
+            )}
         </div>
     );
 }

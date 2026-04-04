@@ -1,10 +1,9 @@
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 
-/* ── Sparse particle cloud ── */
 function Particles() {
     const ref = useRef();
-    const count = 80;
+    const count = 50; // reduced from 80
 
     const positions = useMemo(() => {
         const arr = new Float32Array(count * 3);
@@ -25,12 +24,11 @@ function Particles() {
             <bufferGeometry>
                 <bufferAttribute attach="attributes-position" count={count} array={positions} itemSize={3} />
             </bufferGeometry>
-            <pointsMaterial color="#00d4ff" size={0.022} transparent opacity={0.45} sizeAttenuation />
+            <pointsMaterial color="#00d4ff" size={0.022} transparent opacity={0.4} sizeAttenuation />
         </points>
     );
 }
 
-/* ── Orbiting ring ── */
 function OrbitRing() {
     const ref = useRef();
     useFrame(({ clock }) => {
@@ -39,26 +37,39 @@ function OrbitRing() {
     });
     return (
         <mesh ref={ref} position={[3.5, 0, -6]}>
-            <torusGeometry args={[1.2, 0.03, 10, 60]} />
-            <meshBasicMaterial color="#00d4ff" transparent opacity={0.15} />
+            <torusGeometry args={[1.2, 0.03, 8, 48]} />
+            <meshBasicMaterial color="#00d4ff" transparent opacity={0.12} />
         </mesh>
     );
 }
 
 export default function About3D() {
+    const wrapperRef = useRef(null);
+    const [visible, setVisible] = useState(false);
+
+    useEffect(() => {
+        const el = wrapperRef.current;
+        if (!el) return;
+        const obs = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), { threshold: 0.1 });
+        obs.observe(el);
+        return () => obs.disconnect();
+    }, []);
+
     return (
-        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }}>
-            <Canvas
-                camera={{ position: [0, 0, 5], fov: 60 }}
-                dpr={[1, 1.5]}
-                frameloop="always"
-                gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
-                style={{ background: 'transparent' }}
-            >
-                <ambientLight intensity={0.5} />
-                <Particles />
-                <OrbitRing />
-            </Canvas>
+        <div ref={wrapperRef} className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }}>
+            {visible && (
+                <Canvas
+                    camera={{ position: [0, 0, 5], fov: 60 }}
+                    dpr={[1, 1.5]}
+                    frameloop="always"
+                    gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
+                    style={{ background: 'transparent' }}
+                >
+                    <ambientLight intensity={0.5} />
+                    <Particles />
+                    <OrbitRing />
+                </Canvas>
+            )}
         </div>
     );
 }
