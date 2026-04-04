@@ -154,8 +154,64 @@ export const PORTFOLIO = [
     category: "Cinematic",
     image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1000&auto=format&fit=crop",
     description: "A mood-driven cinematic sequence showcasing urban nightlife.",
-    videoUrl: "https://www.youtube.com/watch?v=zF9m02WllZc" // Standard Watch Link
+    videoUrl: "https://www.youtube.com/watch?v=zF9m02WllZc"
   },
+  {
+    id: 2,
+    title: "Urban Explorer",
+    category: "Vlog",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000&auto=format&fit=crop",
+    description: "Exploring the hidden gems of the city.",
+    videoUrl: "https://www.youtube.com/watch?v=zF9m02WllZc"
+  },
+  {
+    id: 3,
+    title: "Mountain Heights",
+    category: "Nature",
+    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1000&auto=format&fit=crop",
+    description: "A breathtaking journey through the Alps.",
+    videoUrl: "https://www.youtube.com/watch?v=zF9m02WllZc"
+  },
+  {
+    id: 4,
+    title: "Ocean Breeze",
+    category: "Travel",
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000&auto=format&fit=crop",
+    description: "Relaxing vibes from the tropical islands.",
+    videoUrl: "https://www.youtube.com/watch?v=zF9m02WllZc"
+  },
+  {
+    id: 5,
+    title: "Future Tech",
+    category: "Commercial",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1000&auto=format&fit=crop",
+    description: "Showcasing the latest in AI and robotics.",
+    videoUrl: "https://www.youtube.com/watch?v=zF9m02WllZc"
+  },
+  {
+    id: 6,
+    title: "Gourmet Kitchen",
+    category: "Lifestyle",
+    image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1000&auto=format&fit=crop",
+    description: "A culinary experience like no other.",
+    videoUrl: "https://www.youtube.com/watch?v=zF9m02WllZc"
+  },
+  {
+    id: 7,
+    title: "Desert Sands",
+    category: "Nature",
+    image: "https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?q=80&w=1000&auto=format&fit=crop",
+    description: "The vast beauty of the Sahara.",
+    videoUrl: "https://www.youtube.com/watch?v=zF9m02WllZc"
+  },
+  {
+    id: 8,
+    title: "Stellar Voyage",
+    category: "Sci-Fi",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop",
+    description: "A journey beyond the stars.",
+    videoUrl: "https://www.youtube.com/watch?v=zF9m02WllZc"
+  }
 ];
 
 export const VIDEOS = [

@@ -7,6 +7,7 @@ import VideoModal from '../components/VideoModal';
 const Portfolio = () => {
   const { activeCategory, setActiveCategory, categories, filteredItems, loading } = usePortfolioController();
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [showAll, setShowAll] = useState(false);
 
   if (loading) {
     return (
@@ -81,7 +82,7 @@ const Portfolio = () => {
         {/* Portfolio Grid */}
         <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
-            {filteredItems.map((item, index) => (
+            {filteredItems.slice(0, showAll ? filteredItems.length : 6).map((item, index) => (
               <motion.div
                 layout
                 initial={{ opacity: 0, y: 20 }}
@@ -154,6 +155,29 @@ const Portfolio = () => {
             ))}
           </AnimatePresence>
         </motion.div>
+
+        {/* View All Button */}
+        {!showAll && filteredItems.length > 6 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex justify-center mt-20"
+          >
+            <button
+              onClick={() => setShowAll(true)}
+              className="group relative px-12 py-5 bg-transparent border border-white/10 hover:border-cyan-400/50 transition-all duration-500 overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-cyan-400/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+              <span className="relative z-10 text-[10px] font-black uppercase tracking-[0.4em] text-neutral-400 group-hover:text-white transition-colors">
+                View All Projects
+              </span>
+              <div className="absolute top-0 left-0 w-2 h-[1px] bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute top-0 left-0 w-[1px] h-2 bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute bottom-0 right-0 w-2 h-[1px] bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute bottom-0 right-0 w-[1px] h-2 bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </button>
+          </motion.div>
+        )}
 
         {filteredItems.length === 0 && (
           <motion.div
