@@ -283,6 +283,23 @@ const Footer = () => {
   );
 };
 
+const Timecode = () => {
+  const [time, setTime] = useState('00:00:00:00');
+  useEffect(() => {
+    const start = Date.now();
+    const interval = setInterval(() => {
+      const diff = Date.now() - start;
+      const hours = Math.floor(diff / 3600000).toString().padStart(2, '0');
+      const mins = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
+      const secs = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
+      const frames = Math.floor((diff % 1000) / 41).toString().padStart(2, '0'); // approx 24fps
+      setTime(`${hours}:${mins}:${secs}:${frames}`);
+    }, 41);
+    return () => clearInterval(interval);
+  }, []);
+  return <span>{time}</span>;
+};
+
 export const Layout = ({ children }) => {
   const location = useLocation();
   const [showLoader, setShowLoader] = useState(true);
@@ -332,9 +349,41 @@ export const Layout = ({ children }) => {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-neutral-950 text-neutral-100 font-sans selection:bg-cyan-500/30 transition-colors duration-500 overflow-x-hidden">
+    <div className="relative min-h-screen bg-[#050505] text-neutral-100 font-sans selection:bg-cyan-500/30 transition-colors duration-500 overflow-x-hidden color-graded">
+      {/* Cinematic Letterboxing */}
+      <div className="letterbox-bar letterbox-top hidden lg:flex justify-between items-center">
+        <div className="hud-text flex items-center gap-4">
+          <span className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
+            REC
+          </span>
+          <Timecode />
+        </div>
+        <div className="hud-text">
+          PROJECT_ID: CIN_2026_PORTFOLIO
+        </div>
+        <div className="hud-text flex gap-6">
+          <span>4K RAW</span>
+          <span>23.976 FPS</span>
+        </div>
+      </div>
+
+      <div className="letterbox-bar letterbox-bottom hidden lg:flex justify-between items-center">
+        <div className="hud-text">
+          CAM_A // SON_VEN_2
+        </div>
+        <div className="hud-text text-center">
+          ISO 800 // 5600K // 1/48
+        </div>
+        <div className="hud-text text-right flex gap-6">
+          <span>BATT 88%</span>
+          <span>LIMIT_01</span>
+        </div>
+      </div>
+
       {/* Cinematic Overlays */}
       <div className="film-grain" />
+      <div className="dust-scratches" />
       <div className="scanlines" />
       <div className="cinematic-vignette" />
 
@@ -347,7 +396,7 @@ export const Layout = ({ children }) => {
         {showLoader && <Loader />}
       </AnimatePresence>
 
-      <main className="relative z-10 transition-colors duration-500">
+      <main className="relative z-10 transition-colors duration-500 py-[6vh] lg:py-[6vh]">
         {children}
       </main>
 

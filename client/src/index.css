@@ -9,19 +9,25 @@
   --accent-glow: rgba(0, 212, 255, 0.4);
   --violet: #7c3aed;
   --violet-dim: rgba(124, 58, 237, 0.15);
-  --bg-dark: #0a0a0f;
-  --bg-card-dark: #111118;
-  --text-dark: #e8e8f0;
-  --text-muted-dark: #6b6b80;
-  --text-dark-mode-sub: #9090a8;
+  --bg-dark: #050505;
+  --bg-card-dark: #0d0d12;
+  --text-dark: #f8f8fc;
+  --text-muted-dark: #808095;
+  --text-dark-mode-sub: #a0a0b8;
+  
+  --font-bebas: 'Bebas Neue', sans-serif;
+  --font-cinzel: 'Cinzel', serif;
+  --font-instrument: 'Instrument Sans', sans-serif;
 }
 
 @layer base {
   body {
-    @apply transition-colors duration-500 font-sans overflow-x-hidden antialiased;
+    @apply transition-colors duration-500 overflow-x-hidden antialiased;
+    font-family: var(--font-instrument);
     cursor: none;
     background-color: var(--bg-dark);
     color: var(--text-dark);
+    letter-spacing: -0.01em;
   }
 }
 
@@ -45,15 +51,34 @@
   color: inherit;
 }
 
-/* ── FILM GRAIN — Optimized SVG-based grain ── */
+/* ── FILM GRAIN — Enhanced organic grain + dust ── */
 .film-grain {
   position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.045;
+  inset: -100px; /* Oversized for animation */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.05;
   pointer-events: none;
   z-index: 1000;
   mix-blend-mode: overlay;
+  animation: grain-dance 0.2s steps(2) infinite;
+}
+
+@keyframes grain-dance {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-20px, -20px); }
+  50% { transform: translate(-40px, -10px); }
+  75% { transform: translate(-10px, -30px); }
+}
+
+.dust-scratches {
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.005' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 20 -18'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 1001;
+  mix-blend-mode: color-dodge;
+  animation: flicker 0.1s infinite;
 }
 
 /* ── SCANLINES ── */
@@ -181,9 +206,39 @@
 .cinematic-vignette {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+  background: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.6) 100%);
   pointer-events: none;
-  z-index: 998;
+  z-index: 1002; /* Above bars, giving "looking through" feel */
+}
+
+/* ── CINEMATIC LETTERBOXING ── */
+.letterbox-bar {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 6vh;
+  background: #000;
+  z-index: 2000; /* Topmost level */
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  pointer-events: none;
+}
+
+.letterbox-top { top: 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.letterbox-bottom { bottom: 0; border-top: 1px solid rgba(255,255,255,0.05); }
+
+.hud-text {
+  font-family: var(--font-bebas);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.25);
+  text-transform: uppercase;
+}
+
+/* ── CINEMATIC COLOR GRADE (LUT) ── */
+.color-graded {
+  filter: contrast(1.08) saturate(1.05) brightness(1) sepia(0.04);
 }
 
 /* ── ACCENT GLOW PULSE ── */

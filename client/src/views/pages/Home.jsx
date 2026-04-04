@@ -106,43 +106,62 @@ const Home = () => {
       {/* ══════════════════════════════════════════
           HERO — full-screen cinematic opener
       ══════════════════════════════════════════ */}
-      <motion.section className="relative h-screen flex items-center justify-center overflow-hidden" style={{ scale: heroScale }}>
-        <HeroVideo 
-          className="z-0" 
-          style={{ 
-            filter: useTransform(smoothY, [0, 0.15], ['blur(0px) brightness(1)', 'blur(10px) brightness(0.6)']) 
-          }} 
-        />
+      <motion.section 
+        className="relative h-[110vh] flex items-center justify-center overflow-hidden" 
+        style={{ 
+          scale: heroScale,
+          filter: useTransform(smoothY, [0, 0.25], ['blur(0px) brightness(1)', 'blur(8px) brightness(0.4)'])
+        }}
+      >
+        <HeroVideo className="z-0" />
+
+        {/* Anamorphic Lens Flare */}
+        <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+          <motion.div 
+            animate={{ 
+              opacity: [0.1, 0.3, 0.1],
+              x: [-20, 20, -20],
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            className="absolute top-1/3 left-[-10%] w-[120%] h-[1px] bg-gradient-to-r from-transparent via-[#00d4ff]/40 to-transparent blur-[20px]" 
+          />
+          <motion.div 
+            animate={{ 
+              opacity: [0.05, 0.2, 0.05],
+              x: [20, -20, 20],
+            }}
+            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+            className="absolute top-2/3 left-[-10%] w-[120%] h-[1px] bg-gradient-to-r from-transparent via-[#a78bfa]/30 to-transparent blur-[30px]" 
+          />
+        </div>
 
         {/* 3D floating elements — lazy loaded, no blocking */}
         <Suspense fallback={null}>
           <Hero3D />
         </Suspense>
 
-        <motion.div className="container mx-auto px-6 relative z-10 text-center" style={{ opacity: heroOpacity, y: heroTextY }}>
+        <motion.div className="container mx-auto px-6 relative z-20 text-center" style={{ opacity: heroOpacity, y: heroTextY }}>
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1] }}>
 
             {/* Live badge */}
             <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#00d4ff]/25 backdrop-blur-md mb-10"
-              style={{ background: 'rgba(0,212,255,0.07)' }}
-              whileHover={{ scale: 1.06, borderColor: 'rgba(0,212,255,0.6)' }}
-              animate={{ boxShadow: ['0 0 0px rgba(0,212,255,0)', '0 0 20px rgba(0,212,255,0.25)', '0 0 0px rgba(0,212,255,0)'] }}
-              transition={{ boxShadow: { duration: 2.5, repeat: Infinity } }}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 backdrop-blur-xl mb-10"
+              style={{ background: 'rgba(255,255,255,0.03)' }}
+              whileHover={{ scale: 1.06, borderColor: 'rgba(0,212,255,0.4)' }}
             >
-              <span className="w-2 h-2 rounded-full bg-[#00d4ff] animate-pulse" style={{ boxShadow: '0 0 8px rgba(0,212,255,0.9)' }} />
-              <span className="text-[10px] font-black tracking-[0.35em] uppercase text-white/80">Premiere Video Editor</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse shadow-[0_0_8px_rgba(220,38,38,0.8)]" />
+              <span className="text-[9px] font-black tracking-[0.4em] uppercase text-white/60 font-bebas">Live Session // Rec Enabled</span>
             </motion.div>
 
             {/* Staggered headline */}
-            <h1 className="text-4xl md:text-[7.5rem] font-black text-white tracking-tighter leading-[0.82] mb-8">
+            <h1 className="text-[12vw] md:text-[10rem] font-black text-white tracking-tighter leading-[0.78] mb-12 font-bebas">
               {['CRAFTING', 'CINEMATIC', 'STORIES'].map((word, i) => (
-                <span key={word} className="block overflow-hidden pb-1">
+                <span key={word} className="block overflow-hidden">
                   <motion.span
-                    initial={{ y: '110%', skewY: 4 }}
-                    animate={{ y: 0, skewY: 0 }}
-                    transition={{ duration: 1.1, delay: 0.15 + i * 0.18, ease: [0.16, 1, 0.3, 1] }}
-                    className={`inline-block ${i === 1 ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] via-[#a78bfa] to-[#00d4ff] bg-[length:200%_auto] animate-shimmer' : ''}`}
+                    initial={{ y: '110%' }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 1.2, delay: 0.15 + i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                    className={`inline-block ${i === 1 ? 'text-transparent bg-clip-text bg-gradient-to-r from-white via-[#00d4ff] to-white/40 bg-[length:200%_auto] animate-shimmer' : ''}`}
                   >
                     {word}
                   </motion.span>
@@ -151,67 +170,56 @@ const Home = () => {
             </h1>
 
             <motion.p
-              className="text-white/55 max-w-lg mx-auto mb-12 text-lg font-light leading-relaxed tracking-wide"
+              className="text-white/45 max-w-xl mx-auto mb-14 text-xl font-light leading-relaxed tracking-wide italic font-cinzel"
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9, duration: 1.4 }}
             >
-              Turning raw footage into visual masterpieces. High-impact edits for visionary creators and global brands.
+              "Transforming raw emotion into high-fidelity visual anthems."
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row items-center justify-center gap-5"
+              className="flex flex-col sm:flex-row items-center justify-center gap-6"
               initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1, duration: 0.9 }}
             >
               <MagneticBtn
                 to="/portfolio"
-                className="group relative px-10 py-4 font-black uppercase tracking-widest overflow-hidden text-black text-sm"
-                style={{ background: '#00d4ff', boxShadow: '0 0 35px rgba(0,212,255,0.45)' }}
+                className="group relative px-12 py-5 font-black uppercase tracking-[0.3em] overflow-hidden text-black text-xs font-bebas"
+                style={{ background: '#00d4ff', boxShadow: '0 0 40px rgba(0,212,255,0.3)' }}
               >
                 <span className="relative z-10 flex items-center gap-3">
-                  Explore Portfolio <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
+                  View Private Reels <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
                 </span>
-                <div className="absolute top-0 -left-full w-full h-full bg-white/25 skew-x-12 group-hover:left-full transition-all duration-600" />
+                <div className="absolute top-0 -left-full w-full h-full bg-white/20 skew-x-12 group-hover:left-full transition-all duration-600" />
               </MagneticBtn>
 
               <MagneticBtn
                 onClick={() => setSelectedVideo('https://www.youtube.com/watch?v=zF9m02WllZc')}
-                className="group flex items-center gap-4 text-white font-bold tracking-widest uppercase text-sm hover:text-[#00d4ff] transition-colors"
+                className="group flex items-center gap-4 text-white/70 font-black tracking-[0.3em] uppercase text-[10px] hover:text-[#00d4ff] transition-colors font-bebas"
               >
-                <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[#00d4ff]/60 group-hover:bg-[#00d4ff]/10 transition-all"
-                  style={{ boxShadow: '0 0 0 0 rgba(0,212,255,0)' }}>
-                  <Play size={15} fill="currentColor" />
+                <div className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#00d4ff]/40 group-hover:bg-[#00d4ff]/5 transition-all">
+                  <Play size={14} fill="currentColor" />
                 </div>
-                Watch Showreel
+                Master Showreel
               </MagneticBtn>
             </motion.div>
           </motion.div>
         </motion.div>
 
-        {/* HUD corners */}
-        <div className="absolute top-24 left-8 text-[9px] font-black tracking-[0.3em] text-[#00d4ff]/50 uppercase hidden lg:block animate-flicker">
-          <div>REC ●</div>
-          <div className="mt-1 text-white/18">00:00:00:00</div>
-          <div className="mt-4 text-white/10">ISO 800</div>
-          <div className="mt-1 text-white/10">WB 5600K</div>
+        {/* HUD corners — techy details */}
+        <div className="absolute top-32 left-12 text-[10px] font-black tracking-[0.4em] text-white/20 uppercase hidden lg:block font-bebas">
+          <div className="flex items-center gap-2 text-red-500/40"><span className="w-1.5 h-1.5 rounded-full bg-current animate-flicker" /> FOCUS_LOCKED</div>
+          <div className="mt-2">LENS // 35MM T1.5</div>
+          <div className="mt-1 text-white/10">FORMAT // 8K VV</div>
         </div>
-        <div className="absolute top-24 right-8 text-[9px] font-black tracking-[0.3em] text-[#00d4ff]/50 uppercase hidden lg:block text-right">
-          <div>4K / 60FPS</div>
-          <div className="mt-1 text-white/18">TIMELINE_01</div>
-          <div className="mt-4 text-white/10">SHUTTER 1/120</div>
-          <div className="mt-1 text-white/10">F 2.8</div>
-        </div>
-        <div className="absolute bottom-8 right-8 text-[8px] font-black tracking-[0.25em] text-white/15 uppercase hidden lg:block">
-          <div className="mb-1">LEN_24-70MM</div>
-          <div>FRAME 001 / 999</div>
+        
+        <div className="absolute top-32 right-12 text-[10px] font-black tracking-[0.4em] text-white/20 uppercase hidden lg:block text-right font-bebas">
+          <div>ZEISS SUPREME</div>
+          <div className="mt-2 text-white/10">S/N 884.22.1</div>
+          <div className="mt-1 text-white/10">ND_0.9</div>
         </div>
 
-        {/* Scroll cue */}
-        {/* <motion.div
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-          animate={{ y: [0, 9, 0] }} transition={{ duration: 2.2, repeat: Infinity }}
-        >
-          <div className="w-[1px] h-14 bg-gradient-to-b from-transparent via-[#00d4ff] to-transparent" />
-          <span className="text-[9px] font-black tracking-[0.5em] uppercase text-[#00d4ff]/45">Scroll</span>
-        </motion.div> */}
+        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 text-[9px] font-black tracking-[0.6em] text-white/15 uppercase font-bebas">
+          <span>Scroll to Pull Focus</span>
+        </div>
       </motion.section>
 
       {/* ══════════════════════════════════════════
