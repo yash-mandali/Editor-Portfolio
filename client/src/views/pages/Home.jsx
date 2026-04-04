@@ -191,13 +191,13 @@ const Home = () => {
         </div>
 
         {/* Scroll cue */}
-        <motion.div
+        {/* <motion.div
           className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
           animate={{ y: [0, 9, 0] }} transition={{ duration: 2.2, repeat: Infinity }}
         >
           <div className="w-[1px] h-14 bg-gradient-to-b from-transparent via-[#00d4ff] to-transparent" />
           <span className="text-[9px] font-black tracking-[0.5em] uppercase text-[#00d4ff]/45">Scroll</span>
-        </motion.div>
+        </motion.div> */}
       </motion.section>
 
       {/* ══════════════════════════════════════════
