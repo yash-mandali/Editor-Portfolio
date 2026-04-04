@@ -62,6 +62,10 @@ export default function Hero3D() {
     const wrapperRef = useRef(null);
     const [visible, setVisible] = useState(false);
 
+    // Never render on mobile — saves ~60MB GPU memory and stops the rAF loop
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    if (isMobile) return null;
+
     useEffect(() => {
         const el = wrapperRef.current;
         if (!el) return;

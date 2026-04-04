@@ -1,140 +1,46 @@
 import { useEffect, useState } from 'react';
-import { motion, useSpring, useMotionValue, AnimatePresence } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 const CustomCursor = () => {
-    const cursorX = useMotionValue(-100);
-    const cursorY = useMotionValue(-100);
-    
-    const springConfig = { damping: 35, stiffness: 350, mass: 0.5 };
-    const springX = useSpring(cursorX, springConfig);
-    const springY = useSpring(cursorY, springConfig);
+    // Don't render on touch devices — saves event listeners and motion values
+    if (typeof window !== 'undefined' && !window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        return null;
+    }
 
-    const [isHovering, setIsHovering] = useState(false);
-    const [hoverType, setHoverType] = useState('default'); // 'default', 'button', 'video'
+    const mouseX = useMotionValue(-100);
+    const mouseY = useMotionValue(-100);
+    const springX = useSpring(mouseX, { damping: 30, stiffness: 300, mass: 0.4 });
+    const springY = useSpring(mouseY, { damping: 30, stiffness: 300, mass: 0.4 });
+    const [hovering, setHovering] = useState(false);
 
     useEffect(() => {
-        const moveCursor = (e) => {
-            cursorX.set(e.clientX);
-            cursorY.set(e.clientY);
+        const move = e => { mouseX.set(e.clientX); mouseY.set(e.clientY); };
+        const over = e => {
+            setHovering(!!e.target.closest('a, button, [role="button"]'));
         };
-
-        const handleMouseOver = (e) => {
-            const target = e.target;
-            const videoHover = target.closest('.video-card-hover, video, iframe');
-            const buttonHover = target.closest('button, a, .magnetic-btn');
-            
-            if (videoHover) {
-                setIsHovering(true);
-                setHoverType('video');
-            } else if (buttonHover) {
-                setIsHovering(true);
-                setHoverType('button');
-            } else {
-                setIsHovering(false);
-                setHoverType('default');
-            }
-        };
-
-        window.addEventListener('mousemove', moveCursor);
-        window.addEventListener('mouseover', handleMouseOver);
-
+        window.addEventListener('mousemove', move, { passive: true });
+        window.addEventListener('mouseover', over, { passive: true });
         return () => {
-            window.removeEventListener('mousemove', moveCursor);
-            window.removeEventListener('mouseover', handleMouseOver);
+            window.removeEventListener('mousemove', move);
+            window.removeEventListener('mouseover', over);
         };
-    }, [cursorX, cursorY]);
+    }, [mouseX, mouseY]);
 
     return (
-        <div className="fixed inset-0 pointer-events-none z-[9999] hidden md:block">
-            {/* Main Outer Ring */}
+        <div className="fixed inset-0 pointer-events-none z-[9999] hidden lg:block">
+            {/* Outer ring */}
             <motion.div
-                style={{
-                    left: springX,
-                    top: springY,
-                    translateX: '-50%',
-                    translateY: '-50%',
-                }}
-                animate={{
-                    width: isHovering ? (hoverType === 'video' ? 100 : 70) : 34,
-                    height: isHovering ? (hoverType === 'video' ? 100 : 70) : 34,
-                    borderColor: isHovering ? 'rgba(0, 212, 255, 0.6)' : 'rgba(255, 255, 255, 0.15)',
-                    borderWidth: isHovering ? 1.5 : 1,
-                    rotate: isHovering ? 90 : 0
-                }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute border rounded-sm pointer-events-none mix-blend-difference"
+                className="absolute border border-[#00d4ff]/50 rounded-sm"
+                style={{ left: springX, top: springY, translateX: '-50%', translateY: '-50%' }}
+                animate={{ width: hovering ? 52 : 28, height: hovering ? 52 : 28 }}
+                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             />
-            
-            {/* Center Crosshair */}
+            {/* Inner dot */}
             <motion.div
-                style={{
-                    left: springX,
-                    top: springY,
-                    translateX: '-50%',
-                    translateY: '-50%',
-                }}
-                animate={{
-                    opacity: isHovering ? 1 : 0,
-                    scale: isHovering ? 1 : 0.5,
-                }}
-                className="absolute w-4 h-4 flex items-center justify-center pointer-events-none"
-            >
-                <div className="absolute w-[1px] h-full bg-cyan-400/40" />
-                <div className="absolute h-[1px] w-full bg-cyan-400/40" />
-            </motion.div>
-
-            {/* Cinematic Corner Reticles */}
-            <AnimatePresence>
-                {isHovering && (
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        style={{
-                            left: springX,
-                            top: springY,
-                            translateX: '-50%',
-                            translateY: '-50%',
-                        }}
-                        className={`absolute pointer-events-none ${hoverType === 'video' ? 'w-24 h-24' : 'w-16 h-16'}`}
-                    >
-                        {/* Top-Left */}
-                        <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-cyan-400 shadow-[0_0_10px_rgba(0,212,255,0.4)]" />
-                        {/* Top-Right */}
-                        <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-cyan-400 shadow-[0_0_10px_rgba(0,212,255,0.4)]" />
-                        {/* Bottom-Left */}
-                        <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-cyan-400 shadow-[0_0_10px_rgba(0,212,255,0.4)]" />
-                        {/* Bottom-Right */}
-                        <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-cyan-400 shadow-[0_0_10px_rgba(0,212,255,0.4)]" />
-
-                        {/* Hover Text */}
-                        {hoverType === 'video' && (
-                            <motion.span 
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] font-black text-cyan-400 whitespace-nowrap tracking-[0.2em] uppercase font-bebas"
-                            >
-                                PLAY_SHOWREEL
-                            </motion.span>
-                        )}
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
-            {/* Inner Dot */}
-            <motion.div
-                style={{
-                    left: cursorX,
-                    top: cursorY,
-                    translateX: '-50%',
-                    translateY: '-50%',
-                }}
-                animate={{
-                    scale: isHovering ? 0 : 1,
-                    backgroundColor: '#00d4ff',
-                    boxShadow: '0 0 10px rgba(0, 212, 255, 0.8)',
-                }}
-                className="absolute w-1 h-1 rounded-full pointer-events-none"
+                className="absolute w-1 h-1 rounded-full bg-[#00d4ff]"
+                style={{ left: mouseX, top: mouseY, translateX: '-50%', translateY: '-50%' }}
+                animate={{ opacity: hovering ? 0 : 1 }}
+                transition={{ duration: 0.15 }}
             />
         </div>
     );

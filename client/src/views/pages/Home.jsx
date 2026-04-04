@@ -1,16 +1,18 @@
+import { useState, useRef, lazy, Suspense, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring } from 'framer-motion';
-import React, { useState, useRef, lazy, Suspense, memo } from 'react';
 import { ArrowRight, Play, Zap, Award, Users, Sparkles, Film, Star, ChevronRight } from 'lucide-react';
 import { WHY_CHOOSE_ME, SERVICES } from '../../models/data';
 import VideoModal from '../components/VideoModal';
 import Videos from './Videos';
 import HeroVideo from '../components/HeroVideo';
 
-/* Lazy-load Three.js — only downloads when component mounts */
 const Hero3D = lazy(() => import('../components/Hero3D'));
 
-/* ─── Magnetic button ─── */
+/* Detect mobile once at module level — avoids repeated checks */
+const IS_MOBILE = typeof window !== 'undefined' && window.innerWidth < 768;
+
+/* ─── Magnetic button — desktop only ─── */
 const MagneticBtn = ({ children, className, style, onClick, to }) => {
   const ref = useRef(null);
   const x = useMotionValue(0);
@@ -18,6 +20,7 @@ const MagneticBtn = ({ children, className, style, onClick, to }) => {
   const sx = useSpring(x, { stiffness: 200, damping: 20 });
   const sy = useSpring(y, { stiffness: 200, damping: 20 });
   const handleMove = e => {
+    if (IS_MOBILE) return;
     const r = ref.current.getBoundingClientRect();
     x.set((e.clientX - r.left - r.width / 2) * 0.35);
     y.set((e.clientY - r.top - r.height / 2) * 0.35);
@@ -26,7 +29,7 @@ const MagneticBtn = ({ children, className, style, onClick, to }) => {
   const Tag = to ? motion(Link) : motion.button;
   return (
     <Tag ref={ref} to={to} onClick={onClick} onMouseMove={handleMove} onMouseLeave={reset}
-      style={{ ...style, x: sx, y: sy }} className={className}>
+      style={IS_MOBILE ? style : { ...style, x: sx, y: sy }} className={className}>
       {children}
     </Tag>
   );
@@ -48,7 +51,7 @@ const StyleCard = memo(({ icon: Icon, title, desc, accentColor, index }) => (
     transition={{ delay: index * 0.09, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
     viewport={{ once: true }}
     whileHover={{ y: -8, transition: { duration: 0.22 } }}
-    className="group relative p-7 bg-[#111118] border border-white/[0.05] overflow-hidden neon-border-cyan card-3d will-change-transform"
+    className="group relative p-7 bg-[#111118] border border-white/[0.05] overflow-hidden neon-border-cyan card-3d"
   >
     <div className="absolute top-0 left-0 w-0 h-[2px] group-hover:w-full transition-all duration-500" style={{ background: accentColor }} />
     <div className="absolute bottom-0 right-0 w-0 h-[2px] group-hover:w-full transition-all duration-500 delay-100" style={{ background: accentColor }} />
@@ -70,16 +73,13 @@ const Home = () => {
   const showreelRef = useRef(null);
 
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end end'] });
-  const smoothY = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
-  
-  const heroScale = useTransform(smoothY, [0, 0.18], [1, 1.07]);
-  const heroOpacity = useTransform(smoothY, [0, 0.16], [1, 0]);
-  const heroTextY = useTransform(smoothY, [0, 0.16], [0, -80]);
+  // Disable parallax on mobile — causes scroll jank on iOS/Android
+  const heroScale = useTransform(scrollYProgress, [0, 0.18], IS_MOBILE ? [1, 1] : [1, 1.07]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.16], [1, 0]);
+  const heroTextY = useTransform(scrollYProgress, [0, 0.16], IS_MOBILE ? [0, 0] : [0, -80]);
 
-  /* Parallax layers */
   const { scrollYProgress: showreelScroll } = useScroll({ target: showreelRef, offset: ['start end', 'end start'] });
-  const smoothShowreelY = useSpring(showreelScroll, { stiffness: 100, damping: 30, restDelta: 0.001 });
-  const showreelY = useTransform(smoothShowreelY, [0, 1], [60, -60]);
+  const showreelY = useTransform(showreelScroll, [0, 1], IS_MOBILE ? [0, 0] : [60, -60]);
 
   const editingStyles = [
     { icon: Film, title: 'Cinematic', desc: 'Slow burns, colour grades, and atmospheric tension that feel like a feature film.', accentColor: ACCENTS[0] },
@@ -106,34 +106,11 @@ const Home = () => {
       {/* ══════════════════════════════════════════
           HERO — full-screen cinematic opener
       ══════════════════════════════════════════ */}
-      <motion.section 
-        className="relative h-[110vh] flex items-center justify-center overflow-hidden" 
-        style={{ 
-          scale: heroScale,
-          filter: useTransform(smoothY, [0, 0.25], ['blur(0px) brightness(1)', 'blur(8px) brightness(0.4)'])
-        }}
+      <motion.section
+        className="relative h-screen flex items-center justify-center overflow-hidden"
+        style={{ scale: heroScale }}
       >
         <HeroVideo className="z-0" />
-
-        {/* Anamorphic Lens Flare */}
-        <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
-          <motion.div 
-            animate={{ 
-              opacity: [0.1, 0.3, 0.1],
-              x: [-20, 20, -20],
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/3 left-[-10%] w-[120%] h-[1px] bg-gradient-to-r from-transparent via-[#00d4ff]/40 to-transparent blur-[20px]" 
-          />
-          <motion.div 
-            animate={{ 
-              opacity: [0.05, 0.2, 0.05],
-              x: [20, -20, 20],
-            }}
-            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-            className="absolute top-2/3 left-[-10%] w-[120%] h-[1px] bg-gradient-to-r from-transparent via-[#a78bfa]/30 to-transparent blur-[30px]" 
-          />
-        </div>
 
         {/* 3D floating elements — lazy loaded, no blocking */}
         <Suspense fallback={null}>
@@ -210,7 +187,7 @@ const Home = () => {
           <div className="mt-2">LENS // 35MM T1.5</div>
           <div className="mt-1 text-white/10">FORMAT // 8K VV</div>
         </div>
-        
+
         <div className="absolute top-32 right-12 text-[10px] font-black tracking-[0.4em] text-white/20 uppercase hidden lg:block text-right font-bebas">
           <div>ZEISS SUPREME</div>
           <div className="mt-2 text-white/10">S/N 884.22.1</div>
@@ -231,14 +208,13 @@ const Home = () => {
         <div className="ticker-wrap">
           <div className="ticker-content animate-marquee group-hover/marquee:[animation-play-state:paused]">
             {[...marqueeItems, ...marqueeItems, ...marqueeItems].map((item, i) => (
-              <motion.span
+              <span
                 key={i}
-                whileHover={{ scale: 1.14, color: '#00d4ff' }}
-                className="inline-flex items-center gap-4 px-6 text-[11px] font-black tracking-[0.4em] uppercase text-white/55 cursor-default transition-colors duration-200"
+                className="inline-flex items-center gap-4 px-6 text-[11px] font-black tracking-[0.4em] uppercase text-white/55 cursor-default"
               >
                 <span className="w-1 h-1 rounded-full bg-[#00d4ff]/50 flex-shrink-0" />
                 {item}
-              </motion.span>
+              </span>
             ))}
           </div>
         </div>

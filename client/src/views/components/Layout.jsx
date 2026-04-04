@@ -3,12 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, Instagram, Youtube, Linkedin, Mail, Disc } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PROFILE } from '../../models/data';
-// ThemeToggle removed for cinematic dark-only experience
 import Loader from './Loader';
 import logo from '../../assests/logo-file.png';
 import CustomCursor from './CustomCursor';
-import Lenis from 'lenis';
-import 'lenis/dist/lenis.css';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -283,23 +280,6 @@ const Footer = () => {
   );
 };
 
-const Timecode = () => {
-  const [time, setTime] = useState('00:00:00:00');
-  useEffect(() => {
-    const start = Date.now();
-    const interval = setInterval(() => {
-      const diff = Date.now() - start;
-      const hours = Math.floor(diff / 3600000).toString().padStart(2, '0');
-      const mins = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
-      const secs = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
-      const frames = Math.floor((diff % 1000) / 41).toString().padStart(2, '0'); // approx 24fps
-      setTime(`${hours}:${mins}:${secs}:${frames}`);
-    }, 41);
-    return () => clearInterval(interval);
-  }, []);
-  return <span>{time}</span>;
-};
-
 export const Layout = ({ children }) => {
   const location = useLocation();
   const [showLoader, setShowLoader] = useState(true);
@@ -322,84 +302,18 @@ export const Layout = ({ children }) => {
     return () => clearTimeout(timerRef.current);
   }, [location.pathname]);
 
-  // Smooth scroll initialization
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
-
   return (
-    <div className="relative min-h-screen bg-[#050505] text-neutral-100 font-sans selection:bg-cyan-500/30 transition-colors duration-500 overflow-x-hidden color-graded">
-      {/* Cinematic Letterboxing */}
-      <div className="letterbox-bar letterbox-top hidden lg:flex justify-between items-center">
-        <div className="hud-text flex items-center gap-4">
-          <span className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
-            REC
-          </span>
-          <Timecode />
-        </div>
-        <div className="hud-text">
-          PROJECT_ID: CIN_2026_PORTFOLIO
-        </div>
-        <div className="hud-text flex gap-6">
-          <span>4K RAW</span>
-          <span>23.976 FPS</span>
-        </div>
-      </div>
-
-      <div className="letterbox-bar letterbox-bottom hidden lg:flex justify-between items-center">
-        <div className="hud-text">
-          CAM_A // SON_VEN_2
-        </div>
-        <div className="hud-text text-center">
-          ISO 800 // 5600K // 1/48
-        </div>
-        <div className="hud-text text-right flex gap-6">
-          <span>BATT 88%</span>
-          <span>LIMIT_01</span>
-        </div>
-      </div>
-
-      {/* Cinematic Overlays */}
+    <div className="relative min-h-screen bg-[#0a0a0f] text-neutral-100 font-sans selection:bg-cyan-500/30 overflow-x-hidden">
       <div className="film-grain" />
-      <div className="dust-scratches" />
       <div className="scanlines" />
-      <div className="cinematic-vignette" />
-
-      {/* Custom Cursor */}
       <CustomCursor />
-
       <Navbar />
-
       <AnimatePresence mode="wait">
         {showLoader && <Loader />}
       </AnimatePresence>
-
-      <main className="relative z-10 transition-colors duration-500 py-[6vh] lg:py-[6vh]">
+      <main className="relative z-10">
         {children}
       </main>
-
       <Footer />
     </div>
   );

@@ -47,6 +47,9 @@ export default function About3D() {
     const wrapperRef = useRef(null);
     const [visible, setVisible] = useState(false);
 
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    if (isMobile) return null;
+
     useEffect(() => {
         const el = wrapperRef.current;
         if (!el) return;
