@@ -107,7 +107,7 @@ const Home = () => {
           HERO — full-screen cinematic opener
       ══════════════════════════════════════════ */}
       <motion.section
-        className="relative h-screen flex items-center justify-center overflow-hidden"
+        className="relative h-screen flex items-center justify-center overflow-hidden gpu-accelerated"
         style={{ scale: heroScale }}
       >
         <HeroVideo className="z-0" />
@@ -195,17 +195,17 @@ const Home = () => {
         </div>
 
         <div className="absolute bottom-24 left-1/2 -translate-x-1/2 text-[9px] font-black tracking-[0.6em] text-white/15 uppercase font-bebas">
-          <span>Scroll to Pull Focus</span>
+          <span className="gpu-accelerated">Scroll to Pull Focus</span>
         </div>
       </motion.section>
 
       {/* ══════════════════════════════════════════
           MARQUEE
       ══════════════════════════════════════════ */}
-      <div className="relative py-4 bg-[#0d0d14] border-y border-[#00d4ff]/18 overflow-hidden group/marquee">
+      <div className="relative py-4 bg-[#0d0d14] border-y border-[#00d4ff]/18 overflow-hidden group/marquee gpu-accelerated">
         <div className="absolute left-0 top-0 h-full w-28 bg-gradient-to-r from-[#0d0d14] to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 h-full w-28 bg-gradient-to-l from-[#0d0d14] to-transparent z-10 pointer-events-none" />
-        <div className="ticker-wrap">
+        <div className="ticker-wrap gpu-accelerated">
           <div className="ticker-content animate-marquee group-hover/marquee:[animation-play-state:paused]">
             {[...marqueeItems, ...marqueeItems, ...marqueeItems].map((item, i) => (
               <span

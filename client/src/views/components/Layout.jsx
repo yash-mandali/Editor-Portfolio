@@ -290,7 +290,7 @@ export const Layout = ({ children }) => {
     timerRef.current = setTimeout(() => {
       setShowLoader(false);
       initial.current = false;
-    }, 1000);
+    }, 250);
     return () => clearTimeout(timerRef.current);
   }, []);
 
@@ -298,7 +298,7 @@ export const Layout = ({ children }) => {
     if (initial.current) return;
     setShowLoader(true);
     clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => setShowLoader(false), 600);
+    timerRef.current = setTimeout(() => setShowLoader(false), 200);
     return () => clearTimeout(timerRef.current);
   }, [location.pathname]);
 

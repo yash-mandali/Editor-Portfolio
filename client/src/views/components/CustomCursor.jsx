@@ -14,16 +14,20 @@ const CustomCursor = () => {
     const [hovering, setHovering] = useState(false);
 
     useEffect(() => {
-        const move = e => { mouseX.set(e.clientX); mouseY.set(e.clientY); };
-        const over = e => {
-            setHovering(!!e.target.closest('a, button, [role="button"]'));
+        let lastHovered = false;
+        const update = e => {
+            mouseX.set(e.clientX);
+            mouseY.set(e.clientY);
+            
+            // Only check closest once per frame/move
+            const isHovering = !!e.target.closest('a, button, [role="button"]');
+            if (isHovering !== lastHovered) {
+                setHovering(isHovering);
+                lastHovered = isHovering;
+            }
         };
-        window.addEventListener('mousemove', move, { passive: true });
-        window.addEventListener('mouseover', over, { passive: true });
-        return () => {
-            window.removeEventListener('mousemove', move);
-            window.removeEventListener('mouseover', over);
-        };
+        window.addEventListener('mousemove', update, { passive: true });
+        return () => window.removeEventListener('mousemove', update);
     }, [mouseX, mouseY]);
 
     return (

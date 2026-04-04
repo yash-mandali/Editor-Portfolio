@@ -40,8 +40,6 @@
     }
   }
 }
-}
-}
 
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar {
@@ -63,48 +61,33 @@
   color: inherit;
 }
 
-/* ── FILM GRAIN — Enhanced organic grain + dust ── */
+/* ── FILM GRAIN — Optimized (Low GPU overhead) ── */
 .film-grain {
   position: fixed;
-  inset: -100px;
-  /* Oversized for animation */
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.05;
+  inset: 0;
+  /* Use a much simpler, non-turbulent SVG to avoid GPU noise generation */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.045;
   pointer-events: none;
   z-index: 1000;
   mix-blend-mode: overlay;
-  animation: grain-dance 0.2s steps(2) infinite;
+  /* Remove steps(2) infinite animation — massive CPU saver */
+  will-change: opacity;
 }
 
-@keyframes grain-dance {
+/* Remove heavy grain keyframes */
 
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-
-  25% {
-    transform: translate(-20px, -20px);
-  }
-
-  50% {
-    transform: translate(-40px, -10px);
-  }
-
-  75% {
-    transform: translate(-10px, -30px);
-  }
-}
 
 .dust-scratches {
   position: fixed;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.005' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 20 -18'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  opacity: 0.035;
+  opacity: 0.025;
   pointer-events: none;
   z-index: 1001;
   mix-blend-mode: color-dodge;
-  animation: flicker 0.1s infinite;
+  /* Simplified flicker */
+  animation: flicker 8s infinite linear;
 }
 
 /* ── SCANLINES ── */
@@ -271,9 +254,10 @@
   text-transform: uppercase;
 }
 
-/* ── CINEMATIC COLOR GRADE (LUT) ── */
+/* ── CINEMATIC COLOR GRADE — Optimized ── */
 .color-graded {
-  filter: contrast(1.08) saturate(1.05) brightness(1) sepia(0.04);
+  filter: contrast(1.05) saturate(1.05); /* Removed expensive brightness/sepia filters */
+  transform: translateZ(0);
 }
 
 /* ── GLITCH ── */
@@ -529,14 +513,13 @@
 @keyframes page-in {
   from {
     opacity: 0;
-    transform: translateY(14px) scale(0.985);
-    filter: blur(3px);
+    transform: translateY(8px) scale(0.995) translateZ(0);
+    /* Removed heavy blur filter */
   }
 
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
+    transform: translateY(0) scale(1) translateZ(0);
   }
 }
 
