@@ -85,7 +85,7 @@ const AdminContacts = () => {
                                             onClick={() => deleteContact(c._id)}
                                             className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-red-500/60 hover:text-red-500 transition-colors"
                                         >
-                                            <Trash2 size={12} /> Erase Signal
+                                            <Trash2 size={12} /> Delete
                                         </button>
                                     </div>
                                 </div>
