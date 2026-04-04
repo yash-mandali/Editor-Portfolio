@@ -118,7 +118,7 @@ const AdminContacts = () => {
                                         </div>
                                     </div>
 
-                                    <div className="flex flex-wrap items-center gap-4 pt-4">
+                                    {/* <div className="flex flex-wrap items-center gap-4 pt-4">
                                         <span className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-500">Current Protocol:</span>
                                         <div className="relative">
                                             <select
@@ -136,7 +136,7 @@ const AdminContacts = () => {
                                                 <Clock size={10} />
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         );
