@@ -16,10 +16,10 @@ const AdminLayout = () => {
         navigate('/admin/login', { replace: true });
     };
     return (
-        <div className="min-h-screen bg-[#0a0a0f] text-white selection:bg-cyan-400/30">
+        <div className="min-h-screen bg-[#0a0a0f] text-white selection:bg-amber-400/30">
             {/* Background Accent */}
             <div className="fixed inset-0 pointer-events-none z-0">
-                <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-cyan-500/5 blur-[120px] rounded-full" />
+                <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-amber-500/5 blur-[120px] rounded-full" />
                 <div className="absolute bottom-0 left-0 w-[40%] h-[40%] bg-blue-600/5 blur-[100px] rounded-full" />
             </div>
 
@@ -29,7 +29,7 @@ const AdminLayout = () => {
                     <aside className="w-full lg:w-64 flex-shrink-0">
                         <div className="bg-[#0d0d14] p-8 rounded-lg border border-white/5 sticky top-32">
                             <div className="flex items-center gap-3 mb-10 pb-6 border-b border-white/5">
-                                <Terminal size={18} className="text-cyan-400" />
+                                <Terminal size={18} className="text-amber-400" />
                                 <h2 className="text-lg font-black tracking-tighter uppercase">Console</h2>
                             </div>
                             
@@ -44,7 +44,7 @@ const AdminLayout = () => {
                                             className={({ isActive }) =>
                                                 `flex items-center gap-3 px-4 py-3 rounded-lg font-black uppercase tracking-[0.2em] text-[10px] transition-all duration-300 ${
                                                     isActive 
-                                                    ? 'bg-cyan-400 text-black shadow-[0_0_20px_rgba(0,212,255,0.2)]' 
+                                                    ? 'bg-amber-400 text-black shadow-[0_0_20px_rgba(0,212,255,0.2)]' 
                                                     : 'text-neutral-500 hover:text-white hover:bg-white/5'
                                                 }`
                                             }

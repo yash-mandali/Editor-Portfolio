@@ -114,7 +114,7 @@ const AdminPortfolio = () => {
             <div className="bg-[#0d0d14] p-10 rounded-lg border border-white/5 relative overflow-hidden">
                 <div className="flex items-center justify-between mb-10 pb-6 border-b border-white/5">
                     <div className="flex items-center gap-3">
-                        <Video size={20} className="text-cyan-400" />
+                        <Video size={20} className="text-amber-400" />
                         <h2 className="text-2xl font-black text-white uppercase tracking-tighter">
                             {editing ? 'Edit Project' : 'New Project'}
                         </h2>
@@ -139,7 +139,7 @@ const AdminPortfolio = () => {
                                 value={form.title}
                                 onChange={handleChange}
                                 placeholder="CLIENT_PROJECT_NAME"
-                                className={`w-full px-4 py-4 rounded bg-white/5 border ${errors.title ? 'border-red-500' : 'border-white/10'} text-white placeholder:text-neutral-700 focus:outline-none focus:border-cyan-400/50 transition-all`}
+                                className={`w-full px-4 py-4 rounded bg-white/5 border ${errors.title ? 'border-red-500' : 'border-white/10'} text-white placeholder:text-neutral-700 focus:outline-none focus:border-amber-400/50 transition-all`}
                             />
                             {errors.title && <p className="text-[10px] text-red-500 font-bold uppercase tracking-widest">{errors.title}</p>}
                         </div>
@@ -149,7 +149,7 @@ const AdminPortfolio = () => {
                             <select
                                 value={form.category}
                                 onChange={(e) => setForm({ ...form, category: e.target.value })}
-                                className="w-full px-4 py-4 rounded bg-[#0a0a0f] border border-white/10 text-white focus:outline-none focus:border-cyan-400/50 transition-all appearance-none"
+                                className="w-full px-4 py-4 rounded bg-[#0a0a0f] border border-white/10 text-white focus:outline-none focus:border-amber-400/50 transition-all appearance-none"
                             >
                                 <option value="">Select a category</option>
                                 <option value="Reels / Shorts">Reels / Shorts</option>
@@ -174,7 +174,7 @@ const AdminPortfolio = () => {
                             onChange={handleChange}
                             placeholder="Brief project overview..."
                             rows="4"
-                            className="w-full px-4 py-4 rounded bg-white/5 border border-white/10 text-white placeholder:text-neutral-700 focus:outline-none focus:border-cyan-400/50 transition-all resize-none"
+                            className="w-full px-4 py-4 rounded bg-white/5 border border-white/10 text-white placeholder:text-neutral-700 focus:outline-none focus:border-amber-400/50 transition-all resize-none"
                         />
                     </div>
 
@@ -187,7 +187,7 @@ const AdminPortfolio = () => {
                                 value={form.image}
                                 onChange={handleChange}
                                 placeholder="https://source.unsplash.com/..."
-                                className="w-full px-4 py-4 rounded bg-white/5 border border-white/10 text-white placeholder:text-neutral-700 focus:outline-none focus:border-cyan-400/50 transition-all"
+                                className="w-full px-4 py-4 rounded bg-white/5 border border-white/10 text-white placeholder:text-neutral-700 focus:outline-none focus:border-amber-400/50 transition-all"
                             />
                         </div>
 
@@ -199,7 +199,7 @@ const AdminPortfolio = () => {
                                 value={form.videoUrl}
                                 onChange={handleChange}
                                 placeholder="https://vimeo.com/..."
-                                className={`w-full px-4 py-4 rounded bg-white/5 border ${errors.videoUrl ? 'border-red-500' : 'border-white/10'} text-white placeholder:text-neutral-700 focus:outline-none focus:border-cyan-400/50 transition-all`}
+                                className={`w-full px-4 py-4 rounded bg-white/5 border ${errors.videoUrl ? 'border-red-500' : 'border-white/10'} text-white placeholder:text-neutral-700 focus:outline-none focus:border-amber-400/50 transition-all`}
                             />
                             {errors.videoUrl && <p className="text-[10px] text-red-500 font-bold uppercase tracking-widest">{errors.videoUrl}</p>}
                         </div>
@@ -213,7 +213,7 @@ const AdminPortfolio = () => {
                                 id="published"
                                 checked={form.published}
                                 onChange={handleChange}
-                                className="w-5 h-5 rounded bg-white/5 border-white/10 text-cyan-400 focus:ring-cyan-500/20"
+                                className="w-5 h-5 rounded bg-white/5 border-white/10 text-amber-400 focus:ring-amber-500/20"
                             />
                             <label htmlFor="published" className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400 cursor-pointer select-none">
                                 Deploy to Public Gallery
@@ -223,7 +223,7 @@ const AdminPortfolio = () => {
                         <button
                             type="submit"
                             disabled={uploading}
-                            className={`w-full md:w-auto min-w-[200px] flex items-center justify-center gap-3 px-10 py-5 bg-cyan-400 hover:bg-white text-black font-black uppercase tracking-[0.3em] text-xs transition-all shadow-[0_0_30px_rgba(0,212,255,0.2)] disabled:opacity-50`}
+                            className={`w-full md:w-auto min-w-[200px] flex items-center justify-center gap-3 px-10 py-5 bg-amber-400 hover:bg-white text-black font-black uppercase tracking-[0.3em] text-xs transition-all shadow-[0_0_30px_rgba(0,212,255,0.2)] disabled:opacity-50`}
                         >
                             {uploading ? <Loader2 className="animate-spin" size={18} /> : (editing ? <CheckCircle2 size={18} /> : <Plus size={18} />)}
                             {uploading ? 'Processing...' : (editing ? 'Apply Changes' : 'Initialize Project')}
@@ -242,7 +242,7 @@ const AdminPortfolio = () => {
 
                 {loading ? (
                     <div className="flex flex-col items-center justify-center py-32 bg-white/5 rounded border border-white/10 border-dashed">
-                        <Loader2 className="w-10 h-10 text-cyan-400 animate-spin mb-4" />
+                        <Loader2 className="w-10 h-10 text-amber-400 animate-spin mb-4" />
                         <p className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-600">Syncing Archive...</p>
                     </div>
                 ) : items.length === 0 ? (
@@ -255,7 +255,7 @@ const AdminPortfolio = () => {
                         {items.map(item => (
                             <div
                                 key={item._id}
-                                className="bg-[#0a0a0f] border border-white/5 rounded-lg overflow-hidden group hover:border-cyan-400/30 transition-all duration-500"
+                                className="bg-[#0a0a0f] border border-white/5 rounded-lg overflow-hidden group hover:border-amber-400/30 transition-all duration-500"
                             >
                                 {/* Image/Video Preview */}
                                 <div className="relative aspect-video bg-neutral-900 overflow-hidden">
@@ -272,7 +272,7 @@ const AdminPortfolio = () => {
                                         </div>
                                     )}
                                     <div className="absolute top-4 left-4 flex gap-2">
-                                        <span className="px-2 py-1 bg-black/60 backdrop-blur-md text-cyan-400 text-[8px] font-black uppercase tracking-[0.2em] rounded border border-cyan-400/30">
+                                        <span className="px-2 py-1 bg-black/60 backdrop-blur-md text-amber-400 text-[8px] font-black uppercase tracking-[0.2em] rounded border border-amber-400/30">
                                             {item.category}
                                         </span>
                                     </div>
@@ -289,7 +289,7 @@ const AdminPortfolio = () => {
                                     <div className="flex gap-4">
                                         <button
                                             onClick={() => handleEdit(item)}
-                                            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-white/5 hover:bg-cyan-400 hover:text-black text-white rounded text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 border border-white/10 hover:border-cyan-400"
+                                            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-white/5 hover:bg-amber-400 hover:text-black text-white rounded text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 border border-white/10 hover:border-amber-400"
                                         >
                                             <Edit2 size={12} />
                                             Edit

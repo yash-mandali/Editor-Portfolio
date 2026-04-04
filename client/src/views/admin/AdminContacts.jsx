@@ -36,7 +36,7 @@ const AdminContacts = () => {
             {/* Header */}
             <div className="bg-[#0d0d14] p-10 rounded-lg border border-white/5 relative overflow-hidden">
                 <div className="flex items-center gap-3 mb-4">
-                    <Mail size={20} className="text-cyan-400" />
+                    <Mail size={20} className="text-amber-400" />
                     <h2 className="text-2xl font-black text-white uppercase tracking-tighter">Inbound <span className="text-[#2e2e42]">Transmissions</span></h2>
                 </div>
                 <p className="text-neutral-500 font-medium tracking-wide">Interface for managing strategic inquiries and partnership protocols.</p>
@@ -44,7 +44,7 @@ const AdminContacts = () => {
 
             {loading ? (
                 <div className="flex flex-col items-center justify-center py-32 bg-[#0d0d14] rounded-lg border border-white/5 border-dashed">
-                    <Loader2 className="w-10 h-10 text-cyan-400 animate-spin mb-4" />
+                    <Loader2 className="w-10 h-10 text-amber-400 animate-spin mb-4" />
                     <p className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-600">Decoding Communications...</p>
                 </div>
             ) : contacts.length === 0 ? (
@@ -56,7 +56,7 @@ const AdminContacts = () => {
                 <div className="grid gap-6">
                     {contacts.map(c => {
                         const statusColors = {
-                            new: 'text-cyan-400 border-cyan-400/20 bg-cyan-400/5',
+                            new: 'text-amber-400 border-amber-400/20 bg-amber-400/5',
                             contacted: 'text-blue-400 border-blue-400/20 bg-blue-400/5',
                             'in-progress': 'text-purple-400 border-purple-400/20 bg-purple-400/5',
                             completed: 'text-green-400 border-green-400/20 bg-green-400/5',
@@ -64,16 +64,16 @@ const AdminContacts = () => {
                         };
 
                         return (
-                            <div key={c._id} className="bg-[#0d0d14] p-8 rounded-lg border border-white/5 hover:border-cyan-400/20 transition-all duration-500 group">
+                            <div key={c._id} className="bg-[#0d0d14] p-8 rounded-lg border border-white/5 hover:border-amber-400/20 transition-all duration-500 group">
                                 <div className="flex flex-col md:flex-row justify-between gap-6 mb-8 pb-6 border-b border-white/5">
                                     <div className="flex items-start gap-4">
-                                        <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-cyan-400 font-black text-xl border border-white/10 group-hover:border-cyan-400/30 transition-all">
+                                        <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-amber-400 font-black text-xl border border-white/10 group-hover:border-amber-400/30 transition-all">
                                             {c.name.charAt(0).toUpperCase()}
                                         </div>
                                         <div>
                                             <h3 className="text-lg font-black text-white uppercase tracking-tight">{c.name}</h3>
                                             <p className="text-xs text-neutral-500 font-medium flex items-center gap-2 mt-1">
-                                                <Shield size={12} className="text-cyan-400/50" /> {c.email}
+                                                <Shield size={12} className="text-amber-400/50" /> {c.email}
                                             </p>
                                         </div>
                                     </div>
@@ -92,7 +92,7 @@ const AdminContacts = () => {
 
                                 <div className="space-y-4">
                                     <div className="flex items-start gap-3">
-                                        <MessageSquare size={16} className="text-cyan-400 mt-1 flex-shrink-0" />
+                                        <MessageSquare size={16} className="text-amber-400 mt-1 flex-shrink-0" />
                                         <p className="text-neutral-400 text-sm leading-relaxed font-medium bg-white/5 p-4 rounded border border-white/5 w-full italic">
                                             "{c.message}"
                                         </p>

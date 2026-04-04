@@ -48,28 +48,28 @@ function FloatingSpheres() {
         <group ref={groupRef}>
             <Sphere args={[0.15, 32, 32]} position={[1, 1, -4]}>
                 <meshStandardMaterial
-                    color="#00d4ff"
+                    color="#e2b02e"
                     transparent
                     opacity={0.4}
-                    emissive="#00d4ff"
+                    emissive="#e2b02e"
                     emissiveIntensity={0.2}
                 />
             </Sphere>
             <Sphere args={[0.1, 32, 32]} position={[-1.5, -0.5, -3]}>
                 <meshStandardMaterial
-                    color="#00d4ff"
+                    color="#e2b02e"
                     transparent
                     opacity={0.5}
-                    emissive="#00d4ff"
+                    emissive="#e2b02e"
                     emissiveIntensity={0.15}
                 />
             </Sphere>
             <Sphere args={[0.12, 32, 32]} position={[0, -1.2, -5]}>
                 <meshStandardMaterial
-                    color="#00d4ff"
+                    color="#e2b02e"
                     transparent
                     opacity={0.3}
-                    emissive="#00d4ff"
+                    emissive="#e2b02e"
                     emissiveIntensity={0.25}
                 />
             </Sphere>
@@ -91,10 +91,10 @@ function MouseFollower() {
     return (
         <Sphere ref={meshRef} args={[0.05, 16, 16]}>
             <meshStandardMaterial
-                color="#00d4ff"
+                color="#e2b02e"
                 transparent
                 opacity={0.8}
-                emissive="#00d4ff"
+                emissive="#e2b02e"
                 emissiveIntensity={0.5}
             />
         </Sphere>

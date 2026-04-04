@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 
 /* accent per service index */
-const ACCENTS = ['#00d4ff', '#a78bfa', '#34d399', '#f472b6', '#60a5fa'];
+const ACCENTS = ['#e2b02e', '#a78bfa', '#34d399', '#f472b6', '#60a5fa'];
 
 const ServiceRow = ({ service, index, accent }) => {
   const [hovered, setHovered] = useState(false);
@@ -120,7 +120,7 @@ const Services = () => {
 
       {/* Ambient glows */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[15%] left-[-8%] w-[40%] h-[40%] bg-[#00d4ff]/4 blur-[140px] rounded-full" />
+        <div className="absolute top-[15%] left-[-8%] w-[40%] h-[40%] bg-[#e2b02e]/4 blur-[140px] rounded-full" />
         <div className="absolute bottom-[20%] right-[-8%] w-[45%] h-[45%] bg-[#a78bfa]/4 blur-[120px] rounded-full" />
       </div>
 
@@ -132,7 +132,7 @@ const Services = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.55 }}
-            className="text-[#00d4ff] font-black tracking-[0.45em] uppercase text-xs mb-4"
+            className="text-[#e2b02e] font-black tracking-[0.45em] uppercase text-xs mb-4"
           >
             What I Do
           </motion.p>
@@ -163,7 +163,7 @@ const Services = () => {
             initial={{ width: 0 }}
             animate={{ width: '100%' }}
             transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="h-[1px] bg-gradient-to-r from-[#00d4ff]/50 via-[#a78bfa]/30 to-transparent mt-12"
+            className="h-[1px] bg-gradient-to-r from-[#e2b02e]/50 via-[#a78bfa]/30 to-transparent mt-12"
           />
         </div>
 
@@ -185,7 +185,7 @@ const Services = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="mt-24 mx-6 md:mx-0 relative overflow-hidden bg-[#0d0d14] border border-[#00d4ff]/15 p-12 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8"
+          className="mt-24 mx-6 md:mx-0 relative overflow-hidden bg-[#0d0d14] border border-[#e2b02e]/15 p-12 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8"
         >
           {/* Scan line */}
           <motion.div
@@ -200,10 +200,10 @@ const Services = () => {
             style={{ background: 'radial-gradient(ellipse 60% 80% at 0% 50%, rgba(0,212,255,0.06) 0%, transparent 70%)' }} />
 
           <div className="relative z-10">
-            <p className="text-[10px] font-black tracking-[0.45em] uppercase text-[#00d4ff]/55 mb-3">Ready to start?</p>
+            <p className="text-[10px] font-black tracking-[0.45em] uppercase text-[#e2b02e]/55 mb-3">Ready to start?</p>
             <h2 className="text-3xl md:text-4xl font-black text-white tracking-tighter leading-tight">
               Let's build something<br />
-              <span className="text-[#00d4ff]">extraordinary.</span>
+              <span className="text-[#e2b02e]">extraordinary.</span>
             </h2>
           </div>
 
@@ -215,7 +215,7 @@ const Services = () => {
             <Link
               to="/contact"
               className="inline-flex items-center gap-3 px-10 py-4 font-black uppercase tracking-[0.35em] text-sm text-black transition-all"
-              style={{ background: '#00d4ff', boxShadow: '0 0 40px rgba(0,212,255,0.3)' }}
+              style={{ background: '#e2b02e', boxShadow: '0 0 40px rgba(0,212,255,0.3)' }}
             >
               Get In Touch <ArrowRight size={16} />
             </Link>

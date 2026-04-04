@@ -20,10 +20,10 @@ const HeroVideo = ({ videoUrl = "https://www.pexels.com/download/video/36355454/
     {/* Grid lines */}
     <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.04 }}>
       {[25, 50, 75].map(p => (
-        <div key={`v${p}`} className="absolute top-0 h-full w-[1px] bg-[#00d4ff]" style={{ left: `${p}%` }} />
+        <div key={`v${p}`} className="absolute top-0 h-full w-[1px] bg-[#e2b02e]" style={{ left: `${p}%` }} />
       ))}
       {[25, 50, 75].map(p => (
-        <div key={`h${p}`} className="absolute left-0 w-full h-[1px] bg-[#00d4ff]" style={{ top: `${p}%` }} />
+        <div key={`h${p}`} className="absolute left-0 w-full h-[1px] bg-[#e2b02e]" style={{ top: `${p}%` }} />
       ))}
     </div>
 

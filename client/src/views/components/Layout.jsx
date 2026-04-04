@@ -63,9 +63,9 @@ const Navbar = () => {
             <Link
               to="/contact"
               className="px-8 py-3 text-black text-[10px] font-black uppercase tracking-[0.3em] transition-colors overflow-hidden"
-              style={{ background: '#00d4ff' }}
-              onMouseEnter={e => e.currentTarget.style.background = '#a78bfa'}
-              onMouseLeave={e => e.currentTarget.style.background = '#00d4ff'}
+              style={{ background: '#e2b02e' }}
+              onMouseEnter={e => e.currentTarget.style.background = '#f59e0b'}
+              onMouseLeave={e => e.currentTarget.style.background = '#e2b02e'}
             >
               Get In Touch
             </Link>
@@ -109,12 +109,11 @@ const Navbar = () => {
           >
             {/* Ambient glow */}
             <div className="absolute inset-0 pointer-events-none"
-              style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 30%, rgba(0,212,255,0.07) 0%, transparent 70%)' }} />
+              style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 30%, rgba(226,176,46,0.06) 0%, transparent 70%)' }} />
 
-            {/* Scan line */}
             <motion.div
               className="absolute left-0 w-full h-[1px] pointer-events-none"
-              style={{ background: 'linear-gradient(90deg, transparent, rgba(0,212,255,0.4), transparent)' }}
+              style={{ background: 'linear-gradient(90deg, transparent, rgba(226,176,46,0.3), transparent)' }}
               animate={{ top: ['0%', '100%'] }}
               transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
             />
@@ -160,12 +159,12 @@ const Navbar = () => {
                 transition={{ delay: 0.42, duration: 0.45 }}
                 className="w-full max-w-xs mt-6"
               >
-                <Link
-                  to="/contact"
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-center w-full py-4 text-black font-black uppercase tracking-[0.3em] text-sm"
-                  style={{ background: '#00d4ff', boxShadow: '0 0 30px rgba(0,212,255,0.3)' }}
-                >
+                  <Link
+                    to="/contact"
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center justify-center w-full py-4 text-black font-black uppercase tracking-[0.3em] text-sm"
+                    style={{ background: '#e2b02e', boxShadow: '0 0 30px rgba(226,176,46,0.2)' }}
+                  >
                   Hire Me
                 </Link>
               </motion.div>
@@ -200,7 +199,7 @@ const Footer = () => {
   return (
     <footer className="bg-neutral-950 border-t border-white/5 pt-32 pb-16 relative overflow-hidden transition-colors duration-500">
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-cyan-500/5 blur-[120px] rounded-full transition-colors" />
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-amber-500/5 blur-[120px] rounded-full transition-colors" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">

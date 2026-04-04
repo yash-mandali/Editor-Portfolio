@@ -115,7 +115,7 @@ const About = () => {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="text-[#00d4ff] font-black tracking-[0.4em] uppercase text-xs mb-3"
+              className="text-[#e2b02e] font-black tracking-[0.4em] uppercase text-xs mb-3"
             >
               Career Journey
             </motion.p>
@@ -132,7 +132,7 @@ const About = () => {
 
           <div className="relative">
             {/* Vertical line */}
-            <div className="absolute left-6 md:left-8 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#00d4ff]/60 via-[#00d4ff]/20 to-transparent" />
+            <div className="absolute left-6 md:left-8 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#e2b02e]/60 via-[#e2b02e]/20 to-transparent" />
 
             <div className="space-y-12">
               {EXPERIENCE.map((exp, i) => (
@@ -145,35 +145,35 @@ const About = () => {
                   className="relative pl-20 md:pl-24 group"
                 >
                   {/* Timeline dot */}
-                  <div className="absolute left-[18px] md:left-[26px] top-6 w-4 h-4 rounded-full border-2 border-[#00d4ff] bg-[#0a0a0f] dot-pulse z-10" />
+                  <div className="absolute left-[18px] md:left-[26px] top-6 w-4 h-4 rounded-full border-2 border-[#e2b02e] bg-[#0a0a0f] dot-pulse z-10" />
 
                   {/* Year badge */}
                   <div className="absolute left-0 top-[52px] hidden md:block">
-                    <span className="text-[9px] font-black tracking-[0.2em] text-[#00d4ff]/60 uppercase whitespace-nowrap" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
+                    <span className="text-[9px] font-black tracking-[0.2em] text-[#e2b02e]/60 uppercase whitespace-nowrap" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
                       {exp.year}
                     </span>
                   </div>
 
                   {/* Card */}
-                  <div className="relative p-8 bg-[#111118] border border-white/[0.05] group-hover:border-[#00d4ff]/30 transition-all duration-400 overflow-hidden">
+                  <div className="relative p-8 bg-[#111118] border border-white/[0.05] group-hover:border-[#e2b02e]/30 transition-all duration-400 overflow-hidden">
                     {/* Top accent line */}
-                    <div className="absolute top-0 left-0 w-0 h-[2px] bg-[#00d4ff] group-hover:w-full transition-all duration-500" />
+                    <div className="absolute top-0 left-0 w-0 h-[2px] bg-[#e2b02e] group-hover:w-full transition-all duration-500" />
 
                     {/* Year pill — mobile */}
-                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#00d4ff]/10 border border-[#00d4ff]/20 rounded-full mb-4 md:hidden">
-                      <span className="text-[9px] font-black tracking-[0.25em] text-[#00d4ff] uppercase">{exp.year}</span>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#e2b02e]/10 border border-[#e2b02e]/20 rounded-full mb-4 md:hidden">
+                      <span className="text-[9px] font-black tracking-[0.25em] text-[#e2b02e] uppercase">{exp.year}</span>
                     </div>
 
                     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-3">
                       <div>
                         <h3 className="text-xl font-black text-white tracking-tight">{exp.title}</h3>
                         <div className="flex items-center gap-2 mt-1">
-                          <Briefcase size={12} className="text-[#00d4ff]" />
+                          <Briefcase size={12} className="text-[#e2b02e]" />
                           <span className="text-sm font-semibold text-[#6b6b80]">{exp.company}</span>
                         </div>
                       </div>
                       {/* Year badge desktop */}
-                      <span className="hidden md:inline-flex items-center px-3 py-1 bg-[#00d4ff]/10 border border-[#00d4ff]/20 text-[9px] font-black tracking-[0.25em] text-[#00d4ff] uppercase whitespace-nowrap">
+                      <span className="hidden md:inline-flex items-center px-3 py-1 bg-[#e2b02e]/10 border border-[#e2b02e]/20 text-[9px] font-black tracking-[0.25em] text-[#e2b02e] uppercase whitespace-nowrap">
                         {exp.year}
                       </span>
                     </div>
@@ -184,7 +184,7 @@ const About = () => {
                       <ul className="grid sm:grid-cols-2 gap-2">
                         {exp.achievements.map((ach, j) => (
                           <li key={j} className="flex items-start gap-2 text-xs text-neutral-400">
-                            <CheckCircle2 size={13} className="text-[#00d4ff] mt-0.5 flex-shrink-0" />
+                            <CheckCircle2 size={13} className="text-[#e2b02e] mt-0.5 flex-shrink-0" />
                             {ach}
                           </li>
                         ))}

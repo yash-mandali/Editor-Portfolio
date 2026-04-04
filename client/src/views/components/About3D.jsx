@@ -24,7 +24,7 @@ function Particles() {
             <bufferGeometry>
                 <bufferAttribute attach="attributes-position" count={count} array={positions} itemSize={3} />
             </bufferGeometry>
-            <pointsMaterial color="#00d4ff" size={0.022} transparent opacity={0.4} sizeAttenuation />
+            <pointsMaterial color="#e2b02e" size={0.022} transparent opacity={0.4} sizeAttenuation />
         </points>
     );
 }
@@ -38,7 +38,7 @@ function OrbitRing() {
     return (
         <mesh ref={ref} position={[3.5, 0, -6]}>
             <torusGeometry args={[1.2, 0.03, 8, 48]} />
-            <meshBasicMaterial color="#00d4ff" transparent opacity={0.12} />
+            <meshBasicMaterial color="#e2b02e" transparent opacity={0.12} />
         </mesh>
     );
 }

@@ -107,7 +107,7 @@ const AdminVideos = () => {
             <div className="bg-[#0d0d14] p-10 rounded-lg border border-white/5 relative overflow-hidden">
                 <div className="flex items-center justify-between mb-10 pb-6 border-b border-white/5">
                     <div className="flex items-center gap-3">
-                        <Film size={20} className="text-cyan-400" />
+                        <Film size={20} className="text-amber-400" />
                         <h2 className="text-2xl font-black text-white uppercase tracking-tighter">
                             {editing ? 'Modify Stream' : 'Initialize Stream'}
                         </h2>
@@ -130,7 +130,7 @@ const AdminVideos = () => {
                                 type="text"
                                 value={form.title}
                                 onChange={(e) => setForm({ ...form, title: e.target.value })}
-                                className={`w-full px-4 py-4 rounded bg-white/5 border ${errors.title ? 'border-red-500' : 'border-white/10'} text-white placeholder:text-neutral-700 focus:outline-none focus:border-cyan-400/50 transition-all`}
+                                className={`w-full px-4 py-4 rounded bg-white/5 border ${errors.title ? 'border-red-500' : 'border-white/10'} text-white placeholder:text-neutral-700 focus:outline-none focus:border-amber-400/50 transition-all`}
                                 placeholder="ASSET_IDENTIFIER"
                             />
                             {errors.title && <p className="text-[10px] text-red-500 font-bold uppercase tracking-widest">{errors.title}</p>}
@@ -141,7 +141,7 @@ const AdminVideos = () => {
                             <select
                                 value={form.category}
                                 onChange={(e) => setForm({ ...form, category: e.target.value })}
-                                className="w-full px-4 py-4 rounded bg-[#0a0a0f] border border-white/10 text-white focus:outline-none focus:border-cyan-400/50 transition-all appearance-none"
+                                className="w-full px-4 py-4 rounded bg-[#0a0a0f] border border-white/10 text-white focus:outline-none focus:border-amber-400/50 transition-all appearance-none"
                             >
                                 <option value="">Select a category</option>
                                 <option value="Reels / Shorts">Reels / Shorts</option>
@@ -163,7 +163,7 @@ const AdminVideos = () => {
                         <textarea
                             value={form.description}
                             onChange={(e) => setForm({ ...form, description: e.target.value })}
-                            className="w-full px-4 py-4 rounded bg-white/5 border border-white/10 text-white placeholder:text-neutral-700 focus:outline-none focus:border-cyan-400/50 transition-all resize-none"
+                            className="w-full px-4 py-4 rounded bg-white/5 border border-white/10 text-white placeholder:text-neutral-700 focus:outline-none focus:border-amber-400/50 transition-all resize-none"
                             placeholder="Brief asset synopsis..."
                             rows="3"
                         />
@@ -176,7 +176,7 @@ const AdminVideos = () => {
                                 type="text"
                                 value={form.image}
                                 onChange={(e) => setForm({ ...form, image: e.target.value })}
-                                className="w-full px-4 py-4 rounded bg-white/5 border border-white/10 text-white placeholder:text-neutral-700 focus:outline-none focus:border-cyan-400/50 transition-all"
+                                className="w-full px-4 py-4 rounded bg-white/5 border border-white/10 text-white placeholder:text-neutral-700 focus:outline-none focus:border-amber-400/50 transition-all"
                                 placeholder="https://..."
                             />
                         </div>
@@ -187,7 +187,7 @@ const AdminVideos = () => {
                                 type="text"
                                 value={form.videoUrl}
                                 onChange={(e) => setForm({ ...form, videoUrl: e.target.value })}
-                                className={`w-full px-4 py-4 rounded bg-white/5 border ${errors.videoUrl ? 'border-red-500' : 'border-white/10'} text-white placeholder:text-neutral-700 focus:outline-none focus:border-cyan-400/50 transition-all`}
+                                className={`w-full px-4 py-4 rounded bg-white/5 border ${errors.videoUrl ? 'border-red-500' : 'border-white/10'} text-white placeholder:text-neutral-700 focus:outline-none focus:border-amber-400/50 transition-all`}
                                 placeholder="https://..."
                             />
                             {errors.videoUrl && <p className="text-[10px] text-red-500 font-bold uppercase tracking-widest">{errors.videoUrl}</p>}
@@ -201,7 +201,7 @@ const AdminVideos = () => {
                                 id="published"
                                 checked={form.published}
                                 onChange={(e) => setForm({ ...form, published: e.target.checked })}
-                                className="w-5 h-5 rounded bg-white/5 border-white/10 text-cyan-400 focus:ring-cyan-500/20"
+                                className="w-5 h-5 rounded bg-white/5 border-white/10 text-amber-400 focus:ring-amber-500/20"
                             />
                             <label htmlFor="published" className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400 cursor-pointer select-none">
                                 Transmit to Global Feed
@@ -211,7 +211,7 @@ const AdminVideos = () => {
                         <button
                             type="submit"
                             disabled={uploading}
-                            className="w-full md:w-auto min-w-[200px] flex items-center justify-center gap-3 px-10 py-5 bg-cyan-400 hover:bg-white text-black font-black uppercase tracking-[0.3em] text-xs transition-all shadow-[0_0_30px_rgba(0,212,255,0.2)] disabled:opacity-50"
+                            className="w-full md:w-auto min-w-[200px] flex items-center justify-center gap-3 px-10 py-5 bg-amber-400 hover:bg-white text-black font-black uppercase tracking-[0.3em] text-xs transition-all shadow-[0_0_30px_rgba(0,212,255,0.2)] disabled:opacity-50"
                         >
                              {uploading ? <Loader2 className="animate-spin" size={18} /> : (editing ? <CheckCircle2 size={18} /> : <Plus size={18} />)}
                             {uploading ? 'Processing...' : editing ? 'Commit Changes' : 'Initialize Asset'}
@@ -230,7 +230,7 @@ const AdminVideos = () => {
 
                 {loading ? (
                     <div className="flex flex-col items-center justify-center py-32 bg-white/5 rounded border border-white/10 border-dashed">
-                        <Loader2 className="w-10 h-10 text-cyan-400 animate-spin mb-4" />
+                        <Loader2 className="w-10 h-10 text-amber-400 animate-spin mb-4" />
                         <p className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-600">Syncing Archive...</p>
                     </div>
                 ) : items.length === 0 ? (
@@ -243,7 +243,7 @@ const AdminVideos = () => {
                         {items.map((item) => (
                             <div
                                 key={item._id}
-                                className="flex flex-col md:flex-row md:items-center gap-8 p-6 bg-[#0a0a0f] rounded border border-white/5 hover:border-cyan-400/30 transition-all duration-500 group"
+                                className="flex flex-col md:flex-row md:items-center gap-8 p-6 bg-[#0a0a0f] rounded border border-white/5 hover:border-amber-400/30 transition-all duration-500 group"
                             >
                                 <div className="relative w-full md:w-40 aspect-video rounded overflow-hidden flex-shrink-0">
                                     {item.image ? (
@@ -267,7 +267,7 @@ const AdminVideos = () => {
                                 <div className="flex-1 min-w-0">
                                     <div className="flex items-center gap-4 mb-2">
                                         <h3 className="font-black text-white uppercase tracking-tight truncate">{item.title}</h3>
-                                        <span className="text-[8px] font-black tracking-[0.2em] text-cyan-400 uppercase bg-cyan-400/10 px-2 py-0.5 rounded border border-cyan-400/20">
+                                        <span className="text-[8px] font-black tracking-[0.2em] text-amber-400 uppercase bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20">
                                             {item.category}
                                         </span>
                                     </div>
@@ -279,7 +279,7 @@ const AdminVideos = () => {
                                             href={item.videoUrl}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400 hover:text-cyan-400 transition-colors"
+                                            className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400 hover:text-amber-400 transition-colors"
                                         >
                                             <ExternalLink size={12} /> Master_Feed
                                         </a>
@@ -289,7 +289,7 @@ const AdminVideos = () => {
                                 <div className="flex gap-3">
                                     <button
                                         onClick={() => handleEdit(item)}
-                                        className="p-3 bg-white/5 text-neutral-400 hover:bg-cyan-400 hover:text-black rounded transition-all duration-300 border border-white/5 hover:border-cyan-400"
+                                        className="p-3 bg-white/5 text-neutral-400 hover:bg-amber-400 hover:text-black rounded transition-all duration-300 border border-white/5 hover:border-amber-400"
                                     >
                                         <Edit2 size={16} />
                                     </button>
