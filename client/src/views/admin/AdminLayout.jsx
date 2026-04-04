@@ -23,11 +23,11 @@ const AdminLayout = () => {
                 <div className="absolute bottom-0 left-0 w-[40%] h-[40%] bg-blue-600/5 blur-[100px] rounded-full" />
             </div>
 
-            <div className="container mx-auto px-6 py-12 relative z-10">
+            <div className="container mx-auto px-6 pt-32 pb-12 relative z-10">
                 <div className="flex flex-col lg:flex-row gap-10">
                     {/* Sidebar */}
                     <aside className="w-full lg:w-64 flex-shrink-0">
-                        <div className="bg-[#0d0d14] p-8 rounded-lg border border-white/5 sticky top-12">
+                        <div className="bg-[#0d0d14] p-8 rounded-lg border border-white/5 sticky top-32">
                             <div className="flex items-center gap-3 mb-10 pb-6 border-b border-white/5">
                                 <Terminal size={18} className="text-cyan-400" />
                                 <h2 className="text-lg font-black tracking-tighter uppercase">Console</h2>
@@ -62,7 +62,7 @@ const AdminLayout = () => {
                                     className="w-full flex items-center justify-center gap-3 px-4 py-3 text-[10px] font-black uppercase tracking-[0.3em] rounded-lg bg-red-500/10 text-red-500 border border-red-500/20 hover:bg-red-500 hover:text-white transition-all duration-300"
                                 >
                                     <LogOut size={14} />
-                                    Terminate
+                                    LogOut
                                 </button>
                             </div>
                         </div>
