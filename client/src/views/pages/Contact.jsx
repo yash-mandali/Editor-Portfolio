@@ -242,21 +242,21 @@ const Contact = () => {
                       <div className="grid md:grid-cols-2 gap-6">
                         <Field label="Project Type">
                           <select name="projectType" value={formData.projectType} onChange={handleChange} className={selectCls}>
-                            <option value="">Select type</option>
-                            <option value="reels">Reels / Shorts</option>
-                            <option value="youtube">YouTube Video</option>
-                            <option value="wedding">Wedding Film</option>
-                            <option value="commercial">Commercial / Brand</option>
-                            <option value="other">Other</option>
+                            <option value="" style={{ background: '#0d0d14', color: '#fff' }}>Select type</option>
+                            <option value="reels" style={{ background: '#0d0d14', color: '#fff' }}>Reels / Shorts</option>
+                            <option value="youtube" style={{ background: '#0d0d14', color: '#fff' }}>YouTube Video</option>
+                            <option value="wedding" style={{ background: '#0d0d14', color: '#fff' }}>Wedding Film</option>
+                            <option value="commercial" style={{ background: '#0d0d14', color: '#fff' }}>Commercial / Brand</option>
+                            <option value="other" style={{ background: '#0d0d14', color: '#fff' }}>Other</option>
                           </select>
                         </Field>
                         <Field label="Budget Range">
                           <select name="budget" value={formData.budget} onChange={handleChange} className={selectCls}>
-                            <option value="">Select budget</option>
-                            <option value="50-200">$50 – $200</option>
-                            <option value="200-500">$200 – $500</option>
-                            <option value="500-1000">$500 – $1,000</option>
-                            <option value="1000+">$1,000+</option>
+                            <option value="" style={{ background: '#0d0d14', color: '#fff' }}>Select budget</option>
+                            <option value="50-200" style={{ background: '#0d0d14', color: '#fff' }}>$50 – $200</option>
+                            <option value="200-500" style={{ background: '#0d0d14', color: '#fff' }}>$200 – $500</option>
+                            <option value="500-1000" style={{ background: '#0d0d14', color: '#fff' }}>$500 – $1,000</option>
+                            <option value="1000+" style={{ background: '#0d0d14', color: '#fff' }}>$1,000+</option>
                           </select>
                         </Field>
                       </div>
