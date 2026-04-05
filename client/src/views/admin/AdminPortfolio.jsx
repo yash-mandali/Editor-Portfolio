@@ -53,7 +53,7 @@ const AdminPortfolio = () => {
             const payload = {
                 title: form.title,
                 category: form.category,
-                image:form.image,
+                image: form.image,
                 description: form.description,
                 videoUrl: form.videoUrl,
                 published: form.published
@@ -260,7 +260,7 @@ const AdminPortfolio = () => {
                                 {/* Image/Video Preview */}
                                 <div className="relative aspect-video bg-neutral-900 overflow-hidden">
                                     {item.image ? (
-                                        <img loading="lazy" src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition duration-1000 opacity-60 group-hover:opacity-80" />
+                                        <img loading="lazy" src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition duration-1000 opacity-90 group-hover:opacity-100" />
                                     ) : (
                                         <div className="flex items-center justify-center w-full h-full text-neutral-700">
                                             <Video size={40} />

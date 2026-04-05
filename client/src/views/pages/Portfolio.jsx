@@ -111,11 +111,11 @@ const Portfolio = () => {
                     loading="lazy"
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-90 transition-opacity"
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90 group-hover:opacity-100 transition-opacity"
                   />
 
-                  {/* Cinematic Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/40 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-700" />
+                  {/* Subtle bottom gradient only */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-700" />
 
                   {/* Play Icon Center */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-90 group-hover:scale-100">

@@ -108,7 +108,7 @@ const AdminHome = () => {
                                                     loading="lazy"
                                                     src={v.image}
                                                     alt={v.title}
-                                                    className="w-full h-full object-cover opacity-60 group-hover:opacity-85 group-hover:scale-105 transition-all duration-700"
+                                                    className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                                                 />
                                             ) : (
                                                 <div className="flex items-center justify-center w-full h-full text-neutral-700">
@@ -162,8 +162,8 @@ const AdminHome = () => {
                                         </div>
                                         <div className="text-right">
                                             <span className={`inline-block px-2 py-1 text-[9px] font-black uppercase tracking-widest rounded border ${c.status === 'new' ? 'text-amber-400 border-amber-400/20 bg-amber-400/5' :
-                                                    c.status === 'completed' ? 'text-green-400 border-green-400/20 bg-green-400/5' :
-                                                        'text-blue-400 border-blue-400/20 bg-blue-400/5'
+                                                c.status === 'completed' ? 'text-green-400 border-green-400/20 bg-green-400/5' :
+                                                    'text-blue-400 border-blue-400/20 bg-blue-400/5'
                                                 }`}>{c.status}</span>
                                             <p className="text-[10px] text-neutral-600 mt-1">{new Date(c.createdAt).toLocaleDateString()}</p>
                                         </div>

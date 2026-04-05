@@ -94,7 +94,7 @@ const Home = () => {
     { value: 200, suffix: '+', label: 'Projects Delivered' },
     { value: 5, suffix: '+', label: 'Years Experience' },
     { value: 98, suffix: '%', label: 'Client Satisfaction' },
-    { value: 50, suffix: 'M+', label: 'Views Generated' },
+    { value: 15, suffix: 'M+', label: 'Views Generated' },
   ];
 
   const marqueeItems = ['Cinematic', 'Dynamic', 'Impactful', 'Professional', 'Creative', 'Immersive', 'Storytelling', 'Premium'];
@@ -131,7 +131,7 @@ const Home = () => {
             </motion.div>
 
             {/* Staggered headline */}
-            <h1 className="text-[12vw] md:text-[10rem] font-black text-white tracking-tighter leading-[0.78] mb-12 font-bebas">
+            <h1 className="text-[10vw] md:text-[10rem] font-black text-white tracking-tighter leading-[0.78] mb-12 font-bebas">
               {['CRAFTING', 'CINEMATIC', 'STORIES'].map((word, i) => (
                 <span key={word} className="block overflow-hidden">
                   <motion.span
