@@ -263,7 +263,7 @@ const Footer = () => {
                       rel="noreferrer"
                       className="flex items-center gap-2 text-neutral-500 text-sm hover:text-cyan-400 transition-colors group"
                     >
-                      <item.icon size={14} className="group-hover:text-cyan-400 transition-colors" />
+                      {/* <item.icon size={14} className="group-hover:text-cyan-400 transition-colors" /> */}
                       {item.label}
                     </a>
                   </li>

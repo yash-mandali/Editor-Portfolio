@@ -102,7 +102,7 @@ const ServiceRow = ({ service, index, accent }) => {
           className="flex-shrink-0 hidden md:block"
         >
           <Link
-            to="/contact"
+            to={`/contact?service=${service.id}`}
             className="inline-flex items-center gap-2 px-5 py-2.5 text-[10px] font-black uppercase tracking-[0.3em] text-black transition-all"
             style={{ background: accent }}
           >
