@@ -230,40 +230,49 @@ const About = () => {
               return (
                 <motion.div
                   key={tool.id}
-                  initial={{ opacity: 0, y: 36 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.09, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  whileHover={{ y: -6, transition: { duration: 0.22 } }}
-                  className="group relative bg-[#111118] border border-white/[0.05] overflow-hidden hover:border-[#00d4ff]/35 transition-all duration-400"
+                  initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ delay: i * 0.08, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                  whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.2 } }}
+                  className="group relative bg-[#111118] border border-white/[0.05] overflow-hidden hover:border-[#00d4ff]/40 transition-colors duration-300 cursor-default"
                 >
-                  {/* Gradient top strip */}
-                  <div className={`h-[3px] w-full bg-gradient-to-r ${tool.color}`} />
+                  {/* Gradient top strip — animates width on hover */}
+                  <div className={`h-[3px] w-full bg-gradient-to-r ${tool.color} transition-all duration-500`} />
 
-                  <div className="p-6">
-                    {/* Icon + name row */}
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-[#1a1a25] border border-white/5 p-2.5 shadow-xl group-hover:border-[#00d4ff]/30 transition-all duration-500">
-                        <img
-                          src={tool.icon}
-                          alt={tool.name}
-                          className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
-                        />
-                      </div>
-                      <div>
-                        <h3 className="text-sm font-black text-white leading-tight tracking-tight">{tool.name}</h3>
-                        <span className={`inline-block mt-1 px-2 py-0.5 text-[9px] font-black uppercase tracking-[0.2em] rounded-sm ${badgeStyle}`}>
-                          {tool.proficiency}
-                        </span>
-                      </div>
-                    </div>
+                  {/* Shimmer sweep on hover */}
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent pointer-events-none" />
 
+                  <div className="p-6 relative z-10">
+                    {/* Icon */}
+                    <motion.div
+                      whileHover={{ rotate: [0, -8, 8, 0], transition: { duration: 0.4 } }}
+                      className="w-14 h-14 rounded-xl flex items-center justify-center bg-[#1a1a25] border border-white/[0.06] p-3 mb-4 shadow-lg group-hover:border-[#00d4ff]/30 group-hover:shadow-[0_0_20px_rgba(0,212,255,0.1)] transition-all duration-400"
+                    >
+                      <img
+                        src={tool.icon}
+                        alt={tool.name}
+                        className="w-full h-full object-contain"
+                        loading="lazy"
+                      />
+                    </motion.div>
+
+                    {/* Name + badge */}
+                    <h3 className="text-sm font-black text-white leading-tight tracking-tight mb-1.5 group-hover:text-[#00d4ff] transition-colors duration-300">{tool.name}</h3>
+                    <span className={`inline-block mb-3 px-2 py-0.5 text-[9px] font-black uppercase tracking-[0.2em] rounded-sm ${badgeStyle}`}>
+                      {tool.proficiency}
+                    </span>
+
+                    {/* Description */}
                     <p className="text-[#6b6b80] text-xs leading-relaxed">{tool.description}</p>
+
+                    {/* Bottom accent line — draws on hover */}
+                    <div className="absolute bottom-0 left-0 h-[1px] w-0 group-hover:w-full bg-gradient-to-r from-[#00d4ff]/40 to-transparent transition-all duration-500" />
                   </div>
 
-                  {/* Hover glow */}
+                  {/* Radial glow */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                    style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,212,255,0.05) 0%, transparent 70%)' }} />
+                    style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,212,255,0.06) 0%, transparent 70%)' }} />
                 </motion.div>
               );
             })}

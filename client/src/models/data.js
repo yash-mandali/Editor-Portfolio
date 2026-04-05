@@ -12,7 +12,7 @@ export const PROFILE = {
   description: "I specialize in transforming raw footage into compelling visual narratives. With expertise in Adobe Premiere Pro, After Effects, and CapCut Pro, I deliver high-end edits for creators and brands who value quality.",
   email: "cinecraft@editz.com",
   whatsapp: "+91 9574804787",
-  socials: { 
+  socials: {
     instagram: "https://www.instagram.com/phoenixdude28?igsh=aW1xNmZmN3A5aXJz",
     youtube: "https://youtube.com/@phoenixdude28?si=XjhU2JppxWWdTbrh",
     linkedin: "https://linkedin.com"
@@ -99,8 +99,24 @@ export const WORKING_TOOLS = [
     id: 5,
     name: "Adobe Audition",
     description: "Professional audio editing and sound design software",
-    icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Adobe_Audition_CC_2026_icon.svg/640px-Adobe_Audition_CC_2026_icon.svg.png",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Adobe_Audition_CC_icon_%282020%29.svg/640px-Adobe_Audition_CC_icon_%282020%29.svg.png",
     color: "from-indigo-500 to-purple-600",
+    proficiency: "Advanced"
+  },
+  {
+    id: 6,
+    name: "Adobe Photoshop",
+    description: "Industry-leading image editing and compositing for thumbnails and graphics",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg",
+    color: "from-blue-400 to-cyan-600",
+    proficiency: "Advanced"
+  },
+  {
+    id: 7,
+    name: "Adobe Lightroom",
+    description: "Professional photo editing and colour grading for cinematic stills",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/b/b6/Adobe_Photoshop_Lightroom_CC_logo.svg",
+    color: "from-sky-400 to-blue-500",
     proficiency: "Advanced"
   }
 ];
