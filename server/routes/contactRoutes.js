@@ -41,7 +41,16 @@ router.post('/', async (req, res) => {
             budget,
             message,
             submittedAt: contact.createdAt,
-        }).catch(err => console.error('Email notification failed:', err.message));
+        }).then(() => {
+            console.log(`✓ Email notification sent for: ${email}`);
+        }).catch(err => {
+            console.error('✗ Email notification failed:');
+            console.error('  Message:', err.message);
+            console.error('  Code:', err.code);
+            console.error('  EMAIL_USER set:', !!process.env.EMAIL_USER);
+            console.error('  EMAIL_PASS set:', !!process.env.EMAIL_PASS);
+            console.error('  NOTIFY_EMAIL:', process.env.NOTIFY_EMAIL);
+        });
 
         res.status(201).json({
             success: true,

@@ -18,13 +18,8 @@ const BUDGET_LABELS = {
 export const sendContactEmail = async ({ name, email, projectType, budget, message, submittedAt }) => {
   // Create a fresh transporter per call with pool:false so Gmail sends immediately
   const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // SSL — faster than STARTTLS (port 587)
+    service: 'gmail',
     pool: false,
-    connectionTimeout: 5000,
-    greetingTimeout: 5000,
-    socketTimeout: 10000,
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
