@@ -1,5 +1,6 @@
 import express from 'express';
 import Contact from '../models/Contact.js';
+import { sendContactEmail } from '../utils/emailService.js';
 
 const router = express.Router();
 
@@ -31,6 +32,16 @@ router.post('/', async (req, res) => {
 
         // Save to database
         await contact.save();
+
+        // Send notification email (non-blocking — don't fail the request if email fails)
+        sendContactEmail({
+            name,
+            email,
+            projectType,
+            budget,
+            message,
+            submittedAt: contact.createdAt,
+        }).catch(err => console.error('Email notification failed:', err.message));
 
         res.status(201).json({
             success: true,
