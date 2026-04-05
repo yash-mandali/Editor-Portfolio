@@ -1,34 +1,32 @@
 import nodemailer from 'nodemailer';
 
-const createTransporter = () => {
-    return nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS, // Gmail App Password (not your regular password)
-        },
-    });
-};
-
 const PROJECT_TYPE_LABELS = {
-    reels: 'Reels / Shorts',
-    youtube: 'YouTube Video',
-    wedding: 'Wedding Film',
-    commercial: 'Commercial / Brand',
-    other: 'Other',
+  reels: 'Reels / Shorts',
+  youtube: 'YouTube Video',
+  wedding: 'Wedding Film',
+  commercial: 'Commercial / Brand',
+  other: 'Other',
 };
 
 const BUDGET_LABELS = {
-    '50-200': '$50 – $200',
-    '200-500': '$200 – $500',
-    '500-1000': '$500 – $1,000',
-    '1000+': '$1,000+',
+  '50-200': '$50 – $200',
+  '200-500': '$200 – $500',
+  '500-1000': '$500 – $1,000',
+  '1000+': '$1,000+',
 };
 
 export const sendContactEmail = async ({ name, email, projectType, budget, message, submittedAt }) => {
-    const transporter = createTransporter();
+  // Create a fresh transporter per call with pool:false so Gmail sends immediately
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    pool: false,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
 
-    const html = `
+  const html = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -147,11 +145,14 @@ export const sendContactEmail = async ({ name, email, projectType, budget, messa
 </html>
     `.trim();
 
-    await transporter.sendMail({
-        from: `"CineCraft Portfolio" <${process.env.EMAIL_USER}>`,
-        to: process.env.NOTIFY_EMAIL || 'aiuser4561@gmail.com',
-        replyTo: email,
-        subject: `🎬 New Project Inquiry from ${name} — ${PROJECT_TYPE_LABELS[projectType] || projectType}`,
-        html,
-    });
+  await transporter.sendMail({
+    from: `"CineCraft Portfolio" <${process.env.EMAIL_USER}>`,
+    to: process.env.NOTIFY_EMAIL || 'aiuser4561@gmail.com',
+    replyTo: email,
+    subject: `🎬 New Project Inquiry from ${name} — ${PROJECT_TYPE_LABELS[projectType] || projectType}`,
+    html,
+  });
+
+  // Force close so Gmail flushes immediately — prevents the "delayed by 1 submission" bug
+  transporter.close();
 };
