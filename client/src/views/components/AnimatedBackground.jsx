@@ -26,7 +26,7 @@ function Stars() {
             <Points ref={ref} positions={sphere} stride={3} frustumCulled={false}>
                 <PointMaterial
                     transparent
-                    color="#e2b02e"
+                    color="#00d4ff"
                     size={0.04}
                     sizeAttenuation={true}
                     depthWrite={false}
@@ -50,7 +50,7 @@ function FloatingGeometry() {
         <mesh ref={meshRef} position={[2, -1, -5]}>
             <octahedronGeometry args={[0.5, 0]} />
             <meshStandardMaterial
-                color="#e2b02e"
+                color="#00d4ff"
                 transparent
                 opacity={0.1}
                 wireframe

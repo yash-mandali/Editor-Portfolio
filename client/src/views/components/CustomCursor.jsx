@@ -34,14 +34,14 @@ const CustomCursor = () => {
         <div className="fixed inset-0 pointer-events-none z-[9999] hidden lg:block">
             {/* Outer ring */}
             <motion.div
-                className="absolute border border-[#e2b02e]/50 rounded-sm"
+                className="absolute border border-[#00d4ff]/50 rounded-sm"
                 style={{ left: springX, top: springY, translateX: '-50%', translateY: '-50%' }}
                 animate={{ width: hovering ? 52 : 28, height: hovering ? 52 : 28 }}
                 transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             />
             {/* Inner dot */}
             <motion.div
-                className="absolute w-1 h-1 rounded-full bg-[#e2b02e]"
+                className="absolute w-1 h-1 rounded-full bg-[#00d4ff]"
                 style={{ left: mouseX, top: mouseY, translateX: '-50%', translateY: '-50%' }}
                 animate={{ opacity: hovering ? 0 : 1 }}
                 transition={{ duration: 0.15 }}

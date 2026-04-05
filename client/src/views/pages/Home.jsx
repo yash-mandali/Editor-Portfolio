@@ -43,7 +43,7 @@ const Counter = ({ target, suffix = '' }) => {
 };
 
 /* ─── Style card ─── */
-const ACCENTS = ['#e2b02e', '#f59e0b', '#fbbf24', '#d97706', '#92400e', '#78350f'];
+const ACCENTS = ['#00d4ff', '#0ea5e9', '#06b6d4', '#0891b2', '#0e7490', '#155e75'];
 const StyleCard = memo(({ icon: Icon, title, desc, accentColor, index }) => (
   <motion.div
     initial={{ opacity: 0, y: 50 }}
@@ -138,7 +138,7 @@ const Home = () => {
                     initial={{ y: '110%' }}
                     animate={{ y: 0 }}
                     transition={{ duration: 1.2, delay: 0.15 + i * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                    className={`inline-block ${i === 1 ? 'text-transparent bg-clip-text bg-gradient-to-r from-white via-[#e2b02e] to-white/40 bg-[length:200%_auto] animate-shimmer' : ''}`}
+                    className={`inline-block ${i === 1 ? 'text-transparent bg-clip-text bg-gradient-to-r from-white via-[#00d4ff] to-white/40 bg-[length:200%_auto] animate-shimmer' : ''}`}
                   >
                     {word}
                   </motion.span>
@@ -160,7 +160,7 @@ const Home = () => {
               <MagneticBtn
                 to="/portfolio"
                 className="group relative px-12 py-5 font-black uppercase tracking-[0.3em] overflow-hidden text-black text-xs font-bebas"
-                style={{ background: '#e2b02e', boxShadow: '0 0 40px rgba(226,176,46,0.2)' }}
+                style={{ background: '#00d4ff', boxShadow: '0 0 40px rgba(0,212,255,0.2)' }}
               >
                 <span className="relative z-10 flex items-center gap-3">
                   View Private Reels <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
@@ -170,9 +170,9 @@ const Home = () => {
 
               <MagneticBtn
                 onClick={() => setSelectedVideo('https://www.youtube.com/watch?v=zF9m02WllZc')}
-                className="group flex items-center gap-4 text-white/70 font-black tracking-[0.3em] uppercase text-[10px] hover:text-[#e2b02e] transition-colors font-bebas"
+                className="group flex items-center gap-4 text-white/70 font-black tracking-[0.3em] uppercase text-[10px] hover:text-[#00d4ff] transition-colors font-bebas"
               >
-                <div className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#e2b02e]/40 group-hover:bg-[#e2b02e]/5 transition-all">
+                <div className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#00d4ff]/40 group-hover:bg-[#00d4ff]/5 transition-all">
                   <Play size={14} fill="currentColor" />
                 </div>
                 Master Showreel
@@ -202,7 +202,7 @@ const Home = () => {
       {/* ══════════════════════════════════════════
           MARQUEE
       ══════════════════════════════════════════ */}
-      <div className="relative py-4 bg-[#0d0d14] border-y border-[#e2b02e]/15 overflow-hidden group/marquee gpu-accelerated">
+      <div className="relative py-4 bg-[#0d0d14] border-y border-[#00d4ff]/15 overflow-hidden group/marquee gpu-accelerated">
         <div className="absolute left-0 top-0 h-full w-28 bg-gradient-to-r from-[#0d0d14] to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 h-full w-28 bg-gradient-to-l from-[#0d0d14] to-transparent z-10 pointer-events-none" />
         <div className="ticker-wrap gpu-accelerated">
@@ -212,7 +212,7 @@ const Home = () => {
                 key={i}
                 className="inline-flex items-center gap-4 px-6 text-[11px] font-black tracking-[0.4em] uppercase text-white/55 cursor-default"
               >
-                <span className="w-1 h-1 rounded-full bg-[#e2b02e]/50 flex-shrink-0" />
+                <span className="w-1 h-1 rounded-full bg-[#00d4ff]/50 flex-shrink-0" />
                 {item}
               </span>
             ))}
@@ -236,8 +236,8 @@ const Home = () => {
                 whileHover={{ backgroundColor: 'rgba(0,212,255,0.04)' }}
                 className="p-10 text-center group cursor-default transition-colors relative overflow-hidden"
               >
-                <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#e2b02e] group-hover:w-full transition-all duration-500" />
-                <div className="text-5xl md:text-6xl font-black text-white mb-2 tracking-tighter group-hover:text-[#e2b02e] transition-colors duration-300">
+                <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#00d4ff] group-hover:w-full transition-all duration-500" />
+                <div className="text-5xl md:text-6xl font-black text-white mb-2 tracking-tighter group-hover:text-[#00d4ff] transition-colors duration-300">
                   <Counter target={s.value} suffix={s.suffix} />
                 </div>
                 <div className="text-[10px] font-black uppercase tracking-[0.3em] text-[#6b6b80]">{s.label}</div>
@@ -288,16 +288,16 @@ const Home = () => {
                 whileHover={{ y: -10, transition: { duration: 0.22 } }}
                 className="group relative p-8 bg-[#111118] border border-white/[0.05] overflow-hidden neon-border-cyan card-3d"
               >
-                <div className="absolute top-0 left-0 w-0 h-[2px] bg-[#e2b02e] group-hover:w-full transition-all duration-500" />
+                <div className="absolute top-0 left-0 w-0 h-[2px] bg-[#00d4ff] group-hover:w-full transition-all duration-500" />
                 <motion.div
                   whileHover={{ rotate: 7, scale: 1.12 }}
                   transition={{ duration: 0.22 }}
-                  className="w-14 h-14 mb-7 border border-white/[0.07] flex items-center justify-center group-hover:border-[#e2b02e]/30 group-hover:bg-[#e2b02e]/5 transition-all"
+                  className="w-14 h-14 mb-7 border border-white/[0.07] flex items-center justify-center group-hover:border-[#00d4ff]/30 group-hover:bg-[#00d4ff]/5 transition-all"
                 >
-                  <item.icon size={22} className="text-white/55 group-hover:text-[#e2b02e] transition-colors" />
+                  <item.icon size={22} className="text-white/55 group-hover:text-[#00d4ff] transition-colors" />
                 </motion.div>
                 <h3 className="text-xl font-black text-white mb-3 tracking-tight">{item.title}</h3>
-                <div className="w-7 h-[2px] bg-[#e2b02e] mb-5 group-hover:w-full transition-all duration-500" />
+                <div className="w-7 h-[2px] bg-[#00d4ff] mb-5 group-hover:w-full transition-all duration-500" />
                 <p className="text-[#6b6b80] leading-relaxed text-sm">{item.description}</p>
               </motion.div>
             ))}
@@ -348,7 +348,7 @@ const Home = () => {
               </motion.h2>
             </div>
             <motion.div initial={{ opacity: 0, x: 22 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-              <Link to="/portfolio" className="group flex items-center gap-2 text-[#6b6b80] hover:text-[#e2b02e] transition-colors uppercase tracking-[0.3em] text-xs font-black">
+              <Link to="/portfolio" className="group flex items-center gap-2 text-[#6b6b80] hover:text-[#00d4ff] transition-colors uppercase tracking-[0.3em] text-xs font-black">
                 View All <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
@@ -383,15 +383,15 @@ const Home = () => {
                 whileHover={{ backgroundColor: 'rgba(0,212,255,0.055)', y: -3 }}
                 className="p-9 bg-[#0d0d14] group transition-all duration-300 relative overflow-hidden"
               >
-                <div className="absolute top-0 left-0 w-0 h-[1px] bg-[#e2b02e] group-hover:w-full transition-all duration-500" />
+                <div className="absolute top-0 left-0 w-0 h-[1px] bg-[#00d4ff] group-hover:w-full transition-all duration-500" />
                 <motion.div
                   whileHover={{ rotate: 9, scale: 1.14 }}
                   transition={{ duration: 0.22 }}
-                  className="w-11 h-11 mb-6 border border-white/[0.07] flex items-center justify-center group-hover:border-[#e2b02e]/30 group-hover:bg-[#e2b02e]/5 transition-all"
+                  className="w-11 h-11 mb-6 border border-white/[0.07] flex items-center justify-center group-hover:border-[#00d4ff]/30 group-hover:bg-[#00d4ff]/5 transition-all"
                 >
-                  <svc.icon size={18} className="text-white/38 group-hover:text-[#e2b02e] transition-colors" />
+                  <svc.icon size={18} className="text-white/38 group-hover:text-[#00d4ff] transition-colors" />
                 </motion.div>
-                <h3 className="text-sm font-black text-white mb-3 uppercase tracking-widest group-hover:text-[#e2b02e] transition-colors">{svc.title}</h3>
+                <h3 className="text-sm font-black text-white mb-3 uppercase tracking-widest group-hover:text-[#00d4ff] transition-colors">{svc.title}</h3>
                 <p className="text-[#6b6b80] text-sm leading-relaxed">{svc.description}</p>
               </motion.div>
             ))}
@@ -461,7 +461,7 @@ const Home = () => {
             <MagneticBtn
               to="/contact"
               className="relative inline-block px-16 py-5 font-black uppercase tracking-[0.4em] text-sm text-black transition-all"
-              style={{ background: '#e2b02e', boxShadow: '0 0 50px rgba(226,176,46,0.3)' }}
+              style={{ background: '#00d4ff', boxShadow: '0 0 50px rgba(0,212,255,0.3)' }}
             >
               Start Your Project
             </MagneticBtn>

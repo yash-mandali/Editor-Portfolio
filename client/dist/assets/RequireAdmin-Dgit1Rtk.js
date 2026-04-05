@@ -1,1 +1,0 @@
-import{j as t}from"./animation-DzsGXjbW.js";import{g as i}from"./react-vendor-DrLTnww-.js";const m=({children:e})=>typeof window>"u"?null:localStorage.getItem("isAdmin")==="true"?e:t.jsx(i,{to:"/admin/login",replace:!0});export{m as default};

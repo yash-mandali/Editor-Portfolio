@@ -4,16 +4,16 @@
 
 /* ── DESIGN TOKENS (Elysian Noir) ── */
 :root {
-  --accent: #e2b02e; /* Champagne Gold */
-  --accent-dim: rgba(226, 176, 46, 0.12);
-  --accent-glow: rgba(226, 176, 46, 0.25);
-  --violet: #ef4444; /* Alert Red */
-  --violet-dim: rgba(239, 68, 68, 0.12);
-  --bg-dark: #030303; /* Obsidian */
-  --bg-card-dark: #070709; /* Night */
-  --text-dark: #f8f8fc;
-  --text-muted-dark: #8a8a99;
-  --text-dark-mode-sub: #9a9ab0;
+  --accent: #00d4ff; /* Bright Cyan for better visibility */
+  --accent-dim: rgba(0, 212, 255, 0.2);
+  --accent-glow: rgba(0, 212, 255, 0.5);
+  --violet: #ff4757; /* Bright Red for alerts */
+  --violet-dim: rgba(255, 71, 87, 0.2);
+  --bg-dark: #0a0a0f; /* Lighter background for better contrast */
+  --bg-card-dark: #1a1a28; /* Much lighter card background */
+  --text-dark: #ffffff; /* Pure white text */
+  --text-muted-dark: #b8b8cc; /* Brighter muted text */
+  --text-dark-mode-sub: #c8c8dd; /* Brighter subtitle text */
 
   --font-bebas: 'Bebas Neue', sans-serif;
   --font-cinzel: 'Cinzel', serif;

@@ -63,9 +63,9 @@ const Navbar = () => {
             <Link
               to="/contact"
               className="px-8 py-3 text-black text-[10px] font-black uppercase tracking-[0.3em] transition-colors overflow-hidden"
-              style={{ background: '#e2b02e' }}
+              style={{ background: '#00d4ff' }}
               onMouseEnter={e => e.currentTarget.style.background = '#f59e0b'}
-              onMouseLeave={e => e.currentTarget.style.background = '#e2b02e'}
+              onMouseLeave={e => e.currentTarget.style.background = '#00d4ff'}
             >
               Get In Touch
             </Link>
@@ -163,7 +163,7 @@ const Navbar = () => {
                   to="/contact"
                   onClick={() => setIsOpen(false)}
                   className="flex items-center justify-center w-full py-4 text-black font-black uppercase tracking-[0.3em] text-sm"
-                  style={{ background: '#e2b02e', boxShadow: '0 0 30px rgba(226,176,46,0.2)' }}
+                  style={{ background: '#00d4ff', boxShadow: '0 0 30px rgba(0,212,255,0.2)' }}
                 >
                   Hire Me
                 </Link>
