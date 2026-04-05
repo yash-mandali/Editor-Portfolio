@@ -225,6 +225,8 @@ const Footer = () => {
                 <a
                   key={i}
                   href={social.url}
+                  target="_blank"
+                  rel="noreferrer"
                   className="text-neutral-400 hover:text-cyan-400 transition-all duration-300 transform hover:-translate-y-1"
                 >
                   <social.icon size={20} />
@@ -249,10 +251,20 @@ const Footer = () => {
             <div>
               <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-white mb-8 transition-colors">Socials</h4>
               <ul className="space-y-4">
-                {['Instagram', 'YouTube', 'LinkedIn', 'Vimeo'].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-neutral-500 text-sm hover:text-cyan-400 transition-colors">
-                      {item}
+                {[
+                  { label: 'Instagram', url: PROFILE.socials.instagram, icon: Instagram },
+                  { label: 'YouTube', url: PROFILE.socials.youtube, icon: Youtube },
+                  { label: 'LinkedIn', url: PROFILE.socials.linkedin, icon: Linkedin },
+                ].map((item) => (
+                  <li key={item.label}>
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-2 text-neutral-500 text-sm hover:text-cyan-400 transition-colors group"
+                    >
+                      <item.icon size={14} className="group-hover:text-cyan-400 transition-colors" />
+                      {item.label}
                     </a>
                   </li>
                 ))}
