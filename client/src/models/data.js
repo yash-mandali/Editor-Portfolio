@@ -6,13 +6,13 @@
 import { Film, Youtube, Instagram, MonitorPlay, Star, Zap, Clapperboard } from 'lucide-react';
 
 export const PROFILE = {
-  name: "Yash Mandali",
+  name: "CineCraft",
   title: "Premium Video Editor",
   tagline: "Crafting Cinematic Stories for Visionaries",
   description: "I specialize in transforming raw footage into compelling visual narratives. With expertise in Adobe Premiere Pro, After Effects, and CapCut Pro, I deliver high-end edits for creators and brands who value quality.",
-  email: "contact@alexsterling.edit",
+  email: "cinecraft@editz.com",
   whatsapp: "+91 9574804787",
-  socials: {
+  socials: { 
     instagram: "https://www.instagram.com/phoenixdude28?igsh=aW1xNmZmN3A5aXJz",
     youtube: "https://youtube.com/@phoenixdude28?si=XjhU2JppxWWdTbrh",
     linkedin: "https://linkedin.com"
@@ -83,7 +83,7 @@ export const WORKING_TOOLS = [
     id: 3,
     name: "CapCut Pro",
     description: "Professional mobile and desktop video editing with AI-powered features",
-    icon: "https://commons.wikimedia.org/wiki/File:Capcut-icon.svg",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Capcut-icon.svg/1280px-Capcut-icon.svg.png?_=20250728014948y",
     color: "from-green-500 to-green-700",
     proficiency: "Expert"
   },
@@ -99,17 +99,9 @@ export const WORKING_TOOLS = [
     id: 5,
     name: "Adobe Audition",
     description: "Professional audio editing and sound design software",
-    icon: "https://upload.wikimedia.org/wikipedia/commons/d/da/Adobe_Audition_CC_icon.svg",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Adobe_Audition_CC_2026_icon.svg/640px-Adobe_Audition_CC_2026_icon.svg.png",
     color: "from-indigo-500 to-purple-600",
     proficiency: "Advanced"
-  },
-  {
-    id: 6,
-    name: "Final Cut Pro",
-    description: "Apple's professional video editing software for Mac",
-    icon: "https://upload.wikimedia.org/wikipedia/commons/b/ba/Final_Cut_Pro_Icon.svg",
-    color: "from-gray-600 to-gray-800",
-    proficiency: "Intermediate"
   }
 ];
 
