@@ -18,7 +18,7 @@ const CustomCursor = () => {
         const update = e => {
             mouseX.set(e.clientX);
             mouseY.set(e.clientY);
-            
+
             // Only check closest once per frame/move
             const isHovering = !!e.target.closest('a, button, [role="button"]');
             if (isHovering !== lastHovered) {
