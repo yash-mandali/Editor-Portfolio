@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Mail, Grid3x3, LayoutDashboard, Terminal, Activity, ArrowUpRight, Film, Play, Video } from 'lucide-react';
+import { Mail, Grid3x3, Activity, ArrowUpRight, Film, Play, Video, LayoutDashboard } from 'lucide-react';
 
 const API_URL = import.meta.env.VITE_API_URL || 'https://editor-portfolio-back.vercel.app';
 
@@ -16,16 +16,10 @@ const AdminHome = () => {
                 const [pRes, cRes, vRes] = await Promise.all([
                     axios.get(`${API_URL}/api/portfolio/all/list`),
                     axios.get(`${API_URL}/api/contacts`),
-                    axios.get(`${API_URL}/api/videos`)
+                    axios.get(`${API_URL}/api/videos`),
                 ]);
-                setStats({
-                    portfolio: pRes.data.count || 0,
-                    contacts: cRes.data.count || 0,
-                    videos: vRes.data.count || 0
-                });
-                // Latest 3 contacts
+                setStats({ portfolio: pRes.data.count || 0, contacts: cRes.data.count || 0, videos: vRes.data.count || 0 });
                 setRecentContacts((cRes.data.data || []).slice(0, 3));
-                // Latest 6 videos
                 setRecentVideos((vRes.data.data || []).slice(0, 6));
             } catch (err) {
                 console.error('Fetch stats error:', err);
@@ -37,101 +31,90 @@ const AdminHome = () => {
     }, []);
 
     const statCards = [
-        { icon: Grid3x3, label: 'Portfolio Assets', value: stats.portfolio, color: 'text-amber-400 bg-amber-400/10 border-amber-400/20' },
-        { icon: Film, label: 'Video Assets', value: stats.videos, color: 'text-cyan-400 bg-cyan-400/10 border-cyan-400/20' },
-        { icon: Mail, label: 'Inbound Inquiries', value: stats.contacts, color: 'text-purple-400 bg-purple-400/10 border-purple-400/20' }
+        { icon: Grid3x3, label: 'Portfolio Assets', value: stats.portfolio, accent: 'border-amber-300 bg-amber-50 text-amber-700' },
+        { icon: Film, label: 'Video Assets', value: stats.videos, accent: 'border-cyan-300 bg-cyan-50 text-cyan-700' },
+        { icon: Mail, label: 'Inbound Inquiries', value: stats.contacts, accent: 'border-purple-300 bg-purple-50 text-purple-700' },
     ];
 
     return (
         <div className="space-y-8 animate-in fade-in duration-700">
+
             {/* Header */}
-            <div className="relative p-10 bg-[#0d0d14] rounded-lg border border-white/5 overflow-hidden group">
-                <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-                    <LayoutDashboard size={120} />
+            <div className="relative overflow-hidden rounded-3xl border border-cyan-300/35 bg-gradient-to-br from-slate-100 via-white to-cyan-50 p-10 shadow-[0_30px_80px_-40px_rgba(6,182,212,0.35)]">
+                <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.15),transparent_35%)]" />
+                <div className="absolute top-6 right-8 opacity-5">
+                    <LayoutDashboard size={100} className="text-slate-900" />
                 </div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-400/10 border border-amber-400/20 rounded-full mb-6">
-                    <Activity size={12} className="text-amber-400" />
-                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-400">System.Status: ONLINE</span>
+                <div className="relative">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-cyan-100 border border-cyan-300 rounded-full mb-6">
+                        <Activity size={12} className="text-cyan-700" />
+                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-cyan-700">System Online</span>
+                    </div>
+                    <h2 className="text-4xl font-black text-slate-900 mb-2 uppercase tracking-tighter">Dashboard <span className="text-cyan-600">Overview</span></h2>
+                    <p className="text-slate-500 font-medium">Real-time analytics and interaction metrics.</p>
                 </div>
-                <h2 className="text-4xl font-black text-white mb-2 uppercase tracking-tighter">Dashboard <span className="text-[#2e2e42]">Overview</span></h2>
-                <p className="text-neutral-500 font-medium tracking-wide">Real-time repository analytics and interaction metrics.</p>
             </div>
 
             {loading ? (
-                <div className="flex flex-col items-center justify-center py-20 bg-[#0d0d14] rounded-lg border border-white/5 border-dashed">
-                    <div className="w-10 h-10 border-2 border-amber-500/20 border-t-amber-500 rounded-full animate-spin mb-4" />
-                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-600">Retrieving Data...</p>
+                <div className="flex flex-col items-center justify-center py-20 rounded-3xl border border-slate-200 bg-white border-dashed">
+                    <div className="w-10 h-10 border-2 border-cyan-300 border-t-cyan-600 rounded-full animate-spin mb-4" />
+                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">Retrieving Data...</p>
                 </div>
             ) : (
                 <>
                     {/* Stat cards */}
                     <div className="grid sm:grid-cols-3 gap-6">
                         {statCards.map((card, idx) => (
-                            <div key={idx} className="bg-[#0d0d14] p-8 rounded-lg border border-white/5 hover:border-amber-400/30 transition-all duration-500 group">
-                                <div className={`w-14 h-14 rounded-lg ${card.color} border flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500`}>
-                                    <card.icon size={24} />
+                            <div key={idx} className={`rounded-3xl border ${card.accent} p-8 shadow-sm hover:shadow-md transition-all duration-300 group`}>
+                                <div className="flex items-center gap-3 mb-4">
+                                    <card.icon size={20} />
+                                    <p className="text-[10px] font-black uppercase tracking-[0.3em]">{card.label}</p>
                                 </div>
-                                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-500 mb-2">{card.label}</p>
-                                <div className="flex items-baseline gap-4">
-                                    <p className="text-5xl font-black text-white tracking-tighter">{card.value}</p>
-                                    <span className="text-amber-400 text-xs font-black uppercase tracking-widest">Active</span>
-                                </div>
+                                <p className="text-5xl font-black text-slate-900 tracking-tighter">{card.value}</p>
                             </div>
                         ))}
                     </div>
 
                     {/* Videos overview */}
-                    <div className="bg-[#0d0d14] p-10 rounded-lg border border-white/5">
+                    <div className="rounded-3xl border border-slate-200 bg-white p-10 shadow-[0_20px_60px_-30px_rgba(15,23,42,0.15)]">
                         <div className="flex items-center justify-between mb-8">
                             <div className="flex items-center gap-3">
-                                <Film size={18} className="text-cyan-400" />
-                                <h3 className="text-xl font-black text-white uppercase tracking-tighter">
-                                    Video <span className="text-[#2e2e42]">Archive</span>
-                                </h3>
+                                <Film size={18} className="text-cyan-600" />
+                                <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter">Video <span className="text-cyan-600">Archive</span></h3>
                             </div>
-                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-600">{stats.videos} total</span>
+                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">{stats.videos} total</span>
                         </div>
 
                         {recentVideos.length === 0 ? (
-                            <div className="flex flex-col items-center justify-center py-16 bg-white/[0.02] rounded border border-white/5 border-dashed">
-                                <Video size={32} className="text-neutral-700 mb-3" />
-                                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-600">No Videos Found</p>
+                            <div className="flex flex-col items-center justify-center py-16 rounded-3xl border border-slate-200 bg-slate-50 border-dashed">
+                                <Video size={32} className="text-slate-400 mb-3" />
+                                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">No Videos Found</p>
                             </div>
                         ) : (
                             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                                 {recentVideos.map(v => (
-                                    <div key={v._id} className="group relative bg-[#0a0a0f] border border-white/5 rounded-lg overflow-hidden hover:border-cyan-400/30 transition-all duration-400">
-                                        {/* Thumbnail */}
-                                        <div className="relative aspect-video bg-neutral-900 overflow-hidden">
+                                    <div key={v._id} className="group relative rounded-3xl border border-slate-200 bg-gradient-to-br from-white to-cyan-50/50 overflow-hidden hover:border-cyan-400/60 hover:shadow-[0_16px_40px_-20px_rgba(6,182,212,0.4)] transition-all duration-400">
+                                        <div className="relative aspect-video bg-slate-200 overflow-hidden">
                                             {v.image ? (
-                                                <img
-                                                    loading="lazy"
-                                                    src={v.image}
-                                                    alt={v.title}
-                                                    className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-                                                />
+                                                <img loading="lazy" src={v.image} alt={v.title}
+                                                    className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
                                             ) : (
-                                                <div className="flex items-center justify-center w-full h-full text-neutral-700">
-                                                    <Video size={32} />
-                                                </div>
+                                                <div className="flex items-center justify-center w-full h-full text-slate-400"><Video size={32} /></div>
                                             )}
-                                            {/* Play overlay */}
                                             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                <div className="w-12 h-12 rounded-full bg-cyan-400/20 border border-cyan-400/40 flex items-center justify-center">
-                                                    <Play size={16} className="text-cyan-400" fill="currentColor" />
+                                                <div className="w-12 h-12 rounded-full bg-cyan-500/20 border border-cyan-400/50 flex items-center justify-center">
+                                                    <Play size={16} className="text-cyan-700" fill="currentColor" />
                                                 </div>
                                             </div>
-                                            {/* Category badge */}
                                             <div className="absolute top-3 left-3">
-                                                <span className="px-2 py-1 bg-black/60 backdrop-blur-sm text-cyan-400 text-[8px] font-black uppercase tracking-[0.2em] rounded border border-cyan-400/20">
+                                                <span className="px-2 py-1 bg-white/80 backdrop-blur-sm text-cyan-700 text-[8px] font-black uppercase tracking-[0.2em] rounded-full border border-cyan-200">
                                                     {v.category}
                                                 </span>
                                             </div>
                                         </div>
-                                        {/* Info */}
                                         <div className="p-4">
-                                            <h4 className="text-sm font-black text-white uppercase tracking-tight truncate mb-1">{v.title}</h4>
-                                            <p className="text-[11px] text-neutral-500 line-clamp-2 leading-relaxed">{v.description || '—'}</p>
+                                            <h4 className="text-sm font-black text-slate-900 uppercase tracking-tight truncate mb-1">{v.title}</h4>
+                                            <p className="text-[11px] text-slate-500 line-clamp-2 leading-relaxed">{v.description || '—'}</p>
                                         </div>
                                     </div>
                                 ))}
@@ -141,31 +124,29 @@ const AdminHome = () => {
 
                     {/* Recent contacts */}
                     {recentContacts.length > 0 && (
-                        <div className="bg-[#0d0d14] p-10 rounded-lg border border-white/5">
+                        <div className="rounded-3xl border border-slate-200 bg-white p-10 shadow-[0_20px_60px_-30px_rgba(15,23,42,0.15)]">
                             <div className="flex items-center gap-3 mb-8">
-                                <Mail size={18} className="text-purple-400" />
-                                <h3 className="text-xl font-black text-white uppercase tracking-tighter">
-                                    Recent <span className="text-[#2e2e42]">Inquiries</span>
-                                </h3>
+                                <Mail size={18} className="text-purple-500" />
+                                <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter">Recent <span className="text-purple-500">Inquiries</span></h3>
                             </div>
-                            <div className="space-y-4">
+                            <div className="space-y-3">
                                 {recentContacts.map(c => (
-                                    <div key={c._id} className="flex items-center justify-between p-5 bg-white/[0.02] border border-white/5 rounded-lg hover:border-purple-400/20 transition-all">
+                                    <div key={c._id} className="flex items-center justify-between p-5 rounded-2xl border border-slate-200 bg-slate-50 hover:border-purple-300 hover:bg-purple-50/40 transition-all">
                                         <div className="flex items-center gap-4">
-                                            <div className="w-10 h-10 rounded-full bg-purple-400/10 border border-purple-400/20 flex items-center justify-center text-purple-400 font-black text-sm">
+                                            <div className="w-10 h-10 rounded-full bg-purple-100 border border-purple-200 flex items-center justify-center text-purple-600 font-black text-sm">
                                                 {c.name.charAt(0).toUpperCase()}
                                             </div>
                                             <div>
-                                                <p className="text-sm font-black text-white">{c.name}</p>
-                                                <p className="text-[11px] text-neutral-500">{c.email}</p>
+                                                <p className="text-sm font-black text-slate-900">{c.name}</p>
+                                                <p className="text-[11px] text-slate-500">{c.email}</p>
                                             </div>
                                         </div>
                                         <div className="text-right">
-                                            <span className={`inline-block px-2 py-1 text-[9px] font-black uppercase tracking-widest rounded border ${c.status === 'new' ? 'text-amber-400 border-amber-400/20 bg-amber-400/5' :
-                                                c.status === 'completed' ? 'text-green-400 border-green-400/20 bg-green-400/5' :
-                                                    'text-blue-400 border-blue-400/20 bg-blue-400/5'
+                                            <span className={`inline-block px-2 py-1 text-[9px] font-black uppercase tracking-widest rounded-full border ${c.status === 'new' ? 'text-amber-700 border-amber-300 bg-amber-50' :
+                                                    c.status === 'completed' ? 'text-green-700 border-green-300 bg-green-50' :
+                                                        'text-blue-700 border-blue-300 bg-blue-50'
                                                 }`}>{c.status}</span>
-                                            <p className="text-[10px] text-neutral-600 mt-1">{new Date(c.createdAt).toLocaleDateString()}</p>
+                                            <p className="text-[10px] text-slate-400 mt-1">{new Date(c.createdAt).toLocaleDateString()}</p>
                                         </div>
                                     </div>
                                 ))}
@@ -174,24 +155,21 @@ const AdminHome = () => {
                     )}
 
                     {/* Quick guide */}
-                    <div className="bg-[#0d0d14] p-10 rounded-lg border border-white/5">
-                        <div className="flex items-center gap-3 mb-8">
-                            <Terminal size={18} className="text-amber-400" />
-                            <h3 className="text-lg font-black text-white uppercase tracking-tighter">Operational <span className="text-[#2e2e42]">Directives</span></h3>
-                        </div>
-                        <div className="grid md:grid-cols-3 gap-6">
+                    <div className="rounded-3xl border border-slate-200 bg-white p-10 shadow-[0_20px_60px_-30px_rgba(15,23,42,0.15)]">
+                        <h3 className="text-lg font-black text-slate-900 uppercase tracking-tighter mb-8">Quick <span className="text-cyan-600">Guide</span></h3>
+                        <div className="grid md:grid-cols-3 gap-5">
                             {[
-                                { num: '01', color: 'text-amber-400', title: 'Portfolio Management', desc: 'Update visual archives and project metadata for the gallery.' },
-                                { num: '02', color: 'text-cyan-400', title: 'Video Management', desc: 'Upload and manage video assets for the showreel section.' },
-                                { num: '03', color: 'text-purple-400', title: 'Inbound Comms', desc: 'Review and process strategic partnership requests.' },
+                                { num: '01', color: 'text-amber-600 bg-amber-50 border-amber-200', title: 'Portfolio', desc: 'Add and manage portfolio projects.' },
+                                { num: '02', color: 'text-cyan-600 bg-cyan-50 border-cyan-200', title: 'Videos', desc: 'Upload and manage video assets.' },
+                                { num: '03', color: 'text-purple-600 bg-purple-50 border-purple-200', title: 'Contacts', desc: 'Review client inquiries.' },
                             ].map(d => (
-                                <div key={d.num} className="group cursor-pointer p-6 bg-white/5 border border-white/5 hover:border-amber-400/20 transition-all">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <span className={`text-xs font-black uppercase tracking-[0.3em] ${d.color}`}>Section {d.num}</span>
-                                        <ArrowUpRight size={14} className="text-neutral-600 group-hover:text-amber-400 transition-colors" />
+                                <div key={d.num} className={`group p-6 rounded-2xl border ${d.color} hover:shadow-sm transition-all cursor-pointer`}>
+                                    <div className="flex items-center justify-between mb-3">
+                                        <span className="text-xs font-black uppercase tracking-[0.3em]">Section {d.num}</span>
+                                        <ArrowUpRight size={14} className="opacity-40 group-hover:opacity-100 transition-opacity" />
                                     </div>
-                                    <h4 className="text-white font-black uppercase tracking-tight mb-2">{d.title}</h4>
-                                    <p className="text-xs text-neutral-500 leading-relaxed font-medium">{d.desc}</p>
+                                    <h4 className="font-black uppercase tracking-tight mb-1 text-slate-900">{d.title}</h4>
+                                    <p className="text-xs text-slate-500 leading-relaxed">{d.desc}</p>
                                 </div>
                             ))}
                         </div>
