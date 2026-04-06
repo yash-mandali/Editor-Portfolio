@@ -94,7 +94,7 @@ const AdminContacts = () => {
                                 {c.budget && (
                                     <div className="rounded-2xl border border-green-200 bg-green-50 px-4 py-3">
                                         <p className="text-[9px] font-black uppercase tracking-[0.3em] text-green-600 mb-1">Budget</p>
-                                        <p className="text-xs font-black text-slate-900">${c.budget}</p>
+                                        <p className="text-xs font-black text-slate-900">{c.budget}</p>
                                     </div>
                                 )}
                                 <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">

@@ -75,53 +75,6 @@ const AdminHome = () => {
                         ))}
                     </div>
 
-                    {/* Videos overview */}
-                    <div className="rounded-3xl border border-slate-200 bg-white p-10 shadow-[0_20px_60px_-30px_rgba(15,23,42,0.15)]">
-                        <div className="flex items-center justify-between mb-8">
-                            <div className="flex items-center gap-3">
-                                <Film size={18} className="text-cyan-600" />
-                                <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter">Video <span className="text-cyan-600">Archive</span></h3>
-                            </div>
-                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">{stats.videos} total</span>
-                        </div>
-
-                        {recentVideos.length === 0 ? (
-                            <div className="flex flex-col items-center justify-center py-16 rounded-3xl border border-slate-200 bg-slate-50 border-dashed">
-                                <Video size={32} className="text-slate-400 mb-3" />
-                                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">No Videos Found</p>
-                            </div>
-                        ) : (
-                            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                                {recentVideos.map(v => (
-                                    <div key={v._id} className="group relative rounded-3xl border border-slate-200 bg-gradient-to-br from-white to-cyan-50/50 overflow-hidden hover:border-cyan-400/60 hover:shadow-[0_16px_40px_-20px_rgba(6,182,212,0.4)] transition-all duration-400">
-                                        <div className="relative aspect-video bg-slate-200 overflow-hidden">
-                                            {v.image ? (
-                                                <img loading="lazy" src={v.image} alt={v.title}
-                                                    className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
-                                            ) : (
-                                                <div className="flex items-center justify-center w-full h-full text-slate-400"><Video size={32} /></div>
-                                            )}
-                                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                <div className="w-12 h-12 rounded-full bg-cyan-500/20 border border-cyan-400/50 flex items-center justify-center">
-                                                    <Play size={16} className="text-cyan-700" fill="currentColor" />
-                                                </div>
-                                            </div>
-                                            <div className="absolute top-3 left-3">
-                                                <span className="px-2 py-1 bg-white/80 backdrop-blur-sm text-cyan-700 text-[8px] font-black uppercase tracking-[0.2em] rounded-full border border-cyan-200">
-                                                    {v.category}
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div className="p-4">
-                                            <h4 className="text-sm font-black text-slate-900 uppercase tracking-tight truncate mb-1">{v.title}</h4>
-                                            <p className="text-[11px] text-slate-500 line-clamp-2 leading-relaxed">{v.description || '—'}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-
                     {/* Recent contacts */}
                     {recentContacts.length > 0 && (
                         <div className="rounded-3xl border border-slate-200 bg-white p-10 shadow-[0_20px_60px_-30px_rgba(15,23,42,0.15)]">
