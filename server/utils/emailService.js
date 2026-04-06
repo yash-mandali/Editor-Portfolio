@@ -67,7 +67,7 @@ export const sendContactEmail = async ({ name, email, projectType, budget, messa
                     <table width="100%" cellpadding="0" cellspacing="0">
                       <tr>
                         <td width="48" valign="top">
-                          <div style="width:44px;height:44px;background:linear-gradient(135deg,#00d4ff,#a78bfa);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#000;text-align:center;line-height:44px;">
+                          <div style="width:44px;height:44px;background:linear-gradient(135deg,#00d4ff,#a78bfa);border-radius:50%;text-align:center;line-height:44px;font-size:18px;font-weight:900;color:#000;">
                             ${name.charAt(0).toUpperCase()}
                           </div>
                         </td>
