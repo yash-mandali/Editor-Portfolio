@@ -9,10 +9,10 @@ const PROJECT_TYPE_LABELS = {
 };
 
 const BUDGET_LABELS = {
-  '50-200': '$50 – $200',
-  '200-500': '$200 – $500',
-  '500-1000': '$500 – $1,000',
-  '1000+': '$1,000+',
+  '0-10': '$0 – $10',
+  '10-30': '$10 – $30',
+  '30-50': '$30 – $50',
+  '50+': '$50+',
 };
 
 export const sendContactEmail = async ({ name, email, projectType, budget, message, submittedAt }) => {

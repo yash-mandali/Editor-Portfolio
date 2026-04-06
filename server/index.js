@@ -5,7 +5,6 @@ import dotenv from 'dotenv';
 import contactRoutes from './routes/contactRoutes.js';
 import portfolioRoutes from './routes/portfolioRoutes.js';
 import videoRoutes from './routes/videoRoutes.js';
-import path from 'path';
 
 dotenv.config();
 
@@ -17,7 +16,7 @@ const CORS_ORIGIN = 'https://editor-portfolio-kappa-lyart.vercel.app';
 // Middleware
 app.use(cors({
     origin: CORS_ORIGIN,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
@@ -44,9 +43,7 @@ app.use('/api/contacts', contactRoutes);
 app.use('/api/portfolio', portfolioRoutes);
 app.use('/api/videos', videoRoutes);
 
-
-
-app.get('/', (req, res) => res.send('Api is running...'))
+app.get('/', (req, res) => res.send('API is running...'));
 
 // 404 handler
 app.use((req, res) => {
@@ -57,7 +54,7 @@ app.use((req, res) => {
 });
 
 // Error handling middleware
-app.use("/", (err, req, res, next) => {
+app.use((err, req, res, next) => {
     console.error('Server error:', err);
     res.status(500).json({
         success: false,

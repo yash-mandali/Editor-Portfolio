@@ -33,24 +33,21 @@ router.post('/', async (req, res) => {
         // Save to database
         await contact.save();
 
-        // Send notification email (non-blocking — don't fail the request if email fails)
-        sendContactEmail({
-            name,
-            email,
-            projectType,
-            budget,
-            message,
-            submittedAt: contact.createdAt,
-        }).then(() => {
-            console.log(`✓ Email notification sent for: ${email}`);
-        }).catch(err => {
-            console.error('✗ Email notification failed:');
-            console.error('  Message:', err.message);
-            console.error('  Code:', err.code);
-            console.error('  EMAIL_USER set:', !!process.env.EMAIL_USER);
-            console.error('  EMAIL_PASS set:', !!process.env.EMAIL_PASS);
-            console.error('  NOTIFY_EMAIL:', process.env.NOTIFY_EMAIL);
-        });
+        // Send notification email — must await on Vercel (serverless kills process after res.json)
+        try {
+            await sendContactEmail({
+                name,
+                email,
+                projectType,
+                budget,
+                message,
+                submittedAt: contact.createdAt,
+            });
+            console.log(`✓ Email sent for: ${email}`);
+        } catch (emailErr) {
+            // Log but don't fail the request — contact is already saved
+            console.error('✗ Email failed:', emailErr.message);
+        }
 
         res.status(201).json({
             success: true,
