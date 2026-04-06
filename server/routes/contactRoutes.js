@@ -1,6 +1,6 @@
 import express from 'express';
 import Contact from '../models/Contact.js';
-import { sendContactEmail } from '../utils/emailService.js';
+import { sendContactEmail, sendAutoReply } from '../utils/emailService.js';
 
 const router = express.Router();
 
@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
         // Save to database
         await contact.save();
 
-        // Send notification email — must await on Vercel (serverless kills process after res.json)
+        // Send notification email to owner + auto-reply to client
         try {
             await sendContactEmail({
                 name,
@@ -43,10 +43,16 @@ router.post('/', async (req, res) => {
                 message,
                 submittedAt: contact.createdAt,
             });
-            console.log(`✓ Email sent for: ${email}`);
+            console.log(`✓ Notification email sent for: ${email}`);
         } catch (emailErr) {
-            // Log but don't fail the request — contact is already saved
-            console.error('✗ Email failed:', emailErr.message);
+            console.error('✗ Notification email failed:', emailErr.message);
+        }
+
+        try {
+            await sendAutoReply({ name, email });
+            console.log(`✓ Auto-reply sent to: ${email}`);
+        } catch (replyErr) {
+            console.error('✗ Auto-reply failed:', replyErr.message);
         }
 
         res.status(201).json({

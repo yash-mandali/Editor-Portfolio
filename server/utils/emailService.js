@@ -156,3 +156,103 @@ export const sendContactEmail = async ({ name, email, projectType, budget, messa
   // Force close so Gmail flushes immediately — prevents the "delayed by 1 submission" bug
   transporter.close();
 };
+
+export const sendAutoReply = async ({ name, email }) => {
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    pool: false,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+  const websiteUrl = process.env.WEBSITE_URL || 'https://editor-portfolio-kappa-lyart.vercel.app';
+  const companyName = 'CineCraft';
+
+  const html = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body style="margin:0;padding:0;background:#f4f4f7;font-family:'Segoe UI',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f7;padding:40px 20px;">
+    <tr>
+      <td align="center">
+        <table width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+
+          <!-- Top accent bar -->
+          <tr>
+            <td style="height:4px;background:linear-gradient(90deg,#00d4ff,#a78bfa);"></td>
+          </tr>
+
+          <!-- Header -->
+          <tr>
+            <td style="padding:36px 40px 24px;">
+              <p style="margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#00d4ff;">CineCraft</p>
+              <h1 style="margin:0;font-size:22px;font-weight:700;color:#111118;letter-spacing:-0.3px;">We received your message</h1>
+            </td>
+          </tr>
+
+          <!-- Divider -->
+          <tr>
+            <td style="padding:0 40px;">
+              <div style="height:1px;background:#ebebf0;"></div>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="padding:28px 40px 32px;">
+              <p style="margin:0 0 16px;font-size:15px;color:#333;line-height:1.6;">Hello <strong>${name}</strong>,</p>
+
+              <p style="margin:0 0 16px;font-size:15px;color:#555;line-height:1.7;">
+                Thank you for contacting us through our website. We have successfully received your message and our team will review it shortly.
+              </p>
+
+              <p style="margin:0 0 16px;font-size:15px;color:#555;line-height:1.7;">
+                Our support team will get back to you within <strong style="color:#111118;">24–48 hours</strong>.
+              </p>
+
+              <p style="margin:0 0 28px;font-size:15px;color:#555;line-height:1.7;">
+                If your request is urgent, you can also reply to this email and we will try to assist you as soon as possible.
+              </p>
+
+              <!-- Divider -->
+              <div style="height:1px;background:#ebebf0;margin-bottom:28px;"></div>
+
+              <p style="margin:0 0 4px;font-size:14px;color:#555;">Thank you for reaching out to us.</p>
+              <p style="margin:0 0 2px;font-size:14px;font-weight:600;color:#111118;">Best regards,</p>
+              <p style="margin:0 0 2px;font-size:14px;font-weight:700;color:#111118;">${companyName}</p>
+              <a href="${websiteUrl}" style="font-size:13px;color:#00d4ff;text-decoration:none;">${websiteUrl}</a>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 40px 24px;background:#f9f9fb;border-top:1px solid #ebebf0;">
+              <p style="margin:0;font-size:11px;color:#aaa;line-height:1.6;">
+                This is an automated confirmation. Please do not reply directly to this message — instead, reply to the email above if you need urgent assistance.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+  `.trim();
+
+  await transporter.sendMail({
+    from: `"${companyName}" <${process.env.EMAIL_USER}>`,
+    to: email,
+    subject: `We received your message — ${companyName}`,
+    html,
+  });
+
+  transporter.close();
+};
