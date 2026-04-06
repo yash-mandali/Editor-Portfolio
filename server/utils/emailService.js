@@ -142,7 +142,7 @@ export const sendContactEmail = async ({ name, email, projectType, budget, messa
   `.trim();
 
   await transporter.sendMail({
-    from: `"${name}" <${email}>`,
+    from: `"${name}"`,
     to: process.env.NOTIFY_EMAIL || 'aiuser4561@gmail.com',
     replyTo: email,
     subject: `New Inquiry from ${name} — ${PROJECT_TYPE_LABELS[projectType] || projectType}`,
