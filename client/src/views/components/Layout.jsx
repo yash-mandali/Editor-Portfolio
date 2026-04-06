@@ -305,11 +305,17 @@ export const Layout = ({ children }) => {
     const isAdmin = location.pathname.startsWith('/admin');
     if (isMobile || isAdmin) return;
 
+    // Ensure html/body can scroll (Lenis requires native scroll on document)
+    document.documentElement.style.overflow = 'auto';
+    document.body.style.overflow = 'auto';
+
     const lenis = new Lenis({
-      duration: 1.1,
-      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // expo ease-out
+      wrapper: window,
+      content: document.documentElement,
+      duration: 1.4,
+      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      wheelMultiplier: 0.9,
+      wheelMultiplier: 1.0,
       touchMultiplier: 1.5,
       infinite: false,
     });
@@ -327,6 +333,8 @@ export const Layout = ({ children }) => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
       lenisRef.current = null;
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
     };
   }, [location.pathname]);
 
@@ -354,7 +362,7 @@ export const Layout = ({ children }) => {
   }, [location.pathname]);
 
   return (
-    <div className="relative min-h-screen bg-[#0a0a0f] text-neutral-100 font-sans selection:bg-cyan-500/30 overflow-x-hidden">
+    <div className="relative min-h-screen bg-[#0a0a0f] text-neutral-100 font-sans selection:bg-cyan-500/30" style={{ overflowX: 'clip' }}>
       <div className="film-grain" />
       <div className="scanlines" />
       <CustomCursor />

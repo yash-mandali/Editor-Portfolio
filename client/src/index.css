@@ -29,7 +29,7 @@
 
 @layer base {
   body {
-    @apply transition-colors duration-500 overflow-x-hidden antialiased;
+    @apply transition-colors duration-500 antialiased;
     font-family: var(--font-instrument);
     cursor: none;
     background-color: var(--bg-dark);
