@@ -26,7 +26,7 @@ const contactSchema = new mongoose.Schema(
         budget: {
             type: String,
             enum: {
-                values: ['50-200', '200-500', '500-1000', '1000+'],
+                values: ['$0-$10', '$10-$30', '$30-$50', '$50+'],
                 message: 'Please select a valid budget range'
             },
             required: [true, 'Please select a budget range']

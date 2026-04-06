@@ -254,8 +254,8 @@ const Contact = () => {
                           <select name="budget" value={formData.budget} onChange={handleChange} className={selectCls}>
                             <option value="" style={{ background: '#0d0d14', color: '#fff' }}>Select budget</option>
                             <option value="$0-$10" style={{ background: '#0d0d14', color: '#fff' }}>$0 – $10</option>
-                            <option value="$10-$0" style={{ background: '#0d0d14', color: '#fff' }}>$10 – $30</option>
-                            <option value="$30-$0" style={{ background: '#0d0d14', color: '#fff' }}>$30 – $50</option>
+                            <option value="$10-$30" style={{ background: '#0d0d14', color: '#fff' }}>$10 – $30</option>
+                            <option value="$30-$50" style={{ background: '#0d0d14', color: '#fff' }}>$30 – $50</option>
                             <option value="$50+" style={{ background: '#0d0d14', color: '#fff' }}>$50+</option>
                           </select>
                         </Field>
