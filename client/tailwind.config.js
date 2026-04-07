@@ -29,7 +29,9 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        sans: ['Instrument Sans', ...defaultTheme.fontFamily.sans],
+        bebas: ['Bebas Neue', 'sans-serif'],
+        cinzel: ['Cinzel', 'serif'],
       },
     },
   },

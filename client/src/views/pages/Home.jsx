@@ -47,7 +47,6 @@ const Counter = ({ target, suffix = '' }) => {
     const obs = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting && !started.current) {
         started.current = true;
-        let start = 0;
         const duration = 1400;
         const startTime = performance.now();
         const tick = (now) => {
