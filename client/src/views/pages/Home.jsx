@@ -126,7 +126,7 @@ const Home = () => {
   const marqueeItems = ['Cinematic', 'Dynamic', 'Impactful', 'Professional', 'Creative', 'Immersive', 'Storytelling', 'Premium'];
 
   return (
-    <div ref={containerRef} className="bg-[#0a0a0f] overflow-x-hidden transition-colors duration-500 page-enter">
+    <div ref={containerRef} className="bg-[#0a0a0f] overflow-x-hidden transition-colors duration-500">
       <VideoModal isOpen={!!selectedVideo} onClose={() => setSelectedVideo(null)} videoUrl={selectedVideo} />
 
       {/* ══════════════════════════════════════════
@@ -249,25 +249,20 @@ const Home = () => {
       {/* ══════════════════════════════════════════
           STATS — animated counters
       ══════════════════════════════════════════ */}
-      <section className="py-20 bg-[#0a0a0f] transition-colors duration-500">
+      <section className="py-20 bg-[#0a0a0f]">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 border border-white/[0.08]">
             {stats.map((s, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ backgroundColor: 'rgba(0,212,255,0.04)' }}
-                className="p-10 text-center group cursor-default transition-colors relative overflow-hidden border-r border-b border-white/[0.08] last:border-r-0 md:[&:nth-child(4)]:border-r-0 [&:nth-child(2)]:border-r-0 md:[&:nth-child(2)]:border-r"
+                className="p-10 text-center group cursor-default relative overflow-hidden border-r border-b border-white/[0.08] last:border-r-0 md:[&:nth-child(4)]:border-r-0 [&:nth-child(2)]:border-r-0 md:[&:nth-child(2)]:border-r hover:bg-[#00d4ff]/[0.04] transition-colors"
               >
                 <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#00d4ff] group-hover:w-full transition-all duration-500" />
                 <div className="text-5xl md:text-6xl font-black text-white mb-2 tracking-tighter group-hover:text-[#00d4ff] transition-colors duration-300">
                   <Counter target={s.value} suffix={s.suffix} />
                 </div>
                 <div className="text-[10px] font-black uppercase tracking-[0.3em] text-[#6b6b80]">{s.label}</div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

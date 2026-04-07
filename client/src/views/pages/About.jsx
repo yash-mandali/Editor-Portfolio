@@ -9,7 +9,7 @@ const About3D = lazy(() => import('../components/About3D'));
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] transition-colors duration-500 relative overflow-hidden page-enter">
+    <div className="min-h-screen bg-[#0a0a0f] transition-colors duration-500 relative overflow-hidden">
       {/* 3D background — lazy loaded */}
       <Suspense fallback={null}>
         <About3D />
