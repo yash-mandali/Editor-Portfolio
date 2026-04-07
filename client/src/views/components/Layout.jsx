@@ -6,7 +6,6 @@ import { PROFILE } from '../../models/data';
 import Loader from './Loader';
 import logo from '../../assests/logo-file.png';
 import CustomCursor from './CustomCursor';
-import { useSmoothScroll } from '../../hooks/useSmoothScroll';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -298,9 +297,6 @@ export const Layout = ({ children }) => {
   const initial = useRef(true);
   const timerRef = useRef(null);
 
-  // Lenis smooth scroll
-  useSmoothScroll(location.pathname);
-
   useEffect(() => {
     timerRef.current = setTimeout(() => {
       setShowLoader(false);
@@ -318,7 +314,7 @@ export const Layout = ({ children }) => {
   }, [location.pathname]);
 
   return (
-    <div className="relative min-h-screen bg-[#0a0a0f] text-neutral-100 font-sans selection:bg-cyan-500/30" style={{ overflowX: 'clip' }}>
+    <div className="relative min-h-screen bg-[#0a0a0f] text-neutral-100 font-sans selection:bg-cyan-500/30 overflow-x-hidden">
       <div className="film-grain" />
       <div className="scanlines" />
       <CustomCursor />

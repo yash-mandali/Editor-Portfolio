@@ -48,6 +48,22 @@
   }
 }
 
+background-color: var(--bg-dark);
+color: var(--text-dark);
+letter-spacing: -0.01em;
+/* Ensure native scroll on mobile */
+-webkit-overflow-scrolling: touch;
+overscroll-behavior-y: none;
+}
+
+/* Restore default cursor on touch devices */
+@media (hover: none) {
+  body {
+    cursor: auto;
+  }
+}
+}
+
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar {
   width: 4px;
@@ -571,70 +587,4 @@
   pointer-events: none;
   animation: scan-line 8s linear infinite;
   will-change: top;
-}
-
-/* ── SCROLL REVEAL ANIMATIONS (works with Lenis) ── */
-
-/* Base hidden state */
-.sr-hidden {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.sr-hidden-left {
-  opacity: 0;
-  transform: translateX(-40px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.sr-hidden-right {
-  opacity: 0;
-  transform: translateX(40px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.sr-hidden-scale {
-  opacity: 0;
-  transform: scale(0.92);
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-/* Visible state — triggered by IntersectionObserver */
-.sr-visible {
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-/* Stagger delays for child elements */
-.sr-stagger>*:nth-child(1) {
-  transition-delay: 0.05s;
-}
-
-.sr-stagger>*:nth-child(2) {
-  transition-delay: 0.13s;
-}
-
-.sr-stagger>*:nth-child(3) {
-  transition-delay: 0.21s;
-}
-
-.sr-stagger>*:nth-child(4) {
-  transition-delay: 0.29s;
-}
-
-.sr-stagger>*:nth-child(5) {
-  transition-delay: 0.37s;
-}
-
-.sr-stagger>*:nth-child(6) {
-  transition-delay: 0.45s;
 }
