@@ -153,7 +153,7 @@ const Home = () => {
               whileHover={{ scale: 1.06, borderColor: 'rgba(226,176,46,0.3)' }}
             >
               <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse shadow-[0_0_8px_rgba(220,38,38,0.8)]" />
-              <span className="text-[9px] font-black tracking-[0.4em] uppercase text-white/60 font-bebas">Live Session // Rec Enabled</span>
+              <span className="text-[9px] font-black tracking-[0.4em] uppercase text-white/60 font-cinzel">Live Session // Rec Enabled</span>
             </motion.div>
 
             {/* Staggered headline */}
@@ -185,7 +185,7 @@ const Home = () => {
             >
               <MagneticBtn
                 to="/portfolio"
-                className="group relative px-12 py-5 font-black uppercase tracking-[0.3em] overflow-hidden text-black text-xs font-bebas"
+                className="group relative px-12 py-5 font-black uppercase tracking-[0.3em] overflow-hidden text-black text-xs font-cinzel"
                 style={{ background: '#00d4ff', boxShadow: '0 0 40px rgba(0,212,255,0.2)' }}
               >
                 <span className="relative z-10 flex items-center gap-3">
@@ -196,7 +196,7 @@ const Home = () => {
 
               <MagneticBtn
                 onClick={() => setSelectedVideo('https://www.youtube.com/watch?v=zF9m02WllZc')}
-                className="group flex items-center gap-4 text-white/70 font-black tracking-[0.3em] uppercase text-[10px] hover:text-[#00d4ff] transition-colors font-bebas"
+                className="group flex items-center gap-4 text-white/70 font-black tracking-[0.3em] uppercase text-[10px] hover:text-[#00d4ff] transition-colors font-cinzel"
               >
                 <div className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#00d4ff]/40 group-hover:bg-[#00d4ff]/5 transition-all">
                   <Play size={14} fill="currentColor" />
@@ -208,19 +208,19 @@ const Home = () => {
         </motion.div>
 
         {/* HUD corners — techy details */}
-        <div className="absolute top-32 left-12 text-[10px] font-black tracking-[0.4em] text-white/20 uppercase hidden lg:block font-bebas">
+        <div className="absolute top-32 left-12 text-[10px] font-black tracking-[0.4em] text-white/20 uppercase hidden lg:block font-cinzel">
           <div className="flex items-center gap-2 text-red-500/40"><span className="w-1.5 h-1.5 rounded-full bg-current animate-flicker" /> FOCUS_LOCKED</div>
           <div className="mt-2">LENS // 35MM T1.5</div>
           <div className="mt-1 text-white/10">FORMAT // 8K VV</div>
         </div>
 
-        <div className="absolute top-32 right-12 text-[10px] font-black tracking-[0.4em] text-white/20 uppercase hidden lg:block text-right font-bebas">
+        <div className="absolute top-32 right-12 text-[10px] font-black tracking-[0.4em] text-white/20 uppercase hidden lg:block text-right font-cinzel">
           <div>ZEISS SUPREME</div>
           <div className="mt-2 text-white/10">S/N 884.22.1</div>
           <div className="mt-1 text-white/10">ND_0.9</div>
         </div>
 
-        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 text-[9px] font-black tracking-[0.6em] text-white/15 uppercase font-bebas">
+        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 text-[9px] font-black tracking-[0.6em] text-white/15 uppercase font-cinzel">
           <span className="gpu-accelerated">Scroll to Pull Focus</span>
         </div>
       </motion.section>
