@@ -1,6 +1,6 @@
-import { useState, useRef, lazy, Suspense, memo } from 'react';
+import { useState, useRef, useEffect, lazy, Suspense, memo } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { ArrowRight, Play, Zap, Award, Users, Sparkles, Film, Star, ChevronRight } from 'lucide-react';
 import { WHY_CHOOSE_ME, SERVICES } from '../../models/data';
 import VideoModal from '../components/VideoModal';
@@ -38,8 +38,35 @@ const MagneticBtn = ({ children, className, style, onClick, to }) => {
 /* ─── Animated counter ─── */
 const Counter = ({ target, suffix = '' }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  return <span ref={ref}>{isInView ? target : 0}{suffix}</span>;
+  const [count, setCount] = useState(0);
+  const started = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !started.current) {
+        started.current = true;
+        let start = 0;
+        const duration = 1400;
+        const startTime = performance.now();
+        const tick = (now) => {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // ease-out
+          const eased = 1 - Math.pow(1 - progress, 3);
+          setCount(Math.round(eased * target));
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        obs.disconnect();
+      }
+    }, { threshold: 0.3 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [target]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
 };
 
 /* ─── Style card ─── */
