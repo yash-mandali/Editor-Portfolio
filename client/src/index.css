@@ -46,8 +46,7 @@
   }
 }
 
-overscroll-behavior-y: none;
-}
+
 
 /* Restore default cursor on touch devices */
 @media (hover: none) {
@@ -55,7 +54,7 @@ overscroll-behavior-y: none;
     cursor: auto;
   }
 }
-}
+
 
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar {
