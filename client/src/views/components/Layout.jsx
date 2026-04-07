@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Instagram, Youtube, Linkedin, Mail, Disc } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Lenis from 'lenis';
 import { PROFILE } from '../../models/data';
 import Loader from './Loader';
 import logo from '../../assests/logo-file.png';
 import CustomCursor from './CustomCursor';
+import { useSmoothScroll } from '../../hooks/useSmoothScroll';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -297,53 +297,9 @@ export const Layout = ({ children }) => {
   const [showLoader, setShowLoader] = useState(true);
   const initial = useRef(true);
   const timerRef = useRef(null);
-  const lenisRef = useRef(null);
 
-  // Lenis smooth scroll — skip on admin pages and mobile
-  useEffect(() => {
-    const isMobile = window.innerWidth < 768;
-    const isAdmin = location.pathname.startsWith('/admin');
-    if (isMobile || isAdmin) return;
-
-    // Ensure html/body can scroll (Lenis requires native scroll on document)
-    document.documentElement.style.overflow = 'auto';
-    document.body.style.overflow = 'auto';
-
-    const lenis = new Lenis({
-      wrapper: window,
-      content: document.documentElement,
-      duration: 1.4,
-      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      wheelMultiplier: 1.0,
-      touchMultiplier: 1.5,
-      infinite: false,
-    });
-
-    lenisRef.current = lenis;
-
-    let rafId;
-    const raf = (time) => {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    };
-    rafId = requestAnimationFrame(raf);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      lenis.destroy();
-      lenisRef.current = null;
-      document.documentElement.style.overflow = '';
-      document.body.style.overflow = '';
-    };
-  }, [location.pathname]);
-
-  // Stop Lenis when loader is showing (prevents scroll during transition)
-  useEffect(() => {
-    if (lenisRef.current) {
-      showLoader ? lenisRef.current.stop() : lenisRef.current.start();
-    }
-  }, [showLoader]);
+  // Lenis smooth scroll
+  useSmoothScroll(location.pathname);
 
   useEffect(() => {
     timerRef.current = setTimeout(() => {

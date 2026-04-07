@@ -223,7 +223,7 @@ const Home = () => {
       {/* ══════════════════════════════════════════
           STATS — animated counters
       ══════════════════════════════════════════ */}
-      <section className="py-20 bg-[#0a0a0f] transition-colors duration-500">
+      <section className="py-20 bg-[#0a0a0f] transition-colors duration-500 sr-hidden">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y divide-white/[0.05] border border-white/[0.05]">
             {stats.map((s, i) => (
@@ -250,7 +250,7 @@ const Home = () => {
       {/* ══════════════════════════════════════════
           WHY CHOOSE ME — parallax cards
       ══════════════════════════════════════════ */}
-      <section className="py-32 relative bg-[#0a0a0f] transition-colors duration-500 overflow-hidden">
+      <section className="py-32 relative bg-[#0a0a0f] transition-colors duration-500 overflow-hidden sr-hidden">
         {/* Ghost watermark */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
           <motion.span
