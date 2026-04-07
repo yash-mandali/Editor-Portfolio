@@ -225,7 +225,7 @@ const Home = () => {
       ══════════════════════════════════════════ */}
       <section className="py-20 bg-[#0a0a0f] transition-colors duration-500">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y divide-white/[0.05] border border-white/[0.05]">
+          <div className="grid grid-cols-2 md:grid-cols-4 border border-white/[0.08]">
             {stats.map((s, i) => (
               <motion.div
                 key={i}
@@ -234,7 +234,7 @@ const Home = () => {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ backgroundColor: 'rgba(0,212,255,0.04)' }}
-                className="p-10 text-center group cursor-default transition-colors relative overflow-hidden"
+                className="p-10 text-center group cursor-default transition-colors relative overflow-hidden border-r border-b border-white/[0.08] last:border-r-0 md:[&:nth-child(4)]:border-r-0 [&:nth-child(2)]:border-r-0 md:[&:nth-child(2)]:border-r"
               >
                 <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#00d4ff] group-hover:w-full transition-all duration-500" />
                 <div className="text-5xl md:text-6xl font-black text-white mb-2 tracking-tighter group-hover:text-[#00d4ff] transition-colors duration-300">
