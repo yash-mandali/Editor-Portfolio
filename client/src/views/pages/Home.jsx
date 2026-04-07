@@ -157,7 +157,7 @@ const Home = () => {
             </motion.div>
 
             {/* Staggered headline */}
-            <h1 className="text-[12vw] lg:text-[7vw] md:text-[10rem] font-black text-white tracking-tighter leading-[0.78] mb-12 font-bebas">
+            <h1 className="text-[12vw] lg:text-[7vw] md:text-[10rem] font-black text-white tracking-tighter leading-[0.78] mb-12 font-cinzel">
               {['CRAFTING', 'CINEMATIC', 'STORIES'].map((word, i) => (
                 <span key={word} className="block overflow-hidden">
                   <motion.span
