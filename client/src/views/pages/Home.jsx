@@ -127,7 +127,7 @@ const Home = () => {
 
   return (
     <div ref={containerRef} className="bg-[#0a0a0f] overflow-x-hidden transition-colors duration-500">
-      <VideoModal isOpen={!!selectedVideo} onClose={() => setSelectedVideo(null)} videoUrl={selectedVideo} />
+      <VideoModal isOpen={!!selectedVideo} onClose={() => setSelectedVideo(null)} video={selectedVideo} />
       <motion.section
         className="relative h-screen flex items-center justify-center overflow-hidden gpu-accelerated"
         style={{ scale: heroScale }}
@@ -191,7 +191,7 @@ const Home = () => {
               </MagneticBtn>
 
               <MagneticBtn
-                onClick={() => setSelectedVideo('https://drive.google.com/file/d/1RwAEv9k__DwPH5tucPrCbJ_VwJrF9Wlt/preview')}
+                onClick={() => setSelectedVideo('https://www.youtube.com/watch?v=zF9m02WllZc')}
                 className="group flex items-center gap-4 text-white/70 font-black tracking-[0.3em] uppercase text-[10px] hover:text-[#00d4ff] transition-colors font-cinzel"
               >
                 <div className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#00d4ff]/40 group-hover:bg-[#00d4ff]/5 transition-all">
