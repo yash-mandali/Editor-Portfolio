@@ -4,7 +4,6 @@
  */
 
 import { Film, Youtube, Instagram, MonitorPlay, Star, Zap, Clapperboard } from 'lucide-react';
-
 export const PROFILE = {
   name: "CineCraft",
   title: "Premium Video Editor",
@@ -99,7 +98,7 @@ export const WORKING_TOOLS = [
     id: 5,
     name: "Adobe Audition",
     description: "Professional audio editing and sound design software",
-    icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Adobe_Audition_CC_icon_%282020%29.svg/640px-Adobe_Audition_CC_icon_%282020%29.svg.png",
+    icon: "../assests/image.png",
     color: "from-indigo-500 to-purple-600",
     proficiency: "Advanced"
   },
