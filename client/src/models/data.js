@@ -98,7 +98,7 @@ export const WORKING_TOOLS = [
     id: 5,
     name: "Adobe Audition",
     description: "Professional audio editing and sound design software",
-    icon: "../assests/image.png",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/4/4d/DaVinci_Resolve_Studio.png",
     color: "from-indigo-500 to-purple-600",
     proficiency: "Advanced"
   },
