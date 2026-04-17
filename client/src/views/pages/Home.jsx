@@ -128,10 +128,6 @@ const Home = () => {
   return (
     <div ref={containerRef} className="bg-[#0a0a0f] overflow-x-hidden transition-colors duration-500">
       <VideoModal isOpen={!!selectedVideo} onClose={() => setSelectedVideo(null)} videoUrl={selectedVideo} />
-
-      {/* ══════════════════════════════════════════
-          HERO — full-screen cinematic opener
-      ══════════════════════════════════════════ */}
       <motion.section
         className="relative h-screen flex items-center justify-center overflow-hidden gpu-accelerated"
         style={{ scale: heroScale }}
